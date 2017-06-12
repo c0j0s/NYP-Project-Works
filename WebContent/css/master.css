@@ -1,0 +1,36 @@
+/*
+	CSS for layout
+*/
+.navbar-topbar{
+	background-color:#c9e3ff;
+}
+.topbar-nav{
+	float: right;
+	margin-bottom:0px;
+}
+.topbar-nav > li {
+	display: inline-block;
+	vertical-align:middle;
+	padding: 5px;
+}
+.topbar-nav > li > a{
+	cursor:pointer;
+    color: #777;
+}
+.topbar-nav > li > a:hover {
+	color:blue;
+	text-decoration: none;
+}
+#legal{
+	text-align:center;
+	padding:5px;
+}
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+/*
+	CSS for content
+*/
