@@ -1,8 +1,11 @@
 /*
 	CSS for layout
 */
+.navbar{
+    margin-bottom: 0px;
+}
 .navbar-topbar{
-	background-color:#c9e3ff;
+	background-color:#428bca;
 }
 .topbar-nav{
 	float: right;
@@ -13,9 +16,9 @@
 	vertical-align:middle;
 	padding: 5px;
 }
-.topbar-nav > li > a{
+a{
 	cursor:pointer;
-    color: #777;
+    color: white;
 }
 .topbar-nav > li > a:hover {
 	color:blue;
@@ -31,6 +34,35 @@
 .right{
 	float:right;
 }
+footer{
+	padding-top:15px;
+	margin-top:15px;
+	background-color:#428bca;
+}
 /*
 	CSS for content
 */
+.header-image{
+	
+}
+.section{
+	padding: 95px 0px 15px 0px;
+    clear: both;
+}
+.section-intro{
+	text-align:center;
+	box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.09);
+	padding:15px;
+}
+.section-intro img{
+	height: 140px;
+    width: 140px;
+    position: relative;
+    top: -80px;
+    border: 5px solid white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.section-intro-content{
+    position: relative;
+    top: -80px;
+}

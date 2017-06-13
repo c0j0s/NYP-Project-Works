@@ -25,10 +25,7 @@
     <img class="header-image" src="" alt="header-image-4">
  </div>
 
-<div class="container"> LELELEL
-
-
-123132
+<div class="container">
 </div>
 
 <%-- end of main container --%>

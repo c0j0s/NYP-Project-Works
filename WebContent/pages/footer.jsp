@@ -5,11 +5,36 @@
 <head>
 </head>
 <body>
-<footer>
-	<div class="container-fluid">
-		<div class="container" id="legal">
-			<span >Copyright © 2017 NYP, Singapore. All rights reserved.</span>
+<footer class="container-fluid">
+	<div class="container">
+		<div class="col-md-3">
+			<dl>
+			  <dt>Quick Links</dt>
+			  <dd><a>link1</a></dd>
+			  <dd><a>link1</a></dd>
+			  <dd><a>link1</a></dd>
+			  <dd><a>link1</a></dd>
+			  <dd><a>link1</a></dd>
+			</dl>
 		</div>
+		<div class="col-md-3">
+			links
+		</div>
+		<div class="col-md-3">
+			social media
+		</div>
+		<div class="col-md-3">
+			<address>
+			  <strong>NYP</strong><br>
+			  address<br>
+			  singapore, 000000<br>
+			  <abbr title="Phone">P:</abbr> (65) 0000-0000<br>
+			  <abbr title="Email">E:</abbr> mail@mail.com<br>
+			</address>
+		</div>
+	</div>
+	<div class="container" id="legal">
+		<span >Copyright © 2017 NYP, Singapore. All rights reserved.</span>
 	</div>
 </footer>
 </body>
