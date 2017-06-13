@@ -29,7 +29,7 @@
 		<div class="collapse navbar-collapse" id="ffl-navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="index.jsp">Home</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="forum.jsp">Family Forum</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="forum.jsp?category=1">Family Forum</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/activity.jsp' ? ' active' : ''}"><a href="#">Family Activities</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="#">Reward Redemption</a></li>
 			</ul>

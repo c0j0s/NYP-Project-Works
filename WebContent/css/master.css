@@ -46,6 +46,7 @@ footer{
 	CSS for setup.
 	
 	Account: [small|medium|large] profile image
+	div: align center
 */
 .profile-image-xsmall{
 	margin:2.5px;
@@ -66,6 +67,17 @@ footer{
 	margin:20px;
 	width:120px;
 	height:120px;
+}
+.align-center{
+	text-align:center;
+}
+.relative{
+	position:relative;
+	height:100px;
+}
+.stick-bottom{
+	position:absolute;
+	bottom:0;
 }
 /*===========================================================
 	CSS for index
@@ -99,4 +111,12 @@ footer{
 */
 .forum-sidebar-account .panel-heading{
 	text-align:center;
+}
+.forum-trending-card{
+	text-align:center;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.forum-post-control-grps{
+	margin-bottom:10px;
 }

@@ -3,3 +3,7 @@
 	    margin-right: -25px;
 	}
 }
+
+.btn-no-border{
+	border:none;
+}
