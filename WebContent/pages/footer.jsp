@@ -10,11 +10,9 @@
 		<div class="col-md-3 col-sm-6">
 			<dl>
 			  <dt>Quick Links</dt>
-			  <dd><a>link1</a></dd>
-			  <dd><a>link1</a></dd>
-			  <dd><a>link1</a></dd>
-			  <dd><a>link1</a></dd>
-			  <dd><a>link1</a></dd>
+			  <dd><a class="white">link1</a></dd>
+			  <dd><a class="white">link1</a></dd>
+			  <dd><a class="white">link1</a></dd>
 			</dl>
 		</div>
 		<div class="col-md-3 col-sm-6">
@@ -34,8 +32,14 @@
 		</div>
 	</div>
 	<div class="container" id="legal">
-		<span >Copyright © 2017 NYP, Singapore. All rights reserved.</span>
+		<span >Copyright Â© 2017 NYP, Singapore. All rights reserved.</span>
 	</div>
 </footer>
+
+
+<script src='../js/jquery-3.2.1.js'></script>
+<script src='../js/bootstrap.js'></script>
+<script src='../js/bootstrap.min.js'></script>
+
 </body>
 </html>

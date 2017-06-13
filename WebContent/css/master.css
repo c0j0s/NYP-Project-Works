@@ -1,4 +1,4 @@
-/*
+/*=========================================================
 	CSS for layout
 */
 .navbar{
@@ -16,7 +16,7 @@
 	vertical-align:middle;
 	padding: 5px;
 }
-a{
+a.white{
 	cursor:pointer;
     color: white;
 }
@@ -42,8 +42,33 @@ footer{
 .footer-info{
 	min-height:300px;
 }
-/*
-	CSS for content
+/*===========================================================
+	CSS for setup.
+	
+	Account: [small|medium|large] profile image
+*/
+.profile-image-xsmall{
+	margin:2.5px;
+	width:25px;
+	height:25px;
+}
+.profile-image-small{
+	margin:10px;
+	width:50px;
+	height:50px;
+}
+.profile-image-medium{
+	margin:15px;
+	width:80px;
+	height:80px;
+}
+.profile-image-large{
+	margin:20px;
+	width:120px;
+	height:120px;
+}
+/*===========================================================
+	CSS for index
 */
 .header-image{
 	
@@ -68,4 +93,10 @@ footer{
 .section-intro-content{
     position: relative;
     top: -80px;
+}
+/*=============================================================
+	CSS for forum
+*/
+.forum-sidebar-account .panel-heading{
+	text-align:center;
 }

@@ -8,9 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.min.css' rel='stylesheet'>
-<link href='../css/bootstrap-responsive.css' rel='stylesheet'>
-<link href='../css/bootstrap-responsive.min.css' rel='stylesheet'>
+<link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Template</title>
@@ -18,22 +16,53 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
-<div class="container-fluid section-header-image">
-    <img class="header-image" src="" alt="header-image-1">
-    <img class="header-image" src="" alt="header-image-2">
-    <img class="header-image" src="" alt="header-image-3">
-    <img class="header-image" src="" alt="header-image-4">
- </div>
-
 <div class="container">
+	<div class="col-lg-12 forum-header">
+		<img class="col-sm-3" alt="" src="">
+		<div class="col-sm-5 input-group">
+	     	<input type="text" class="form-control" placeholder="Search for...">
+	      	<span class="input-group-btn">
+	        	<button class="btn btn-default" type="button">Go!</button>
+	        </span>
+        </div>
+	</div>
+	<div class="col-lg-9 forum-main">
+		<div class="panel panel-default forum-main-trending">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Trending Topics</h3>
+		  </div>
+		  <div class="panel-body">
+		    Panel content
+		  </div>
+		</div>
+		<div class="forum-main-posts">
+			<ul class="nav nav-tabs">
+			  <li role="presentation" class="active"><a href="#">Category 1</a></li>
+			  <li role="presentation"><a href="#">Category 2</a></li>
+			  <li role="presentation"><a href="#">Category 3</a></li>
+			</ul>
+			
+			<div class="forum-main-posts-category panel-body">
+				latest post
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 forum-sidebar">
+		<div class="panel panel-primary forum-sidebar-account">
+		  <div class="panel-heading ">
+		  	<img alt="../img/sample.jpg" src="../img/sample.jpg" class="img-circle profile-image-medium">
+		    <h3 class="panel-title text-center">User Name</h3>
+		  </div>
+		  <div class="panel-body">
+		    body
+		  </div>
+		</div>
+	</div>
 </div>
 
 <%-- end of main container --%>
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>
 
-<script src='../js/bootstrap.js'></script>
-<script src='../js/bootstrap.min.js'></script>
-<script src='../js/jquery-3.2.1js'></script>
 </body>
 </html>

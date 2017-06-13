@@ -8,9 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.min.css' rel='stylesheet'>
-<link href='../css/bootstrap-responsive.css' rel='stylesheet'>
-<link href='../css/bootstrap-responsive.min.css' rel='stylesheet'>
+<link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
@@ -26,8 +24,5 @@ ${param.postId}
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>
 
-<script src='../js/bootstrap.js'></script>
-<script src='../js/bootstrap.min.js'></script>
-<script src='../js/jquery-3.2.1js'></script>
 </body>
 </html>

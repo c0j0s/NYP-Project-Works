@@ -16,6 +16,7 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
+
 <div id="header-carousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -48,9 +49,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
-
+<%-- end of carousel --%>
 
 <div class="container">
 	<div class="section section-forum">
@@ -113,12 +112,10 @@
 		</div>
 	</div>
 </div>
-
 <%-- end of main container --%>
+
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>
 
-<script src='../js/jquery-3.2.1.js'></script>
-<script src='../js/bootstrap.js'></script>
 </body>
 </html>

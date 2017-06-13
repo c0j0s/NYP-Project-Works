@@ -5,18 +5,12 @@
 <head>
 </head>
 <body>
-	<nav class="navbar navbar-default"> <%-- <div class="container-fluid nav-topbar">
-      <ul class="nav navbar-nav">
-        <li><a href="#"></a>SIGN UP</li>
-        <li><a href="#"></a>CONTACT US</li>
-      </ul>
-    </div> --%>
-
+	<nav class="navbar navbar-default">
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
-				<li><a>SIGN UP</a></li>
-        <li><a>CONTACT US</a></li>
+				<li><a class="white">SIGN UP</a></li>
+        		<li><a class="white">CONTACT US</a></li>
 			</ul>
 		</div>
 	</div>
@@ -34,10 +28,10 @@
 		</div>
 		<div class="collapse navbar-collapse" id="ffl-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.jsp">Home</a></li>
-				<li><a href="forum.jsp">Family Forum</a></li>
-				<li><a href="#">Activities</a></li>
-				<li><a href="#">Reward Redemption</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="index.jsp">Home</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="forum.jsp">Family Forum</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/activity.jsp' ? ' active' : ''}"><a href="#">Family Activities</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="#">Reward Redemption</a></li>
 			</ul>
 			<form class="navbar-form navbar-right" role="search">
 			  <div class="form-group">
