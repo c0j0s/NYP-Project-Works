@@ -34,8 +34,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="ffl-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Community</a></li>
+				<li class="active"><a href="index.jsp">Home</a></li>
+				<li><a href="forum.jsp">Family Forum</a></li>
 				<li><a href="#">Activities</a></li>
 				<li><a href="#">Reward Redemption</a></li>
 			</ul>

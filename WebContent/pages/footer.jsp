@@ -6,8 +6,8 @@
 </head>
 <body>
 <footer class="container-fluid">
-	<div class="container">
-		<div class="col-md-3">
+	<div class="container footer-info">
+		<div class="col-md-3 col-sm-6">
 			<dl>
 			  <dt>Quick Links</dt>
 			  <dd><a>link1</a></dd>
@@ -17,13 +17,13 @@
 			  <dd><a>link1</a></dd>
 			</dl>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-6">
 			links
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-6">
 			social media
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-6">
 			<address>
 			  <strong>NYP</strong><br>
 			  address<br>

@@ -67,9 +67,9 @@
 			</div>
 		</div>
 		<div class="col-md-9 section-content">
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
 		</div>
 	</div>
 	
@@ -87,9 +87,9 @@
 			</div>
 		</div>
 		<div class="col-md-9 section-content">
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
 		</div>
 	</div>
 	
@@ -107,9 +107,9 @@
 			</div>
 		</div>
 		<div class="col-md-9 section-content">
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
-			<div class="col-md-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
+			<div class="col-md-4 col-sm-4">t</div>
 		</div>
 	</div>
 </div>

@@ -39,6 +39,9 @@ footer{
 	margin-top:15px;
 	background-color:#428bca;
 }
+.footer-info{
+	min-height:300px;
+}
 /*
 	CSS for content
 */
