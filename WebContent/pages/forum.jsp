@@ -13,6 +13,9 @@
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Template</title>
 <%@ page import="java.util.ArrayList,Bean.*" %>
+<%	if(request.getParameter("category") == null) {%>
+<jsp:forward page="forum.jsp?category=1&page=1"></jsp:forward>
+<%} %>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -27,6 +30,7 @@
 	        </span>
         </div>
 	</div>
+	<!-- end of page header -->
 	<div class="col-lg-9 forum-main">
 		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
@@ -61,6 +65,7 @@
 		    } %>
 		  </div>
 		</div>
+		<!-- end of trending post panel -->
 		<div class="forum-main-posts">
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="${param.category eq '1' ? ' active' : ''}"><a href="#a" aria-controls="a" role="tab" data-toggle="tab">Category</a></li>
@@ -75,38 +80,39 @@
 		    		%>
 		    		<div class="panel panel-default forum-card">
 		    		<div class="panel-body">
-		    			<div class="col-md-2 align-center">
+		    			<div class="col-md-2 text-center">
 		    				<img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-small">
 		    				<p>User name</p>
 		    			</div>
-		    			<div class="col-md-10 relative">
+		    			<div class="col-md-10">
+		    				<div>
 		    				<h4>post title</h4>
+		    				</div>
 		    				<div class="forum-post-control-grps stick-bottom">
-		    				
-		    				<div class="btn-toolbar" role="toolbar" aria-label="...">
-							  <div class="btn-group" role="group" aria-label="...">
-								<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-									  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
-									</button>
+			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
+								  <div class="btn-group" role="group" aria-label="...">
 									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-									  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
-									</button>
-									<button type="button" class="btn btn-default btn-sm btn-no-border">
-										<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
-									</button>
+										  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
+										</button>
+										<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
+										  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
+										</button>
+										<button type="button" class="btn btn-default btn-sm btn-no-border">
+											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
+										</button>
+									</div>
+								  <div class="btn-group dropdown"  >
+								    <button id="post-controls-dropdown" type="button" class="btn btn-default btn-sm btn-no-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								      <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>&nbsp
+								      <span class="caret"></span>
+								    </button>
+								    <ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
+								      <li><a href="#">Report post</a></li>
+								      <li><a href="#">Report user</a></li>
+								    </ul>
+								  </div>
 								</div>
-							  <div class="btn-group dropdown"  >
-							    <button id="post-controls-dropdown" type="button" class="btn btn-default btn-sm btn-no-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							      <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>&nbsp
-							      <span class="caret"></span>
-							    </button>
-							    <ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
-							      <li><a href="#">Report post</a></li>
-							      <li><a href="#">Report user</a></li>
-							    </ul>
-							  </div>
-							</div>
-					    </div>
+					   		</div>
 		    			</div>
 		    		</div>
 		    		</div>
@@ -149,17 +155,7 @@
 		  </div>
 		</div>
 	</div>
-	<div class="col-lg-3 forum-sidebar">
-		<div class="panel panel-primary forum-sidebar-account">
-		  <div class="panel-heading ">
-		  	<img alt="../img/sample.jpg" src="../img/sample.jpg" class="img-circle profile-image-medium">
-		    <h3 class="panel-title text-center">User Name</h3>
-		  </div>
-		  <div class="panel-body">
-		    body
-		  </div>
-		</div>
-	</div>
+	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
 </div>
 
 <%-- end of main container --%>
