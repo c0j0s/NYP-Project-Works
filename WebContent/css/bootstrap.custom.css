@@ -7,3 +7,14 @@
 .btn-no-border{
 	border:none;
 }
+.page-header{
+	overflow:auto;
+}
+.page-header .input-group{
+    margin: 30px;
+    margin-bottom: 10px;
+}
+.page-header-subtitle{
+	font-size:14px;
+	padding:1px;
+}

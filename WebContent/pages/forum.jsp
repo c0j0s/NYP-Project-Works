@@ -18,10 +18,10 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<div class="col-lg-12 forum-header">
-		<img class="col-sm-3" alt="" src="">
-		<div class="col-sm-5 input-group">
-	     	<input type="text" class="form-control" placeholder="Search for...">
+	<div class="page-header">
+	  	<h1 class="pull-left">Family Forum <br><small class="page-header-subtitle">Everything about life</small></h1>
+		<div class="col-sm-5 input-group pull-left">
+	     	<input type="text" class="form-control" placeholder="Search forum...">
 	      	<span class="input-group-btn">
 	        	<button class="btn btn-default" type="button">Go!</button>
 	        </span>
@@ -71,7 +71,7 @@
 		
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
-		    	<% for(int i = 0; i<10; i++){
+		    	<% for(int i = 0; i<5; i++){
 		    		%>
 		    		<div class="panel panel-default forum-card">
 		    		<div class="panel-body">
@@ -80,17 +80,32 @@
 		    				<p>User name</p>
 		    			</div>
 		    			<div class="col-md-10 relative">
-		    				<p>post title</p>
+		    				<h4>post title</h4>
 		    				<div class="forum-post-control-grps stick-bottom">
-					    	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
-							</button>
+		    				
+		    				<div class="btn-toolbar" role="toolbar" aria-label="...">
+							  <div class="btn-group" role="group" aria-label="...">
+								<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
+									  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
+									</button>
+									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
+									  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
+									</button>
+									<button type="button" class="btn btn-default btn-sm btn-no-border">
+										<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
+									</button>
+								</div>
+							  <div class="btn-group dropdown"  >
+							    <button id="post-controls-dropdown" type="button" class="btn btn-default btn-sm btn-no-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>&nbsp
+							      <span class="caret"></span>
+							    </button>
+							    <ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
+							      <li><a href="#">Report post</a></li>
+							      <li><a href="#">Report user</a></li>
+							    </ul>
+							  </div>
+							</div>
 					    </div>
 		    			</div>
 		    		</div>
@@ -100,21 +115,31 @@
 		    	
 		    	<nav aria-label="Page navigation">
 				  <ul class="pagination pagination-lg">
-				    <li>
-				      <a href="#" aria-label="Previous">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li><a href="?category=1&page=1">1</a></li>
-				    <li><a href="?category=1&page=2">2</a></li>
-				    <li><a href="?category=1&page=3">3</a></li>
-				    <li><a href="?category=1&page=4">4</a></li>
-				    <li><a href="?category=1&page=5">5</a></li>
-				    <li>
-				      <a href="#" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
+				  	<% if(!request.getParameter("page").equals("1")){				    	
+				    	%>
+					    <li>
+					      <a href="?category=1&page=${param.page - 1}" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+				    	<%
+				    }
+				  	
+				    for(int i = 1; i<=5; i++){ // TODO change pagination loop maximum
+				    	%>
+				    	<li><a href="?category=1&page=<%=i%>"><%=i%></a></li>
+				    	<% 
+				    }
+				     
+				    if(!request.getParameter("page").equals("5")){ // TODO hide if maximum page reach 
+				    	%>
+					    <li>
+					      <a href="?category=1&page=${param.page + 1}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+				    	<%
+				    } %>
 				  </ul>
 				</nav>
 		    </div>
