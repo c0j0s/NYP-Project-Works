@@ -116,9 +116,6 @@ footer{
 .forum-post-control-grps{
 	margin-bottom:10px;
 }
-.post{
-	overflow:auto;
-}
 .post .col-sm-2{
 	width:15%;
 }
@@ -126,6 +123,12 @@ footer{
 	padding:0px;
 	width:70%;
 }
+.post-orginal .panel .panel-body{
+	background-color: rgba(92, 184, 92, 0.1);
+}
 .post-date{
 	padding:5px;
+}
+.post button{
+	background-color:rgba(0,0,0,0);
 }
