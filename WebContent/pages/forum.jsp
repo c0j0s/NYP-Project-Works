@@ -21,16 +21,8 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<div class="page-header">
-	  	<h1 class="pull-left">Family Forum <br><small class="page-header-subtitle">Everything about life</small></h1>
-		<div class="col-sm-5 input-group pull-left">
-	     	<input type="text" class="form-control" placeholder="Search forum...">
-	      	<span class="input-group-btn">
-	        	<button class="btn btn-default" type="button">Go!</button>
-	        </span>
-        </div>
-	</div>
-	<!-- end of page header -->
+	<jsp:include page="parts/forum-header.jsp"></jsp:include>
+	
 	<div class="col-lg-9 forum-main">
 		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
@@ -85,10 +77,10 @@
 		    				<p>User name</p>
 		    			</div>
 		    			<div class="col-md-10">
-		    				<div>
+		    				<div class="post-text-content">
 		    				<h4>post title</h4>
 		    				</div>
-		    				<div class="forum-post-control-grps stick-bottom">
+		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
 								  <div class="btn-group" role="group" aria-label="...">
 									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">

@@ -116,3 +116,16 @@ footer{
 .forum-post-control-grps{
 	margin-bottom:10px;
 }
+.post{
+	overflow:auto;
+}
+.post .col-sm-2{
+	width:15%;
+}
+.post .col-sm-8{
+	padding:0px;
+	width:70%;
+}
+.post-date{
+	padding:5px;
+}
