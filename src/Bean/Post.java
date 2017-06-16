@@ -1,5 +1,8 @@
 package Bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Post {
 	private String postId,postTitle,postContent,postCategory,tagList,accountId,activityId;
 	private java.sql.Timestamp postDate;
@@ -52,8 +55,9 @@ public class Post {
 	public void setActivityId(String activityId) {
 		this.activityId = activityId;
 	}
-	public java.sql.Timestamp getPostDate() {
-		return postDate;
+	public String getPostDate() {
+		String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(postDate);
+		return date;
 	}
 	public void setPostDate(java.sql.Timestamp postDate) {
 		this.postDate = postDate;

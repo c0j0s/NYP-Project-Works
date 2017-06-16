@@ -22,7 +22,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(String statement){
-		System.out.println("Log getPost:" + statement);
+		System.out.println("Log getPost() :" + statement);
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			if(statement == null){
@@ -31,7 +31,7 @@ public class Forum extends DBAO{
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
 			
-			System.out.println("log Forum:" + ps);
+			System.out.println("log Forum.java :" + ps);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -44,6 +44,7 @@ public class Forum extends DBAO{
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setPostDate(java.sql.Timestamp.valueOf(rs.getString("postDate")));
+				System.out.println(post.getPostDate());
 				post.setPostLikes(rs.getInt("postLikes"));
 				post.setPostDislikes(rs.getInt("postDislikes"));
 				post.setCommentCount(rs.getInt("commentCount"));

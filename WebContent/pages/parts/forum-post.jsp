@@ -1,11 +1,14 @@
 <div class="col-sm-8">
 	<div class="panel panel-default">
+		<small class="pull-right post-date">${param.postDate}</small>
 		<div class="panel-body ">
 			<div class="post-text-content">
 				<h4>${param.postTitle}</h4>
 				<p>${param.postContent}</p>
 			</div>
-			<div class="btn-toolbar" role="toolbar" aria-label="...">
+			<hr>
+			<br>
+			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<button type="button" class="btn btn-default btn-sm btn-no-border"
 						onclick="">
@@ -23,7 +26,6 @@
 					</button>
 				</div>
 				<div class="btn-group pull-right dropdown">
-					<small class="pull-left post-date">Posted on: data and time</small>
 					<button id="post-controls-dropdown" type="button"
 						class="btn btn-default btn-sm btn-no-border dropdown-toggle pull-right"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,6 +41,14 @@
 						${param.commentCount}
 					</button>
 				</div>
+				<br>
+				<br>
+				<% if(true){ // TODO check if post is close
+							// TODO jvascript method to create Comments
+					%> 
+					<button type="button" class="btn btn-success btn-block" onclick="createComment()">Give my answer</button> 
+					<%
+				} %>
 			</div>
 		</div>
 	</div>

@@ -132,9 +132,17 @@ footer{
 .post-orginal .panel .panel-body{
 	background-color: rgba(92, 184, 92, 0.1);
 }
-.post-date{
-	padding:5px;
+.post-text-content{
+	overflow:auto;
 }
-.post button{
+.post-date{
+	color:grey;
+	padding:5px;
+	left:0;
+	bottom:-5px;
+	font-size:12px;
+	position:absolute;
+}
+.post-button-group div button{
 	background-color:rgba(0,0,0,0);
 }

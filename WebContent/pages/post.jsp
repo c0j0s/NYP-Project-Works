@@ -35,6 +35,7 @@ if(list.size() != 0){
 				<jsp:param value="<%= p.getAccountId() %>" name="accountId"/>
 				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
 				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>
+				<jsp:param value="<%= p.getPostDate() %>" name="postDate"/>
 				<jsp:param value="<%= p.getPostLikes() %>" name="postLikes"/>
 				<jsp:param value="<%= p.getPostDislikes() %>" name="postDislikes"/>
 				<jsp:param value="<%= p.getCommentCount() %>" name="commentCount"/>
@@ -42,16 +43,18 @@ if(list.size() != 0){
 		</div>
 		<!-- end of original post -->
 		<hr>
+		<% if(p.getCommentCount() != 0){%>
 		<div class="post post-comment-group clearfix">
 			<div class="post-comment">
-			<div class="col-sm-2"></div>
-			<jsp:include page="parts/forum-post.jsp"></jsp:include>
-			<div class="text-center col-sm-2">
-				<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-				<p>user name</p>
+				<div class="col-sm-2"></div>
+				<jsp:include page="parts/forum-post.jsp"></jsp:include>
+				<div class="text-center col-sm-2">
+					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
+					<p>user name</p>
+				</div>
 			</div>
 		</div>
-		</div>
+		<% } %>
 	</div>
 	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
 		
