@@ -6,6 +6,7 @@ public class test {
 		UID id = new UID();
 		System.out.println(id.genId());
 		System.out.println(id.genAccountId());
+		System.out.println(id.genPostId());
 		System.out.println(id.genActivityId());
 		System.out.println(id.genCommentId());
 		System.out.println(id.genActivityId());

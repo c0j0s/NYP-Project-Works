@@ -102,6 +102,9 @@ footer{
     position: relative;
     top: -80px;
 }
+.no-padding{
+	padding:0px;
+}
 /*=============================================================
 	CSS for forum
 */
