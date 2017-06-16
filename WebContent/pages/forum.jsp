@@ -12,7 +12,8 @@
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Template</title>
-<%@ page import="java.util.ArrayList,Bean.*" %>
+<%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
+<%! Forum forum; %>
 <%	if(request.getParameter("category") == null) {%>
 <jsp:forward page="forum.jsp?category=1&page=1"></jsp:forward>
 <%} %>
@@ -23,7 +24,7 @@
 <div class="container">
 	<jsp:include page="parts/forum-header.jsp"></jsp:include>
 	
-	<div class="col-lg-9 forum-main">
+	<div class="col-md-9 forum-main">
 		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Trending Topics</h3>
@@ -68,29 +69,32 @@
 		
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
-		    	<% for(int i = 0; i<5; i++){
+		    	<% 
+		    	forum = new Forum();
+		    	ArrayList<Post> postList = forum.getPost();
+		    	for(Post p:postList){
 		    		%>
 		    		<div class="panel panel-default forum-card">
 		    		<div class="panel-body">
 		    			<div class="col-md-2 text-center">
 		    				<img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-small">
-		    				<p>User name</p>
+		    				<p><%= p.getAccountId() %></p>
 		    			</div>
 		    			<div class="col-md-10">
 		    				<div class="post-text-content">
-		    				<h4>post title</h4>
+		    				<h4><%= p.getPostTitle() %></h4>
 		    				</div>
 		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
 								  <div class="btn-group" role="group" aria-label="...">
 									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
+										  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= p.getPostLikes() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
+										  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> <%= p.getPostDislikes() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border">
-											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
+											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= p.getCommentCount() %>
 										</button>
 									</div>
 								  <div class="btn-group dropdown"  >
