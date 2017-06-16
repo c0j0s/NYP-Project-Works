@@ -19,9 +19,10 @@ public class Forum extends DBAO{
 	/**
 	 * To retrieve all post from database
 	 * @param statement
-	 * @return
+	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(String statement){
+		System.out.println("Log getPost:" + statement);
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			if(statement == null){
@@ -48,6 +49,7 @@ public class Forum extends DBAO{
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
+				System.out.println("record retrieve");
 				postList.add(post);
 			}
 		} catch (SQLException e) {
@@ -58,21 +60,32 @@ public class Forum extends DBAO{
 	
 	/**
 	 * NOT TESTED
-	 * to get post for paginations
+	 * retrieve post for paginations
 	 * @param start 
 	 * @param limit 
 	 * @param category 
-	 * @return
+	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start, int limit,String category){
 		String stmt = "SELECT * FROM ffl.post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
 		return getPost(stmt);
 	}
+	
+	/**
+	 * retrieve post by post id
+	 * @param postId
+	 * @return ArrayList<Post>
+	 */
+	public ArrayList<Post> getPostById(String postId){
+		String stmt = "SELECT * FROM ffl.post WHERE postId = '"+ postId +"'";
+		return getPost(stmt);
+	}
+	
 	/**
 	 * NOT TESTED
 	 * to sort post by category only
 	 * @param category
-	 * @return
+	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPostByCategory(String category){
 		String stmt = "SELECT * FROM ffl.post WHERE category = '"+ category +"'";

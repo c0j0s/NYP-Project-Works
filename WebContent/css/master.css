@@ -116,6 +116,9 @@ footer{
 	margin-top:10px;
 	margin-bottom:10px;
 }
+.post-link{
+	cursor:pointer;
+}
 .forum-post-control-grps{
 	margin-bottom:10px;
 }

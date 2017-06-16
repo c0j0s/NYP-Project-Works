@@ -13,7 +13,7 @@
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Family Forum</title>
 <%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
-<%! Forum forum; %>
+<%! Forum forum = new Forum(); %>
 <%	if(request.getParameter("category") == null) {%>
 <jsp:forward page="forum.jsp?category=1&page=1"></jsp:forward>
 <%} %>
@@ -70,19 +70,18 @@
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
 		    	<% 
-		    	forum = new Forum();
 		    	ArrayList<Post> postList = forum.getPost(null);
 		    	for(Post p:postList){
 		    		%>
-		    		<div class="panel panel-default forum-card" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
+		    		<div class="panel panel-default forum-card">
 		    		<div class="panel-body">
 		    			<div class="col-md-2 text-center">
 		    				<img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-small">
 		    				<p><%= p.getAccountId() %></p>
 		    			</div>
 		    			<div class="col-md-10">
-		    				<div class="post-text-content">
-		    				<h4><%= p.getPostTitle() %></h4>
+		    				<div class="post-link" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
+		    				<h4 ><%= p.getPostTitle() %></h4>
 		    				</div>
 		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">

@@ -12,20 +12,33 @@
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
+<%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
+<%! Forum forum = new Forum(); %>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
 	<jsp:include page="parts/forum-header.jsp"></jsp:include>
-
+<% 
+ArrayList<Post> list = forum.getPostById(request.getParameter("postId"));
+if(list.size() != 0){
+	Post p = list.get(0);
+	%>
 	<div class="col-sm-9">
 		<div class="post post-orginal clearfix">
 			<div class="text-center col-sm-2">
 			<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
 			<p>user name</p>
 			</div>
-			<jsp:include page="parts/forum-post.jsp"></jsp:include>
+			<jsp:include page="parts/forum-post.jsp">
+				<jsp:param value="<%= p.getAccountId() %>" name="accountId"/>
+				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
+				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>
+				<jsp:param value="<%= p.getPostLikes() %>" name="postLikes"/>
+				<jsp:param value="<%= p.getPostDislikes() %>" name="postDislikes"/>
+				<jsp:param value="<%= p.getCommentCount() %>" name="commentCount"/>
+			</jsp:include>
 		</div>
 		<!-- end of original post -->
 		<hr>
@@ -41,6 +54,18 @@
 		</div>
 	</div>
 	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+		
+		<% 
+	}else{
+		%>
+		<div class="panel panel-default">
+			<div class="panel-body ">
+				<h4>No Post Found</h4>
+			</div>
+		</div>
+		<%
+	}
+	%>
 </div>
 
 <%-- end of main container --%>
