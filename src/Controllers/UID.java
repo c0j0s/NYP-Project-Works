@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class UID{
 	public String genId(){
-		int r = new Random().nextInt(100000000);
+		int r = new Random().nextInt(10000000);
 		String id = Integer.toString(r);
 		return id;
 	}

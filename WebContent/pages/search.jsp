@@ -11,36 +11,37 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>post</title>
+<title>Template</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
-<div class="container">
-	<jsp:include page="parts/forum-header.jsp"></jsp:include>
 
-	<div class="col-sm-9">
-		<div class="post post-orginal clearfix">
-			<div class="text-center col-sm-2">
-			<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-			<p>user name</p>
-			</div>
-			<jsp:include page="parts/forum-post.jsp"></jsp:include>
-		</div>
-		<!-- end of original post -->
-		<hr>
-		<div class="post post-comment-group clearfix">
-			<div class="post-comment">
-			<div class="col-sm-2"></div>
-			<jsp:include page="parts/forum-post.jsp"></jsp:include>
-			<div class="text-center col-sm-2">
-				<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-				<p>user name</p>
-			</div>
-		</div>
-		</div>
+<div class="container">
+	<div class="page-header">
+	  	<h1 class="col-sm-3 pull-left">FamForLife <br><small class="page-header-subtitle">Search everything here</small></h1>
+		<div class="col-sm-5 input-group pull-left">
+	     	<input type="text" class="form-control" placeholder="Search...." value="Searching for ">
+	      	<span class="input-group-btn">
+	        	<button class="btn btn-default" type="button">Go!</button>
+	        </span>
+	       </div>
 	</div>
-	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+	<!-- end of page header -->
+	<div>
+		<% for(int i = 0; i<5; i++){
+			%>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Panel title</h3>
+			  </div>
+			  <div class="panel-body">
+			  	search content
+			  </div>
+			</div>
+			<%
+		} %>
+	</div>
 </div>
 
 <%-- end of main container --%>
