@@ -7,17 +7,28 @@ import java.util.ArrayList;
 
 import Bean.Post;
 
+/**
+ * @author cjuns
+ *
+ */
 public class Forum extends DBAO{
 
 	public Forum(){
 		super();
 	}
-	public ArrayList<Post> getPost(){
+	/**
+	 * To retrieve all post from database
+	 * @param statement
+	 * @return
+	 */
+	public ArrayList<Post> getPost(String statement){
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
-			String stmt = "SELECT * FROM ffl.post WHERE valid = 'Y'";
+			if(statement == null){
+				statement = "SELECT * FROM ffl.post ORDER BY postDate DESC";
+			}
 			PreparedStatement ps;
-			ps = con.prepareStatement(stmt);
+			ps = con.prepareStatement(statement);
 			
 			System.out.println("log Forum:" + ps);
 			
@@ -40,9 +51,33 @@ public class Forum extends DBAO{
 				postList.add(post);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return postList;
 	}
+	
+	/**
+	 * NOT TESTED
+	 * to get post for paginations
+	 * @param start 
+	 * @param limit 
+	 * @param category 
+	 * @return
+	 */
+	public ArrayList<Post> getPost(int start, int limit,String category){
+		String stmt = "SELECT * FROM ffl.post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
+		return getPost(stmt);
+	}
+	/**
+	 * NOT TESTED
+	 * to sort post by category only
+	 * @param category
+	 * @return
+	 */
+	public ArrayList<Post> getPostByCategory(String category){
+		String stmt = "SELECT * FROM ffl.post WHERE category = '"+ category +"'";
+		return getPost(stmt);
+	}
+	
+	// getTrendingPost
 }

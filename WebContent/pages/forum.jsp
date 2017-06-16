@@ -11,7 +11,7 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Template</title>
+<title>Family Forum</title>
 <%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
 <%! Forum forum; %>
 <%	if(request.getParameter("category") == null) {%>
@@ -71,10 +71,10 @@
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
 		    	<% 
 		    	forum = new Forum();
-		    	ArrayList<Post> postList = forum.getPost();
+		    	ArrayList<Post> postList = forum.getPost(null);
 		    	for(Post p:postList){
 		    		%>
-		    		<div class="panel panel-default forum-card">
+		    		<div class="panel panel-default forum-card" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
 		    		<div class="panel-body">
 		    			<div class="col-md-2 text-center">
 		    				<img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-small">
