@@ -12,7 +12,7 @@
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Family Forum</title>
-<%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
+<%@ page import="java.util.ArrayList,bean.*,database.*" %>
 <%! Forum forum = new Forum(); %>
 <%	if(request.getParameter("category") == null) {%>
 <jsp:forward page="forum.jsp?category=1&page=1"></jsp:forward>

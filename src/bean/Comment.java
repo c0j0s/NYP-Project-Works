@@ -1,4 +1,4 @@
-package Bean;
+package bean;
 
 public class Comment {
 	private String commentId, commentContent, commentGroup, postId, commentsComId;

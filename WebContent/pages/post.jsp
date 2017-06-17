@@ -12,7 +12,7 @@
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
-<%@ page import="java.util.ArrayList,Bean.*,Database.*" %>
+<%@ page import="java.util.ArrayList,bean.*,database.*" %>
 <%! Forum forum = new Forum(); %>
 </head>
 <body>

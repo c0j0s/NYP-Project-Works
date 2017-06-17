@@ -1,11 +1,11 @@
-package Database;
+package database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Bean.Post;
+import bean.Post;
 
 /**
  * @author cjuns
@@ -103,7 +103,7 @@ public class Forum extends DBAO{
 				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			post.setPostId(Controllers.UID.genPostId());
+			post.setPostId(common.UID.genPostId());
 			ps.setString(1, post.getPostId());
 			ps.setString(2, post.getPostTitle());
 			ps.setString(3, post.getPostDate());
