@@ -1,11 +1,11 @@
-package Controllers;
+package controllers;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-import Bean.Post;
-import Database.Forum;
+import bean.Post;
+import database.Forum;
 
 public class test {
 

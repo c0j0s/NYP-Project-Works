@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import java.text.DecimalFormat;
 import java.util.Random;
