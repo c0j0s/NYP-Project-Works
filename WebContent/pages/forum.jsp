@@ -41,10 +41,10 @@
 					    <p>this will be the title area</p>
 					    <div class="forum-post-control-grps">
 					    	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 10
+							  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 10
 							</button>
 							<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 10
+							  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 10
 							</button>
 							<button type="button" class="btn btn-default btn-sm btn-no-border">
 								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
@@ -88,10 +88,10 @@
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
 								  <div class="btn-group" role="group" aria-label="...">
 									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <%= p.getPostLikes() %>
+										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= p.getPostLikes() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> <%= p.getPostDislikes() %>
+										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> <%= p.getPostDislikes() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border">
 											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= p.getCommentCount() %>

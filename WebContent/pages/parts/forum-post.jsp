@@ -11,12 +11,12 @@
 				<div class="btn-group" role="group" aria-label="...">
 					<button type="button" class="btn btn-default btn-sm btn-no-border"
 						onclick="">
-						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 						${param.postLikes}
 					</button>
 					<button type="button" class="btn btn-default btn-sm btn-no-border"
 						onclick="">
-						<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
 						${param.postDislikes}
 					</button>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
