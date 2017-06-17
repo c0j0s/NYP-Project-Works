@@ -43,14 +43,12 @@ public class Forum extends DBAO{
 				post.setTagList(rs.getString("postCategory"));
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
-				post.setPostDate(java.sql.Timestamp.valueOf(rs.getString("postDate")));
-				System.out.println(post.getPostDate());
+				post.setPostDate(rs.getString("postDate"));
 				post.setPostLikes(rs.getInt("postLikes"));
 				post.setPostDislikes(rs.getInt("postDislikes"));
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
-				System.out.println("record retrieve");
 				postList.add(post);
 			}
 		} catch (SQLException e) {
@@ -94,4 +92,44 @@ public class Forum extends DBAO{
 	}
 	
 	// getTrendingPost
+	
+	/**
+	 * create new post into database
+	 * @param post
+	 * @return 0 "fail" | 1 "success"
+	 */
+	public String createPost(Post post){
+		String stmt = "INSERT INTO ffl.post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
+				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			post.setPostId(Controllers.UID.genPostId());
+			ps.setString(1, post.getPostId());
+			ps.setString(2, post.getPostTitle());
+			ps.setString(3, post.getPostDate());
+			ps.setString(4, post.getPostContent());
+			ps.setString(5, post.getPostCategory());
+			ps.setInt(6, post.getPoints());
+			ps.setString(7, String.valueOf(post.getHideId()));
+			ps.setString(8, post.getTagList());
+			ps.setString(9, post.getAccountId());
+			if(post.getActivityId() != null){
+				ps.setString(10, post.getActivityId());
+			}else{
+				ps.setString(10, null);
+			}
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			if(status != 0){
+				System.out.println("Log createPost() :" + ps);
+				return post.getPostId();
+			}else{
+				return "fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
 }

@@ -1,17 +1,28 @@
 package Controllers;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
+import Bean.Post;
+import Database.Forum;
+
 public class test {
 
 	public static void main(String[] args) {
-		UID id = new UID();
-		System.out.println(id.genId());
-		System.out.println(id.genAccountId());
-		System.out.println(id.genPostId());
-		System.out.println(id.genActivityId());
-		System.out.println(id.genCommentId());
-		System.out.println(id.genActivityId());
-		System.out.println(id.genRewardId());
-		System.out.println(id.genSessionId());
+		System.out.println(UID.genId());
+//		Forum f = new Forum();
+//		Post p = new Post();
+//		p.setPostTitle("third post");
+//		p.setPostDate();
+//		p.setPostContent("this it the content for third post");
+//		p.setPostCategory("parenting");
+//		p.setTagList("parent");
+//		p.setPoints(100);
+//		p.setAccountId("ACC0000000");
+//		p.setHideId('N');
+//		
+//		f.createPost(p);
 	}
 
 }

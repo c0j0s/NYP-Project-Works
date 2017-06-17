@@ -7,7 +7,6 @@
 				<p>${param.postContent}</p>
 			</div>
 			<hr>
-			<br>
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<button type="button" class="btn btn-default btn-sm btn-no-border"

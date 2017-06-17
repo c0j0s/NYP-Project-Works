@@ -1,13 +1,16 @@
 package Bean;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Post {
-	private String postId,postTitle,postContent,postCategory,tagList,accountId,activityId;
-	private java.sql.Timestamp postDate;
+	private String postId,postTitle,postContent,postCategory,tagList,postStatus,accountId,activityId;
+	private String postDate;
 	private int postLikes, postDislikes, points,commentCount;
 	private char valid, hideId;
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	
 	public Post(){
 		
@@ -43,6 +46,14 @@ public class Post {
 	public void setTagList(String tagList) {
 		this.tagList = tagList;
 	}
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
+
 	public String getAccountId() {
 		return accountId;
 	}
@@ -56,11 +67,15 @@ public class Post {
 		this.activityId = activityId;
 	}
 	public String getPostDate() {
-		String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(postDate);
-		return date;
+		return postDate;
 	}
-	public void setPostDate(java.sql.Timestamp postDate) {
-		this.postDate = postDate;
+	public void setPostDate() {
+		java.util.Date myDate = new java.util.Date();
+		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
+		this.postDate = formatter.format(sqlDate);
+	}
+	public void setPostDate(String date) {
+		this.postDate = date.substring(0, 19);
 	}
 	public int getPostLikes() {
 		return postLikes;

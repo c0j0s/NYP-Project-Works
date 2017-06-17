@@ -118,6 +118,7 @@ footer{
 }
 .post-link{
 	cursor:pointer;
+	margin-bottom:7px;
 }
 .forum-post-control-grps{
 	margin-bottom:10px;

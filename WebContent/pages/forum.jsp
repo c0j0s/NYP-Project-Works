@@ -82,6 +82,7 @@
 		    			<div class="col-md-10">
 		    				<div class="post-link" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
 		    				<h4 ><%= p.getPostTitle() %></h4>
+		    				<small class=""><%= p.getPostDate() %></small>
 		    				</div>
 		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
