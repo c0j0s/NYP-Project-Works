@@ -11,7 +11,7 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Family Forum</title>
+<title>Template</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>

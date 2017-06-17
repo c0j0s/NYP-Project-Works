@@ -1,4 +1,4 @@
-package bean;
+package Bean;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

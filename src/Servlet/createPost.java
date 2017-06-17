@@ -1,4 +1,4 @@
-package servlet;
+package Servlet;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Post;
-import database.Forum;
+import Bean.Post;
+import Database.Forum;
 
 /**
  * Servlet implementation class createPost

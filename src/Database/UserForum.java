@@ -1,4 +1,4 @@
-package database;
+package Database;
 
 public class UserForum extends Forum {
 	private String accountId;
