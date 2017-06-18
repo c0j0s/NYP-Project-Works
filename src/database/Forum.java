@@ -95,7 +95,7 @@ public class Forum extends DBAO{
 	/**
 	 * create new post into database
 	 * @param post
-	 * @return 0 "fail" | 1 "success"
+	 * @return postId
 	 */
 	public String createPost(Post post){
 		String stmt = "INSERT INTO ffl.post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
