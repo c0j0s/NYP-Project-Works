@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav">
 					<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="index.jsp">Home</a></li>
 					<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="forum.jsp?category=1&page=1">Family Forum</a></li>
-					<li class="${pageContext.request.requestURI eq '/FFL/pages/activity.jsp' ? ' active' : ''}"><a href="#">Family Activities</a></li>
+					<li class="${pageContext.request.requestURI eq '/FFL/pages/activityListing.jsp' ? ' active' : ''}"><a href="activityListing.jsp">Family Activities</a></li>
 					<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="#">Reward Redemption</a></li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">

@@ -147,3 +147,10 @@ footer{
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
 }
+/*=============================================================
+	CSS for activity listing
+*/
+.activitypic{
+	width:100%;
+	height:auto;
+}
