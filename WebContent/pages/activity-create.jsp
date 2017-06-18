@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -11,26 +11,46 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>createactivity</title>
+<title>Create Activity</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<%-- end of header --%>
+	<jsp:include page="header.jsp"></jsp:include>
+	<%-- end of header --%>
 
-<div class="container">
-	<jsp:include page="parts/page-header.jsp">
-		<jsp:param value="Create Activity" name="title"/>
-	</jsp:include>
-	<table>
-	<img src ="../img/sample.jpg" />
-	<p></p>
-	</table>
+	<div class="container">
+		<h1>Activity Creation Page</h1>
+		<form>
+			<div class="col-md-6">
+				<input type="file" name="actImg" class="form-control"
+					accept="image/*">
+				<label for="">Activity Description:</label>
+				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea>
+			</div>
+			<div class="col-md-6">
+				<label for="actName">Activity Name : </label> 
+				<input type="text" name="actName" class="form-control" placeholder="Enter Activity Name : "> 
+				<label for="actCategory">Category : </label> 
+				<input type="text" name="actCategory" class="form-control" placeholder="Enter Category : "> 
+				<label for="actFee">Fee:</label> 
+				<input type="text" name="actFee" class="form-control" placeholder="Enter Fee : "> 
+				<label for="actLocation">Location: </label> 
+				<input type="text" name="actLocation" class="form-control" placeholder="Enter Location : ">
+				<label for="actTime">Timing: </label> 
+				<input type="time" name="actTime" class="form-control"><label for="actRegEnd">Registration End : </label> 
+				<input type="date" name="actRegEnd" class="form-control"> 
+				<label for="actStart">Activity Start Date : </label> 
+				<input type="date" name="actStart" class="form-control"> 
+				<label for="actEnd">Activity End Date : </label>
+				<input type="date" name="actEnd" class="form-control">
+			</div>
+		</form>
+	</div>
+	</div>
 
-</div>
 
-<%-- end of main container --%>
-<jsp:include page="footer.jsp"></jsp:include>
-<%-- end of footer --%>
+	<%-- end of main container --%>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<%-- end of footer --%>
 
 </body>
 </html>
