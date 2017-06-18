@@ -11,13 +11,17 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Template</title>
+<title>Activities for families</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
  
 <div class="container">
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="Activities for families" name="title"/>
+		<jsp:param value="5" name="titleWidth"/>
+	</jsp:include>
 <br>
 <div class = "col-md-9">
 <%for(int i =  0;i < 5;i++){ %>

@@ -18,10 +18,12 @@
 <%-- end of header --%>
 
 <div class="container">
-<h1><p>Activity Creation Page</p></h1>
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="Create Activity" name="title"/>
+	</jsp:include>
 	<table>
 	<img src ="../img/sample.jpg" />
-<p>
+	<p></p>
 	</table>
 
 </div>
