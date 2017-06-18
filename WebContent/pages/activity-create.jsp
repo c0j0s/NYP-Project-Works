@@ -11,43 +11,19 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Activities for familes</title>
+<title>createactivity</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
- 
+
 <div class="container">
-<br>
-<div class = "col-md-9">
-<%for(int i =  0;i < 5;i++){ %>
-	<div class = "clearfix">
-		<div class="col-md-4"><img class = "activitypic" src = "../img/sample.jpg" /></div>
-		<div class="col-md-8"><h4>Activity Title</h4>
-		<p>Location : Singapore</p>
-		<p>Organiser : Singing Club Singapore</p>
-		<p>Date : 24/7/2007</p>
-		<p>Slots Remaining : 27</p>
-		<p>Fee : $19.00</p>
-		<p>Date : 03/07/2007 - 27/09/2007</p>
-		<p>Timing : 4:00 PM</p>
-		<p><span class="glyphicon glyphicon-thumbs-up"></span> 7	<span class="glyphicon glyphicon-thumbs-down"></span> 27</p> 
-		</div>
-		
-	</div>
-	 <br></br>
-	<%}  %></div>
-	<div class = "col-md-3">
-	<ul class = "list-group">
-	<h4> Activity Popularity Ranking</h4>
-		<%for(int z = 0;z<20;z++){ %>
-		<li class="list-group-item">
-		<%=z+1 %>. Java
-			<span class = "badge"><%=z %></span>
-			
-		</li>
-		<%} %>
-	</ul></div>
+<h1><p>Activity Creation Page</p></h1>
+	<table>
+	<img src ="../img/sample.jpg" />
+<p>
+	</table>
+
 </div>
 
 <%-- end of main container --%>
