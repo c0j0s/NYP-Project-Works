@@ -33,11 +33,11 @@
 						<form action="../createPost" method="post">
 						 	<div class="form-group">
 						   	 	<label for="postTitle">Title</label>
-						  		<input type="text" class="form-control" name="postTitle" id="postTitle">
+						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
 						 	</div>
 						 	<div class="form-group">
 						  		<label for="postTitle">Content</label>
-						  		<textarea class="form-control" name="postContent" id="postContent" rows="5"></textarea>
+						  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required></textarea>
 						 	</div>
 						 	<div class="row">
 							  	<div class="form-group col-md-2">
@@ -55,8 +55,8 @@
 									</select>
 							 	 </div>
 							 	 <div class="form-group col-md-6">
-								    <label for="postTags">Tags</label>
-								    <input type="text" class="form-control" name="postTags" id="postTags" value="0" >
+								    <label for="postTags">Tags <small>separate with a comma</small></label>
+								    <input type="text" class="form-control" name="postTags" id="postTags" placeholder="family,communication" >
 							 	 </div>
 						 	</div>
 							<div class="checkbox">

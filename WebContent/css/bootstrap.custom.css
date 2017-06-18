@@ -18,3 +18,13 @@
 	font-size:14px;
 	padding:1px;
 }
+.page-header h1 a{
+	color:black;
+}
+.page-header h1 a:hover{
+	text-decoration:none;
+}
+textarea{
+	width:100%;
+	max-width:100%;
+}

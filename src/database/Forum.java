@@ -22,7 +22,6 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(String statement){
-		System.out.println("Log getPost() :" + statement);
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			if(statement == null){
