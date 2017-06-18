@@ -16,6 +16,47 @@ public class Forum extends DBAO{
 	public Forum(){
 		super();
 	}
+	
+	/**
+	 * create new post into database
+	 * @param post
+	 * @return postId
+	 */
+	public String createPost(Post post){
+		String stmt = "INSERT INTO ffl.post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
+				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			post.setPostId(common.UID.genPostId());
+			ps.setString(1, post.getPostId());
+			ps.setString(2, post.getPostTitle());
+			ps.setString(3, post.getPostDate());
+			ps.setString(4, post.getPostContent());
+			ps.setString(5, post.getPostCategory());
+			ps.setInt(6, post.getPoints());
+			ps.setString(7, String.valueOf(post.getHideId()));
+			ps.setString(8, post.getTagList());
+			ps.setString(9, post.getAccountId());
+			if(post.getActivityId() != null){
+				ps.setString(10, post.getActivityId());
+			}else{
+				ps.setString(10, null);
+			}
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			if(status != 0){
+				System.out.println("Log createPost() :" + ps);
+				return post.getPostId();
+			}else{
+				return "fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
+
 	/**
 	 * To retrieve all post from database
 	 * @param statement
@@ -43,11 +84,19 @@ public class Forum extends DBAO{
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setPostDate(rs.getString("postDate"));
-				post.setPostLikes(rs.getInt("postLikes"));
-				post.setPostDislikes(rs.getInt("postDislikes"));
+				
+				post.setPostLikes(getPostMetaCounts(post.getPostId(),"like"));
+				post.setPostDislikes(getPostMetaCounts(post.getPostId(),"dislike"));
+				post.setPostfollower(getPostMetaCounts(post.getPostId(),"dislike"));
+				
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
+				
+				post.setFollowerAccounts(getPostMetaAccounts(post.getPostId(),"follow"));
+				post.setLikeAccounts(getPostMetaAccounts(post.getPostId(),"like"));
+				post.setDislikeAccounts(getPostMetaAccounts(post.getPostId(),"dislike"));
+				
 				postList.add(post);
 			}
 		} catch (SQLException e) {
@@ -90,45 +139,106 @@ public class Forum extends DBAO{
 		return getPost(stmt);
 	}
 	
-	// getTrendingPost
-	
 	/**
-	 * create new post into database
-	 * @param post
-	 * @return postId
+	 * create post meta values
+	 * @param postId
+	 * @param accountId
+	 * @param action like|dislike|follow
 	 */
-	public String createPost(Post post){
-		String stmt = "INSERT INTO ffl.post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
-				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
+	public void addPostMeta(String postId, String accountId, String action){
+		String stmt = "INSERT INTO `ffl`.`postmeta` (`postId`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			post.setPostId(common.UID.genPostId());
-			ps.setString(1, post.getPostId());
-			ps.setString(2, post.getPostTitle());
-			ps.setString(3, post.getPostDate());
-			ps.setString(4, post.getPostContent());
-			ps.setString(5, post.getPostCategory());
-			ps.setInt(6, post.getPoints());
-			ps.setString(7, String.valueOf(post.getHideId()));
-			ps.setString(8, post.getTagList());
-			ps.setString(9, post.getAccountId());
-			if(post.getActivityId() != null){
-				ps.setString(10, post.getActivityId());
-			}else{
-				ps.setString(10, null);
-			}
-			System.out.println(ps);
+			ps.setString(1, postId);
+			ps.setString(2, accountId);
+			ps.setString(3, action);
+			
 			int status = ps.executeUpdate();
 			if(status != 0){
-				System.out.println("Log createPost() :" + ps);
-				return post.getPostId();
+				System.out.println("Log updatePostMeta(): " + ps);
 			}else{
-				return "fail";
+				System.out.println("Log updatePostMeta(): fail " + ps);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void delPostMeta(){}
+	
+	/**
+	 * get post meta value counts
+	 * @param postId
+	 * @param action like|dislike|follow
+	 * @return
+	 */
+	public int getPostMetaCounts(String postId,String action){
+		int count = 0;
+		try {
+			String stmt = "SELECT COUNT(*) AS count FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				count = rs.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return count;
+	}
+		
+	/**
+	 * get post meta value accounts
+	 * @param postId
+	 * @param action like|dislike|follow
+	 * @return
+	 */
+	public ArrayList<String> getPostMetaAccounts(String postId,String action){
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			String stmt = "SELECT * FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				list.add(rs.getString("accountId"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return list;
+	}
+	
+	public void addCategory(String newCat){
+		try {
+			PreparedStatement ps = con.prepareStatement("INSERT INTO ffl.category(`categoryName`) VALUES (?)");
+			ps.setString(1, newCat);
+			int status = ps.executeUpdate();
+			if(status != 0){
+				System.out.println("Log addCategory(): " + ps);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Log addCategory(): " + e.getMessage());
 		}
-		return "fail";
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> getCategories(){
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM ffl.category");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				list.add(rs.getString("categoryName"));
+			}
+		} catch (SQLException e) {
+			System.out.println("Log getCategory(): " + e.getMessage());
+		}
+		return list;
 	}
 }
