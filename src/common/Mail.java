@@ -3,9 +3,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.Map.Entry;
 import javax.mail.Message;
@@ -30,7 +32,7 @@ public class Mail {
 	private static MimeMessage message;
 	final private static String sender = "bt1602gp@gmail.com";
  
-	public static void sendEmail(String to, String subject ,String emailBody){
+	public static void sendEmail(String to, String subject ,String emailBody,String displayButton){
  
 		properties = System.getProperties();
 		properties.put("mail.smtp.port", "587");
@@ -48,15 +50,26 @@ public class Mail {
             MimeBodyPart messageBodyPart = new MimeBodyPart();
 			
 			Map<String, String> input = new HashMap<String, String>();
+			input.put("FFL:path", "http://localhost:8080/FFL");
 			input.put("FFL:title", subject);
 			input.put("FFL:preview", subject);
 			input.put("FFL:title", subject);
 			input.put("FFL:message", emailBody);
-			input.put("FFL:button", "http://localhost:8080/FFL/pages/index.jsp");
-			input.put("FFL:buttonLink", "Click here");
+			input.put("FFL:need-button", displayButton);
+			input.put("FFL:button", "Click here");
+			input.put("FFL:link-button", "http://localhost:8080/FFL/pages/index.jsp");
 			
-			String htmlText = readEmailFromHtml("../../../pages/parts/email.html",input);
-            messageBodyPart.setContent(htmlText, "text/html");
+			URL url = new URL("http://localhost:8080/FFL/pages/parts/email.html");
+			Scanner s = new Scanner(url.openStream());
+			String file = "";
+			while(s.hasNext()){
+				file = file + s.nextLine();
+			}
+			
+			String htmlText = readEmailFromHtml(file,input);
+			System.out.println("Log htmlText: " + htmlText);
+			message.setContent(htmlText, "text/html");
+			
 			
 		} catch (AddressException e) {
 			System.out.println(e.getMessage());
@@ -64,6 +77,8 @@ public class Mail {
 			System.out.println(e.getMessage());
 		}  catch (UnsupportedEncodingException e) {
 			System.out.println(e.getMessage());
+		}	catch (IOException e) {
+			e.printStackTrace();
 		}
  
 		try {
@@ -72,17 +87,16 @@ public class Mail {
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			System.out.println("mail sent to:" + to);
-			
-			
 		} catch (MessagingException e) {
 			System.out.println(e.getMessage());
 		}
 		
 	}
+
 	
-	protected static String readEmailFromHtml(String filePath, Map<String, String> input)
+	private static String readEmailFromHtml(String filePath, Map<String, String> input)
 	{
-	    String msg = readContentFromFile(filePath);
+	    String msg = filePath;//readContentFromFile(filePath);
 	    try
 	    {
 	    Set<Entry<String, String>> entries = input.entrySet();

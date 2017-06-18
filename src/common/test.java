@@ -11,7 +11,8 @@ public class test {
 
 	public static void main(String[] args) {
 		Mail m = new Mail();
-		m.sendEmail("c.junsheng@hotmail.com", "test", "body");
+		m.sendEmail("c.junsheng@hotmail.com", "test", "body","none");
+
 	}
 
 }
