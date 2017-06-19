@@ -31,6 +31,7 @@
     <p>Gender:</p>
     <p>Email:</p>
     <p>Address:</p>
+    <p>Country</p>
     <p>Mobile No.:</p>
   </div>
 </div>
