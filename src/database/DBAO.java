@@ -18,7 +18,7 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(schurl,"root",schurl);
+			con = DriverManager.getConnection(schurl,"root",schpasswd);
 		} catch (Exception e) {
 			try {
 				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
