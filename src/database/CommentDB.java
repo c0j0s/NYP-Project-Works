@@ -73,7 +73,7 @@ public class CommentDB extends DBAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
-				MetaValue meta = new MetaValue("ffl.commentmeta","commentId");
+				MetaValueDB meta = new MetaValueDB();
 				com.setCommentId(rs.getString("commentId"));
 				com.setCommentContent(rs.getString("commentContent"));
 				com.setCommentGroup(rs.getString("commentGroup"));

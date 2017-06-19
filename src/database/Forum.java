@@ -76,7 +76,7 @@ public class Forum extends DBAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
-				MetaValue meta = new MetaValue("ffl.postmeta","postId");
+				MetaValueDB meta = new MetaValueDB();
 				
 				post.setPostId(rs.getString("postId"));
 				post.setPostTitle(rs.getString("postTitle"));

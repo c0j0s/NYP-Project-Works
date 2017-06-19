@@ -5,26 +5,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class MetaValue extends DBAO{
-	private String table, identifier;
+public class MetaValueDB extends DBAO{
 	
-	public MetaValue(String table, String identifier){
+	public MetaValueDB(){
 		super();
-		this.table = table;
-		this.identifier = identifier;
 	}
 		
 	/**
 	 * create post meta values
-	 * @param postId
+	 * @param parentId
 	 * @param accountId
 	 * @param action like|dislike|follow
 	 */
-	public void addMeta(String postId, String accountId, String action){
-		String stmt = "INSERT INTO "+ table +" (`"+ identifier +"`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
+	public void addMeta(String parentId, String accountId, String action){
+		String stmt = "INSERT INTO ffl.metavalue (`parentId`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, postId);
+			ps.setString(1, parentId);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
 			
@@ -44,14 +41,14 @@ public class MetaValue extends DBAO{
 	
 	/**
 	 * get post meta value counts
-	 * @param postId
+	 * @param parentId
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public int getMetaCounts(String postId,String action){
+	public int getMetaCounts(String parentId,String action){
 		int count = 0;
 		try {
-			String stmt = "SELECT COUNT(*) AS count FROM "+ table +" WHERE "+ identifier +" = '"+ postId +"' AND postAction = '"+ action +"'";
+			String stmt = "SELECT COUNT(*) AS count FROM ffl.metavalue WHERE parentId = '"+ parentId +"' AND postAction = '"+ action +"'";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
@@ -67,14 +64,14 @@ public class MetaValue extends DBAO{
 		
 	/**
 	 * get post meta value accounts
-	 * @param postId
+	 * @param parentId
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public ArrayList<String> getMetaAccounts(String postId,String action){
+	public ArrayList<String> getMetaAccounts(String parentId,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "SELECT * FROM "+ table +" WHERE "+ identifier +" = '"+ postId +"' AND postAction = '"+ action +"'";
+			String stmt = "SELECT * FROM ffl.metavalue WHERE parentId = '"+ parentId +"' AND postAction = '"+ action +"'";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
