@@ -27,7 +27,11 @@ public class CommentDB extends DBAO{
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, common.UID.genCommentId());			
+			ps.setString(1, common.UID.genCommentId());	
+			ps.setString(2, com.getCommentContent());
+			ps.setString(3, com.getCommentDate());
+			//ps.setString(4, com.getCommentLikes());
+			
 			
 			if(com.getCommentsComId() != null){
 				ps.setString(8, com.getCommentsComId());

@@ -76,6 +76,8 @@ public class Forum extends DBAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
+				MetaValue meta = new MetaValue("ffl.postmeta","postId");
+				
 				post.setPostId(rs.getString("postId"));
 				post.setPostTitle(rs.getString("postTitle"));
 				post.setPostContent(rs.getString("postContent"));
@@ -85,17 +87,17 @@ public class Forum extends DBAO{
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setPostDate(rs.getString("postDate"));
 				
-				post.setPostLikes(getPostMetaCounts(post.getPostId(),"like"));
-				post.setPostDislikes(getPostMetaCounts(post.getPostId(),"dislike"));
-				post.setPostfollower(getPostMetaCounts(post.getPostId(),"dislike"));
+				post.setPostLikes(meta.getPostMetaCounts(post.getPostId(),"like"));
+				post.setPostDislikes(meta.getPostMetaCounts(post.getPostId(),"dislike"));
+				post.setPostfollower(meta.getPostMetaCounts(post.getPostId(),"dislike"));
 				
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-				post.setFollowerAccounts(getPostMetaAccounts(post.getPostId(),"follow"));
-				post.setLikeAccounts(getPostMetaAccounts(post.getPostId(),"like"));
-				post.setDislikeAccounts(getPostMetaAccounts(post.getPostId(),"dislike"));
+				post.setFollowerAccounts(meta.getPostMetaAccounts(post.getPostId(),"follow"));
+				post.setLikeAccounts(meta.getPostMetaAccounts(post.getPostId(),"like"));
+				post.setDislikeAccounts(meta.getPostMetaAccounts(post.getPostId(),"dislike"));
 				
 				postList.add(post);
 			}
@@ -137,78 +139,6 @@ public class Forum extends DBAO{
 	public ArrayList<Post> getPostByCategory(String category){
 		String stmt = "SELECT * FROM ffl.post WHERE category = '"+ category +"'";
 		return getPost(stmt);
-	}
-	
-	/**
-	 * create post meta values
-	 * @param postId
-	 * @param accountId
-	 * @param action like|dislike|follow
-	 */
-	public void addPostMeta(String postId, String accountId, String action){
-		String stmt = "INSERT INTO `ffl`.`postmeta` (`postId`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
-		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, postId);
-			ps.setString(2, accountId);
-			ps.setString(3, action);
-			
-			int status = ps.executeUpdate();
-			if(status != 0){
-				System.out.println("Log updatePostMeta(): " + ps);
-			}else{
-				System.out.println("Log updatePostMeta(): fail " + ps);
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	public void delPostMeta(){}
-	
-	/**
-	 * get post meta value counts
-	 * @param postId
-	 * @param action like|dislike|follow
-	 * @return
-	 */
-	public int getPostMetaCounts(String postId,String action){
-		int count = 0;
-		try {
-			String stmt = "SELECT COUNT(*) AS count FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				count = rs.getInt("count");
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return count;
-	}
-		
-	/**
-	 * get post meta value accounts
-	 * @param postId
-	 * @param action like|dislike|follow
-	 * @return
-	 */
-	public ArrayList<String> getPostMetaAccounts(String postId,String action){
-		ArrayList<String> list = new ArrayList<String>();
-		try {
-			String stmt = "SELECT * FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				list.add(rs.getString("accountId"));
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return list;
 	}
 	
 	public void addCategory(String newCat){
