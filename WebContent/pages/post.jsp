@@ -35,9 +35,9 @@ if(list.size() != 0){
 				<jsp:param value="<%= p.getAccountId() %>" name="accountId"/>
 				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
 				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>
-				<jsp:param value="<%= p.getPostDate() %>" name="postDate"/>
-				<jsp:param value="<%= p.getPostLikes() %>" name="postLikes"/>
-				<jsp:param value="<%= p.getPostDislikes() %>" name="postDislikes"/>
+				<jsp:param value="<%= p.getDate() %>" name="postDate"/>
+				<jsp:param value="<%= p.getLikeCount() %>" name="postLikes"/>
+				<jsp:param value="<%= p.getDislikeCount() %>" name="postDislikes"/>
 				<jsp:param value="<%= p.getCommentCount() %>" name="commentCount"/>
 			</jsp:include>
 		</div>

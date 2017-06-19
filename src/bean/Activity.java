@@ -126,12 +126,6 @@ public class Activity {
 	public void setActivityRank(int activityRank) {
 		this.activityRank = activityRank;
 	}
-	public String getActivityTime() {
-		return activityTime;
-	}
-	public void setActivityTime(String activityTime) {
-		this.activityTime = activityTime;
-	}
 	public String getOrganiserId() {
 		return organiserId;
 	}
