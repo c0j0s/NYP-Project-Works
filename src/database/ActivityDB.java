@@ -39,6 +39,7 @@ public class ActivityDB extends DBAO{
 				act.setImgUrl(rs.getString("imgUrl"));
 				act.setValid(rs.getString("valid").charAt(0));
 				act.setActivityDay(rs.getString("activityDays"));
+				act.setOrganiserId(rs.getString("accountId"));
 				System.out.println("record retrieve");
 				activityList.add(act);
 				System.out.println(act);		}

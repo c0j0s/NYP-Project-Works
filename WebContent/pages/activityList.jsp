@@ -3,6 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+
+<%@ page import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat" %>
+<%! ActivityDB actdb = new ActivityDB(); %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,19 +26,23 @@
 		<jsp:param value="5" name="titleWidth"/>
 	</jsp:include>
 <br>
-<div class = "col-md-9">
-<%for(int i =  0;i < 5;i++){ %>
+<div class = "col-md-9"><%DecimalFormat df = new  DecimalFormat("##.00"); %>
+<%ArrayList<Activity> actList = actdb.getActivity(null);
+		    	for(Activity act:actList){ %>
 	<div class = "clearfix">
 		<div class="col-md-4"><img class = "activitypic" src = "../img/sample.jpg" /></div>
-		<div class="col-md-8"><h4>Activity Title</h4>
-		<p>Location : Singapore</p>
-		<p>Organiser : Singing Club Singapore</p>
-		<p>Date : 24/7/2007</p>
-		<p>Slots Remaining : 27</p>
-		<p>Fee : $19.00</p>
-		<p>Date : 03/07/2007 - 27/09/2007</p>
-		<p>Timing : 4:00 PM</p>
-		<p><span class="glyphicon glyphicon-thumbs-up"></span> 7	<span class="glyphicon glyphicon-thumbs-down"></span> 27</p> 
+		<div class="col-md-8">
+		<h4><%= act.getActivityTitle() %></h4>
+		<p>Location : <%= act.getActivityLocation() %></p>
+		<p>Organiser : <%=act.getOrganiserId() %></p><p>Slots Remaining : <%=act.getParticipantNo() %></p>
+		<p>Fee : $ <%=act.getActivityFee() %></p>
+		<p>Date : <%=act.getActivityStartDate() %> to <%=act.getActivityEndDate() %></p>
+		<P>Day : <%=act.getActivityId() %>
+		<p>Timing : <%=act.getActivityTime() %></p>
+		<p><div class="forum-post-control-grps">
+					    	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick=""><span class="glyphicon glyphicon-thumbs-up"></span></button> <%= act.getActivityLikes() %>	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick=""><span class="glyphicon glyphicon-thumbs-down"></span></button> <%=act.getActivityDislikes() %><button type="button" class="btn btn-default btn-sm btn-no-border">
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button> <%="69" %>
+							</div></p> 
 		</div>
 		
 	</div>

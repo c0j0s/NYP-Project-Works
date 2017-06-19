@@ -18,6 +18,9 @@ public class Activity {
 	private char valid;
 	private String activityDay;
 	private int activityRank;
+	private String activityTime;
+	private String organiserId;
+	
 	public Activity(){
 		
 	}
@@ -122,6 +125,18 @@ public class Activity {
 	}
 	public void setActivityRank(int activityRank) {
 		this.activityRank = activityRank;
+	}
+	public String getActivityTime() {
+		return activityTime;
+	}
+	public void setActivityTime(String activityTime) {
+		this.activityTime = activityTime;
+	}
+	public String getOrganiserId() {
+		return organiserId;
+	}
+	public void setOrganiserId(String organiserId) {
+		this.organiserId = organiserId;
 	}
 	
 	
