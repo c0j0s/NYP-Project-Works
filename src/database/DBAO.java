@@ -6,6 +6,10 @@ import java.sql.SQLException;
 
 public class DBAO {
 	public Connection con;
+	final private String schurl = "jdbc:mysql://localhost:3306/ffl";
+	final private String schpasswd = "mysql";
+	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
+	final private String passwd = "mysql";
 	
 	/**
 	 * Default constructor
@@ -14,12 +18,12 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://138.75.188.127:3306/ffl","root","password");
+			con = DriverManager.getConnection(schurl,"root",schurl);
 		} catch (Exception e) {
 			try {
-				throw new Exception("Log DBAO: fail to connect to database" + e.getMessage());
+				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
 			}
 		}
 	}
