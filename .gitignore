@@ -1,3 +1,4 @@
 /build/
 
 *.classpath
+src/common/test.java
