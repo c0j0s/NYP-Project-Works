@@ -1,5 +1,5 @@
 <div class="page-header">
-  	<h1 class="col-sm-3 pull-left"><a href="${pageContext.request.requestURI}">Family Forum <br><small class="page-header-subtitle">Everything about life</small></a></h1>
+  	<h1 class="col-sm-3 pull-left"><a href="${pageContext.request.requestURI eq '/FFL/pages/post.jsp' ? '/FFL/pages/post.jsp?postId='.concat(param.postId) : pageContext.request.requestURI}">Family Forum <br><small class="page-header-subtitle">Everything about life</small></a></h1>
 	<div class="col-sm-5 input-group pull-left">
      	<input type="text" class="form-control" placeholder="Search forum...">
       	<span class="input-group-btn">
