@@ -18,25 +18,25 @@ public class CommentDB extends DBAO{
 	}
 	
 	/**
-	 * create new post into database
-	 * @param post
+	 * create new comment into database
+	 * @param com
 	 * @return postId
 	 */
 	public String createComment(Comment com){
-		String stmt = "INSERT INTO `ffl`.`comments` (`commentId`, `commentContent`, `commentDate`, `commentLikes`, `commentDislikes`, `commentGroup`, `PostpostId`, `CommentscommentId`)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String stmt = "INSERT INTO `ffl`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `PostpostId`, `CommentscommentId`)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, common.UID.genCommentId());	
 			ps.setString(2, com.getCommentContent());
-			ps.setString(3, com.getCommentDate());
-			//ps.setString(4, com.getCommentLikes());
-			
+			ps.setString(3, com.getDate());
+			ps.setString(4, com.getCommentGroup());
+			ps.setString(5, com.getPostId());
 			
 			if(com.getCommentsComId() != null){
-				ps.setString(8, com.getCommentsComId());
+				ps.setString(6, com.getCommentsComId());
 			}else{
-				ps.setString(8, null);
+				ps.setString(6, null);
 			}
 			
 			int status = ps.executeUpdate();
@@ -54,53 +54,51 @@ public class CommentDB extends DBAO{
 		return "fail";
 	}
 
-//	/**
-//	 * To retrieve all post from database
-//	 * @param statement
-//	 * @return ArrayList<Post>
-//	 */
-//	public ArrayList<Post> getPost(String statement){
-//		ArrayList<Post> postList = new ArrayList<Post>();
-//		try {
-//			if(statement == null){
-//				statement = "SELECT * FROM ffl.post ORDER BY postDate DESC";
-//			}
-//			PreparedStatement ps;
-//			ps = con.prepareStatement(statement);
-//			
-//			System.out.println("log Forum.java :" + ps);
-//			
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()){
-//				Post post = new Post();
-//				post.setPostId(rs.getString("postId"));
-//				post.setPostTitle(rs.getString("postTitle"));
-//				post.setPostContent(rs.getString("postContent"));
-//				post.setPostCategory(rs.getString("postCategory"));
-//				post.setTagList(rs.getString("postCategory"));
-//				post.setAccountId(rs.getString("UseraccountId"));
-//				post.setActivityId(rs.getString("ActivityactivityId"));
-//				post.setPostDate(rs.getString("postDate"));
-//				
-//				post.setPostLikes(getPostMetaCounts(post.getPostId(),"like"));
-//				post.setPostDislikes(getPostMetaCounts(post.getPostId(),"dislike"));
-//				post.setPostfollower(getPostMetaCounts(post.getPostId(),"dislike"));
-//				
-//				post.setCommentCount(rs.getInt("commentCount"));
-//				post.setValid(rs.getString("valid").charAt(0));
-//				post.setHideId(rs.getString("hideId").charAt(0));
-//				
-//				post.setFollowerAccounts(getPostMetaAccounts(post.getPostId(),"follow"));
-//				post.setLikeAccounts(getPostMetaAccounts(post.getPostId(),"like"));
-//				post.setDislikeAccounts(getPostMetaAccounts(post.getPostId(),"dislike"));
-//				
-//				postList.add(post);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return postList;
-//	}
+	/**
+	 * To retrieve all comment from database
+	 * @param statement
+	 * @return ArrayList<Post>
+	 */
+	public ArrayList<Comment> getPost(String statement){
+		ArrayList<Comment> commentList = new ArrayList<Comment>();
+		try {
+			if(statement == null){
+				statement = "SELECT * FROM ffl.comments ORDER BY postDate DESC";
+			}
+			PreparedStatement ps;
+			ps = con.prepareStatement(statement);
+			
+			System.out.println("log CommentDB.java :" + ps);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Comment com = new Comment();
+				MetaValue meta = new MetaValue("ffl.commentmeta","commentId");
+				com.setCommentId(rs.getString("commentId"));
+				com.setCommentContent(rs.getString("commentContent"));
+				com.setCommentGroup(rs.getString("commentGroup"));
+				com.setCommentStatus(rs.getString("commentStatus"));
+				com.setPostId(rs.getString("postId"));
+				com.setCommentsComId(rs.getString("commentsComId"));
+				com.setDate(rs.getString("commentDate"));
+				
+				com.setLikeCount(meta.getMetaCounts(com.getPostId(), "like"));
+				com.setDislikeCount(meta.getMetaCounts(com.getPostId(), "dislike"));
+				
+				com.setHideId(rs.getString("hideId").charAt(0));
+				
+				
+//				com.setFollowerAccounts(getMetaAccounts(com.getPostId(),"follow"));
+//				com.setLikeAccounts(getMetaAccounts(com.getPostId(),"like"));
+//				com.setDislikeAccounts(getMetaAccounts(com.getPostId(),"dislike"));
+				
+				commentList.add(com);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commentList;
+	}
 //	
 //	/**
 //	 * NOT TESTED

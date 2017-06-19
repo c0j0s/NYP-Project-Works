@@ -1,13 +1,7 @@
 package common;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-
 import bean.Comment;
-import bean.Post;
 import database.CommentDB;
-import database.Forum;
 
 public class test {
 
@@ -15,6 +9,11 @@ public class test {
 		CommentDB c = new CommentDB();
 		Comment com = new Comment();
 		com.setCommentContent("this is the comment content");
+		com.setDate();
+		com.setCommentGroup("Parent");
+		com.setPostId("POS0000000");
+		String result = c.createComment(com);
+		System.out.println(result);
 	}
 
 }

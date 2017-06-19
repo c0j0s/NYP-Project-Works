@@ -34,7 +34,7 @@ public class createPost extends HttpServlet {
 		Forum f = new Forum();
 		Post p = new Post();
 		p.setPostTitle(request.getParameter("postTitle"));
-		p.setPostDate();
+		p.setDate();
 		p.setPostContent(request.getParameter("postContent"));
 		p.setPostCategory(request.getParameter("postCategory"));
 		p.setTagList(request.getParameter("postTags"));

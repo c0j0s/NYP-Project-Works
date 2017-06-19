@@ -1,14 +1,9 @@
 package bean;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-
-public class Comment {
-	private String commentId, commentContent, commentGroup, postId, commentsComId;
-	private String commentDate;
-	private int commentLikes, commentDislikes;
+public class Comment extends MetaValue{
+	private String commentId, commentContent, commentGroup,commentStatus, postId, commentsComId;
+	private char hideId;
 	
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	
 	public Comment() {
 		super();
@@ -54,34 +49,20 @@ public class Comment {
 		this.commentsComId = commentsComId;
 	}
 
-	public String getCommentDate() {
-		return commentDate;
+	public String getCommentStatus() {
+		return commentStatus;
 	}
 
-	public void setCommentDate() {
-		java.util.Date myDate = new java.util.Date();
-		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
-		this.commentDate = formatter.format(sqlDate);
-	}
-	
-	public void setCommentDate(String date) {
-		this.commentDate = date.substring(0, 19);
+	public void setCommentStatus(String commentStatus) {
+		this.commentStatus = commentStatus;
 	}
 
-	public int getCommentLikes() {
-		return commentLikes;
+	public char getHideId() {
+		return hideId;
 	}
 
-	public void setCommentLikes(int commentLikes) {
-		this.commentLikes = commentLikes;
-	}
-
-	public int getCommentDislikes() {
-		return commentDislikes;
-	}
-
-	public void setCommentDislikes(int commentDislikes) {
-		this.commentDislikes = commentDislikes;
+	public void setHideId(char hideId) {
+		this.hideId = hideId;
 	}
 	
 	

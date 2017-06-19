@@ -30,7 +30,7 @@ public class Forum extends DBAO{
 			post.setPostId(common.UID.genPostId());
 			ps.setString(1, post.getPostId());
 			ps.setString(2, post.getPostTitle());
-			ps.setString(3, post.getPostDate());
+			ps.setString(3, post.getDate());
 			ps.setString(4, post.getPostContent());
 			ps.setString(5, post.getPostCategory());
 			ps.setInt(6, post.getPoints());
@@ -85,19 +85,19 @@ public class Forum extends DBAO{
 				post.setTagList(rs.getString("postCategory"));
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
-				post.setPostDate(rs.getString("postDate"));
+				post.setDate(rs.getString("postDate"));
 				
-				post.setPostLikes(meta.getPostMetaCounts(post.getPostId(),"like"));
-				post.setPostDislikes(meta.getPostMetaCounts(post.getPostId(),"dislike"));
-				post.setPostfollower(meta.getPostMetaCounts(post.getPostId(),"dislike"));
+				post.setLikeCount(meta.getMetaCounts(post.getPostId(),"like"));
+				post.setDislikeCount(meta.getMetaCounts(post.getPostId(),"dislike"));
+				post.setFollowerCount(meta.getMetaCounts(post.getPostId(),"follow"));
 				
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-				post.setFollowerAccounts(meta.getPostMetaAccounts(post.getPostId(),"follow"));
-				post.setLikeAccounts(meta.getPostMetaAccounts(post.getPostId(),"like"));
-				post.setDislikeAccounts(meta.getPostMetaAccounts(post.getPostId(),"dislike"));
+				post.setFollowerAccounts(meta.getMetaAccounts(post.getPostId(),"follow"));
+				post.setLikeAccounts(meta.getMetaAccounts(post.getPostId(),"like"));
+				post.setDislikeAccounts(meta.getMetaAccounts(post.getPostId(),"dislike"));
 				
 				postList.add(post);
 			}

@@ -20,7 +20,7 @@ public class MetaValue extends DBAO{
 	 * @param accountId
 	 * @param action like|dislike|follow
 	 */
-	public void addPostMeta(String postId, String accountId, String action){
+	public void addMeta(String postId, String accountId, String action){
 		String stmt = "INSERT INTO "+ table +" (`"+ identifier +"`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -48,7 +48,7 @@ public class MetaValue extends DBAO{
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public int getPostMetaCounts(String postId,String action){
+	public int getMetaCounts(String postId,String action){
 		int count = 0;
 		try {
 			String stmt = "SELECT COUNT(*) AS count FROM "+ table +" WHERE "+ identifier +" = '"+ postId +"' AND postAction = '"+ action +"'";
@@ -71,7 +71,7 @@ public class MetaValue extends DBAO{
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public ArrayList<String> getPostMetaAccounts(String postId,String action){
+	public ArrayList<String> getMetaAccounts(String postId,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
 			String stmt = "SELECT * FROM "+ table +" WHERE "+ identifier +" = '"+ postId +"' AND postAction = '"+ action +"'";

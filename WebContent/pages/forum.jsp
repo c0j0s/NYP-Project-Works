@@ -82,16 +82,16 @@
 		    			<div class="col-md-10">
 		    				<div class="post-link" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
 		    				<h4 ><%= p.getPostTitle() %></h4>
-		    				<small class=""><%= p.getPostDate() %></small>
+		    				<small class=""><%= p.getDate() %></small>
 		    				</div>
 		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
 								  <div class="btn-group" role="group" aria-label="...">
 									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= p.getPostLikes() %>
+										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= p.getLikeCount() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> <%= p.getPostDislikes() %>
+										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> <%= p.getDislikeCount() %>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border">
 											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= p.getCommentCount() %>
