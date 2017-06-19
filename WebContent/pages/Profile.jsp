@@ -18,15 +18,24 @@
 <%-- end of header --%>
 
 <div class="container">
-		<div class="col-md-5">
-		<form>
-			<div class="form-group">Username:<input type="text" class="form-control" placeholder="username"></div>
-   			 <div class="form-group">Password:<input type="password" class="form-control" placeholder="password"></div>
-   			<button type="submit" class="btn btn-default">Submit</button>
-   		</form>
- 		</div>
-  		
-	
+
+<div class="col-md-4">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Profile</h3>
+  </div>
+  <div class="panel-body">
+    <p>First Name:</p>
+    <p>Last Name:</p>
+    <p>Date of Birth:</p>
+    <p>Gender:</p>
+    <p>Email:</p>
+    <p>Address:</p>
+    <p>Mobile No.:</p>
+  </div>
+</div>
+<button type="submit" class="btn btn-default">Update Profile</button>
+</div>
 </div>
 
 <%-- end of main container --%>
