@@ -18,8 +18,8 @@ public class Activity {
 	private char valid;
 	private String activityDay;
 	private int activityRank;
-	private String activityTime;
 	private String organiserId;
+
 	
 	public Activity(){
 		
@@ -138,6 +138,7 @@ public class Activity {
 	public void setOrganiserId(String organiserId) {
 		this.organiserId = organiserId;
 	}
+
 	
 	
 }

@@ -35,7 +35,7 @@
 				<label for="actFee">Fee:</label> 
 				<input type="text" name="actFee" class="form-control" placeholder="Enter Fee : "> 
 				<label for="actPar">Participant Number:</label> 
-				<input type="number" name="actPar" class="form-control" placeholder="Enter Participant Number : "> 
+				<input type="number	" name="actPar" class="form-control" placeholder="Enter Participant Number : "> 
 				<label for="actLocation">Location: </label> 
 				<input type="text" name="actLocation" class="form-control" placeholder="Enter Location : ">
 				<label for="actTime">Timing: </label> 
