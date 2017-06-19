@@ -14,6 +14,7 @@
 <title>post</title>
 <%@ page import="java.util.ArrayList,bean.*,database.*" %>
 <%! Forum forum = new Forum(); %>
+<%! CommentDB comdb = new CommentDB(); %>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -43,17 +44,27 @@ if(list.size() != 0){
 		</div>
 		<!-- end of original post -->
 		<hr>
-		<% if(p.getCommentCount() != 0){%>
-		<div class="post post-comment-group clearfix">
+		<% 
+		ArrayList<Comment> comList = comdb.getCommentByPostId(request.getParameter("postId"), 0, 5);
+		for(Comment c:comList){
+		%>
+		<div class="post post-comment-group clearfix">		
 			<div class="post-comment">
 				<div class="col-sm-2"></div>
-				<jsp:include page="parts/forum-post.jsp"></jsp:include>
+				<jsp:include page="parts/forum-post.jsp">
+					<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
+					<jsp:param value="<%= c.getCommentContent() %>" name="postContent"/>
+					<jsp:param value="<%= c.getDate() %>" name="postDate"/>
+					<jsp:param value="<%= c.getLikeCount() %>" name="postLikes"/>
+					<jsp:param value="<%= c.getDislikeCount() %>" name="postDislikes"/>
+				</jsp:include>
 				<div class="text-center col-sm-2">
 					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
 					<p>user name</p>
 				</div>
 			</div>
 		</div>
+		<br>
 		<% } %>
 	</div>
 	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>

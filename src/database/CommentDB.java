@@ -23,8 +23,8 @@ public class CommentDB extends DBAO{
 	 * @return postId
 	 */
 	public String createComment(Comment com){
-		String stmt = "INSERT INTO `ffl`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `PostpostId`, `CommentscommentId`)"
-				+ " VALUES (?, ?, ?, ?, ?, ?)";
+		String stmt = "INSERT INTO `ffl`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `PostpostId`, `AccountId`, `CommentscommentId`)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, common.UID.genCommentId());	
@@ -32,11 +32,12 @@ public class CommentDB extends DBAO{
 			ps.setString(3, com.getDate());
 			ps.setString(4, com.getCommentGroup());
 			ps.setString(5, com.getPostId());
+			ps.setString(6, com.getAccountId());
 			
 			if(com.getCommentsComId() != null){
-				ps.setString(6, com.getCommentsComId());
+				ps.setString(7, com.getCommentsComId());
 			}else{
-				ps.setString(6, null);
+				ps.setString(7, null);
 			}
 			
 			int status = ps.executeUpdate();
@@ -59,12 +60,13 @@ public class CommentDB extends DBAO{
 	 * @param statement
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Comment> getPost(String statement){
+	public ArrayList<Comment> getComment(String statement){
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.comments ORDER BY postDate DESC";
+				statement = "SELECT * FROM ffl.comments WHERE commentStatus = 'publish' ORDER BY commentDate DESC";
 			}
+			
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
 			
@@ -79,11 +81,12 @@ public class CommentDB extends DBAO{
 				com.setCommentGroup(rs.getString("commentGroup"));
 				com.setCommentStatus(rs.getString("commentStatus"));
 				com.setPostId(rs.getString("postId"));
-				com.setCommentsComId(rs.getString("commentsComId"));
+				com.setCommentsComId(rs.getString("CommentscommentId"));
 				com.setDate(rs.getString("commentDate"));
+				com.setAccountId(rs.getString("accountId"));
 				
-				com.setLikeCount(meta.getMetaCounts(com.getPostId(), "like"));
-				com.setDislikeCount(meta.getMetaCounts(com.getPostId(), "dislike"));
+				com.setLikeCount(meta.getMetaCounts("commentId",com.getPostId(), "like"));
+				com.setDislikeCount(meta.getMetaCounts("commentId",com.getPostId(), "dislike"));
 				
 				com.setHideId(rs.getString("hideId").charAt(0));
 				
@@ -99,19 +102,19 @@ public class CommentDB extends DBAO{
 		}
 		return commentList;
 	}
-//	
-//	/**
-//	 * NOT TESTED
-//	 * retrieve post for paginations
-//	 * @param start 
-//	 * @param limit 
-//	 * @param category 
-//	 * @return ArrayList<Post>
-//	 */
-//	public ArrayList<Post> getPost(int start, int limit,String category){
-//		String stmt = "SELECT * FROM ffl.post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
-//		return getPost(stmt);
-//	}
+	
+	/**
+	 * retrieve comments under specific post
+	 * @param postId
+	 * @param start
+	 * @param limit
+	 * @return
+	 */
+	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
+		String stmt = "SELECT * FROM ffl.comments WHERE postId = '"+ postId +"' AND commentStatus = 'publish' limit " + start + "," + limit;
+		System.out.println("Log getCommentByPostId(): " + stmt);
+		return getComment(stmt);
+	}
 //	
 //	/**
 //	 * retrieve post by post id

@@ -1,7 +1,7 @@
 package bean;
 
 public class Comment extends MetaValue{
-	private String commentId, commentContent, commentGroup,commentStatus, postId, commentsComId;
+	private String commentId, commentContent, commentGroup,commentStatus, postId, accountId, commentsComId;
 	private char hideId;
 	
 	
@@ -63,6 +63,14 @@ public class Comment extends MetaValue{
 
 	public void setHideId(char hideId) {
 		this.hideId = hideId;
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 	
 	

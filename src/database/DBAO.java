@@ -9,7 +9,7 @@ public class DBAO {
 	final private String schurl = "jdbc:mysql://localhost:3306/ffl";
 	final private String schpasswd = "mysql";
 	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
-	final private String passwd = "mysql";
+	final private String passwd = "password";
 	
 	/**
 	 * Default constructor
@@ -18,7 +18,8 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(schurl,"root",schpasswd);
+			//con = DriverManager.getConnection(schurl,"root",schpasswd);
+			con = DriverManager.getConnection(url,"root",passwd);
 		} catch (Exception e) {
 			try {
 				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());

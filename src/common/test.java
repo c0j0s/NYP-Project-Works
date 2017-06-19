@@ -12,6 +12,7 @@ public class test {
 		com.setDate();
 		com.setCommentGroup("Parent");
 		com.setPostId("POS0000000");
+		com.setAccountId("ACC0000000");
 		String result = c.createComment(com);
 		System.out.println(result);
 	}

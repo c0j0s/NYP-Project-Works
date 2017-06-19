@@ -68,8 +68,7 @@ public class Forum extends DBAO{
 			if(statement == null){
 				statement = "SELECT * FROM ffl.post ORDER BY postDate DESC";
 			}
-			PreparedStatement ps;
-			ps = con.prepareStatement(statement);
+			PreparedStatement ps = con.prepareStatement(statement);
 			
 			System.out.println("log Forum.java :" + ps);
 			
@@ -87,17 +86,17 @@ public class Forum extends DBAO{
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
 				
-				post.setLikeCount(meta.getMetaCounts(post.getPostId(),"like"));
-				post.setDislikeCount(meta.getMetaCounts(post.getPostId(),"dislike"));
-				post.setFollowerCount(meta.getMetaCounts(post.getPostId(),"follow"));
+				post.setLikeCount(meta.getMetaCounts("postId",post.getPostId(),"like"));
+				post.setDislikeCount(meta.getMetaCounts("postId",post.getPostId(),"dislike"));
+				post.setFollowerCount(meta.getMetaCounts("postId",post.getPostId(),"follow"));
 				
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-				post.setFollowerAccounts(meta.getMetaAccounts(post.getPostId(),"follow"));
-				post.setLikeAccounts(meta.getMetaAccounts(post.getPostId(),"like"));
-				post.setDislikeAccounts(meta.getMetaAccounts(post.getPostId(),"dislike"));
+				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
+				post.setLikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"like"));
+				post.setDislikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"dislike"));
 				
 				postList.add(post);
 			}
