@@ -23,7 +23,7 @@ public class CommentDB extends DBAO{
 	 * @return postId
 	 */
 	public String createComment(Comment com){
-		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `PostpostId`, `AccountId`, `CommentscommentId`)"
+		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -111,7 +111,7 @@ public class CommentDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".comments WHERE postId = '"+ postId +"' AND commentStatus = 'publish' limit " + start + "," + limit;
+		String stmt = "SELECT * FROM "+ schema +".comments WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
 		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
 	}

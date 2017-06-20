@@ -44,12 +44,13 @@ if(list.size() != 0){
 		</div>
 		<!-- end of original post -->
 		<hr>
+		
+		<div class="post post-comment-group clearfix" id="post-comment-container">	
 		<% 
 		ArrayList<Comment> comList = comdb.getCommentByPostId(request.getParameter("postId"), 0, 5);
 		for(Comment c:comList){
-		%>
-		<div class="post post-comment-group clearfix" id="post-comment-container">		
-			<div class="post-comment">
+		%>	
+			<div class="post-comment clearfix">
 				<div class="col-sm-2"></div>
 				<jsp:include page="parts/forum-post.jsp">
 					<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
@@ -63,9 +64,9 @@ if(list.size() != 0){
 					<p>user name</p>
 				</div>
 			</div>
-		</div>
 		<br>
 		<% } %>
+		</div>
 	</div>
 	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
 		

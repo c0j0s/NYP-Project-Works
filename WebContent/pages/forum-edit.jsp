@@ -32,11 +32,11 @@
 					<div class="panel-body ">
 						<form action="../CreatePost" method="post">
 						 	<div class="form-group">
-						   	 	<label for="postTitle">Title</label>
+						   	 	<label for="postTitle">Question Title</label>
 						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
 						 	</div>
 						 	<div class="form-group">
-						  		<label for="postTitle">Content</label>
+						  		<label for="postContent">Detail descriptions</label>
 						  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required></textarea>
 						 	</div>
 						 	<div class="row">

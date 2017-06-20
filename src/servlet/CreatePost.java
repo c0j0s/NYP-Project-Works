@@ -16,7 +16,7 @@ import database.Forum;
 /**
  * Servlet implementation class createPost
  */
-@WebServlet("/createPost")
+@WebServlet("/CreatePost")
 public class CreatePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
