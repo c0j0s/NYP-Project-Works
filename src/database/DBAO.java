@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBAO {
-	public Connection con;
-	final private String schurl = "jdbc:mysql://localhost:3306/ffl";
+	protected Connection con;
+	final private String schurl = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12181123";
 	final private String schpasswd = "mysql";
 	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
 	final private String passwd = "password";
