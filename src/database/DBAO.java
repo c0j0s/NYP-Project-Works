@@ -3,9 +3,13 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class DBAO {
 	protected Connection con;
+	final protected String schema = "ffl";
+	
 	final private String schurl = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12181123";
 	final private String schpasswd = "mysql";
 	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
@@ -28,4 +32,12 @@ public class DBAO {
 			}
 		}
 	}
+	
+	public static String getDateTime(){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		java.util.Date myDate = new java.util.Date();
+		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
+		return formatter.format(sqlDate).substring(0, 19);
+	}
+	
 }

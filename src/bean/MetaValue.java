@@ -1,7 +1,5 @@
 package bean;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class MetaValue {
@@ -9,7 +7,7 @@ public class MetaValue {
 	private String date;
 	private int likeCount, dislikeCount, followerCount;
 	private ArrayList<String> followerAccounts,likeAccounts,dislikeAccounts;
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	
 	
 	public int getLikeCount() {
 		return likeCount;
@@ -52,14 +50,8 @@ public class MetaValue {
 		return date;
 	}
 
-	public void setDate() {
-		java.util.Date myDate = new java.util.Date();
-		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
-		this.date = formatter.format(sqlDate);
-	}
-	
 	public void setDate(String date) {
-		this.date = date.substring(0, 19);
+		this.date = date.substring(0,19);
 	}
 	
 

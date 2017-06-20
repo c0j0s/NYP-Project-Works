@@ -1,16 +1,10 @@
 package bean;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Post extends MetaValue{
 	private String postId,postTitle,postContent,postCategory,tagList,postStatus,accountId,activityId;
 	private int points,commentCount;
 	private char valid, hideId;
 	
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 	public Post(){
 		

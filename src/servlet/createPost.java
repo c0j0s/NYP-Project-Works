@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Post;
+import database.DBAO;
 import database.Forum;
 
 /**
@@ -34,7 +35,7 @@ public class createPost extends HttpServlet {
 		Forum f = new Forum();
 		Post p = new Post();
 		p.setPostTitle(request.getParameter("postTitle"));
-		p.setDate();
+		p.setDate(DBAO.getDateTime());
 		p.setPostContent(request.getParameter("postContent"));
 		p.setPostCategory(request.getParameter("postCategory"));
 		p.setTagList(request.getParameter("postTags"));
