@@ -17,13 +17,13 @@ import database.Forum;
  * Servlet implementation class createPost
  */
 @WebServlet("/createPost")
-public class createPost extends HttpServlet {
+public class CreatePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public createPost() {
+    public CreatePost() {
         super();
         // TODO Auto-generated constructor stub
     }

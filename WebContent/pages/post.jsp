@@ -48,7 +48,7 @@ if(list.size() != 0){
 		ArrayList<Comment> comList = comdb.getCommentByPostId(request.getParameter("postId"), 0, 5);
 		for(Comment c:comList){
 		%>
-		<div class="post post-comment-group clearfix">		
+		<div class="post post-comment-group clearfix" id="post-comment-container">		
 			<div class="post-comment">
 				<div class="col-sm-2"></div>
 				<jsp:include page="parts/forum-post.jsp">

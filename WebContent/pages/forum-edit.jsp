@@ -30,7 +30,7 @@
 				<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-body ">
-						<form action="../createPost" method="post">
+						<form action="../CreatePost" method="post">
 						 	<div class="form-group">
 						   	 	<label for="postTitle">Title</label>
 						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
