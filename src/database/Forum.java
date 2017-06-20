@@ -23,7 +23,7 @@ public class Forum extends DBAO{
 	 * @return postId
 	 */
 	public String createPost(Post post){
-		String stmt = "INSERT INTO ffl.post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
+		String stmt = "INSERT INTO "+ schema +".post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
 				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -66,7 +66,7 @@ public class Forum extends DBAO{
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.post ORDER BY postDate DESC";
+				statement = "SELECT * FROM "+ schema +".post ORDER BY postDate DESC";
 			}
 			PreparedStatement ps = con.prepareStatement(statement);
 			
@@ -115,7 +115,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start, int limit,String category){
-		String stmt = "SELECT * FROM ffl.post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
+		String stmt = "SELECT * FROM "+ schema +".post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
 		return getPost(stmt);
 	}
 	
@@ -125,7 +125,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPostById(String postId){
-		String stmt = "SELECT * FROM ffl.post WHERE postId = '"+ postId +"'";
+		String stmt = "SELECT * FROM "+ schema +".post WHERE postId = '"+ postId +"'";
 		return getPost(stmt);
 	}
 	
@@ -136,13 +136,13 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPostByCategory(String category){
-		String stmt = "SELECT * FROM ffl.post WHERE category = '"+ category +"'";
+		String stmt = "SELECT * FROM "+ schema +".post WHERE category = '"+ category +"'";
 		return getPost(stmt);
 	}
 	
 	public void addCategory(String newCat){
 		try {
-			PreparedStatement ps = con.prepareStatement("INSERT INTO ffl.category(`categoryName`) VALUES (?)");
+			PreparedStatement ps = con.prepareStatement("INSERT INTO "+ schema +".category(`categoryName`) VALUES (?)");
 			ps.setString(1, newCat);
 			int status = ps.executeUpdate();
 			if(status != 0){
@@ -160,7 +160,7 @@ public class Forum extends DBAO{
 	public ArrayList<String> getCategories(){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM ffl.category");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM "+ schema +".category");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("categoryName"));

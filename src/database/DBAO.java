@@ -8,10 +8,11 @@ import java.text.SimpleDateFormat;
 
 public class DBAO {
 	protected Connection con;
+	//final protected String schema = "famforlife";
 	final protected String schema = "ffl";
 	
-	final private String schurl = "jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12181123";
-	final private String schpasswd = "mysql";
+	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
+	final private String schpasswd = "ffl@db";
 	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
 	final private String passwd = "password";
 	
@@ -22,7 +23,7 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			//con = DriverManager.getConnection(schurl,"root",schpasswd);
+			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
 			con = DriverManager.getConnection(url,"root",passwd);
 		} catch (Exception e) {
 			try {

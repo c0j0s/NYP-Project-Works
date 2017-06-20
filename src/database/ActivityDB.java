@@ -13,7 +13,7 @@ public class ActivityDB extends DBAO{
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.activity ORDER BY activityId DESC";
+				statement = "SELECT * FROM "+ schema +".activity ORDER BY activityId DESC";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);

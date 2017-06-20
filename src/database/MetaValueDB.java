@@ -18,7 +18,7 @@ public class MetaValueDB extends DBAO{
 	 * @param action like|dislike|follow
 	 */
 	public void addMeta(String parentId, String accountId, String action){
-		String stmt = "INSERT INTO ffl.metavalue (`parentId`, `accountId`, `action`) VALUES ('?', '?', '?')";
+		String stmt = "INSERT INTO "+ schema +".metavalue (`parentId`, `accountId`, `action`) VALUES ('?', '?', '?')";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, parentId);
@@ -48,7 +48,7 @@ public class MetaValueDB extends DBAO{
 	public int getMetaCounts(String colName, String parentId,String action){
 		int count = 0;
 		try {
-			String stmt = "SELECT COUNT(*) AS count FROM ffl.metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
+			String stmt = "SELECT COUNT(*) AS count FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
@@ -71,7 +71,7 @@ public class MetaValueDB extends DBAO{
 	public ArrayList<String> getMetaAccounts(String colName, String parentId,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "SELECT * FROM ffl.metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
+			String stmt = "SELECT * FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){

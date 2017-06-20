@@ -1,5 +1,11 @@
 package bean;
 
+/**
+ * try extend MetaValue Class
+ * 
+ *
+ */
+
 public class Activity {
 	private String activityId;
 	private String activityTitle;
