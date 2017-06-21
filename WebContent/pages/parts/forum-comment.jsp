@@ -45,7 +45,7 @@
 				<% if(true){ // TODO check if post is close
 							// TODO jvascript method to create Comments
 					%> 
-					<button type="button" id="createComment-${param.count }" class="btn btn-success btn-block" onclick="createCom('createComment-${param.count }','${param.commentId }','after','comment')">Give my answer</button> 
+					<button type="button" id="createComment-${param.count }" class="btn btn-success btn-block" onclick="createCom('createComment-${param.count }','${param.commentId }','after','comment')">Reply</button> 
 					<%
 				} %>
 			</div>

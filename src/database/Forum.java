@@ -23,8 +23,8 @@ public class Forum extends DBAO{
 	 * @return postId
 	 */
 	public String createPost(Post post){
-		String stmt = "INSERT INTO "+ schema +".post (`postId`, `postTitle`, `postDate`, `postContent`, `postLikes`, `postDislikes`, `postCategory`, `points`, `valid`, `commentCount`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
-				+ "VALUES (?,?,?,?,'0','0',?,?,'Y','0',?,?,?,?)";
+		String stmt = "INSERT INTO "+ schema +".post (`postId`, `postTitle`, `postDate`, `postContent`, `postCategory`, `points`, `valid`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
+				+ "VALUES (?,?,?,?,?,?,'Y',?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			post.setPostId(common.UID.genPostId());
