@@ -1,6 +1,12 @@
 package servlet;
 
 import java.io.IOException;
+import bean.Activity;
+import bean.Post;
+import database.ActivityDB;
+import database.DBAO;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +32,33 @@ public class CreateActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ActivityDB actdb = new ActivityDB();
+		Activity act = new Activity();
+		
+		act.setActivityTitle(request.getParameter("actName"));
+		act.setActivityPostDate(DBAO.getDateTime());
+		act.setActivityEndDate(request.getParameter("actEnd"));
+		act.setActivityStartDate(request.getParameter("actStart"));
+		act.setActivityDescription(request.getParameter("actDesc"));
+		act.setParticipantNo(Integer.parseInt(request.getParameter("actPar")));
+		act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
+		act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
+		act.setActivityLocation(request.getParameter("actLocation"));
+		act.setActivityCategory(request.getParameter("actCategory"));
+		act.setImgUrl(request.getParameter("actImg"));
+		act.setActivityDay(request.getParameter("actDay"));
+		act.setActivityTime(request.getParameter("actTime"));
+		act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
+		act.setActivityId(actdb.createActivity(act));
+
+		if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
+			String path = "pages/activityList.jsp";
+			response.sendRedirect(path);
+		}else{
+			response.sendRedirect("pages/activityList.jsp");
+			System.out.println("Log createActivity.java: fail to create activity");
+		}
+		
 		
 	}
 

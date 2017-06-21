@@ -60,22 +60,22 @@
 						<%=act.getActivityEndDate()%></p>
 					<P>
 						Day :
-						<%=act.getActivityId()%>
+						<%=act.getActivityDay()%>
 					<p>
 						Timing :
-						<%--! <%=act.getActivityTime()%> --%>
+						<%=act.getActivityTime()%>
 					</p>
 					<p><div class="forum-post-control-grps">
 					    	<button type="button"
 							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-up"></span>
-						</button> <%=act.getActivityLikes()%>	<button type="button"
+							<span class="glyphicon glyphicon-thumbs-up"></span><%=act.getActivityLikes()%>
+						</button> 	<button type="button"
 							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-down"></span>
-						</button> <%=act.getActivityDislikes()%><button type="button"
+							<span class="glyphicon glyphicon-thumbs-down"></span><%=act.getActivityDislikes()%>
+						</button> <button type="button"
 							class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						</button> <%="69"%>
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span><%=act.getActivityPostCount()%>
+						</button> 
 							</div>
 					</p> 
 		</div>
@@ -93,7 +93,7 @@
 			for (int z = 0; z < 20; z++) {
 		%>
 		<li class="list-group-item">
-		<%=z+1 %>Java
+		<%=z+1 %>. Java
 			<span class="badge"><%=z %></span>
 		</li>
 		<%} %>
