@@ -66,7 +66,7 @@ public class Forum extends DBAO{
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".post ORDER BY postDate DESC";
+				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC";
 			}
 			PreparedStatement ps = con.prepareStatement(statement);
 			
@@ -86,8 +86,8 @@ public class Forum extends DBAO{
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
 				
-				post.setLikeCount(meta.getMetaCounts("postId",post.getPostId(),"like"));
-				post.setDislikeCount(meta.getMetaCounts("postId",post.getPostId(),"dislike"));
+				post.setLikeCount(rs.getInt("likeCount"));
+				post.setDislikeCount(rs.getInt("dislikeCount"));
 				post.setFollowerCount(meta.getMetaCounts("postId",post.getPostId(),"follow"));
 				
 				post.setCommentCount(rs.getInt("commentCount"));
@@ -115,7 +115,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start, int limit,String category){
-		String stmt = "SELECT * FROM "+ schema +".post WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
 		return getPost(stmt);
 	}
 	
@@ -125,7 +125,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPostById(String postId){
-		String stmt = "SELECT * FROM "+ schema +".post WHERE postId = '"+ postId +"'";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
 		return getPost(stmt);
 	}
 	
@@ -136,7 +136,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPostByCategory(String category){
-		String stmt = "SELECT * FROM "+ schema +".post WHERE category = '"+ category +"'";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE category = '"+ category +"'";
 		return getPost(stmt);
 	}
 	
