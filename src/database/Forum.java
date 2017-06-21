@@ -100,6 +100,7 @@ public class Forum extends DBAO{
 				
 				postList.add(post);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

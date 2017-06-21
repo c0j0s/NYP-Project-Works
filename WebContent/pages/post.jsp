@@ -50,15 +50,17 @@ if(list.size() != 0){
 		ArrayList<Comment> comList = comdb.getCommentByPostId(request.getParameter("postId"), 0, 5);
 		for(Comment c:comList){
 		%>	
-			<div class="post-comment clearfix">
+			<div class="post-comment  clearfix " id="<%= c.getCommentId() %>">
 				<div class="col-sm-2"></div>
-				<jsp:include page="parts/forum-post.jsp">
-					<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
-					<jsp:param value="<%= c.getCommentContent() %>" name="postContent"/>
-					<jsp:param value="<%= c.getDate() %>" name="postDate"/>
-					<jsp:param value="<%= c.getLikeCount() %>" name="postLikes"/>
+					<jsp:include page="parts/forum-comment.jsp">
+						<jsp:param value="<%= c.getCommentId() %>" name="commentId"/>
+						<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
+						<jsp:param value="<%= c.getCommentContent() %>" name="postContent"/>
+						<jsp:param value="<%= c.getDate() %>" name="postDate"/>
+						<jsp:param value="<%= c.getLikeCount() %>" name="postLikes"/>
 					<jsp:param value="<%= c.getDislikeCount() %>" name="postDislikes"/>
-				</jsp:include>
+						<jsp:param value="<%= c.getCommentCount() %>" name="commentCount"/>
+					</jsp:include>
 				<div class="text-center col-sm-2">
 					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
 					<p>user name</p>

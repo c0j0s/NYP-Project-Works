@@ -40,9 +40,12 @@ public class CreateComment extends HttpServlet {
 			com.setCommentContent(request.getParameter("commentContent"));
 			com.setDate(DBAO.getDateTime());
 			com.setCommentGroup("Parent");
-			com.setPostId(postId);
 			com.setAccountId("ACC0000000");
 			com.setPostId(postId);
+			if(request.getParameter("commentId") != null){
+				System.out.println("Log: comments comment not null");
+				com.setCommentsComId(request.getParameter("commentId"));
+			}
 			if(request.getParameter("hideId") != null){
 				com.setHideId(request.getParameter("hideId").charAt(0));
 			}
@@ -58,18 +61,28 @@ public class CreateComment extends HttpServlet {
 		}else if(request.getParameter("action").equals("open")){
 			response.setContentType("html/text");
 			PrintWriter out = response.getWriter();
+			String action = "";
+			if(request.getParameter("commentId") == null){
+				System.out.println("Log: comments comment null");
+				action = "create&postId="+ postId; 
+			}else{
+				System.out.println("Log: comments comment not null");
+				action = "create&postId="+ postId + "&commentId=" + request.getParameter("commentId");
+			}
+			
 			out.println("<div class='post-comment clearfix'>"
 					+ "<div class='col-sm-2'></div>"
 					+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body '>"
-					+ "<form action='../CreateComment?action=create&postId="+ postId +"' method='post'>"
+					+ "<form action='../CreateComment?action="+action+"' method='post'>"
 					+ "<div class='post-text-content'>"
 					+ "<div class='form-group'>"
 			  		+ "<label for='commentContent'>Your reply:</label>"
 			  		+ "<textarea class='form-control' name='commentContent' id='commenttContent' rows='5' required></textarea>"
 			  		+ "</div>"
 			  		+ "<div class='checkbox'><label><input type='checkbox' name='hideId' value='Y'>Anonymous</label></div>"	
-					+"</div><br>"
-					+"<button type='submit' class='btn btn-success btn-block'>Post</button>"
+					+ "</div><br>"
+					+ "<button type='submit' class='btn btn-success col-md-6'>Post</button>"
+					+ "<button type='button' class='btn btn-danger col-md-6' onclick='closeCommentBox(this)' >Cancel</button>"
 					+ "</form>"
 					+ "</div></div></div>"
 					+ "<div class='text-center col-sm-2'>"

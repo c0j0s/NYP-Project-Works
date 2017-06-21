@@ -45,9 +45,29 @@
 				<% if(true){ // TODO check if post is close
 							// TODO jvascript method to create Comments
 					%> 
-					<button type="button" id="main-createComment" class="btn btn-success btn-block" onclick="createCom('main-createComment','post-comment-container','before','post')">Give my answer</button> 
+					<button type="button" id="createComment-${param.count }" class="btn btn-success btn-block" onclick="createCom('createComment-${param.count }','${param.commentId }','after','comment')">Give my answer</button> 
 					<%
 				} %>
+			</div>
+			<%@ page import="java.util.ArrayList,bean.*,database.*" %>
+			<%! CommentDB comdb = new CommentDB(); %>
+			${param.commentCount eq 0 ? '' : '<hr>'}
+			<div class="comments-comment">
+				<% ArrayList<Comment> comComList = comdb.getCommentByCommentId(request.getParameter("commentId"), 0, 5); 
+					for(Comment cc : comComList){
+						%>
+							<div class="row comment-under-comment">
+								<div class="col-sm-2">
+									<img src = '../img/sample.jpg' class="img-circle profile-image-xsmall">
+									<p>says: </p>
+								</div>
+								<div class="col-sm-10">
+									<p><%= cc.getCommentContent() %></p>
+								</div>
+							</div>
+						<% 
+					}
+				%>
 			</div>
 		</div>
 	</div>

@@ -31,12 +31,13 @@ public class CommentDB extends DBAO{
 			ps.setString(2, com.getCommentContent());
 			ps.setString(3, com.getDate());
 			ps.setString(4, com.getCommentGroup());
-			ps.setString(5, com.getPostId());
 			ps.setString(6, com.getAccountId());
 			
 			if(com.getCommentsComId() != null){
+				ps.setString(5, null);
 				ps.setString(7, com.getCommentsComId());
 			}else{
+				ps.setString(5, com.getPostId());
 				ps.setString(7, null);
 			}
 			
@@ -64,7 +65,7 @@ public class CommentDB extends DBAO{
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".comments WHERE commentStatus = 'publish' ORDER BY commentDate DESC";
+				statement = "SELECT * FROM "+ schema +".commentlist WHERE commentStatus = 'publish' ORDER BY commentDate DESC";
 			}
 			
 			PreparedStatement ps;
@@ -85,8 +86,9 @@ public class CommentDB extends DBAO{
 				com.setDate(rs.getString("commentDate"));
 				com.setAccountId(rs.getString("accountId"));
 				
-				com.setLikeCount(meta.getMetaCounts("commentId",com.getPostId(), "like"));
-				com.setDislikeCount(meta.getMetaCounts("commentId",com.getPostId(), "dislike"));
+				com.setLikeCount(rs.getInt("likeCount"));
+				com.setDislikeCount(rs.getInt("dislikeCount"));	
+				com.setCommentCount(rs.getInt("commentCount"));
 				
 				com.setHideId(rs.getString("hideId").charAt(0));
 				
@@ -97,6 +99,7 @@ public class CommentDB extends DBAO{
 				
 				commentList.add(com);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -111,7 +114,13 @@ public class CommentDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".comments WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
+		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
+		System.out.println("Log getCommentByPostId(): " + stmt);
+		return getComment(stmt);
+	}
+	
+	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
+		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
 		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
 	}
