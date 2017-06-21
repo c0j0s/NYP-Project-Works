@@ -147,6 +147,9 @@ footer{
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
 }
+.comment-box{
+	background-color:rgba(51, 122, 183, 0.1);
+}
 .comment-under-comment div{
     display: inline-flex;
     padding: 1px;

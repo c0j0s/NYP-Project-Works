@@ -120,7 +120,7 @@ public class CommentDB extends DBAO{
 	}
 	
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
+		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
 		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
 	}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Comment;
+import common.UID;
 import database.CommentDB;
 import database.DBAO;
 
@@ -69,10 +70,10 @@ public class CreateComment extends HttpServlet {
 				System.out.println("Log: comments comment not null");
 				action = "create&postId="+ postId + "&commentId=" + request.getParameter("commentId");
 			}
-			
-			out.println("<div class='post-comment clearfix'>"
+			String id =  UID.genId();
+			out.println("<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
 					+ "<div class='col-sm-2'></div>"
-					+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body '>"
+					+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body comment-box'>"
 					+ "<form action='../CreateComment?action="+action+"' method='post'>"
 					+ "<div class='post-text-content'>"
 					+ "<div class='form-group'>"
@@ -82,13 +83,13 @@ public class CreateComment extends HttpServlet {
 			  		+ "<div class='checkbox'><label><input type='checkbox' name='hideId' value='Y'>Anonymous</label></div>"	
 					+ "</div><br>"
 					+ "<button type='submit' class='btn btn-success col-md-6'>Post</button>"
-					+ "<button type='button' class='btn btn-danger col-md-6' onclick='closeCommentBox(this)' >Cancel</button>"
+					+ "<button type='button' class='btn btn-danger col-md-6' onclick='closeCommentBox("+ id +")' >Cancel</button>"
 					+ "</form>"
 					+ "</div></div></div>"
 					+ "<div class='text-center col-sm-2'>"
 					+ "<img alt='' src='../img/sample.jpg' class='img-circle profile-image-small'>"
 					+ "<p>user name</p>" //TODO replace with user name
-					+ "</div></div><hr><br>");
+					+ "</div><br><br></div>");
 
 		}
 	}

@@ -6,8 +6,10 @@ function getURLParameter(name) {
 	return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
-function createCom(buttomId,id,order,type){
-	$("#"+buttomId).attr('disabled','disabled');
+function createCom(id,order,type){
+	$(".addCom").each(function(){
+		$(this).attr('disabled','disabled');
+	});
 	var servletUrl;
 	if(type === 'post'){
 		servletUrl = "../CreateComment?action=open&postId=" + getURLParameter("postId");
@@ -27,15 +29,9 @@ function createCom(buttomId,id,order,type){
     }});
 }
 
-function closeCommentBox(e){
-	$("#"+buttomId).attr('disabled','enable');
-//	$.ajax({
-//		url: "../CreateComment?action=open&postId=" + getURLParameter("postId"), 
-//		success: function(result){
-//			if(order==='before'){
-//		        $("#"+id).prepend(result);
-//			}else{
-//				$("#"+id).after(result);
-//			}
-//    }});
+function closeCommentBox(id){
+	$(".addCom").each(function(){
+		$(this).removeAttr("disabled");
+	});
+	$("#comment-box-"+id).remove();
 }

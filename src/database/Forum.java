@@ -88,15 +88,15 @@ public class Forum extends DBAO{
 				
 				post.setLikeCount(rs.getInt("likeCount"));
 				post.setDislikeCount(rs.getInt("dislikeCount"));
-				post.setFollowerCount(meta.getMetaCounts("postId",post.getPostId(),"follow"));
+				post.setFollowerCount(rs.getInt("followCount"));
 				
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
-				post.setLikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"like"));
-				post.setDislikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"dislike"));
+//				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
+//				post.setLikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"like"));
+//				post.setDislikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"dislike"));
 				
 				postList.add(post);
 			}
@@ -116,7 +116,7 @@ public class Forum extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start, int limit,String category){
-		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND category = '"+ category +"' AND limit = '" + start + "," + limit + "'";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND category = '"+ category +"' ORDER BY postDate DESC limit = " + start + "," + limit;
 		return getPost(stmt);
 	}
 	
