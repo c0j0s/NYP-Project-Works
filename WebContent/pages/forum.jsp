@@ -87,14 +87,17 @@
 		    				<div class="forum-post-control-grps">
 			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
 								  <div class="btn-group" role="group" aria-label="...">
-									<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%= p.getLikeCount() %>
+									<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="<%=p.getPostId() %>" data-action="like" data-colName="postId">
+										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" >
+										  </span> 
+										  <span class="meta-value-count" data-count="<%= p.getLikeCount() %>"><%= p.getLikeCount() %></span>
 										</button>
-										<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> <%= p.getDislikeCount() %>
+										<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="<%=p.getPostId() %>" data-action="dislike" data-colName="postId">
+										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" ></span> 
+										  <span class="meta-value-count" data-count="<%= p.getDislikeCount() %>"><%= p.getDislikeCount() %></span>
 										</button>
 										<button type="button" class="btn btn-default btn-sm btn-no-border">
-											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <%= p.getCommentCount() %>
+											<span class="glyphicon glyphicon-comment " aria-hidden="true"></span> <%= p.getCommentCount() %>
 										</button>
 									</div>
 								  <div class="btn-group dropdown"  >

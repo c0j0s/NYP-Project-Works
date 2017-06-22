@@ -12,7 +12,7 @@
 					<button type="button" class="btn btn-default btn-sm btn-no-border"
 						onclick="">
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-						${param.postLikes}
+						<p class=".value">${param.postLikes}</p>
 					</button>
 					<button type="button" class="btn btn-default btn-sm btn-no-border"
 						onclick="">

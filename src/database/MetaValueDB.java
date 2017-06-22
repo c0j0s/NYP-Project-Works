@@ -17,26 +17,35 @@ public class MetaValueDB extends DBAO{
 	 * @param accountId
 	 * @param action like|dislike|follow
 	 */
-	public void addMeta(String parentId, String accountId, String action){
-		String stmt = "INSERT INTO "+ schema +".metavalue (`parentId`, `accountId`, `action`) VALUES ('?', '?', '?')";
+	public String addMeta(String colName, String id, String accountId, String action){
+		
+		String stmt = "INSERT INTO "+ schema +".metavalue (`"+ colName +"`, `accountId`, `action`) VALUES (?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, parentId);
+			ps.setString(1, id);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
-			
-			int status = ps.executeUpdate();
-			if(status != 0){
-				System.out.println("Log updatePostMeta(): " + ps);
+			System.out.println(ps);
+			int Status = ps.executeUpdate();
+			ps.close();
+			if(Status != 0){
+				System.out.println("Log addMeta(): success");
+				return "success";
 			}else{
-				System.out.println("Log updatePostMeta(): fail " + ps);
+				System.out.println("Log addMeta(): fail");
+				return "fail";
 			}
-			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		return "fail";
 	}
 	
+	public void removeMeta(String string, String action) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void delPostMeta(){}
 	
 	/**

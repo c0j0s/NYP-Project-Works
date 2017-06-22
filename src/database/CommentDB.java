@@ -42,6 +42,7 @@ public class CommentDB extends DBAO{
 			}
 			
 			int status = ps.executeUpdate();
+			ps.close();
 			if(status != 0){
 				System.out.println("Log createComment() :" + ps);
 				return com.getPostId();
@@ -100,11 +101,12 @@ public class CommentDB extends DBAO{
 				commentList.add(com);
 			}
 			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return commentList;
-	}
+	} 
 	
 	/**
 	 * retrieve comments under specific post

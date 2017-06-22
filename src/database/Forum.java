@@ -44,6 +44,7 @@ public class Forum extends DBAO{
 			}
 			System.out.println(ps);
 			int status = ps.executeUpdate();
+			ps.close();
 			if(status != 0){
 				System.out.println("Log createPost() :" + ps);
 				return post.getPostId();
@@ -101,6 +102,7 @@ public class Forum extends DBAO{
 				postList.add(post);
 			}
 			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
