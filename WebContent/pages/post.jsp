@@ -13,7 +13,7 @@
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
 <%@ page import="java.util.ArrayList,bean.*,database.*" %>
-<%! Forum forum = new Forum(); %>
+<%! ForumDB forumdb = new ForumDB(); %>
 <%! CommentDB comdb = new CommentDB(); %>
 </head>
 <body>
@@ -22,7 +22,7 @@
 <div class="container">
 	<jsp:include page="parts/forum-header.jsp"></jsp:include>
 <% 
-ArrayList<Post> list = forum.getPostById(request.getParameter("postId"));
+ArrayList<Post> list = forumdb.getPostById(request.getParameter("postId"));
 if(list.size() != 0){
 	Post p = list.get(0);
 	%>
@@ -33,6 +33,7 @@ if(list.size() != 0){
 			<p>user name</p>
 			</div>
 			<jsp:include page="parts/forum-post.jsp">
+				<jsp:param value="<%= p.getPostId() %>" name="postId"/>
 				<jsp:param value="<%= p.getAccountId() %>" name="accountId"/>
 				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
 				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>

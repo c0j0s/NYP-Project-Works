@@ -30,14 +30,18 @@ public class UpdateMetaValue extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String colName = request.getParameter("colname");
-		String action = request.getParameter("action");
-		MetaValueDB m = new MetaValueDB();
-		if(request.getParameter("mode").equals("add")){
-			m.addMeta(colName, id, "ACC0000000", action);
-		}else{
-			m.removeMeta("ACC0000000", action);
+		try {
+			String id = request.getParameter("id");
+			String colName = request.getParameter("colname");
+			String action = request.getParameter("action");
+			MetaValueDB m = new MetaValueDB();
+			if(request.getParameter("mode").equals("add")){
+				m.addMeta(colName, id, "ACC0000000", action);
+			}else{
+				m.removeMeta("ACC0000000", action);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

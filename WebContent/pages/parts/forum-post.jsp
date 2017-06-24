@@ -9,15 +9,13 @@
 			<hr>
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
-					<button type="button" class="btn btn-default btn-sm btn-no-border"
-						onclick="">
+					<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="${param.postId }" data-action="like" data-colName="postId">
 						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-						<p class=".value">${param.postLikes}</p>
+						<span class="meta-value-count" data-count="${param.postLikes}">${param.postLikes}</span>
 					</button>
-					<button type="button" class="btn btn-default btn-sm btn-no-border"
-						onclick="">
+					<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="${param.postId }" data-action="dislike" data-colName="postId">
 						<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-						${param.postDislikes}
+						<span class="meta-value-count" data-count="${param.postDislikes}">${param.postDislikes}</span>
 					</button>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
@@ -37,7 +35,7 @@
 					</ul>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						${param.commentCount}
+						<span class="meta-value-count" data-count="${param.commentCount}">${param.commentCount}</span>
 					</button>
 				</div>
 				<br>

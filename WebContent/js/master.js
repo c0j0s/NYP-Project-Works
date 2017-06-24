@@ -81,10 +81,6 @@ $(".meta-value").click(function(){
 	}
 	
 	console.log(count);
-	
-	updateMetaValue(data,function(){
-		meta.html(count);
-	});
 });
 
 function addMetaValue(metaData,callback){

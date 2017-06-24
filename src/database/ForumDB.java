@@ -5,15 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bean.Forum;
 import bean.Post;
 
 /**
  * @author cjuns
  *
  */
-public class Forum extends DBAO{
-
-	public Forum(){
+public class ForumDB extends DBAO{
+	
+	public ForumDB(){
 		super();
 	}
 	
@@ -103,10 +104,60 @@ public class Forum extends DBAO{
 			}
 			rs.close();
 			ps.close();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return postList;
+	}
+	
+	public Forum getPostAdvance(int start, int limit){
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Forum forum = new Forum();
+		ArrayList<Post> postList = new ArrayList<Post>();
+
+		try {
+			
+			String postStmt = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC limit "+start+" , "+limit;
+			String postCount = "SELECT COUNT(*) AS pageCount FROM "+ schema + ".postlist ORDER BY postDate DESC";
+
+			ps = con.prepareStatement(postStmt);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				Post post = new Post();
+				MetaValueDB meta = new MetaValueDB();
+				
+				post.setPostId(rs.getString("postId"));
+				post.setPostTitle(rs.getString("postTitle"));
+				post.setPostContent(rs.getString("postContent"));
+				post.setPostCategory(rs.getString("postCategory"));
+				post.setTagList(rs.getString("postCategory"));
+				post.setAccountId(rs.getString("UseraccountId"));
+				post.setActivityId(rs.getString("ActivityactivityId"));
+				post.setDate(rs.getString("postDate"));
+				
+				post.setLikeCount(rs.getInt("likeCount"));
+				post.setDislikeCount(rs.getInt("dislikeCount"));
+				post.setFollowerCount(rs.getInt("followCount"));
+				
+				post.setCommentCount(rs.getInt("commentCount"));
+				post.setValid(rs.getString("valid").charAt(0));
+				post.setHideId(rs.getString("hideId").charAt(0));
+				
+				postList.add(post);
+			}
+			
+			ps = con.prepareStatement(postCount);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				forum.setPageCount(rs.getInt("pageCount"));
+			}
+			System.out.println(ps);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		forum.setPostList(postList);
+		return forum;
 	}
 	
 	/**

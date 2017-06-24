@@ -102,7 +102,9 @@ public class CommentDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
-		} catch (SQLException e) {
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return commentList;

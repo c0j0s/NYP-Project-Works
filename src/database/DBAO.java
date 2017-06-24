@@ -27,12 +27,8 @@ public class DBAO {
 			con = DriverManager.getConnection(url,"root",passwd);
 			con.setAutoCommit(true);
 		} catch (Exception e) {
-			try {
-				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
-			} catch (Exception ex) {
-				System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
-			}
-		}
+			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
+		} 
 	}
 	
 	public static String getDateTime(){
