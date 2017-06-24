@@ -18,7 +18,7 @@
 <%-- end of header --%>
 
 <div class="container">
-
+	<jsp:include page="parts/page-header.jsp"></jsp:include>
 content goes here
 
 </div>

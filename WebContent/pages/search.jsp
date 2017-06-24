@@ -18,15 +18,7 @@
 <%-- end of header --%>
 
 <div class="container">
-	<div class="page-header">
-	  	<h1 class="col-sm-3 pull-left">FamForLife <br><small class="page-header-subtitle">Search everything here</small></h1>
-		<div class="col-sm-5 input-group pull-left">
-	     	<input type="text" class="form-control" placeholder="Search...." value="Searching for ">
-	      	<span class="input-group-btn">
-	        	<button class="btn btn-default" type="button">Go!</button>
-	        </span>
-	       </div>
-	</div>
+	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	<!-- end of page header -->
 	<div>
 		<% for(int i = 0; i<5; i++){

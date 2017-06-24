@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import bean.Activity;
-import bean.Post;
 import database.ActivityDB;
 import database.DBAO;
 

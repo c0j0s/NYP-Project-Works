@@ -45,13 +45,15 @@ public class ForumDB extends DBAO{
 			}
 			System.out.println(ps);
 			int status = ps.executeUpdate();
-			ps.close();
 			if(status != 0){
 				System.out.println("Log createPost() :" + ps);
+				ps.close();
 				return post.getPostId();
 			}else{
+				ps.close();
 				return "fail";
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +79,6 @@ public class ForumDB extends DBAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
-				MetaValueDB meta = new MetaValueDB();
 				
 				post.setPostId(rs.getString("postId"));
 				post.setPostTitle(rs.getString("postTitle"));
@@ -125,7 +126,6 @@ public class ForumDB extends DBAO{
 			rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
-				MetaValueDB meta = new MetaValueDB();
 				
 				post.setPostId(rs.getString("postId"));
 				post.setPostTitle(rs.getString("postTitle"));

@@ -45,8 +45,23 @@ public class MetaValueDB extends DBAO{
 		return "fail";
 	}
 	
-	public void removeMeta(String string, String action) {
-		// TODO Auto-generated method stub
+	public void removeMeta(String colName, String id, String accountId, String action) {
+		String stmt = "DELETE FROM "+ schema +".metavalue WHERE "+colName+"= ? AND accountId = ? AND action = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, id);
+			ps.setString(2, accountId);
+			ps.setString(3, action);
+			
+			int status = ps.executeUpdate();
+			if(status != 0){
+				System.out.println("Log removeMeta(): success");
+			}else{
+				System.out.println("Log removeMeta(): fail");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

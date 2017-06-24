@@ -1,6 +1,4 @@
 package common;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -16,9 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
  
 /**
  * @author cjuns
@@ -46,8 +42,6 @@ public class Mail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setFrom(new InternetAddress(sender,"FamForLife"));
 			message.setSubject("FamForLife: " + subject);
-			MimeMultipart multipart = new MimeMultipart();
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
 			
 			Map<String, String> input = new HashMap<String, String>();
 			input.put("FFL:path", "http://localhost:8080/FFL");
@@ -69,7 +63,7 @@ public class Mail {
 			String htmlText = readEmailFromHtml(file,input);
 			System.out.println("Log htmlText: " + htmlText);
 			message.setContent(htmlText, "text/html");
-			
+			s.close();
 			
 		} catch (AddressException e) {
 			System.out.println(e.getMessage());
@@ -111,27 +105,27 @@ public class Mail {
 	    return msg;
 	}
 
-	private static String readContentFromFile(String fileName)
-	{
-	    StringBuffer contents = new StringBuffer();
-	    
-	    try {
-	      //use buffering, reading one line at a time
-	      BufferedReader reader =  new BufferedReader(new FileReader(fileName));
-	      try {
-	        String line = null; 
-	        while (( line = reader.readLine()) != null){
-	          contents.append(line);
-	          contents.append(System.getProperty("line.separator"));
-	        }
-	      }
-	      finally {
-	          reader.close();
-	      }
-	    }
-	    catch (IOException ex){
-	      ex.printStackTrace();
-	    }
-	    return contents.toString();
-	}
+//	private static String readContentFromFile(String fileName)
+//	{
+//	    StringBuffer contents = new StringBuffer();
+//	    
+//	    try {
+//	      //use buffering, reading one line at a time
+//	      BufferedReader reader =  new BufferedReader(new FileReader(fileName));
+//	      try {
+//	        String line = null; 
+//	        while (( line = reader.readLine()) != null){
+//	          contents.append(line);
+//	          contents.append(System.getProperty("line.separator"));
+//	        }
+//	      }
+//	      finally {
+//	          reader.close();
+//	      }
+//	    }
+//	    catch (IOException ex){
+//	      ex.printStackTrace();
+//	    }
+//	    return contents.toString();
+//	}
 }

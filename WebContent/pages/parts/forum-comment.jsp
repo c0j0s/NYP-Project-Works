@@ -9,14 +9,12 @@
 			<hr>
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
-					<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="${param.commentId }" data-action="like" data-colName="commentId">
-						<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-						<span class="meta-value-count" data-count="${param.postLikes}">${param.postLikes}</span>
-					</button>
-					<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="${param.commentId }" data-action="dislike" data-colName="commentId">
-						<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-						<span class="meta-value-count" data-count="${param.postDislikes}">${param.postDislikes}</span>
-					</button>
+					<jsp:include page="likeButtons.jsp">
+						<jsp:param value="${param.postId }" name="Id"/>
+						<jsp:param value="commentId" name="colName"/>
+						<jsp:param value="${param.likeCount }" name="likeCount"/>
+						<jsp:param value="${param.dislikeCount }" name="dislikeCount"/>
+					</jsp:include>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
 						Follow

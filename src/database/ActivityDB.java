@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.Activity;
-import bean.Post;
+
 public class ActivityDB extends DBAO{
 	
 	public ActivityDB(){

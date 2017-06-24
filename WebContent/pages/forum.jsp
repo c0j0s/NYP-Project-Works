@@ -26,7 +26,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<jsp:include page="parts/forum-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	
 	<div class="col-md-9 Forum-main">
 		<div class="panel panel-default Forum-main-trending">
@@ -73,7 +73,7 @@
 		
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
-		    	<f:getPostList start="${param.page eq 1 ? param.page - 1 : param.page*10 - 10}">
+		    	<f:getPostList start="${param.page eq 1 ? param.page - 1 : param.page*10 - 10}" currentPage="${param.page }">
 		    		<jsp:include page='parts/forum-postItem.jsp'>
 		    			<jsp:param value="FFL:postId" name="postId"/>
 						<jsp:param value="FFL:accountId" name="accountId"/>
@@ -84,36 +84,6 @@
 						<jsp:param value="FFL:commentCount" name="commentCount"/>
 		    		</jsp:include>
 		    	</f:getPostList>
-
-		    	<nav aria-label="Page navigation">
-				  <ul class="pagination pagination-lg">
-				  	<% if(!request.getParameter("page").equals("1")){				    	
-				    	%>
-					    <li>
-					      <a href="?category=1&page=${param.page - 1}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-				    	<%
-				    }
-				  	int count = forum.getPageCount();
-				    for(int i = 1; i<=count; i++){ // TODO change pagination loop maximum
-				    	%>
-				    	<li><a href="?category=1&page=<%=i%>"><%=i%></a></li>
-				    	<% 
-				    }
-				     
-				    if(!request.getParameter("page").equals(Integer.toString(forum.getPageCount()))){ // TODO hide if maximum page reach 
-				    	%>
-					    <li>
-					      <a href="?category=1&page=${param.page + 1}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-				    	<%
-				    } %>
-				  </ul>
-				</nav>
 		    </div>
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '2' ? ' active' : ''}" id="b">2...</div>
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '3' ? ' active' : ''}" id="c">3...</div>

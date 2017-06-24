@@ -14,22 +14,12 @@
 			<div class="Forum-post-control-grps">
 				<div class="btn-toolbar" role="toolbar" aria-label="...">
 					<div class="btn-group" role="group" aria-label="...">
-						<button type="button"
-							class="btn btn-default btn-sm btn-no-border meta-value"
-							data-id="${param.postId}" data-action="like"
-							data-colName="postId">
-							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
-							</span> <span class="meta-value-count"
-								data-count="${param.likeCount}">${param.likeCount}</span>
-						</button>
-						<button type="button"
-							class="btn btn-default btn-sm btn-no-border meta-value"
-							data-id="${param.postId}" data-action="dislike"
-							data-colName="postId">
-							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-							<span class="meta-value-count"
-								data-count="${param.dislikeCount}">${param.dislikeCount}</span>
-						</button>
+						<jsp:include page="likeButtons.jsp">
+							<jsp:param value="${param.postId }" name="Id"/>
+							<jsp:param value="postId" name="colName"/>
+							<jsp:param value="${param.likeCount}" name="likeCount"/>
+							<jsp:param value="${param.dislikeCount}" name="dislikeCount"/>
+						</jsp:include>
 						<button type="button" class="btn btn-default btn-sm btn-no-border">
 							<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
 							<span class="meta-value-count"
@@ -41,7 +31,8 @@
 							class="btn btn-default btn-sm btn-no-border dropdown-toggle"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="glyphicon glyphicon-option-horizontal"
-								aria-hidden="true"></span>&nbsp <span class="caret"></span>
+								aria-hidden="true"></span>
+								<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
 							<li><a href="#">Report post</a></li>

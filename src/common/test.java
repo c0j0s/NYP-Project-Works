@@ -1,7 +1,5 @@
 package common;
 
-import bean.Comment;
-import database.CommentDB;
 import database.DBAO;
 
 public class test {

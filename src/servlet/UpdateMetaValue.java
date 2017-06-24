@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +36,7 @@ public class UpdateMetaValue extends HttpServlet {
 			if(request.getParameter("mode").equals("add")){
 				m.addMeta(colName, id, "ACC0000000", action);
 			}else{
-				m.removeMeta("ACC0000000", action);
+				m.removeMeta(colName, id, "ACC0000000", action);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

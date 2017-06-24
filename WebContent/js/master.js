@@ -16,9 +16,9 @@ function createCom(id,order,type){
 	});
 	var servletUrl;
 	if(type === 'post'){
-		servletUrl = "../CreateComment?action=open&postId=" + getURLParameter("postId");
+		servletUrl = ContextPath + "/CreateComment?action=open&postId=" + getURLParameter("postId");
 	}else if(type==='comment'){
-		servletUrl = "../CreateComment?action=open&postId=" + getURLParameter("postId") + "&commentId=" + id;
+		servletUrl = ContextPath + "/CreateComment?action=open&postId=" + getURLParameter("postId") + "&commentId=" + id;
 	}
 
 	console.log(servletUrl);
@@ -86,7 +86,7 @@ $(".meta-value").click(function(){
 function addMetaValue(metaData,callback){
 	console.log(metaData);
 	$.ajax({
-		url: "../UpdateMetaValue?mode=add", 
+		url: ContextPath + "/UpdateMetaValue?mode=add", 
 		data: metaData,
 		success: function(result){
 			console.log("ajax"+ result)
@@ -98,7 +98,7 @@ function addMetaValue(metaData,callback){
 function removeMetaValue(metaData,callback){
 	console.log(metaData);
 	$.ajax({
-		url: "../UpdateMetaValue?mode=remove", 
+		url: ContextPath + "/UpdateMetaValue?mode=remove", 
 		data: metaData,
 		success: function(result){
 			console.log("ajax"+ result)

@@ -20,7 +20,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<jsp:include page="parts/forum-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp"></jsp:include>
 <% 
 ArrayList<Post> list = forumdb.getPostById(request.getParameter("postId"));
 if(list.size() != 0){
@@ -38,8 +38,8 @@ if(list.size() != 0){
 				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
 				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>
 				<jsp:param value="<%= p.getDate() %>" name="postDate"/>
-				<jsp:param value="<%= p.getLikeCount() %>" name="postLikes"/>
-				<jsp:param value="<%= p.getDislikeCount() %>" name="postDislikes"/>
+				<jsp:param value="<%= p.getLikeCount() %>" name="likeCount"/>
+				<jsp:param value="<%= p.getDislikeCount() %>" name="dislikeCount"/>
 				<jsp:param value="<%= p.getCommentCount() %>" name="commentCount"/>
 			</jsp:include>
 		</div>
@@ -58,8 +58,8 @@ if(list.size() != 0){
 						<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
 						<jsp:param value="<%= c.getCommentContent() %>" name="postContent"/>
 						<jsp:param value="<%= c.getDate() %>" name="postDate"/>
-						<jsp:param value="<%= c.getLikeCount() %>" name="postLikes"/>
-						<jsp:param value="<%= c.getDislikeCount() %>" name="postDislikes"/>
+						<jsp:param value="<%= c.getLikeCount() %>" name="likeCount"/>
+						<jsp:param value="<%= c.getDislikeCount() %>" name="dislikeCount"/>
 						<jsp:param value="<%= c.getCommentCount() %>" name="commentCount"/>
 					</jsp:include>
 				<div class="text-center col-sm-2">
