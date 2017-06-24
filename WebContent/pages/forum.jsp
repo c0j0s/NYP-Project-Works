@@ -103,7 +103,7 @@
 				    	<% 
 				    }
 				     
-				    if(!request.getParameter("page").equals("5")){ // TODO hide if maximum page reach 
+				    if(!request.getParameter("page").equals(Integer.toString(forum.getPageCount()))){ // TODO hide if maximum page reach 
 				    	%>
 					    <li>
 					      <a href="?category=1&page=${param.page + 1}" aria-label="Next">
