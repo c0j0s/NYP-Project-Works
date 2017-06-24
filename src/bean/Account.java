@@ -59,4 +59,9 @@ public class Account {
 	public void setMobileno(int mobileno) {
 		this.mobileno = mobileno;
 	}
+	public Account isMember(String userId, String userPw) {
+		return null ;
+		// TODO Auto-generated method stub
+		
+	}
 }

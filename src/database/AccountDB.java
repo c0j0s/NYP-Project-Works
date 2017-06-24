@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Account extends DBAO{
-	public Account(){
+public class AccountDB extends DBAO{
+	public AccountDB(){
 		super();
 	}
-	public Account getAccount(){
-		Account ac = new Account();
+	public AccountDB getAccount(){
+		AccountDB ac = new AccountDB();
 		
 		String statement = "SELECT * FROM ffl.user where accountId = ?";
 		
@@ -32,42 +32,47 @@ public class Account extends DBAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return ac;
 		
 	}
-	private void getmobileNo(int int1) {
+	void getmobileNo(int int1) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setcountry(String string) {
+	void setcountry(String string) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setaddress(String string) {
+	void setaddress(String string) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setemail(String string) {
+	void setemail(String string) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setgender(char charAt) {
+	void setgender(char charAt) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setdob(Date date) {
+	void setdob(Date date) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setsurName(String string) {
+	void setsurName(String string) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setgivenName(String string) {
+	void setgivenName(String string) {
 		// TODO Auto-generated method stub
 		
 	}
-	private void setAccountId(String string) {
+	void setAccountId(String string) {
 		// TODO Auto-generated method stub
 		
+	}
+	public AccountDB isMember() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
