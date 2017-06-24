@@ -45,6 +45,8 @@ public class Forum {
 		}else{
 			this.pageCount = (int)pageCount;
 		}
+		System.out.println(postCount);
+		System.out.println(pageCount);
 	}
 	
 	

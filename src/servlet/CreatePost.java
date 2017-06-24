@@ -1,4 +1,5 @@
 package servlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,13 +44,15 @@ public class CreatePost extends HttpServlet {
 			}
 			p.setPostId(f.createPost(p));
 			
+			String path = "";
 			if(!p.getPostId().equals("fail") || p.getPostId() == null){
-				String path = "pages/post.jsp?postId=" + p.getPostId();
-				response.sendRedirect(path);
+				path = "pages/post.jsp?postId=" + p.getPostId();
 			}else{
-				response.sendRedirect("pages/forum-eidt?mode=create");
+				path = "pages/forum-eidt?mode=create";
 				System.out.println("Log createPost.java: fail to create post");
 			}
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

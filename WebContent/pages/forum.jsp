@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<taglib prefix="c" uri="${pageContext.request.contextPath}/WEB-INF/lib/JSTL.jar">
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -72,56 +73,18 @@
 		
 		  <div class="tab-content">
 		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
-		    	<% 
-		    	ArrayList<Post> postList = forum.getPostList();
-		    	for(Post p:postList){
-		    		%>
-		    		<div class="panel panel-default Forum-card">
-		    		<div class="panel-body">
-		    			<div class="col-md-2 text-center">
-		    				<img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-small">
-		    				<p><%= p.getAccountId() %></p>
-		    			</div>
-		    			<div class="col-md-10">
-		    				<div class="post-link" onclick="location.href='post.jsp?postId=<%= p.getPostId() %>'">
-		    				<h4 ><%= p.getPostTitle() %></h4>
-		    				<small class=""><%= p.getDate() %></small>
-		    				</div>
-		    				<div class="Forum-post-control-grps">
-			    				<div class="btn-toolbar" role="toolbar" aria-label="...">
-								  <div class="btn-group" role="group" aria-label="...">
-									<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="<%=p.getPostId() %>" data-action="like" data-colName="postId">
-										  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" >
-										  </span> 
-										  <span class="meta-value-count" data-count="<%= p.getLikeCount() %>"><%= p.getLikeCount() %></span>
-										</button>
-										<button type="button" class="btn btn-default btn-sm btn-no-border meta-value" data-id="<%=p.getPostId() %>" data-action="dislike" data-colName="postId">
-										  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" ></span> 
-										  <span class="meta-value-count" data-count="<%= p.getDislikeCount() %>"><%= p.getDislikeCount() %></span>
-										</button>
-										<button type="button" class="btn btn-default btn-sm btn-no-border">
-											<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
-											<span class="meta-value-count" data-count="<%= p.getCommentCount() %>"><%= p.getCommentCount() %></span>
-										</button>
-									</div>
-								  <div class="btn-group dropdown"  >
-								    <button id="post-controls-dropdown" type="button" class="btn btn-default btn-sm btn-no-border dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								      <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>&nbsp
-								      <span class="caret"></span>
-								    </button>
-								    <ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
-								      <li><a href="#">Report post</a></li>
-								      <li><a href="#">Report user</a></li>
-								    </ul>
-								  </div>
-								</div>
-					   		</div>
-		    			</div>
-		    		</div>
-		    		</div>
-		    		<%
-		    	} %>
-		    	
+		    	<f:getPostList start="${param.page eq 1 ? param.page - 1 : param.page*10 - 10}">
+		    		<jsp:include page='parts/forum-postItem.jsp'>
+		    			<jsp:param value="FFL:postId" name="postId"/>
+						<jsp:param value="FFL:accountId" name="accountId"/>
+						<jsp:param value="FFL:postTitle" name="postTitle"/>
+						<jsp:param value="FFL:date" name="date"/>
+						<jsp:param value="FFL:likeCount" name="likeCount"/>
+						<jsp:param value="FFL:dislikeCount" name="dislikeCount"/>
+						<jsp:param value="FFL:commentCount" name="commentCount"/>
+		    		</jsp:include>
+		    	</f:getPostList>
+
 		    	<nav aria-label="Page navigation">
 				  <ul class="pagination pagination-lg">
 				  	<% if(!request.getParameter("page").equals("1")){				    	
