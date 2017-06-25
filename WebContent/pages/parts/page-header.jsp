@@ -19,13 +19,13 @@
 			</div>
 		</c:when>
 		<c:when test="${false}">
-
+			for other page
 		</c:when>
 		<c:when test="${false}">
-
+			for other page
 		</c:when>
 		<c:when test="${false}">
-
+			for other page
 		</c:when>
 		<c:otherwise>
 			<h1

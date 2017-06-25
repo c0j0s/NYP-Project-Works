@@ -16,7 +16,7 @@ import database.ForumDB;
 
 public class PostList extends SimpleTagSupport {
 	private int start,currentPage;
-	private String category;
+	//private String category;
 	StringWriter sw = new StringWriter();
 
 	public void setStart(int start) {
