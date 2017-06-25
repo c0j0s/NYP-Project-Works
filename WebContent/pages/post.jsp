@@ -29,9 +29,7 @@
 			<jsp:param value="forum" name="type" />
 		</jsp:include>
 		<c:choose>
-
 			<c:when test="${fn:length(postList) > 0 ? true : false}">
-
 				<c:forEach items="${postList}" var="post">
 					<div class="col-sm-9">
 						<div class="post post-orginal clearfix">
@@ -90,7 +88,6 @@
 							</c:choose>
 						</div>
 					</div>
-
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
