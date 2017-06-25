@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <div class="panel panel-primary forum-sidebar-account">
 	<c:choose>
 		<c:when test="${false}">
@@ -20,7 +19,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:choose>
-				<c:when test="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? true : false}">
+				<c:when test="${param.type eq 'forum' ? true : false}">
 					<div class="panel-heading ">
 						<img alt="../img/sample.jpg" src="../img/sample.jpg"
 							class="img-circle profile-image-medium">

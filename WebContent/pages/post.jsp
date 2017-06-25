@@ -20,7 +20,9 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<jsp:include page="parts/page-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 <% 
 ArrayList<Post> list = forumdb.getPostById(request.getParameter("postId"));
 if(list.size() != 0){
@@ -71,7 +73,9 @@ if(list.size() != 0){
 		<% } %>
 		</div>
 	</div>
-	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+	<jsp:include page="parts/forum-sidebar.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 		
 		<% 
 	}else{

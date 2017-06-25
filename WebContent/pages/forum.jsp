@@ -26,7 +26,9 @@
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 <div class="container">
-	<jsp:include page="parts/page-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 	
 	<div class="col-md-9 Forum-main">
 		<div class="panel panel-default Forum-main-trending">
@@ -91,7 +93,9 @@
 		  </div>
 		</div>
 	</div>
-	<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+	<jsp:include page="parts/forum-sidebar.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 </div>
 
 <%-- end of main container --%>

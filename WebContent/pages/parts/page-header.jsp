@@ -2,10 +2,9 @@
 <div class="page-header">
 	<c:choose>
 		<c:when
-			test="${(pageContext.request.requestURI eq '/FFL/pages/forum.jsp') || (pageContext.request.requestURI eq '/FFL/pages/post.jsp') ? true : false}">
+			test="${param.type eq 'forum' ? true : false}">
 			<h1 class="col-sm-3 pull-left">
-				<a
-					href="${pageContext.request.requestURI eq '/FFL/pages/post.jsp' ? '/FFL/pages/post.jsp?postId='.concat(param.postId) : pageContext.request.requestURI}">
+				<a href="${pageContext.request.contextPath}/pages/forum.jsp">
 					Family Forum <br> <small class="page-header-subtitle">Everything
 						about life</small>
 				</a>
@@ -30,7 +29,7 @@
 		<c:otherwise>
 			<h1
 				class="col-sm-${param.titleWidth eq null ? '3' : param.titleWidth } pull-left">
-				<a href="${pageContext.request.requestURI}">${param.title }<br>
+				<a href="${pageContext.request.contextPath}/pages/activityList.jsp">${param.title }<br>
 					<small class="page-header-subtitle">${param.subTitle }</small>
 				</a>
 			</h1>

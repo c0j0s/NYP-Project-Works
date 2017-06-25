@@ -18,7 +18,9 @@
 <%-- end of header --%>
 
 <div class="container">
-	<jsp:include page="parts/page-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 <% if(true){ //TODO check mode if is create post of edit post
 	%>
 		<div class="col-sm-9">
@@ -77,7 +79,9 @@
 	<%
 	}
 %>
-		<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+		<jsp:include page="parts/forum-sidebar.jsp">
+			<jsp:param value="forum" name="type"/>
+		</jsp:include>
 </div>
 
 <%-- end of main container --%>
