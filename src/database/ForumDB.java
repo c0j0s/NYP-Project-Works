@@ -182,7 +182,7 @@ public class ForumDB extends DBAO{
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
 		return getPost(stmt);
 	}
-	
+		
 	/**
 	 * NOT TESTED
 	 * to sort post by category only

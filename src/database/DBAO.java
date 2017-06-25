@@ -6,9 +6,9 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class DBAO {
-	protected Connection con;
+	protected static Connection con;
 	//final protected String schema = "famforlife";
-	final protected String schema = "ffl";
+	final protected static String schema = "ffl";
 	
 	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
 	final private String schpasswd = "ffl@db";
