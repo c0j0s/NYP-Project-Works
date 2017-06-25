@@ -27,33 +27,46 @@ public class Mail {
 	private static Session session;
 	private static MimeMessage message;
 	final private static String sender = "bt1602gp@gmail.com";
- 
-	public static void sendEmail(String to, String subject ,String emailBody,String displayButton){
- 
+	final private static String password = "admin@gmail";
+	private String path;
+	
+	public Mail(String path){
 		properties = System.getProperties();
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
- 
-		session = Session.getDefaultInstance(properties, null);
-		message = new MimeMessage(session);
+		
+		this.path = path;
+	}
+	public void sendNotificationMail(String to, String subject, String title, String htmlbody){
+		Map<String, String> input = new HashMap<String, String>();
+		input.put("FFL:path", "http://localhost:8080/FFL");
+		input.put("FFL:title", title);
+		input.put("FFL:message", htmlbody);
+		input.put("FFL:need-button", "none");
+		sendEmail(to,subject,input);
+	}
+	public void sendActionMail(String to, String subject, String title, String htmlbody,String buttonText,String buttonLink){
+		Map<String, String> input = new HashMap<String, String>();
+		input.put("FFL:path", "http://localhost:8080/FFL");
+		input.put("FFL:title", title);
+		input.put("FFL:message", htmlbody);
+		input.put("FFL:need-button", "block");
+		input.put("FFL:button", "Click here");
+		input.put("FFL:link-button", "http://localhost:8080/FFL/pages/index.jsp");
+		sendEmail(to,subject,input);
+	}
+	public void sendEmail(String to, String subject,Map<String, String> input){
+
 		
 		try {
+			session = Session.getDefaultInstance(properties, null);
+			message = new MimeMessage(session);
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setFrom(new InternetAddress(sender,"FamForLife"));
 			message.setSubject("FamForLife: " + subject);
-			
-			Map<String, String> input = new HashMap<String, String>();
-			input.put("FFL:path", "http://localhost:8080/FFL");
-			input.put("FFL:title", subject);
-			input.put("FFL:preview", subject);
-			input.put("FFL:title", subject);
-			input.put("FFL:message", emailBody);
-			input.put("FFL:need-button", displayButton);
-			input.put("FFL:button", "Click here");
-			input.put("FFL:link-button", "http://localhost:8080/FFL/pages/index.jsp");
-			
-			URL url = new URL("http://localhost:8080/FFL/pages/parts/email.html");
+		
+			URL url = new URL(path+"/src/websrc/mail.html");
 			Scanner s = new Scanner(url.openStream());
 			String file = "";
 			while(s.hasNext()){
@@ -77,7 +90,7 @@ public class Mail {
  
 		try {
 			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", sender, "admin@gmail");
+			transport.connect("smtp.gmail.com", sender, password);
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			System.out.println("mail sent to:" + to);
@@ -88,7 +101,7 @@ public class Mail {
 	}
 
 	
-	private static String readEmailFromHtml(String filePath, Map<String, String> input)
+	private String readEmailFromHtml(String filePath, Map<String, String> input)
 	{
 	    String msg = filePath;//readContentFromFile(filePath);
 	    try
