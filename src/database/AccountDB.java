@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountDB extends DBAO{
+	
+	/**
+	 * this is where ur database connection method is, not javabean
+	 */
+	
 	public AccountDB(){
 		super();
 	}

@@ -2,14 +2,12 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-<<<<<<< HEAD
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-=======
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
->>>>>>> 655e75eaae0af6cae4b8651ef13ba5bafb6b8806
 
 import bean.Account;
 
@@ -44,34 +42,31 @@ public class DBAO {
 		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
 		return formatter.format(sqlDate).substring(0, 19);
 	}
-<<<<<<< HEAD
 
-	public Account isMember(String userId, String userPw) {
-AccountDB ac = new AccountDB();
-		
-		String statement = "SELECT * FROM ffl.user where accountId = ?";
-		
-		PreparedStatement ps;
-		try {
-			ps = con.prepareStatement(statement);
-			ResultSet rs = ps.executeQuery();
-			
-			ac.setAccountId(rs.getString("accountId"));
-			ac.setgivenName(rs.getString("givenName"));
-			ac.setsurName(rs.getString("surName"));
-			ac.setdob(rs.getDate("DOB"));
-			ac.setgender(rs.getString("gender").charAt(0));
-			ac.setemail(rs.getString("email"));
-			ac.setaddress(rs.getString("address"));
-			ac.setcountry(rs.getString("country"));
-			ac.getmobileNo(rs.getInt("mobileNo"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	return ac;
-=======
-	
->>>>>>> 655e75eaae0af6cae4b8651ef13ba5bafb6b8806
+
+//	public Account isMember(String userId, String userPw) {
+//		Account ac = new Account();
+//		
+//		String statement = "SELECT * FROM ffl.user where accountId = ?";
+//		
+//		PreparedStatement ps;
+//		try {
+//			ps = con.prepareStatement(statement);
+//			ResultSet rs = ps.executeQuery();
+//			
+//			ac.setAccountId(rs.getString("accountId"));
+//			ac.setgivenName(rs.getString("givenName"));
+//			ac.setsurName(rs.getString("surName"));
+//			ac.setdob(rs.getDate("DOB"));
+//			ac.setgender(rs.getString("gender").charAt(0));
+//			ac.setemail(rs.getString("email"));
+//			ac.setaddress(rs.getString("address"));
+//			ac.setcountry(rs.getString("country"));
+//			ac.getmobileNo(rs.getInt("mobileNo"));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	return ac;
 }

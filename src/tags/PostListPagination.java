@@ -1,18 +1,10 @@
 package tags;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import bean.Forum;
-import bean.Post;
-import database.ForumDB;
 
 public class PostListPagination extends SimpleTagSupport {
 	private int currentPage,pageCount,base = 0;
