@@ -22,7 +22,7 @@
 		<form action="LoginServlet" method="post">
 			<div class="form-group">Username:<input type="text" class="form-control" placeholder="username" name="userId"></div>
    			 <div class="form-group">Password:<input type="password" class="form-control" placeholder="password" name="userPw"></div>
-   			<button type="submit" class="btn btn-default">Login</button>
+   			<button type="submit" class="btn btn-default">Login </button>
    		</form>
  		</div>
   		
