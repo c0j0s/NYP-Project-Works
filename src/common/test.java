@@ -1,18 +1,20 @@
 package common;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-
-import bean.Post;
-import database.Forum;
+import database.DBAO;
 
 public class test {
 
 	public static void main(String[] args) {
-		Mail m = new Mail();
-		m.sendEmail("c.junsheng@hotmail.com", "test", "body","none");
-
+//		CommentDB c = new CommentDB();
+//		Comment com = new Comment();
+//		com.setCommentContent("this is the comment content");
+//		com.setDate(DBAO.getDateTime());
+//		com.setCommentGroup("Parent");
+//		com.setPostId("POS0000000");
+//		com.setAccountId("ACC0000000");
+//		String result = c.createComment(com);
+//		System.out.println(result);
+		System.out.println(DBAO.getDateTime());
 	}
 
 }

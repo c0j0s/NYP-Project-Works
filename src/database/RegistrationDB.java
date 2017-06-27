@@ -13,7 +13,7 @@ public class RegistrationDB extends DBAO{
 		ArrayList<Registration> regList = new ArrayList<Registration>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.registration ORDER BY registrationId DESC";
+				statement = "SELECT * FROM "+ schema +".registration ORDER BY registrationId DESC";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);

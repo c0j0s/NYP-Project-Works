@@ -1,18 +1,10 @@
 package bean;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-public class Post {
+public class Post extends MetaValue{
 	private String postId,postTitle,postContent,postCategory,tagList,postStatus,accountId,activityId;
-	private String postDate;
-	private int postLikes, postDislikes,postfollower, points,commentCount;
+	private int points,commentCount;
 	private char valid, hideId;
-	private ArrayList<String> followerAccounts,likeAccounts,dislikeAccounts;
 	
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	
 	public Post(){
 		
@@ -68,29 +60,6 @@ public class Post {
 	public void setActivityId(String activityId) {
 		this.activityId = activityId;
 	}
-	public String getPostDate() {
-		return postDate;
-	}
-	public void setPostDate() {
-		java.util.Date myDate = new java.util.Date();
-		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
-		this.postDate = formatter.format(sqlDate);
-	}
-	public void setPostDate(String date) {
-		this.postDate = date.substring(0, 19);
-	}
-	public int getPostLikes() {
-		return postLikes;
-	}
-	public void setPostLikes(int postLikes) {
-		this.postLikes = postLikes;
-	}
-	public int getPostDislikes() {
-		return postDislikes;
-	}
-	public void setPostDislikes(int postDislikes) {
-		this.postDislikes = postDislikes;
-	}
 	public int getPoints() {
 		return points;
 	}
@@ -115,38 +84,5 @@ public class Post {
 	public void setHideId(char hideId) {
 		this.hideId = hideId;
 	}
-
-	public int getPostfollower() {
-		return postfollower;
-	}
-
-	public void setPostfollower(int postfollower) {
-		this.postfollower = postfollower;
-	}
-
-	public ArrayList<String> getFollowerAccounts() {
-		return followerAccounts;
-	}
-
-	public void setFollowerAccounts(ArrayList<String> followerAccounts) {
-		this.followerAccounts = followerAccounts;
-	}
-
-	public ArrayList<String> getLikeAccounts() {
-		return likeAccounts;
-	}
-
-	public void setLikeAccounts(ArrayList<String> likeAccounts) {
-		this.likeAccounts = likeAccounts;
-	}
-
-	public ArrayList<String> getDislikeAccounts() {
-		return dislikeAccounts;
-	}
-
-	public void setDislikeAccounts(ArrayList<String> dislikeAccounts) {
-		this.dislikeAccounts = dislikeAccounts;
-	}
-
 
 }

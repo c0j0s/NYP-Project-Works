@@ -1,10 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-</head>
-<body>
 <footer class="container-fluid">
 	<div class="container footer-info">
 		<div class="col-md-3 col-sm-6">
@@ -31,14 +24,12 @@
 			</address>
 		</div>
 	</div>
+	<!-- end of footer info container -->
 	<div class="container" id="legal">
-		<span >Copyright © 2017 NYP, Singapore. All rights reserved.</span>
+		<span>Copyright &copy 2017 NYP, Singapore. All rights reserved.</span>
 	</div>
 </footer>
-
-
-<script src='../js/jquery-3.2.1.js'></script>
-<script src='../js/bootstrap.js'></script>
-<script src='../js/master.js'></script>
-</body>
-</html>
+<script>var ContextPath = "${pageContext.request.contextPath}"</script>
+<script src='${pageContext.request.contextPath}/js/jquery-3.2.1.js'></script>
+<script src='${pageContext.request.contextPath}/js/bootstrap.js'></script>
+<script src='${pageContext.request.contextPath}/js/master.js'></script>

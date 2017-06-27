@@ -1,9 +1,10 @@
 package bean;
 
-public class Comment {
-	private String commentId, commentContent, commentGroup, postId, commentsComId;
-	private java.sql.Timestamp commentDate;
-	private int commentLikes, commentDislikes;
+public class Comment extends MetaValue{
+	private String commentId, commentContent, commentGroup,commentStatus, postId, accountId, commentsComId;
+	private char hideId;
+	private int commentCount;
+	
 	
 	public Comment() {
 		super();
@@ -49,28 +50,36 @@ public class Comment {
 		this.commentsComId = commentsComId;
 	}
 
-	public java.sql.Timestamp getCommentDate() {
-		return commentDate;
+	public String getCommentStatus() {
+		return commentStatus;
 	}
 
-	public void setCommentDate(java.sql.Timestamp commentDate) {
-		this.commentDate = commentDate;
+	public void setCommentStatus(String commentStatus) {
+		this.commentStatus = commentStatus;
 	}
 
-	public int getCommentLikes() {
-		return commentLikes;
+	public char getHideId() {
+		return hideId;
 	}
 
-	public void setCommentLikes(int commentLikes) {
-		this.commentLikes = commentLikes;
+	public void setHideId(char hideId) {
+		this.hideId = hideId;
 	}
 
-	public int getCommentDislikes() {
-		return commentDislikes;
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setCommentDislikes(int commentDislikes) {
-		this.commentDislikes = commentDislikes;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 	
 	
