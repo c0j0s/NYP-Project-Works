@@ -19,8 +19,8 @@
 
 <div class="container">
 		<div class="col-md-5">
-		<form action="../LoginServlet" method="post">
-			<div class="form-group">Email:<input type="text" class="form-control" placeholder="email" name="userId"></div>
+		<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+			<div class="form-group">Email:<input type="text" class="form-control" placeholder="email" name="email"></div>
    			 <div class="form-group">Password:<input type="password" class="form-control" placeholder="password" name="userPw"></div>
    			<button type="submit" class="btn btn-default">Login</button>
    		</form>
