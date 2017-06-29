@@ -46,7 +46,30 @@ public class AccountDB extends DBAO{
 	}
 	public AccountDB isMember(String userId, String userPw) {
 		// TODO Auto-generated method stub
-		return null;
+		Account ac = null;
+		try{
+			String selectStatement = "SELECT * FROM ffl.user where email = ? and password = ?";
+			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
+			prepStmt.setString(1, userId);
+			prepStmt.setString(2, userPw);
+			
+			ResultSet rs = prepStmt.executeQuery();
+			if(rs.next()){
+				ac = new Account();
+				ac.setAccountId(rs.getString("accountId"));
+				ac.setGivenName(rs.getString("givenName"));
+				ac.setSurName(rs.getString("surName"));
+				ac.setDob(rs.getDate("DOB"));
+				ac.setGender(rs.getString("gender").charAt(0));
+				ac.setEmail(rs.getString("email"));
+				ac.setAddress(rs.getString("address"));
+				ac.setCountry(rs.getString("country"));
+				ac.setMobileno(rs.getInt("mobileNo"));
+			}
+		}catch(Exception ex){
+			throw new Exception("Error: "+ex.getMessage());
+		}
+		return ac;
 	}
 	
 }
