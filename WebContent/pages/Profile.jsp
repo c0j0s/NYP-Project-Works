@@ -33,7 +33,6 @@
      <p>Gender:<%=ac.getGender() %></p> 
      <p>Email:<%=ac.getEmail() %></p> 
      <p>Address:<%=ac.getAddress() %></p>
-     <p>Country<%=ac.getCountry() %></p> 
      <p>Mobile No.:<%=ac.getMobileno() %></p> 
   </div>
 </div>

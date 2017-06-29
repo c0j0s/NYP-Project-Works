@@ -34,7 +34,7 @@ public class AccountDB extends DBAO{
 				ac.setGender(rs.getString("gender").charAt(0));
 				ac.setEmail(rs.getString("email"));
 				ac.setAddress(rs.getString("address"));
-				ac.setCountry(rs.getString("country"));
+				
 				ac.setMobileno(rs.getInt("mobileNo"));
 			}
 		} catch (SQLException e) {
@@ -63,7 +63,7 @@ public class AccountDB extends DBAO{
 				ac.setGender(rs.getString("gender").charAt(0));
 				ac.setEmail(rs.getString("email"));
 				ac.setAddress(rs.getString("address"));
-				ac.setCountry(rs.getString("country"));
+				
 				ac.setMobileno(rs.getInt("mobileNo"));
 			}
 		}catch(Exception ex){

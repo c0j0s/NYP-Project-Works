@@ -9,7 +9,7 @@ public class Account {
 	private char gender;
 	private String email;
 	private String address;
-	private String country;
+	
 	private int mobileno;
 	private String AccountId;
 	public String getGivenName() {
@@ -48,12 +48,7 @@ public class Account {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
+	
 	public int getMobileno() {
 		return mobileno;
 	}
