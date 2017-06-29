@@ -25,14 +25,14 @@
     <h3 class="panel-title">My Profile</h3>
   </div>
   <div class="panel-body">
-    <p>First Name:<%=ac.getGivenName %></p>
-    <p>Last Name:<%=ac.getSurName %></p>
-    <p>Date of Birth:<%=ac.getDob %></p>
-    <p>Gender:<%=ac.getGender %></p>
-    <p>Email:<%=ac.getEmail %></p>
-    <p>Address:<%=ac.getAddress %></p>
-    <p>Country<%=ac.getCountry %></p>
-    <p>Mobile No.:<%=ac.getMobileNo %></p>
+<%--     <p>First Name:<%=ac.getGivenName %></p> --%>
+<%--     <p>Last Name:<%=ac.getSurName %></p> --%>
+<%--     <p>Date of Birth:<%=ac.getDob %></p> --%>
+<%--     <p>Gender:<%=ac.getGender %></p> --%>
+<%--     <p>Email:<%=ac.getEmail %></p> --%>
+<%--     <p>Address:<%=ac.getAddress %></p> --%>
+<%--     <p>Country<%=ac.getCountry %></p> --%>
+<%--     <p>Mobile No.:<%=ac.getMobileNo %></p> --%>
   </div>
 </div>
 <button type="submit" class="btn btn-default">Update Profile</button>

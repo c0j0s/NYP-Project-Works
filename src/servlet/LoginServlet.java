@@ -30,7 +30,26 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String userId=request.getParameter("email");
+		String userPw=request.getParameter("userPw");
+		try{
+			AccountDB myDatabase = new AccountDB();
+			AccountDB myAccount = myDatabase.isMember(userId, userPw);
+			if(myAccount!=null){
+
+				System.out.println("Log loginservlet: success");
+				HttpSession mySession = request.getSession(true);
+				request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+			}
+			else{
+
+				System.out.println("Log loginservlet: fail");
+				request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+			}
+		}catch(Exception ex){
+			System.out.println("Error Accessing database: "+ex);
+		}
 	}
 
 	/**
@@ -38,22 +57,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String userId=request.getParameter("email");
-		String userPw=request.getParameter("userPw");
-		try{
-			AccountDB myDatabase = new AccountDB();
-			AccountDB myAccount = myDatabase.isMember(userId, userPw);
-			if(myAccount!=null){
-				HttpSession mySession = request.getSession(true);
-				request.getRequestDispatcher("profile.jsp").forward(request, response);
-			}
-			else{
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		}catch(Exception ex){
-			System.out.println("Error Accessing database: "+ex);
-		}
+		doGet(request, response);
+
 	}
 
 }
