@@ -11,6 +11,7 @@ public class Account {
 	private String address;
 	private String country;
 	private int mobileno;
+	private String AccountId;
 	public String getGivenName() {
 		return givenName;
 	}
@@ -59,9 +60,16 @@ public class Account {
 	public void setMobileno(int mobileno) {
 		this.mobileno = mobileno;
 	}
+	public String getAccountId() {
+		return AccountId;
+	}
+	public void setAccountId(String accountId) {
+		AccountId = accountId;
+	}
 	public Account isMember(String userId, String userPw) {
 		return null ;
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
