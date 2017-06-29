@@ -44,7 +44,7 @@ public class AccountDB extends DBAO{
 		return ac;
 		
 	}
-	public AccountDB isMember(String userId, String userPw) {
+	public Account isMember(String userId, String userPw) {
 		// TODO Auto-generated method stub
 		Account ac = null;
 		try{
@@ -67,7 +67,7 @@ public class AccountDB extends DBAO{
 				ac.setMobileno(rs.getInt("mobileNo"));
 			}
 		}catch(Exception ex){
-			throw new Exception("Error: "+ex.getMessage());
+			System.out.println("Error: "+ex.getMessage());
 		}
 		return ac;
 	}

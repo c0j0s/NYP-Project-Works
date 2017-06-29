@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import database.AccountDB;
 
 /**
@@ -35,8 +36,8 @@ public class LoginServlet extends HttpServlet {
 		String userPw=request.getParameter("userPw");
 		try{
 			AccountDB myDatabase = new AccountDB();
-			AccountDB myAccount = myDatabase.isMember(userId, userPw);
-			if(myAccount!=null){
+			Account ac = myDatabase.isMember(userId, userPw);
+			if(ac!=null){
 
 				System.out.println("Log loginservlet: success");
 				HttpSession mySession = request.getSession(true);
