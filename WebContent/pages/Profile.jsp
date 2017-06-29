@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+<%@ page import ="bean.*" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,14 +26,15 @@
     <h3 class="panel-title">My Profile</h3>
   </div>
   <div class="panel-body">
-<%--     <p>First Name:<%=ac.getGivenName %></p> --%>
-<%--     <p>Last Name:<%=ac.getSurName %></p> --%>
-<%--     <p>Date of Birth:<%=ac.getDob %></p> --%>
-<%--     <p>Gender:<%=ac.getGender %></p> --%>
-<%--     <p>Email:<%=ac.getEmail %></p> --%>
-<%--     <p>Address:<%=ac.getAddress %></p> --%>
-<%--     <p>Country<%=ac.getCountry %></p> --%>
-<%--     <p>Mobile No.:<%=ac.getMobileNo %></p> --%>
+  	 <% Account ac = ((Account)session.getAttribute("Account_Info")); %>
+	 <p>First Name:<%=ac.getGivenName() %></p> 
+     <p>Last Name:<%=ac.getSurName() %></p> 
+     <p>Date of Birth:<%=ac.getDob() %></p> 
+     <p>Gender:<%=ac.getGender() %></p> 
+     <p>Email:<%=ac.getEmail() %></p> 
+     <p>Address:<%=ac.getAddress() %></p>
+     <p>Country<%=ac.getCountry() %></p> 
+     <p>Mobile No.:<%=ac.getMobileno() %></p> 
   </div>
 </div>
 <button type="submit" class="btn btn-default">Update Profile</button>

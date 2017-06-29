@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 
 				System.out.println("Log loginservlet: success");
 				HttpSession mySession = request.getSession(true);
+				mySession.setAttribute("Account_Info", ac);
 				request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 			}
 			else{
