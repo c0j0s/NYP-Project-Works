@@ -34,7 +34,7 @@
 				<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-body ">
-						<form action="../CreatePost" method="post">
+						<form action="${pageContext.request.contextPath}/CreatePost" method="post">
 						 	<div class="form-group">
 						   	 	<label for="postTitle">Question Title</label>
 						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>

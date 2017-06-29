@@ -30,7 +30,6 @@ public class DBAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
 			con = DriverManager.getConnection(url,"root",passwd);
-			con.setAutoCommit(true);
 		} catch (Exception e) {
 			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
 		} 
@@ -45,7 +44,7 @@ public class DBAO {
 
 
 //	public Account isMember(String userId, String userPw) {
-//		Account ac = new Account();
+//		Accountdb ac = new Account();
 //		
 //		String statement = "SELECT * FROM ffl.user where accountId = ?";
 //		
