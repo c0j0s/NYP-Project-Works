@@ -10,9 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.custom.css' rel='stylesheet'>
-<link href='../css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Activities for families</title>
 </head>
@@ -76,7 +76,7 @@
 							class="btn btn-default btn-sm btn-no-border">
 								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span><%=act.getActivityPostCount()%>
 						</button> 
-							<span  aria-hidden="true"> <button >More Info</button></span>
+							<span  aria-hidden="true"> <button onclick = "location.href = 'activityfull.jsp?actId=<%=act.getActivityId()%>'">More Info</button></span>
 						</button> 
 							</div>
 							

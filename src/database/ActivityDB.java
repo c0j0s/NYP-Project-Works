@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.Activity;
+import bean.Post;
 
 public class ActivityDB extends DBAO{
 	
@@ -87,6 +88,10 @@ public class ActivityDB extends DBAO{
 			e.printStackTrace();
 		}
 		return "fail";
+	}
+	public ArrayList<Activity> getActivityById(String activityId){
+		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
+		return getActivity(stmt);
 	}
 	
 }

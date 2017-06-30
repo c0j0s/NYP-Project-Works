@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+<%@ page
+	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+<%!ActivityDB actdb = new ActivityDB();%>
+<%!Activity actf; %>
+<%!ArrayList<Activity> actfl; %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +24,25 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-	<div class = "col-md-5"></div><div class = "col-md-7"></div>
+	<%
+				DecimalFormat df = new DecimalFormat("##.00");
+			%>
+			<%if(request.getParameter("actId")== null){%>
+			<script language = "javascript">
+			window.location.href = "pageerror.jsp"
+			</script>
+			
+			<% }else{
+				 actfl = actdb.getActivityById(request.getParameter("actId"));
+			
+			 actf = actfl.get(0);
+			
+			%>
+				<div class = "col-md-5"></div><%=actf.getActivityId() %><div class = "col-md-7"></div>
+	
 
 
+<%} %>
 </div>
 
 <%-- end of main container --%>

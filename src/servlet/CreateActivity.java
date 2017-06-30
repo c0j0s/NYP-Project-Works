@@ -52,10 +52,10 @@ public class CreateActivity extends HttpServlet {
 			act.setActivityId(actdb.createActivity(act));
 
 			if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
-				String path = "pages/activityList.jsp";
-				response.sendRedirect(path);
+				request.getRequestDispatcher("/pages/activityList.jsp").forward(request, response);
+			
 			}else{
-				response.sendRedirect("pages/activityList.jsp");
+				request.getRequestDispatcher("/pages/activity-create.jsp").forward(request, response);
 				System.out.println("Log createActivity.java: fail to create activity");
 			}
 		} catch (Exception e) {

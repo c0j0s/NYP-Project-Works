@@ -8,9 +8,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.custom.css' rel='stylesheet'>
-<link href='../css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Create Activity</title>
 </head>
