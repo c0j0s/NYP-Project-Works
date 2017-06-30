@@ -19,7 +19,7 @@
 
 <div class="container">
 		<div class="col-md-5">
-		<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+		<form action="${pageContext.request.contextPath}/LoginServlet" method="post" id="login">
 			<div class="form-group">Email:<input type="text" class="form-control" placeholder="email" name="email"></div>
    			 <div class="form-group">Password:<input type="password" class="form-control" placeholder="password" name="userPw"></div>
    			<button type="submit" class="btn btn-default">Login</button>
@@ -32,6 +32,21 @@
 <%-- end of main container --%>
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>
+<script>
+$(document).ready(function () {
+    $('#login').validate({ 
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            userPw: {
+                required: true,
+            }
+        }
+    });
 
+});
+</script>
 </body>
 </html>

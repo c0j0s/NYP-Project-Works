@@ -9,9 +9,10 @@ public class Account {
 	private char gender;
 	private String email;
 	private String address;
-	
 	private int mobileno;
 	private String AccountId;
+	private int points;
+	private int creditLevel;
 	public String getGivenName() {
 		return givenName;
 	}
@@ -60,6 +61,18 @@ public class Account {
 	}
 	public void setAccountId(String accountId) {
 		AccountId = accountId;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	public int getCreditLevel() {
+		return creditLevel;
+	}
+	public void setCreditLevel(int creditLevel) {
+		this.creditLevel = creditLevel;
 	}
 	public Account isMember(String userId, String userPw) {
 		return null ;

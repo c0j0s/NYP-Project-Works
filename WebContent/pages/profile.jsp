@@ -35,8 +35,17 @@
      <p>Address:<%=ac.getAddress() %></p>
      <p>Mobile No.:<%=ac.getMobileno() %></p> 
   </div>
+ 	
 </div>
 <button type="submit" class="btn btn-default">Update Profile</button>
+
+</div>
+<div class="col-md:4 pull-right" >
+	<jsp:include page="parts/sidebar-account.jsp">
+		<jsp:param value="profile" name="type"/>
+		<jsp:param value="<%=ac.getPoints() %>" name="points"/>
+		<jsp:param value="<%=ac.getCreditLevel() %>" name="creditLevel"/>
+	</jsp:include>
 </div>
 </div>
 
