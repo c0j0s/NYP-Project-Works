@@ -21,6 +21,9 @@ public class DBAO {
 	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
 	final private String passwd = "password";
 	
+	final private String lurl = "jdbc:mysql://localhost/ffl";
+	final private String lpasswd = "mysql";
+	
 	/**
 	 * Default constructor
 	 * init connection to database
@@ -28,7 +31,8 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
+			con = DriverManager.getConnection(lurl,"root",lpasswd);
+			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
 			//con = DriverManager.getConnection(url,"root",passwd);
 		} catch (Exception e) {
 			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
