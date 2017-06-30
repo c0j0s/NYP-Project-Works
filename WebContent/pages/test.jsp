@@ -21,7 +21,7 @@
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	
 	<div>
-	<form action="">
+	<form action="../test" method="post" enctype="multipart/form-data">
 		<label>Upload file Test</label>
 		<input type="file">
 		<button type="submit">upload</button>
