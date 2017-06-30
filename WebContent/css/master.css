@@ -116,12 +116,20 @@ footer{
 	margin-top:10px;
 	margin-bottom:10px;
 }
+.forum-main-trending > .panel-body{
+	padding:0px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
 .post-link{
 	cursor:pointer;
 	margin-bottom:7px;
 }
 .forum-post-control-grps{
 	margin-bottom:10px;
+}
+.tab-title{
+	text-transform:capitalize;
 }
 .post .col-sm-2{
 	width:15%;
@@ -130,7 +138,7 @@ footer{
 	padding:0px;
 	width:70%;
 }
-.post-orginal .panel .panel-body{
+.post-orginal .panel-body{
 	background-color: rgba(92, 184, 92, 0.1);
 }
 .post-text-content{
@@ -146,6 +154,20 @@ footer{
 }
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
+}
+.comment-box{
+	background-color:rgba(51, 122, 183, 0.1);
+}
+.comment-under-comment div{
+    display: inline-flex;
+    padding: 1px;
+}
+.comment-under-comment div img{
+	margin-left:15px;
+}
+.comment-under-comment div p{
+	padding:5px;
+	margin: 0px;
 }
 /*=============================================================
 	CSS for activity

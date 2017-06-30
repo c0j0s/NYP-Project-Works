@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib >  
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version> 
+	<short-name>FFL TLD</short-name>
+	<uri>/WEB-INF/ffl.tld</uri>
+
+	<tag>
+		<name>PostListPagination</name>
+		<tag-class>tags.PostListPagination</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>currentPage</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>category</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>pageCount</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<function>
+		<name>getPost</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.lang.String getPostByIdAdvance(java.lang.String)
+		</function-signature>
+	</function>
+
+	<function>
+		<name>getPostList</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.util.ArrayList getPost(int,java.lang.String)
+		</function-signature>
+	</function>
+	
+	<function>
+		<name>getMaxCount</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>int getMaxCount(int)</function-signature>
+	</function>
+
+		<function>
+		<name>getCategoryList</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.util.Map getCategoryList()</function-signature>
+	</function>
+</taglib>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -11,14 +13,16 @@
 <link href='../css/bootstrap.custom.css' rel='stylesheet'>
 <link href='../css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Template</title>
+<title>Posting a Question</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <%-- end of header --%>
 
 <div class="container">
-	<jsp:include page="parts/forum-header.jsp"></jsp:include>
+	<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="forum" name="type"/>
+	</jsp:include>
 <% if(true){ //TODO check mode if is create post of edit post
 	%>
 		<div class="col-sm-9">
@@ -30,13 +34,13 @@
 				<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-body ">
-						<form action="../createPost" method="post">
+						<form action="${pageContext.request.contextPath}/CreatePost" method="post">
 						 	<div class="form-group">
-						   	 	<label for="postTitle">Title</label>
+						   	 	<label for="postTitle">Question Title</label>
 						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
 						 	</div>
 						 	<div class="form-group">
-						  		<label for="postTitle">Content</label>
+						  		<label for="postContent">Detail descriptions</label>
 						  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required></textarea>
 						 	</div>
 						 	<div class="row">
@@ -47,11 +51,9 @@
 							 	 <div class="form-group col-md-4">
 								    <label for="postCategory">Category</label>
 								    <select class="form-control" name="postCategory" id="postCategory">
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									  <option value="4">4</option>
-									  <option value="5">5</option>
+								    	<c:forEach items="${f:getCategoryList() }" var="cat" >
+								    		<option value="${cat.key}">${cat.value}</option>
+								    	</c:forEach>
 									</select>
 							 	 </div>
 							 	 <div class="form-group col-md-6">
@@ -77,7 +79,9 @@
 	<%
 	}
 %>
-		<jsp:include page="parts/forum-sidebar.jsp"></jsp:include>
+		<jsp:include page="parts/forum-sidebar.jsp">
+			<jsp:param value="forum" name="type"/>
+		</jsp:include>
 </div>
 
 <%-- end of main container --%>

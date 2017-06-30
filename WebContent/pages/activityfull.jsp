@@ -19,7 +19,8 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-content goes here
+	<div class = "col-md-5"></div><div class = "col-md-7"></div>
+
 
 </div>
 

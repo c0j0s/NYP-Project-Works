@@ -1,28 +1,25 @@
 package servlet;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Post;
-import database.Forum;
+import database.MetaValueDB;
 
 /**
- * Servlet implementation class createPost
+ * Servlet implementation class UpdateMetaValue
  */
-@WebServlet("/createPost")
-public class createPost extends HttpServlet {
+@WebServlet("/UpdateMetaValue")
+public class UpdateMetaValue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public createPost() {
+    public UpdateMetaValue() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,27 +28,20 @@ public class createPost extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Forum f = new Forum();
-		Post p = new Post();
-		p.setPostTitle(request.getParameter("postTitle"));
-		p.setPostDate();
-		p.setPostContent(request.getParameter("postContent"));
-		p.setPostCategory(request.getParameter("postCategory"));
-		p.setTagList(request.getParameter("postTags"));
-		p.setPoints(100);
-		p.setAccountId("ACC0000000");
-		p.setHideId(request.getParameter("hideId").charAt(0));
-		p.setPostId(f.createPost(p));
-		
-		if(!p.getPostId().equals("fail") || p.getPostId() == null){
-			String path = "pages/post.jsp?postId=" + p.getPostId();
-			response.sendRedirect(path);
-		}else{
-			response.sendRedirect("pages/forum-eidt?mode=create");
-			System.out.println("Log createPost.java: fail to create post");
+		try {
+			String id = request.getParameter("id");
+			String colName = request.getParameter("colname");
+			String action = request.getParameter("action");
+			MetaValueDB m = new MetaValueDB();
+			if(request.getParameter("mode").equals("add")){
+				m.addMeta(colName, id, "ACC0000000", action);
+			}else{
+				m.removeMeta(colName, id, "ACC0000000", action);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	/**

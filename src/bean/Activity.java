@@ -1,5 +1,11 @@
 package bean;
 
+/**
+ * try extend MetaValue Class
+ * 
+ *
+ */
+
 public class Activity {
 	private String activityId;
 	private String activityTitle;
@@ -7,10 +13,10 @@ public class Activity {
 	private int activityLikes;
 	private int activityDislikes;
 	private int participantNo;
-	private java.sql.Timestamp activityPostDate;
-	private java.sql.Timestamp activityEndDate;
-	private java.sql.Timestamp activityStartDate;
-	private java.sql.Timestamp activityRegistrationPeriod;
+	private String activityPostDate;
+	private String activityEndDate;
+	private String activityStartDate;
+	private String activityRegistrationEnd;
 	private double activityFee;
 	private String activityLocation;
 	private String activityCategory;
@@ -18,6 +24,11 @@ public class Activity {
 	private char valid;
 	private String activityDay;
 	private int activityRank;
+	private String organiserId;
+	private String activityTime;
+	private int activityPostCount;
+
+	
 	public Activity(){
 		
 	}
@@ -57,29 +68,29 @@ public class Activity {
 	public void setParticipantNo(int participantNo) {
 		this.participantNo = participantNo;
 	}
-	public java.sql.Timestamp getActivityPostDate() {
+	public String getActivityPostDate() {
 		return activityPostDate;
 	}
-	public void setActivityPostDate(java.sql.Timestamp activityPostDate) {
-		this.activityPostDate = activityPostDate;
+	public void setActivityPostDate(String string) {
+		this.activityPostDate = string;
 	}
-	public java.sql.Timestamp getActivityEndDate() {
+	public String getActivityEndDate() {
 		return activityEndDate;
 	}
-	public void setActivityEndDate(java.sql.Timestamp activityEndDate) {
-		this.activityEndDate = activityEndDate;
+	public void setActivityEndDate(String string) {
+		this.activityEndDate = string;
 	}
-	public java.sql.Timestamp getActivityStartDate() {
+	public String getActivityStartDate() {
 		return activityStartDate;
 	}
-	public void setActivityStartDate(java.sql.Timestamp activityStartDate) {
-		this.activityStartDate = activityStartDate;
+	public void setActivityStartDate(String string) {
+		this.activityStartDate = string;
 	}
-	public java.sql.Timestamp getActivityRegistrationPeriod() {
-		return activityRegistrationPeriod;
+	public String getActivityRegistrationEnd() {
+		return activityRegistrationEnd;
 	}
-	public void setActivityRegistrationPeriod(java.sql.Timestamp activityRegistrationPeriod) {
-		this.activityRegistrationPeriod = activityRegistrationPeriod;
+	public void setActivityRegistrationEnd(String string) {
+		this.activityRegistrationEnd = string;
 	}
 	public double getActivityFee() {
 		return activityFee;
@@ -123,6 +134,25 @@ public class Activity {
 	public void setActivityRank(int activityRank) {
 		this.activityRank = activityRank;
 	}
+	public String getOrganiserId() {
+		return organiserId;
+	}
+	public void setOrganiserId(String organiserId) {
+		this.organiserId = organiserId;
+	}
+	public String getActivityTime() {
+		return activityTime;
+	}
+	public void setActivityTime(String activityTime) {
+		this.activityTime = activityTime;
+	}
+	public int getActivityPostCount() {
+		return activityPostCount;
+	}
+	public void setActivityPostCount(int activityPostCount) {
+		this.activityPostCount = activityPostCount;
+	}
+
 	
 	
 }

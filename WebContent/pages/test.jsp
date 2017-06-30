@@ -19,7 +19,15 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-content goes here
+	
+	<div>
+	<form action="">
+		<label>Upload file Test</label>
+		<input type="file">
+		<button type="submit">upload</button>
+	</form>
+	<hr>
+	</div>
 
 </div>
 
