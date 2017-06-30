@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -32,7 +34,7 @@
 				<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-body ">
-						<form action="../CreatePost" method="post">
+						<form action="${pageContext.request.contextPath}/CreatePost" method="post">
 						 	<div class="form-group">
 						   	 	<label for="postTitle">Question Title</label>
 						  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
@@ -49,11 +51,9 @@
 							 	 <div class="form-group col-md-4">
 								    <label for="postCategory">Category</label>
 								    <select class="form-control" name="postCategory" id="postCategory">
-									  <option value="1">1</option>
-									  <option value="2">2</option>
-									  <option value="3">3</option>
-									  <option value="4">4</option>
-									  <option value="5">5</option>
+								    	<c:forEach items="${f:getCategoryList() }" var="cat" >
+								    		<option value="${cat.key}">${cat.value}</option>
+								    	</c:forEach>
 									</select>
 							 	 </div>
 							 	 <div class="form-group col-md-6">

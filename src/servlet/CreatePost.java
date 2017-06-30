@@ -41,6 +41,8 @@ public class CreatePost extends HttpServlet {
 			p.setAccountId("ACC0000000");
 			if(request.getParameter("hideId") != null){
 				p.setHideId(request.getParameter("hideId").charAt(0));
+			}else{
+				p.setHideId('N');
 			}
 			p.setPostId(f.createPost(p));
 			

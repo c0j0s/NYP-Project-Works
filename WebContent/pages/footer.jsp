@@ -26,7 +26,7 @@
 	</div>
 	<!-- end of footer info container -->
 	<div class="container" id="legal">
-		<span >Copyright © 2017 NYP, Singapore. All rights reserved.</span>
+		<span>Copyright &copy 2017 NYP, Singapore. All rights reserved.</span>
 	</div>
 </footer>
 <script>var ContextPath = "${pageContext.request.contextPath}"</script>
