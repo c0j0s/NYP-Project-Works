@@ -48,8 +48,21 @@
 							Something</button>
 					</div>
 				</c:when>
-				<c:when test="${false}">
-
+				<c:when test="${param.type eq 'profile' ? true : false}">
+					<div>
+						<div class="col-sm-4 text-center no-padding">
+							<p>
+								${param.points}<br> Points
+							</p>
+						</div>
+						<div class="col-sm-4 text-center no-padding">
+							<p>
+								${param.creditLevel}<br> Credit Level
+							</p>
+						</div>
+						<button type="button" class="btn btn-success btn-block"
+							onclick="location.href=''">Rewards Page</button>
+					</div>
 				</c:when>
 				<c:when test="${false}">
 
