@@ -76,7 +76,10 @@
 							class="btn btn-default btn-sm btn-no-border">
 								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span><%=act.getActivityPostCount()%>
 						</button> 
+							<span  aria-hidden="true"> <button >More Info</button></span>
+						</button> 
 							</div>
+							
 					</p> 
 		</div>
 		
