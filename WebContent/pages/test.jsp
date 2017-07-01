@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -21,11 +23,20 @@
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	
 	<div>
-	<form action="../test" method="post" enctype="multipart/form-data">
-		<label>Upload file Test</label>
-		<input type="file">
-		<button type="submit">upload</button>
-	</form>
+	<c:choose>
+		<c:when test="${requestScope.imgurl != null ? true : false }">
+			<img alt="" src="${requestScope.imgurl}" id="test-img-done">
+		</c:when>
+		<c:otherwise>
+			<img alt="" src="" id="test-img-prev">
+		</c:otherwise>
+	</c:choose>
+	
+    <form method="post" action="../test"
+        enctype="multipart/form-data">
+        Select file to upload: <input type="file" name="file" size="60" />
+        <input type="submit" value="Upload" />
+    </form>
 	<hr>
 	</div>
 
