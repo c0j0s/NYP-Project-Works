@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import bean.Comment;
 import common.UID;
 import database.CommentDB;
@@ -34,6 +36,8 @@ public class CreateComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s = request.getSession(true);
+		Account ac = (Account)s.getAttribute("account");
 		try {
 			String postId = request.getParameter("postId");
 			if(request.getParameter("action").equals("create")){
@@ -42,7 +46,7 @@ public class CreateComment extends HttpServlet {
 				com.setCommentContent(request.getParameter("commentContent"));
 				com.setDate(DBAO.getDateTime());
 				com.setCommentGroup("Parent");
-				com.setAccountId("ACC0000000");
+				com.setAccountId(ac.getAccountId());
 				com.setPostId(postId);
 				if(request.getParameter("commentId") != null){
 					System.out.println("Log: comments comment not null");

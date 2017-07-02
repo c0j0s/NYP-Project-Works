@@ -8,7 +8,7 @@
 				<c:choose>
 					<c:when test="${user eq null ? false : true }">
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
-						<img alt="" src="" class="img-circle profile-image-xsmall">
+						<img alt="" src="" class="img-circle profile-image-xxsmall">
 						<span>${user.givenName}</span>
 						</a></li>
 						<li><a class="white" >Logout</a></li>

@@ -88,6 +88,7 @@ public class ForumDB extends DBAO{
 				post.setPostCategory(rs.getString("postCategory"));
 				post.setTagList(rs.getString("postCategory"));
 				post.setAccountName(rs.getString("givenName"));
+				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
 				

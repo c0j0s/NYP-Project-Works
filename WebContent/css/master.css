@@ -6,7 +6,6 @@
 }
 .navbar-topbar{
 	background-color:#428bca;
-	height:40px;
 }
 .topbar-nav{
 	float: right;
@@ -49,6 +48,11 @@ footer{
 	Account: [small|medium|large] profile image
 	div: align center
 */
+.profile-image-xxsmall{
+	margin:2.5px;
+	width:15px;
+	height:15px;
+}
 .profile-image-xsmall{
 	margin:2.5px;
 	width:25px;

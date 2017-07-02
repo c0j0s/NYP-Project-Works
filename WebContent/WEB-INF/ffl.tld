@@ -47,9 +47,16 @@
 		<function-signature>int getMaxCount(int)</function-signature>
 	</function>
 
-		<function>
+	<function>
 		<name>getCategoryList</name>
 		<function-class>database.ForumDB</function-class>
 		<function-signature>java.util.Map getCategoryList()</function-signature>
+	</function>
+	
+	
+	<function>
+		<name>getCommentByCommentId</name>
+		<function-class>database.CommentDB</function-class>
+		<function-signature>java.util.ArrayList getCommentByCommentId(java.lang.String,int,int)</function-signature>
 	</function>
 </taglib>

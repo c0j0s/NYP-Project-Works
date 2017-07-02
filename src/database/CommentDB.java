@@ -62,7 +62,7 @@ public class CommentDB extends DBAO{
 	 * @param statement
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Comment> getComment(String statement){
+	public static ArrayList<Comment> getComment(String statement){
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		try {
 			if(statement == null){
@@ -84,6 +84,7 @@ public class CommentDB extends DBAO{
 				com.setPostId(rs.getString("postId"));
 				com.setCommentsComId(rs.getString("CommentscommentId"));
 				com.setDate(rs.getString("commentDate"));
+				com.setAccountId(rs.getString("accountId"));
 				com.setAccountName(rs.getString("givenName"));
 				
 				com.setLikeCount(rs.getInt("likeCount"));
@@ -122,7 +123,7 @@ public class CommentDB extends DBAO{
 		return getComment(stmt);
 	}
 	
-	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
+	public static ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
 		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
 		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
