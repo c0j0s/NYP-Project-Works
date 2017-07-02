@@ -36,10 +36,11 @@
 							<div class="text-center col-sm-2">
 								<img alt="" src="../img/sample.jpg"
 									class="img-circle profile-image-small">
-								<p>user name</p>
+								<p>${post.accountName}</p>
 							</div>
 							<jsp:include page="parts/forum-post.jsp">
 								<jsp:param value="${post.postId }" name="postId" />
+								<jsp:param value="${post.accountName }" name="accountName" />
 								<jsp:param value="${post.accountId }" name="accountId" />
 								<jsp:param value="${post.postTitle }" name="postTitle" />
 								<jsp:param value="${post.postContent }" name="postContent" />

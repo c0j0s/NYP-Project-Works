@@ -6,6 +6,7 @@
 }
 .navbar-topbar{
 	background-color:#428bca;
+	height:40px;
 }
 .topbar-nav{
 	float: right;

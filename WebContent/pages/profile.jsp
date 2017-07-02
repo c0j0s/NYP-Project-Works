@@ -26,7 +26,7 @@
     <h3 class="panel-title">My Profile</h3>
   </div>
   <div class="panel-body">
-  	 <% Account ac = ((Account)session.getAttribute("Account_Info")); %>
+  	 <% Account ac = ((Account)session.getAttribute("account")); %>
 	 <p>First Name:<%=ac.getGivenName() %></p> 
      <p>Last Name:<%=ac.getSurName() %></p> 
      <p>Date of Birth:<%=ac.getDob() %></p> 

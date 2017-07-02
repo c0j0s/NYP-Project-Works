@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MetaValue {
 
-	private String date;
+	private String date,AccountName;
 	private int likeCount, dislikeCount, followerCount;
 	private ArrayList<String> followerAccounts,likeAccounts,dislikeAccounts;
 	
@@ -52,6 +52,12 @@ public class MetaValue {
 
 	public void setDate(String date) {
 		this.date = date.substring(0,19);
+	}
+	public String getAccountName() {
+		return AccountName;
+	}
+	public void setAccountName(String accountName) {
+		AccountName = accountName;
 	}
 	
 

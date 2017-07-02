@@ -1,21 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="panel panel-primary forum-sidebar-account">
 	<c:choose>
-		<c:when test="${false}">
-			<c:choose>
-				<c:when test="${false}">
-
-				</c:when>
-				<c:when test="${false}">
-
-				</c:when>
-				<c:when test="${false}">
-
-				</c:when>
-				<c:when test="${false}">
-
-				</c:when>
-			</c:choose>
+		<c:when test="${user eq null ? true : false}">
+			<div class="panel-heading ">
+				<h3 class="panel-title text-center">Login</h3>
+			</div>
+			<div class="panel-body">
+				<form action="">//login panel here</form>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<c:choose>
@@ -23,7 +15,7 @@
 					<div class="panel-heading ">
 						<img alt="../img/sample.jpg" src="../img/sample.jpg"
 							class="img-circle profile-image-medium">
-						<h3 class="panel-title text-center">User Name</h3>
+						<h3 class="panel-title text-center">${user.givenName}</h3>
 					</div>
 					<div class="panel-body">
 						<div>

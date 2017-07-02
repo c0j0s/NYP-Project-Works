@@ -1,10 +1,24 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
+<c:set var = "user" scope = "session" value = "${sessionScope.account}"/>
 <nav class="navbar navbar-default">
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
-				<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">LOGIN</a></li>
-				<li><a class="white">SIGN UP</a></li>
-        		<li><a class="white">CONTACT US</a></li>
+				<c:choose>
+					<c:when test="${user eq null ? false : true }">
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
+						<img alt="" src="" class="img-circle profile-image-xsmall">
+						<span>${user.givenName}</span>
+						</a></li>
+						<li><a class="white" >Logout</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">Login</a></li>
+						<li><a class="white">Sign up</a></li>
+					</c:otherwise>
+				</c:choose>
+						<li><a class="white">Contact us</a></li>
 			</ul>
 		</div>
 	</div>

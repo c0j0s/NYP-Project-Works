@@ -41,13 +41,13 @@ public class LoginServlet extends HttpServlet {
 
 				System.out.println("Log loginservlet: success");
 				HttpSession mySession = request.getSession(true);
-				mySession.setAttribute("Account_Info", ac);
-				request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+				mySession.setAttribute("account", ac);
+				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 			}
 			else{
 
 				System.out.println("Log loginservlet: fail");
-				request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 			}
 		}catch(Exception ex){
 			System.out.println("Error Accessing database: "+ex);

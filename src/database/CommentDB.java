@@ -84,7 +84,7 @@ public class CommentDB extends DBAO{
 				com.setPostId(rs.getString("postId"));
 				com.setCommentsComId(rs.getString("CommentscommentId"));
 				com.setDate(rs.getString("commentDate"));
-				com.setAccountId(rs.getString("accountId"));
+				com.setAccountName(rs.getString("givenName"));
 				
 				com.setLikeCount(rs.getInt("likeCount"));
 				com.setDislikeCount(rs.getInt("dislikeCount"));	

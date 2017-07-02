@@ -3,7 +3,7 @@
 		<div class="col-md-2 text-center">
 			<img alt="profile image" src="../img/sample.jpg"
 				class="img-circle profile-image-small">
-			<p>${post.accountId}</p>
+			<p>${post.accountName}</p>
 		</div>
 		<div class="col-md-10">
 			<div class="post-link"
