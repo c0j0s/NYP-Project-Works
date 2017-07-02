@@ -35,15 +35,16 @@ public class test extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	/**
-    	 * the following code is for uploading file to the resource folder
+    	 * for uploading file to the resource folder [not recommended]
     	 * follow html tag in test.jsp when using FileUploader
+    	 * String filename = FileManager.upload("user\\ACC0000000", request.getParts());
     	 */
-//      FileUploader.upload() returns filename
-//    	
-    	String filename = FileManager.upload("user\\ACC0000000", request.getParts());
-    	System.out.println(filename);
-    	request.setAttribute("imgurl", FileManager.getFile("user\\ACC0000000", filename));
-    	request.getRequestDispatcher("pages/test.jsp").forward(request, response);
+    	
+    	/**
+    	 * for uploading file to firebase
+    	 * String imgurl = request.getParameter("imgurl");
+    	 */
+   
     }
 
 	/**

@@ -1,4 +1,4 @@
-$( document ).ready(function() {s
+$( document ).ready(function() {
 	var config = {
 		apiKey: "AIzaSyAIsMxruOQZcVlHGcpbJQ3c6CF9ZgpFMkQ",
 		authDomain: "famforlife-accc8.firebaseapp.com",
@@ -118,12 +118,54 @@ $( document ).ready(function() {s
 	}
 	
 	/**
-	 * methods for file 
+	 * methods for file upload
 	 */
 	$("input:file").on("change",function(event){
 		console.log("change " + URL.createObjectURL(event.target.files[0]))
 		$("#test-img-prev").attr('src', URL.createObjectURL(event.target.files[0]));
 	})
+	
+	$('#form-upload').submit( function(event) {
+	     var form = this;
+	    event.preventDefault();
+	    uploadFile(function(){
+	    	console.log("callback");
+	    	form.submit();
+	    })	
+	}); 
+	
+	function uploadFile(callback){
+		var storageRef = firebase.storage().ref();
+		var file = $("input:file").prop('files')[0];
+		var uploadTask = storageRef.child($("#imgurl").data().imgfolder + "/" + file.name).put(file);
+		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+		  function(snapshot) {
+		    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		    console.log('Upload is ' + progress + '% done');
+		    switch (snapshot.state) {
+		      case firebase.storage.TaskState.PAUSED: 
+		        console.log('Upload is paused');
+		        break;
+		      case firebase.storage.TaskState.RUNNING: 
+		        console.log('Upload is running');
+		        break;
+		    }
+		  }, function(error) {
+
+		  switch (error.code) {
+		    case 'storage/unauthorized':
+		      break;
+		    case 'storage/canceled':
+		      break;
+		    case 'storage/unknown':
+		      break;
+		  }
+		}, function() {
+		  $("#imgurl").val(uploadTask.snapshot.downloadURL);
+		  callback();
+		});		
+	}
+	
 
 
 });
