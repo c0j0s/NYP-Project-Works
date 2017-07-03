@@ -33,3 +33,4 @@
 <script src='${pageContext.request.contextPath}/js/jquery-3.2.1.js'></script>
 <script src='${pageContext.request.contextPath}/js/bootstrap.js'></script>
 <script src='${pageContext.request.contextPath}/js/master.js'></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>

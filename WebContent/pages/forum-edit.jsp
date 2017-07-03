@@ -29,7 +29,7 @@
 			<div class="post post-orginal clearfix">
 				<div class="text-center col-sm-2">
 					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-					<p>user name</p>
+					<p>${user.givenName}</p>
 				</div>
 				<div class="col-sm-8">
 				<div class="panel panel-default">

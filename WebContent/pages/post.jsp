@@ -36,18 +36,10 @@
 							<div class="text-center col-sm-2">
 								<img alt="" src="../img/sample.jpg"
 									class="img-circle profile-image-small">
-								<p>user name</p>
+								<p>${post.accountName}</p>
 							</div>
-							<jsp:include page="parts/forum-post.jsp">
-								<jsp:param value="${post.postId }" name="postId" />
-								<jsp:param value="${post.accountId }" name="accountId" />
-								<jsp:param value="${post.postTitle }" name="postTitle" />
-								<jsp:param value="${post.postContent }" name="postContent" />
-								<jsp:param value="${post.date }" name="postDate" />
-								<jsp:param value="${post.likeCount }" name="likeCount" />
-								<jsp:param value="${post.dislikeCount }" name="dislikeCount" />
-								<jsp:param value="${post.commentCount }" name="commentCount" />
-							</jsp:include>
+							<c:set var="post" scope="request" value="${post }" />
+							<jsp:include page="parts/forum-post.jsp"></jsp:include>						
 						</div>
 						<!-- end of original post -->
 						<hr>
@@ -60,19 +52,12 @@
 										<div class="post-comment  clearfix "
 											id="${comment.commentId }">
 											<div class="col-sm-2"></div>
-											<jsp:include page="parts/forum-comment.jsp">
-												<jsp:param value="${comment.commentId }" name="commentId" />
-												<jsp:param value="${comment.accountId }" name="accountId" />
-												<jsp:param value="${comment.commentContent }" name="postContent" />
-												<jsp:param value="${comment.date }" name="postDate" />
-												<jsp:param value="${comment.likeCount }" name="likeCount" />
-												<jsp:param value="${comment.dislikeCount }" name="dislikeCount" />
-												<jsp:param value="${comment.commentCount }" name="commentCount" />
-											</jsp:include>
+											<c:set var="comment" scope="request" value="${comment}" />
+											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">
 												<img alt="" src="../img/sample.jpg"
 													class="img-circle profile-image-small">
-												<p>user name</p>
+												<p>${comment.accountName }</p>
 											</div>
 										</div>
 										<br>

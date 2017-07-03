@@ -10,7 +10,7 @@ public class Account {
 	private String email;
 	private String address;
 	private int mobileno;
-	private String AccountId;
+	private String accountId;
 	private int points;
 	private int creditLevel;
 	public String getGivenName() {
@@ -57,10 +57,10 @@ public class Account {
 		this.mobileno = mobileno;
 	}
 	public String getAccountId() {
-		return AccountId;
+		return accountId;
 	}
 	public void setAccountId(String accountId) {
-		AccountId = accountId;
+		this.accountId = accountId;
 	}
 	public int getPoints() {
 		return points;
@@ -73,11 +73,6 @@ public class Account {
 	}
 	public void setCreditLevel(int creditLevel) {
 		this.creditLevel = creditLevel;
-	}
-	public Account isMember(String userId, String userPw) {
-		return null ;
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

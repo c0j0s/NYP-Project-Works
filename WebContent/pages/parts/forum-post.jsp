@@ -1,19 +1,19 @@
 <div class="col-sm-8">
 	<div class="panel panel-default">
-		<small class="pull-right post-date">${param.postDate}</small>
+		<small class="pull-right post-date">${post.date}</small>
 		<div class="panel-body ">
 			<div class="post-text-content">
-				<h4>${param.postTitle}</h4>
-				<p>${param.postContent}</p>
+				<h4>${post.postTitle}</h4>
+				<p>${post.postContent}</p>
 			</div>
 			<hr>
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
-						<jsp:param value="${param.postId }" name="Id"/>
+						<jsp:param value="${post.postId }" name="Id"/>
 						<jsp:param value="postId" name="colName"/>
-						<jsp:param value="${param.likeCount }" name="likeCount"/>
-						<jsp:param value="${param.dislikeCount }" name="dislikeCount"/>
+						<jsp:param value="${post.likeCount }" name="likeCount"/>
+						<jsp:param value="${post.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
@@ -33,7 +33,7 @@
 					</ul>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						<span class="meta-value-count" data-count="${param.commentCount}">${param.commentCount}</span>
+						<span class="meta-value-count" data-count="${post.commentCount}">${post.commentCount}</span>
 					</button>
 				</div>
 				<br>
