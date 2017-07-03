@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+<c:set var = "user" scope = "session" value = "${sessionScope.account}"/>
 <%@ page import ="bean.*" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,14 +27,14 @@
     <h3 class="panel-title">My Profile</h3>
   </div>
   <div class="panel-body">
-  	 <% Account ac = ((Account)session.getAttribute("account")); %>
-	 <p>First Name:<%=ac.getGivenName() %></p> 
-     <p>Last Name:<%=ac.getSurName() %></p> 
-     <p>Date of Birth:<%=ac.getDob() %></p> 
-     <p>Gender:<%=ac.getGender() %></p> 
-     <p>Email:<%=ac.getEmail() %></p> 
-     <p>Address:<%=ac.getAddress() %></p>
-     <p>Mobile No.:<%=ac.getMobileno() %></p> 
+  	 
+	 <p>First Name:${user.givenName}</p> 
+     <p>Last Name:${user.surName}</p> 
+     <p>Date of Birth:${user.dob}</p> 
+     <p>Gender:${user.gender}</p> 
+     <p>Email:${user.email}</p> 
+     <p>Address:${user.address}</p>
+     <p>Mobile No.:${user.mobileno}</p> 
   </div>
  	
 </div>
@@ -43,8 +44,8 @@
 <div class="col-md:4 pull-right" >
 	<jsp:include page="parts/sidebar-account.jsp">
 		<jsp:param value="profile" name="type"/>
-		<jsp:param value="<%=ac.getPoints() %>" name="points"/>
-		<jsp:param value="<%=ac.getCreditLevel() %>" name="creditLevel"/>
+		<jsp:param value="${user.points}" name="points"/>
+		<jsp:param value="${user.creditLevel}" name="creditLevel"/>
 	</jsp:include>
 </div>
 </div>
