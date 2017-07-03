@@ -56,7 +56,7 @@ public class CreateActivity extends HttpServlet {
 			act.setActivityId(actdb.createActivity(act));
 
 			if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
-				request.getRequestDispatcher("/pages/activityfull.jsp?actId=<%=act.getActivityId()").forward(request, response);
+				request.getRequestDispatcher("/pages/activityfull.jsp?actId="+act.getActivityId()).forward(request, response);
 			
 			}else{
 				request.getRequestDispatcher("/pages/activity-create.jsp").forward(request, response);

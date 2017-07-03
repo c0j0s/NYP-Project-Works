@@ -20,7 +20,7 @@
 
 	<div class="container">
 		<h1>Activity Creation Page</h1>
-		<form action="../CreateActivity" method="post" class = "col-md-12" id="form-upload"
+		<form action="${pageContext.request.contextPath}/CreateActivity" method="post" class = "col-md-12" id="form-upload"
      >
 			<div class="col-md-6">
 			
