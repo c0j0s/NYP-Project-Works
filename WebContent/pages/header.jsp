@@ -3,7 +3,7 @@
 		<div class="container">
 			<ul class="topbar-nav">
 				<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">LOGIN</a></li>
-				<li><a class="white">SIGN UP</a></li>
+				<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">SIGN UP</a></li>
         		<li><a class="white">CONTACT US</a></li>
 			</ul>
 		</div>
