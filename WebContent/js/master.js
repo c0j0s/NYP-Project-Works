@@ -50,6 +50,10 @@ $( document ).ready(function() {
 		$("#comment-box-"+id).remove();
 	}
 	
+	$("#delete-post").click(function(){
+		//TODO invalid post
+	});
+	
 	/**
 	 *  method for meta value
 	 */
@@ -102,6 +106,13 @@ $( document ).ready(function() {
 			success: function(result){
 				console.log("ajax"+ result)
 				callback();
+			},
+			error:function(result){
+				if(result){
+					
+				}else{
+					
+				}
 			}
 		});
 	}

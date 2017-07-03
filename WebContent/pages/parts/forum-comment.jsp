@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="../../WEB-INF/ffl.tld"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="col-sm-8">
 	<div class="panel panel-default">
 		<small class="pull-right post-date">${comment.date}</small>
@@ -35,31 +38,33 @@
 						<span class="meta-value-count" data-count="${comment.commentCount}">${comment.commentCount}</span>
 					</button>
 				</div>
-				<br>
-				<br>
-				<% if(true){ // TODO check if post is close
-							// TODO jvascript method to create Comments
-					%> 
-					<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom" onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
-					<%
-				} %>
+				<c:choose>
+					<c:when test="${(user eq null) || (user.accountId eq comment.accountId) ? false : true }">
+						<br>
+						<br>
+						<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom" onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
+					</c:when>
+				</c:choose>
 			</div>
-			${comment.commentCount eq 0 ? '' : '<hr>'}
-			<div class="comments-comment">
-				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-				<%@ taglib prefix="f" uri="../../WEB-INF/ffl.tld"%>
-				<c:forEach items="${f:getCommentByCommentId(comment.commentsComId,0,5) }" var="commentCom">
-					<div class="row comment-under-comment">
+			<c:set var="commentComList" scope="request" value="${f:getCommentByCommentId(comment.commentId,0,5) }"/>
+			<c:choose>
+				<c:when test="${fn:length(commentComList) gt 0 }">
+					<hr>
+					<div class="comments-comment">
+						<c:forEach items="${commentComList }" var="commentCom">
+							<div class="row comment-under-comment">
 								<div class="col-sm-2">
-									<img src = '../img/sample.jpg' class="img-circle profile-image-xsmall">
+									<img src="${commentCom.accountImgUrl }" class="img-circle profile-image-xsmall">
 									<p>says: </p>
 								</div>
 								<div class="col-sm-10">
-									<p>${commentCom.givenName }</p>
+									<p>${commentCom.commentContent }</p>
 								</div>
 							</div>
-				</c:forEach>
-			</div>
+						</c:forEach>
+					</div>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </div>

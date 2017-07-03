@@ -28,9 +28,9 @@
 	</tag>
 
 	<function>
-		<name>getPost</name>
+		<name>getPostById</name>
 		<function-class>database.ForumDB</function-class>
-		<function-signature>java.lang.String getPostByIdAdvance(java.lang.String)
+		<function-signature>java.lang.String getPostById(java.lang.String)
 		</function-signature>
 	</function>
 

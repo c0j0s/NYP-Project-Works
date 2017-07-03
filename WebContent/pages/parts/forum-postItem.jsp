@@ -1,7 +1,7 @@
 <div class="panel panel-default Forum-card">
 	<div class="panel-body">
 		<div class="col-md-2 text-center">
-			<img alt="profile image" src="../img/sample.jpg"
+			<img alt="profile image" src="${post.accountImgUrl }"
 				class="img-circle profile-image-small">
 			<p>${post.accountName}</p>
 		</div>
