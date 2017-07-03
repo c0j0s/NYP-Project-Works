@@ -94,7 +94,7 @@ public class CreateComment extends HttpServlet {
 						+ "</div></div></div>"
 						+ "<div class='text-center col-sm-2'>"
 						+ "<img alt='' src='../img/sample.jpg' class='img-circle profile-image-small'>"
-						+ "<p>user name</p>" //TODO replace with user name
+						+ "<p>"+ ac.getGivenName() +"</p>" //TODO replace with user name
 						+ "</div><br><br></div>");
 
 			}

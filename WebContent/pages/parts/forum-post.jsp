@@ -38,12 +38,20 @@
 				</div>
 				<br>
 				<br>
-				<% if(true){ // TODO check if post is close
-							// TODO jvascript method to create Comments
-					%> 
-					<button type="button" id="main-createComment" class="btn btn-success btn-block addCom" onclick="createCom('post-comment-container','before','post')">Give my answer</button> 
-					<%
-				} %>
+				<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+				<%@ taglib prefix = "f" uri = "../../WEB-INF/ffl.tld" %>
+				<c:choose>
+					<c:when test="${user eq null ? 'false' : 'true' }">
+						<c:choose>
+							<c:when test="${user.accountId eq post.accountId ? false : true}">
+								<button type="button" id="main-createComment" class="btn btn-success btn-block addCom" onclick="createCom('post-comment-container','before','post')">Give my answer</button> 
+							</c:when>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-success btn-block" onclick="location.href='login.jsp'">Please Login to Reply</button> 
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

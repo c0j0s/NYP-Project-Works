@@ -5,11 +5,6 @@
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
-<<<<<<< HEAD
-				<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">LOGIN</a></li>
-				<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">SIGN UP</a></li>
-        		<li><a class="white">CONTACT US</a></li>
-=======
 				<c:choose>
 					<c:when test="${user eq null ? false : true }">
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
@@ -24,7 +19,6 @@
 					</c:otherwise>
 				</c:choose>
 						<li><a class="white">Contact us</a></li>
->>>>>>> f6663ddbaaa4bbfa211cb7522473ee1247442a68
 			</ul>
 		</div>
 	</div>
