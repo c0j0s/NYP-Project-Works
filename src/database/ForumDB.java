@@ -88,6 +88,7 @@ public class ForumDB extends DBAO{
 				post.setPostCategory(rs.getString("postCategory"));
 				post.setTagList(rs.getString("postCategory"));
 				post.setAccountName(rs.getString("givenName"));
+				post.setAccountImgUrl(rs.getString("imgUrl"));
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
@@ -134,7 +135,8 @@ public class ForumDB extends DBAO{
 	 * @param postId
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Post> getPostById(String postId){
+	public static ArrayList<Post> getPostById(String postId){
+		new DBAO();
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
 		return getPost(stmt);
 	}
