@@ -40,12 +40,16 @@ public class CreateActivity extends HttpServlet {
 			act.setActivityEndDate(request.getParameter("actEnd"));
 			act.setActivityStartDate(request.getParameter("actStart"));
 			act.setActivityDescription(request.getParameter("actDesc"));
-			act.setParticipantNo(Integer.parseInt(request.getParameter("actPar")));
+			
+			System.out.println(request.getParameter("actPart"));
+			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 			act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
 			act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
 			act.setActivityLocation(request.getParameter("actLocation"));
 			act.setActivityCategory(request.getParameter("actCategory"));
-			act.setImgUrl(request.getParameter("actImg"));
+			
+			System.out.println(request.getParameter("imgurl"));
+			act.setImgUrl(request.getParameter("imgurl"));
 			act.setActivityDay(request.getParameter("actDay"));
 			act.setActivityTime(request.getParameter("actTime"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));

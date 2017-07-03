@@ -17,9 +17,14 @@
 				</span>
 			</div>
 		</c:when>
-		<c:when test="${false}">
-			for other page
-		</c:when>
+		<c:when test="${param.type eq 'activity' ? true : false}"><div>
+		<h1>
+				<a href="${pageContext.request.contextPath}/pages/activityList.jsp">${param.title }
+				</a>
+		
+		<button onclick = "location.href = 'activity-create.jsp'" class = "btn btn-primary col-md-6 pull-right">Create Activity</button>
+		</h1></div>
+			</c:when>
 		<c:when test="${false}">
 			for other page
 		</c:when>

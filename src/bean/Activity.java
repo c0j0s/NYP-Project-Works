@@ -20,7 +20,7 @@ public class Activity {
 	private double activityFee;
 	private String activityLocation;
 	private String activityCategory;
-	private String imgUrl;
+	private String imgurl;
 	private char valid;
 	private String activityDay;
 	private int activityRank;
@@ -111,10 +111,10 @@ public class Activity {
 		this.activityCategory = activityCategory;
 	}
 	public String getImgUrl() {
-		return imgUrl;
+		return imgurl;
 	}
 	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+		this.imgurl = imgUrl;
 	}
 	public char getValid() {
 		return valid;
