@@ -23,13 +23,15 @@
 <%-- end of header --%>
 
 <div class="container">
-	<jsp:include page="parts/page-header.jsp"></jsp:include>
+
+
 	<%
 				DecimalFormat df = new DecimalFormat("##.00");
 			%>
 			<%if(request.getParameter("actId")== null){%>
 			<script language = "javascript">
-			window.location.href = "pageerror.jsp"
+			window.location.href = "activitypageerror.jsp"
+			
 			</script>
 			
 			<% }else{
@@ -37,12 +39,35 @@
 			
 			 actf = actfl.get(0);
 			
-			%>
-				<div class = "col-md-5"></div><%=actf.getActivityId() %><div class = "col-md-7"></div>
+			%><script language = "javascript">
+			var title = "[<%=actf.getActivityId()%>] <%=actf.getActivityTitle() %>"</script>
+			
+			<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="activityfull" name="type"/>
+		 <jsp:param value="<%=actf.getActivityId() %>" name="title" />
+		
+		<jsp:param value="5" name="titleWidth" />
+		<jsp:param value="subTitle" name="subTitle" />
+</jsp:include>
+<div><h1 class= "text-center"></h1>
+				<div class = "col-md-5 pull-left"><img src= "<%=actf.getImgUrl() %>" id="fullactivitypic"></div><div class = "col-md-4"><p>Activity Categories : <%=actf.getActivityCategory()%></p></div>	<div class="col-md-3">
+	<ul class="list-group pull-right">
+	<h4> Activity Popularity Ranking</h4>
+		<%
+			for (int z = 0; z < 20; z++) {
+		%>
+		<li class="list-group-item">
+		<%=z+1 %>. Java
+			<span class="badge"><%=z %></span>
+		</li>
+		<%} %>
+	</ul>
+		</div>
 	
 
 
 <%} %>
+</div>
 </div>
 
 <%-- end of main container --%>

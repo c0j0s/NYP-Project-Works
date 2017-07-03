@@ -14,7 +14,7 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title class = "col=-md-6">Activities for families </title>
+<title class = "col=-md-4">Activities for families </title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>	<%-- end of header --%>
@@ -55,7 +55,8 @@
 						<%=act.getParticipantNo()%></p>
 					<p>
 						Fee : $
-						<%=act.getActivityFee()%></p>
+						<%=df.format(act.getActivityFee())%>
+						</p>
 					<p>
 						Date :
 						<%=act.getActivityStartDate()%>

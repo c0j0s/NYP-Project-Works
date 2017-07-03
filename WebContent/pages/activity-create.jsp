@@ -35,8 +35,17 @@
 				
 			</div>
 			<div class="col-md-6">
-				<label for="actFee">Fee:</label> 
-				<input type="text" name="actFee" class="form-control" placeholder="Enter Fee : "> <br>
+				<label for="actFee">Activity Fee:</label> 
+				<div>
+					<div class ="col-md-1">$</div>
+					<div class ="col-md-5">
+						<input type="number" name="actFeeDollars" class="form-control" placeholder="Dollars " min="1" step= "any">
+					</div>
+					<div class ="col-md-1">.</div>
+					<div class ="col-md-5"><input type="number" name="actFeeCents" class="form-control" placeholder="Cents" min="1" step= "any">
+					</div>
+				
+				</div>
 				
 				<label for="actPart">Participant Number:</label> 
 				<input type="text" name="actPart" class="form-control" placeholder="Enter Participant Number : "> <br>
@@ -46,10 +55,22 @@
 				
 
 				
-				<label for="actDay">Activity Days : </label>
-				<input type="text" name="actDay" class="form-control text-left"><br>
-				<label for="actTime">Timing: </label> 
-				<input type="text" name="actTime" class="form-control"><br><label for="actRegEnd">Registration End : </label> 
+				<label for="actDay">Activity Days : </label><br>
+				<input type="checkbox" name="actDay" value="Monday "> Monday
+				<input type="checkbox" name="actDay" value="Tuesday ">Tuesday
+				<input type="checkbox" name="actDay" value="Wednesday ">Wednesday
+				<input type="checkbox" name="actDay" value="Thursday ">Thursday
+				<input type="checkbox" name="actDay" value="Friday ">Friday<br>
+				<br>
+				<label for="actTime">Timing: </label> <div>
+				<div class = "col-md-5"><input type="number" name="actTimeHour" class="form-control"></div>
+				<div class = "col-md-1">:</div>
+				<div class = "col-md-5"><input type="number" name="actTimeMin" class="form-control"></div>
+				 <div class = "col-md-1"> <select name="actTimeM" form="form-upload">
+ 					 <option value="AM">AM</option>
+ 					 <option value="PM">PM</option>
+				  </select></div>
+				<label for="actRegEnd">Registration End : </label> 
 				<input type="date" name="actRegEnd" class="form-control"> <br>
 				<div>
 				<div class= "col-md-5">
@@ -69,7 +90,7 @@
 
 				
 			</div>
-			<div class= "col-md-12"><button type = "reset" class = "col-md-5 btn btn-danger pull-left">Reset</button><p class ="col-md-2"></p><button type="submit" class="col-md-5 btn btn-success  pull-right">Create</button></div><br>M,.
+			<div class= "col-md-12"><button type = "reset" class = "col-md-5 btn btn-danger pull-left">Reset</button><p class ="col-md-2"></p><button type="submit" class="col-md-5 btn btn-success  pull-right">Create</button></div><br>
 		</form>
 	</div>
 	</div>
