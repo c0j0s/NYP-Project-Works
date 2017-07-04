@@ -12,6 +12,7 @@
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
+						<jsp:param value="post" name="table"/>
 						<jsp:param value="${post.postId }" name="Id"/>
 						<jsp:param value="postId" name="colName"/>
 						<jsp:param value="${post.likeCount }" name="likeCount"/>

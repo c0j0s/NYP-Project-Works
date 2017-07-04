@@ -123,7 +123,7 @@ public class Mail {
 			session = Session.getDefaultInstance(properties, null);
 			message = new MimeMessage(session);
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress("c.junsheng@hotmail.com"));
-			message.setFrom(new InternetAddress(sender,"FamForLife"));
+			message.setFrom(new InternetAddress("bt1602gp@gmail.com","FamForLife"));
 			message.setSubject("FamForLife: " + "test");
 			
 			System.out.println("Log htmlText: ");
@@ -139,7 +139,7 @@ public class Mail {
  
 		try {
 			Transport transport = session.getTransport("smtps");
-			transport.connect("smtp.gmail.com", sender, password);
+			transport.connect("smtp.gmail.com", "bt1602gp@gmail.com", "admin@gmail");
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			System.out.println("mail sent to:" + "c.junsheng@hotmail.com");

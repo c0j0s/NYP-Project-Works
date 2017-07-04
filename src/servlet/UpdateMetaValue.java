@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,11 +40,23 @@ public class UpdateMetaValue extends HttpServlet {
 			String colName = request.getParameter("colname");
 			String action = request.getParameter("action");
 			MetaValueDB m = new MetaValueDB();
+			
 			if(request.getParameter("mode").equals("add")){
-				m.addMeta(colName, id, ac.getAccountId(), action);
+				if(m.checkifMetaExist(colName, id, ac.getAccountId(), action)) {
+					m.addMeta(colName, id, ac.getAccountId(), action);
+				}else {
+					PrintWriter out = response.getWriter();
+					System.out.println("MetaExist");
+					response.setStatus(400);
+					out.print("MetaExist");
+					out.flush();
+				}
 			}else{
 				m.removeMeta(colName, id, ac.getAccountId(), action);
 			}
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

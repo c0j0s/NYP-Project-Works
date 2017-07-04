@@ -107,12 +107,8 @@ $( document ).ready(function() {
 				console.log("ajax"+ result)
 				callback();
 			},
-			error:function(result){
-				if(result){
-					
-				}else{
-					
-				}
+			error:function(jqXHR, exception){
+				console.log("ajax error"+jqXHR.responseText)
 			}
 		});
 	}

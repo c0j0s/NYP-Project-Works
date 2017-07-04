@@ -15,6 +15,31 @@ public class MetaValueDB extends DBAO{
 		super();
 	}
 		
+	public boolean checkifMetaExist(String colName, String id, String accountId, String action) {
+		String stmt = "select count(*) from "+ schema +".metavalue where "+ colName +" = ? AND accountId = ? AND action = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, id);
+			ps.setString(2, accountId);
+			ps.setString(3, action);
+			System.out.println("Log checkifMetaExist(): "+ps);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				if(rs.getInt(1) > 0) {
+					return false;
+				}else {
+					return true;
+				}
+			}
+			rs.close();
+			ps.close();
+		} catch (Exception e) {
+			return false;
+		}
+		return false;
+	}
+
 	/**
 	 * create post meta values
 	 * @param parentId
@@ -31,14 +56,15 @@ public class MetaValueDB extends DBAO{
 			ps.setString(3, action);
 			System.out.println(ps);
 			int Status = ps.executeUpdate();
-			ps.close();
 			if(Status != 0){
 				System.out.println("Log addMeta(): success");
+				ps.close();
 				return "success";
 			}else{
 				System.out.println("Log addMeta(): fail");
 				return "fail";
 			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -59,6 +85,7 @@ public class MetaValueDB extends DBAO{
 			}else{
 				System.out.println("Log removeMeta(): fail");
 			}
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,54 +93,21 @@ public class MetaValueDB extends DBAO{
 	}
 	
 	/**
-	 * unused methods
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-
-	public void delPostMeta(){}
-	
-	/**
-	 * get post meta value counts
-	 * @param parentId
-	 * @param action like|dislike|follow
-	 * @return
-	 */
-	public int getMetaCounts(String colName, String parentId,String action){
-		int count = 0;
-		try {
-			String stmt = "SELECT COUNT(*) AS count FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
-			PreparedStatement ps = con.prepareStatement(stmt);
-			System.out.println(ps);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				count = rs.getInt("count");
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return count;
-	}
-		
-	/**
 	 * get post meta value accounts
 	 * @param parentId
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public ArrayList<String> getMetaAccounts(String colName, String parentId,String action){
+	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "SELECT * FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
+			String stmt = "select p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m."+ colName +" where p."+ colName +" = ? AND action = ?";
 			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, id);
+			ps.setString(2, action);
+			
+			System.out.println("Log getMetaAccounts(): " + ps);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("accountId"));
@@ -124,4 +118,5 @@ public class MetaValueDB extends DBAO{
 		}
 		return list;
 	}
+
 }
