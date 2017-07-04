@@ -19,19 +19,19 @@
 		</c:when>
 		<c:when test="${param.type eq 'activity' ? true : false}"><div>
 		<h1>
-				<a href="${pageContext.request.contextPath}/pages/activityList.jsp" class="col-md-4">${param.title }
+				<a href="${pageContext.request.contextPath}/pages/activityList.jsp" class="col-md-6">Activities For Families
 				</a>
 		<div class="col-md-4"> </div>
-		<button onclick = "location.href = 'activity-create.jsp'" class = "btn btn-primary col-md-4 pull-right">Create Activity</button>
+		<button onclick = "location.href = 'activity-create.jsp'" class = "btn btn-primary col-md-2 pull-right">Create Activity</button>
 		</h1></div>
 			</c:when>
 		<c:when test="${param.type eq 'activityfull' ? true : false}"><div><h1>
-				<a href="${pageContext.request.contextPath}/pages/activityList.jsp" class="col-md-4">${param.title }
+				<a href="${pageContext.request.contextPath}/pages/activityList.jsp" class="col-md-6">Activities For Families
 				</a>
 				<div class="col-md-1"></div>
-		<button onclick = "location.href = 'activityList.jsp'" class = "btn btn-primary col-md-3">View Activity List</button>
+		<button onclick = "location.href = '${pageContext.request.contextPath}/pages/activityList.jsp'" class = "btn btn-primary col-md-2">View Activity List</button>
 		<div class="col-md-1"></div>
-		<button onclick = "location.href = 'activity-create.jsp'" class = "btn btn-primary col-md-3 pull-right">Create Activity</button>
+		<button onclick = "location.href = '${pageContext.request.contextPath}/pages/activity-create.jsp'" class = "btn btn-primary col-md-2 pull-right">Create Activity</button>
 		</h1></div>
 		</c:when>
 		<c:when test="${false}">

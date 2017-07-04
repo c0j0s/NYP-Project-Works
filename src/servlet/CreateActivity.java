@@ -51,7 +51,7 @@ public class CreateActivity extends HttpServlet {
 			System.out.println(request.getParameter("imgurl"));
 			act.setImgUrl(request.getParameter("imgurl"));
 			act.setActivityDay(request.getParameter("actDay"));
-			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+request.getParameter("actTimeM"));
+			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+" "+request.getParameter("actTimeM"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 			act.setActivityId(actdb.createActivity(act));
 

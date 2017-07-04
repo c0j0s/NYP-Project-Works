@@ -39,13 +39,10 @@
 			
 			 actf = actfl.get(0);
 			
-			%><script language = "javascript">
-			var title = "[<%=actf.getActivityId()%>] <%=actf.getActivityTitle() %>"</script>
-			
+			%>
 			<jsp:include page="parts/page-header.jsp">
 		<jsp:param value="activityfull" name="type"/>
-		 <jsp:param value="<%=actf.getActivityId() %>" name="title" />
-		
+		 <jsp:param value="Activities For Family" name="title" />
 		<jsp:param value="5" name="titleWidth" />
 		<jsp:param value="subTitle" name="subTitle" />
 </jsp:include>
