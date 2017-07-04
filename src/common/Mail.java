@@ -35,7 +35,6 @@ public class Mail {
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-		
 		this.path = path;
 	}
 	public void sendNotificationMail(String to, String subject, String title, String htmlbody){
@@ -89,7 +88,7 @@ public class Mail {
 		}
  
 		try {
-			Transport transport = session.getTransport("smtp");
+			Transport transport = session.getTransport("smtps");
 			transport.connect("smtp.gmail.com", sender, password);
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
@@ -118,27 +117,34 @@ public class Mail {
 	    return msg;
 	}
 
-//	private static String readContentFromFile(String fileName)
-//	{
-//	    StringBuffer contents = new StringBuffer();
-//	    
-//	    try {
-//	      //use buffering, reading one line at a time
-//	      BufferedReader reader =  new BufferedReader(new FileReader(fileName));
-//	      try {
-//	        String line = null; 
-//	        while (( line = reader.readLine()) != null){
-//	          contents.append(line);
-//	          contents.append(System.getProperty("line.separator"));
-//	        }
-//	      }
-//	      finally {
-//	          reader.close();
-//	      }
-//	    }
-//	    catch (IOException ex){
-//	      ex.printStackTrace();
-//	    }
-//	    return contents.toString();
-//	}
+	//for testing
+	public void sendSimpleMail() {
+		try {
+			session = Session.getDefaultInstance(properties, null);
+			message = new MimeMessage(session);
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("c.junsheng@hotmail.com"));
+			message.setFrom(new InternetAddress(sender,"FamForLife"));
+			message.setSubject("FamForLife: " + "test");
+			
+			System.out.println("Log htmlText: ");
+			message.setContent("test", "text/html");
+			
+		} catch (AddressException e) {
+			System.out.println(e.getMessage());
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		}  catch (UnsupportedEncodingException e) {
+			System.out.println(e.getMessage());
+		}	
+ 
+		try {
+			Transport transport = session.getTransport("smtps");
+			transport.connect("smtp.gmail.com", sender, password);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+			System.out.println("mail sent to:" + "c.junsheng@hotmail.com");
+		} catch (MessagingException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
