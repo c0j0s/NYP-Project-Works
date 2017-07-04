@@ -13,6 +13,7 @@ public class Account {
 	private String accountId;
 	private int points;
 	private int creditLevel;
+		
 	public String getGivenName() {
 		return givenName;
 	}
@@ -75,4 +76,11 @@ public class Account {
 		this.creditLevel = creditLevel;
 	}
 	
+	/**
+	 *  resources for account
+	 */
+	public String getAnonymousPic() {
+		return "https://firebasestorage.googleapis.com/v0/b/famforlife-accc8.appspot.com/o/%252Fuser%252Fdefault%252F%2Fanonymous.png?alt=media&token=41c7c380-029e-4f20-86cd-ade552ad50c4";
+	}
+
 }
