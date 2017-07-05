@@ -75,15 +75,15 @@
 					for="actDay">Activity Days : </label><br>
 				<div class="text-center">
 					<input type="checkbox" name="actDay" value="Monday "
-						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
+						class="activitycheckbox" >&nbsp Monday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Tuesday "
-						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
+						class="activitycheckbox" >&nbspTuesday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Wednesday "
-						class="activitycheckbox">&nbspWednesday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox" ">&nbspWednesday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Thursday "
-						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox" >&nbspThursday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Friday "
-						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox" >&nbspFriday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Saturday "
 						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Sunday "

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import bean.Activity;
 import database.ActivityDB;
 import database.DBAO;
@@ -44,13 +45,21 @@ public class CreateActivity extends HttpServlet {
 			System.out.println(request.getParameter("actPart"));
 			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 			act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
-			act.setActivityFee(Double.valueOf(request.getParameter("actFeeDollars")+request.getParameter("actFeeCents")));
+			act.setActivityFee(Double.valueOf(request.getParameter("actFeeDollars")+"."+request.getParameter("actFeeCents")));
 			act.setActivityLocation(request.getParameter("actLocation"));
 			act.setActivityCategory(request.getParameter("actCategory"));
 			
 			System.out.println(request.getParameter("imgurl"));
 			act.setImgUrl(request.getParameter("imgurl"));
-			act.setActivityDay(request.getParameter("actDay"));
+			StringBuilder builder = new StringBuilder();
+			String day[] =request.getParameterValues("actDay");
+			for (String value : day) {
+			    builder.append(value);
+			}
+			String days = builder.toString();
+		
+			
+			act.setActivityDay(days);
 			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+" "+request.getParameter("actTimeM"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 			act.setActivityId(actdb.createActivity(act));
