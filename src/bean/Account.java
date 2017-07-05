@@ -13,6 +13,7 @@ public class Account {
 	private String accountId;
 	private int points;
 	private int creditLevel;
+	public String password;
 	public String getGivenName() {
 		return givenName;
 	}
@@ -73,6 +74,12 @@ public class Account {
 	}
 	public void setCreditLevel(int creditLevel) {
 		this.creditLevel = creditLevel;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }

@@ -45,5 +45,29 @@ public class AccountDB extends DBAO{
 		}
 		return ac;
 	}
+	public void regMember(Account ac, String pw) throws Exception{
+		try{
+			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId)";
+			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?)";
+			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
+			prepStmt.setString(1, ac.getGivenName());
+			prepStmt.setString(2, ac.getSurName());
+			prepStmt.setDate(3, (Date) ac.getDob());
+			prepStmt.setString(4, Character.toString(ac.getGender()));
+			prepStmt.setString(5, ac.getEmail());
+			prepStmt.setString(6, ac.getAddress());
+			prepStmt.setInt(7, ac.getMobileno());
+			prepStmt.setString(8, pw);
+			prepStmt.setString(9, ac.getAccountId());
+			int status = prepStmt.executeUpdate();
+			
+			if(status!=0){
+				System.out.println("Recorded Added");
+			}
+		}catch (Exception ex)
+		{
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
 	
 }

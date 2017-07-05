@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
+import common.UID;
 import database.AccountDB;
 
 /**
@@ -41,6 +42,7 @@ public class signupServlet extends HttpServlet {
 		//doGet(request, response);
 		Account ac = new Account();
 		
+		ac.setAccountId(UID.genAccountId());
 		ac.setGivenName(request.getParameter("firstName"));
 		ac.setSurName(request.getParameter("lastName"));
 		ac.setDob(java.sql.Date.valueOf(request.getParameter("dob")));
@@ -55,9 +57,9 @@ public class signupServlet extends HttpServlet {
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
 		}
 		else{
-			try{
-				AccountDB ac = new AccountDB();
-				ac.regMember(ac,  cpw);
+			try{ 
+				AccountDB ac1 = new AccountDB();
+				ac1.regMember(ac, cpw);
 				request.getRequestDispatcher("home.jsp").forward(request, response);
 			}catch(Exception ex){
 				System.out.println(ex.getMessage());
