@@ -80,7 +80,7 @@ public class ActivityDB extends DBAO{
 			ps.setString(12, act.getActivityCategory());
 			ps.setString(13, act.getImgUrl());
 			ps.setString(14, act.getActivityLocation());
-			ps.setString(15, "ACC0000000");
+			ps.setString(15, act.getAccountId());
 			
 			System.out.println(ps);
 			int status = ps.executeUpdate();

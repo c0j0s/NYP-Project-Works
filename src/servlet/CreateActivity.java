@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.util.Arrays;
 
+import bean.Account;
 import bean.Activity;
 import database.ActivityDB;
 import database.DBAO;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CreateActivity
@@ -33,10 +35,11 @@ public class CreateActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		try {	HttpSession s = request.getSession(true);
 			ActivityDB actdb = new ActivityDB();
 			Activity act = new Activity();
-			
+			Account ac = (Account)s.getAttribute("account");
+		
 			act.setActivityTitle(request.getParameter("actName"));
 			act.setActivityPostDate(DBAO.getDateTime());
 			act.setActivityEndDate(request.getParameter("actEnd"));
@@ -61,6 +64,8 @@ public class CreateActivity extends HttpServlet {
 		
 			
 			act.setActivityDay(days);
+			act.setAccountId(ac.getAccountId());
+		
 			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+" "+request.getParameter("actTimeM"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 			act.setActivityId(actdb.createActivity(act));
