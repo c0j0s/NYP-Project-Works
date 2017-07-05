@@ -20,7 +20,7 @@
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 		<h2>User Sign Up</h2>
-			<form action="${pageContext.request.contextPath}/signupServlet" method="post" id="login">
+			<form action="${pageContext.request.contextPath}/signupServlet" method="post" id="form-upload">
 			<div class="form-group">
 				<label for="firstName">First Name:</label> 
 				<input type="text" class="form-control" name="firstName" placeholder="First Name">
@@ -58,7 +58,13 @@
 				<label for="cpw">Password: </label> 
 				<input type="password" class="form-control" name="cpw" placeholder="Confirm Password">
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
+			<div class="form-group">
+				<label for="profilepic">Choose your profile picture:</label>
+				<input type="file" name="file" size="60"/>
+        		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
+        		<img alt="" src="" id="test-img-prev">
+			</div>
+			<button type="submit" class="btn btn-default" value="sendform">Submit</button>
 		</form>
 </div>
 

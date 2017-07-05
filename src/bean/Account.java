@@ -13,7 +13,8 @@ public class Account {
 	private String accountId;
 	private int points;
 	private int creditLevel;
-	public String password;
+	private String password;
+	private String imgUrl;
 	public String getGivenName() {
 		return givenName;
 	}
@@ -80,6 +81,12 @@ public class Account {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 }

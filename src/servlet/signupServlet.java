@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import common.UID;
@@ -50,7 +51,8 @@ public class signupServlet extends HttpServlet {
 		ac.setEmail(request.getParameter("email"));
 		ac.setAddress(request.getParameter("address"));
 		ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
-		
+		String imgurl = request.getParameter("imgurl");
+		ac.setImgUrl(imgurl);
 		String pw = request.getParameter("pw");
 		String cpw = request.getParameter("cpw");
 		if(!pw.equals(cpw)){
@@ -60,7 +62,9 @@ public class signupServlet extends HttpServlet {
 			try{ 
 				AccountDB ac1 = new AccountDB();
 				ac1.regMember(ac, cpw);
-				request.getRequestDispatcher("home.jsp").forward(request, response);
+				HttpSession mySession = request.getSession(true);
+				mySession.setAttribute("account", ac);
+				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 			}catch(Exception ex){
 				System.out.println(ex.getMessage());
 			}
