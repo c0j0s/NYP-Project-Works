@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import bean.Activity;
 import database.ActivityDB;
