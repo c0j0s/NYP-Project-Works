@@ -6,7 +6,8 @@ package bean;
  *
  */
 
-public class Activity {
+public class Activity extends MetaValue{
+	private String commentCount;
 	private String activityId;
 	private String activityTitle;
 	private String activityDescription;
@@ -20,13 +21,14 @@ public class Activity {
 	private double activityFee;
 	private String activityLocation;
 	private String activityCategory;
-	private String imgUrl;
+	private String imgurl;
 	private char valid;
 	private String activityDay;
 	private int activityRank;
 	private String organiserId;
 	private String activityTime;
 	private int activityPostCount;
+	private String accountId;
 
 	
 	public Activity(){
@@ -111,10 +113,10 @@ public class Activity {
 		this.activityCategory = activityCategory;
 	}
 	public String getImgUrl() {
-		return imgUrl;
+		return imgurl;
 	}
 	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+		this.imgurl = imgUrl;
 	}
 	public char getValid() {
 		return valid;
@@ -151,6 +153,18 @@ public class Activity {
 	}
 	public void setActivityPostCount(int activityPostCount) {
 		this.activityPostCount = activityPostCount;
+	}
+	public String getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(String commentCount) {
+		this.commentCount = commentCount;
+	}
+	public String getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
 	

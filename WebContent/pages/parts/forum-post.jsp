@@ -1,3 +1,5 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../../WEB-INF/ffl.tld" %>
 <div class="col-sm-8">
 	<div class="panel panel-default">
 		<small class="pull-right post-date">${post.date}</small>
@@ -10,6 +12,7 @@
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
+						<jsp:param value="post" name="table"/>
 						<jsp:param value="${post.postId }" name="Id"/>
 						<jsp:param value="postId" name="colName"/>
 						<jsp:param value="${post.likeCount }" name="likeCount"/>
@@ -38,12 +41,24 @@
 				</div>
 				<br>
 				<br>
-				<% if(true){ // TODO check if post is close
-							// TODO jvascript method to create Comments
-					%> 
-					<button type="button" id="main-createComment" class="btn btn-success btn-block addCom" onclick="createCom('post-comment-container','before','post')">Give my answer</button> 
-					<%
-				} %>
+				<c:choose>
+					<c:when test="${user eq null ? 'false' : 'true' }">
+						<c:choose>
+							<c:when test="${user.accountId eq post.accountId ? false : true}">
+								<button type="button" id="main-createComment" class="btn btn-success btn-block addCom" onclick="createCom('post-comment-container','before','post')">Give my answer</button> 
+							</c:when>
+							<c:otherwise>
+							<p>
+								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='forum-edit.jsp?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
+								<button type="button" class="btn btn-danger col-sm-6" id="delete-post">Delete</button>
+							</p>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-success btn-block" onclick="location.href='login.jsp'">Please Login to Reply</button> 
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

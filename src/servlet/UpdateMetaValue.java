@@ -1,12 +1,16 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import database.MetaValueDB;
 
 /**
@@ -29,15 +33,30 @@ public class UpdateMetaValue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			HttpSession s = request.getSession(true);
+			Account ac = (Account)s.getAttribute("account");
+			
 			String id = request.getParameter("id");
 			String colName = request.getParameter("colname");
 			String action = request.getParameter("action");
 			MetaValueDB m = new MetaValueDB();
+			
 			if(request.getParameter("mode").equals("add")){
-				m.addMeta(colName, id, "ACC0000000", action);
+				if(m.checkifMetaExist(colName, id, ac.getAccountId(), action)) {
+					m.addMeta(colName, id, ac.getAccountId(), action);
+				}else {
+					PrintWriter out = response.getWriter();
+					System.out.println("MetaExist");
+					response.setStatus(400);
+					out.print("MetaExist");
+					out.flush();
+				}
 			}else{
-				m.removeMeta(colName, id, "ACC0000000", action);
+				m.removeMeta(colName, id, ac.getAccountId(), action);
 			}
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

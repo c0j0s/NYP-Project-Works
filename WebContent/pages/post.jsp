@@ -34,7 +34,7 @@
 					<div class="col-sm-9">
 						<div class="post post-orginal clearfix">
 							<div class="text-center col-sm-2">
-								<img alt="" src="../img/sample.jpg"
+								<img alt="" src="${post.accountImgUrl }"
 									class="img-circle profile-image-small">
 								<p>${post.accountName}</p>
 							</div>
@@ -55,7 +55,7 @@
 											<c:set var="comment" scope="request" value="${comment}" />
 											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">
-												<img alt="" src="../img/sample.jpg"
+												<img alt="" src="${comment.accountImgUrl }"
 													class="img-circle profile-image-small">
 												<p>${comment.accountName }</p>
 											</div>

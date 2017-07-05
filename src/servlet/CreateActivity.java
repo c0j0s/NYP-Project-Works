@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Arrays;
+
 import bean.Activity;
 import database.ActivityDB;
 import database.DBAO;
@@ -40,19 +42,31 @@ public class CreateActivity extends HttpServlet {
 			act.setActivityEndDate(request.getParameter("actEnd"));
 			act.setActivityStartDate(request.getParameter("actStart"));
 			act.setActivityDescription(request.getParameter("actDesc"));
-			act.setParticipantNo(Integer.parseInt(request.getParameter("actPar")));
+			
+			System.out.println(request.getParameter("actPart"));
+			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 			act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
-			act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
+			act.setActivityFee(Double.valueOf(request.getParameter("actFeeDollars")+"."+request.getParameter("actFeeCents")));
 			act.setActivityLocation(request.getParameter("actLocation"));
 			act.setActivityCategory(request.getParameter("actCategory"));
-			act.setImgUrl(request.getParameter("actImg"));
-			act.setActivityDay(request.getParameter("actDay"));
-			act.setActivityTime(request.getParameter("actTime"));
+			
+			System.out.println(request.getParameter("imgurl"));
+			act.setImgUrl(request.getParameter("imgurl"));
+			StringBuilder builder = new StringBuilder();
+			String day[] =request.getParameterValues("actDay");
+			for (String value : day) {
+			    builder.append(value);
+			}
+			String days = builder.toString();
+		
+			
+			act.setActivityDay(days);
+			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+" "+request.getParameter("actTimeM"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 			act.setActivityId(actdb.createActivity(act));
 
 			if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
-				request.getRequestDispatcher("/pages/activityList.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/activityfull.jsp?actId="+act.getActivityId()).forward(request, response);
 			
 			}else{
 				request.getRequestDispatcher("/pages/activity-create.jsp").forward(request, response);

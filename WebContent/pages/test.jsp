@@ -23,18 +23,19 @@
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	
 	<div>
-	<h1>Example for form with image to upload [firebase method]</h1>
+	<h1>Example for form with image to upload [firebase method, update 2]</h1>
 	<c:choose>
 		<c:when test="${requestScope.imgurl != null ? true : false }">
 			<img alt="" src="${requestScope.imgurl}" id="test-img-done">
 		</c:when>
 		<c:otherwise>
+		
+			<!-- 			for previewing -->
 			<img alt="" src="" id="test-img-prev">
 		</c:otherwise>
 	</c:choose>
 	
-    <form method="post" action="../test" id="form-upload"
-        enctype="multipart/form-data">
+    <form method="post" action="../test" id="form-upload">
         Select file to upload: 
         <input type="file" name="file" size="60"/>
         <input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ACC0000000"/>

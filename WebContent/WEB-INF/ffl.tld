@@ -28,9 +28,9 @@
 	</tag>
 
 	<function>
-		<name>getPost</name>
+		<name>getPostById</name>
 		<function-class>database.ForumDB</function-class>
-		<function-signature>java.lang.String getPostByIdAdvance(java.lang.String)
+		<function-signature>java.lang.String getPostById(java.lang.String)
 		</function-signature>
 	</function>
 
@@ -53,10 +53,15 @@
 		<function-signature>java.util.Map getCategoryList()</function-signature>
 	</function>
 	
-	
 	<function>
 		<name>getCommentByCommentId</name>
 		<function-class>database.CommentDB</function-class>
 		<function-signature>java.util.ArrayList getCommentByCommentId(java.lang.String,int,int)</function-signature>
+	</function>
+	
+	<function>
+		<name>getMetaAccounts</name>
+		<function-class>database.MetaValueDB</function-class>
+		<function-signature>java.util.ArrayList getMetaAccounts(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
 	</function>
 </taglib>

@@ -1,3 +1,4 @@
+var createCom;
 $( document ).ready(function() {
 	var config = {
 		apiKey: "AIzaSyAIsMxruOQZcVlHGcpbJQ3c6CF9ZgpFMkQ",
@@ -19,7 +20,7 @@ $( document ).ready(function() {
 		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 	}
 	
-	function createCom(id,order,type){
+	createCom = function(id,order,type){
 		$(".addCom").each(function(){
 			$(this).attr('disabled','disabled');
 		});
@@ -48,6 +49,10 @@ $( document ).ready(function() {
 		});
 		$("#comment-box-"+id).remove();
 	}
+	
+	$("#delete-post").click(function(){
+		//TODO invalid post
+	});
 	
 	/**
 	 *  method for meta value
@@ -101,6 +106,9 @@ $( document ).ready(function() {
 			success: function(result){
 				console.log("ajax"+ result)
 				callback();
+			},
+			error:function(jqXHR, exception){
+				console.log("ajax error"+jqXHR.responseText)
 			}
 		});
 	}

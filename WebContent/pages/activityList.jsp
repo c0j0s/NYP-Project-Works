@@ -14,19 +14,20 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Activities for families</title>
+<title class = "col=-md-4">Activities for families </title>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<%-- end of header --%>
+	<jsp:include page="header.jsp"></jsp:include>	<%-- end of header --%>
 
 	<div class="container">
 		<jsp:include page="parts/page-header.jsp">
+		<jsp:param value="activity" name="type"/>
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
 			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<br>
+		
 		<div class="col-md-9">
 			<%
 				DecimalFormat df = new DecimalFormat("##.00");
@@ -37,7 +38,9 @@
 			%>
 			<div class="clearfix">
 				<div class="col-md-4">
-					<img class="activitypic" src="../img/sample.jpg" />
+			
+					<img class="activitypic" src="<%=act.getImgUrl() %>" />
+					
 				</div>
 				<div class="col-md-8">
 					<h4><%=act.getActivityTitle()%></h4>
@@ -52,7 +55,8 @@
 						<%=act.getParticipantNo()%></p>
 					<p>
 						Fee : $
-						<%=act.getActivityFee()%></p>
+						<%=df.format(act.getActivityFee())%>
+						</p>
 					<p>
 						Date :
 						<%=act.getActivityStartDate()%>
