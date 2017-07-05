@@ -25,12 +25,12 @@ public class RewardItemDB extends DBAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				RewardItem act = new RewardItem();
-				act.setrewardID(rs.getString("rewardID"));
+				act.setrewardID(rs.getInt("rewardID"));
 				act.setrewardTitle(rs.getString("rewardTitle"));
-				act.setrewardDescription(rs.getInt("rewardDescription"));
+				act.setrewardDescription(rs.getString("rewardDescription"));
 				act.setpoints(rs.getInt("points"));
 				act.setrewardAvailability(rs.getInt("rewardAvailability"));
-				act.setrewardQuantity(java.sql.Timestamp.valueOf(rs.getString("rewardQuantity")));
+				act.setrewardQuantity(java.sql.Timestamp.valueOf(rs.getInt("rewardQuantity")));
 				act.setvalid(java.sql.Timestamp.valueOf(rs.getString("valid")));
 				act.setitemCreateOn(java.sql.Timestamp.valueOf(rs.getString("itemCreateOn")));
 				act.setImgUrl(rs.getString("imgUrl"));
