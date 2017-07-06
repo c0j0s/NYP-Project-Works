@@ -13,10 +13,16 @@ public class Account {
 	private String accountId;
 	private int points;
 	private int creditLevel;
+<<<<<<< HEAD
 
 	private String password;
 	private String imgUrl;
 
+=======
+	private String password;
+	private String imgUrl;
+	
+>>>>>>> 047db8fb50ecf79e56f509b62ec55f00ab14d58e
 	public String getGivenName() {
 		return givenName;
 	}

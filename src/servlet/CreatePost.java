@@ -59,8 +59,7 @@ public class CreatePost extends HttpServlet {
 				path = "pages/forum-eidt?mode=create";
 				System.out.println("Log createPost.java: fail to create post");
 			}
-			RequestDispatcher rd = request.getRequestDispatcher(path);
-			rd.forward(request, response);
+			response.sendRedirect(path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
