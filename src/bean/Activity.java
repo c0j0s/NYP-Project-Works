@@ -6,7 +6,8 @@ package bean;
  *
  */
 
-public class Activity {
+public class Activity extends MetaValue{
+	private String commentCount;
 	private String activityId;
 	private String activityTitle;
 	private String activityDescription;
@@ -27,6 +28,7 @@ public class Activity {
 	private String organiserId;
 	private String activityTime;
 	private int activityPostCount;
+	private String accountId;
 
 	
 	public Activity(){
@@ -151,6 +153,18 @@ public class Activity {
 	}
 	public void setActivityPostCount(int activityPostCount) {
 		this.activityPostCount = activityPostCount;
+	}
+	public String getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(String commentCount) {
+		this.commentCount = commentCount;
+	}
+	public String getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
 	

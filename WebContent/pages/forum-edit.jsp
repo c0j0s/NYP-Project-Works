@@ -75,7 +75,7 @@
 						<c:when test="${param.mode eq 'edit' ? true : false }">
 							<c:set var="postList" scope="request" value="${f:getPostById(param.postId) }"/>
 							<c:forEach items="${postList }" var="post">
-							<form action="${pageContext.request.contextPath}/CreatePost" method="post">
+							<form action="${pageContext.request.contextPath}/EditPost" method="post">
 							 	<div class="form-group">
 							   	 	<label for="postTitle">Question Title</label>
 							  		<input type="text" class="form-control" name="postTitle" id="postTitle" required value="${post.postTitle }">
