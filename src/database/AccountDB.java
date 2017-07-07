@@ -39,6 +39,7 @@ public class AccountDB extends DBAO{
 				ac.setMobileno(rs.getInt("mobileNo"));
 				ac.setPoints(rs.getInt("points"));
 				ac.setCreditLevel(rs.getInt("creditLevel"));
+				ac.setImgUrl(rs.getString("imgUrl"));
 			}
 		}catch(Exception ex){
 			System.out.println("Error: "+ex.getMessage());
@@ -47,8 +48,8 @@ public class AccountDB extends DBAO{
 	}
 	public void regMember(Account ac, String pw) throws Exception{
 		try{
-			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId)";
-			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?)";
+			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
+			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
 			prepStmt.setString(1, ac.getGivenName());
 			prepStmt.setString(2, ac.getSurName());
@@ -59,6 +60,7 @@ public class AccountDB extends DBAO{
 			prepStmt.setInt(7, ac.getMobileno());
 			prepStmt.setString(8, pw);
 			prepStmt.setString(9, ac.getAccountId());
+			prepStmt.setString(10, ac.getImgUrl());
 			int status = prepStmt.executeUpdate();
 			
 			if(status!=0){

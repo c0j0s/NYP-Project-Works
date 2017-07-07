@@ -8,14 +8,14 @@
 				<c:choose>
 					<c:when test="${user eq null ? false : true }">
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
-						<img alt="" src="" class="img-circle profile-image-xxsmall">
+						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
 						<span>${user.givenName}</span>
 						</a></li>
-						<li><a class="white" href='logout.jsp'>Logout</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/logout.jsp">Logout</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">Login</a></li>
-						<li><a class="white">Sign up</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
 					</c:otherwise>
 				</c:choose>
 						<li><a class="white">Contact us</a></li>
@@ -38,7 +38,7 @@
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/forum.jsp?category=general&page=1">Family Forum</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/activityList.jsp">Family Activities</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="#">Reward Redemption</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/rewardList.jsp">Reward Redemption</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/test.jsp">component testing page</a></li>
 			</ul>
 			<form class="navbar-form navbar-right" role="search">
