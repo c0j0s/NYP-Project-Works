@@ -43,11 +43,18 @@ public class ActivityDB extends DBAO{
 				act.setActivityTime(rs.getString("activityTime"));
 				act.setValid(rs.getString("valid").charAt(0));
 				act.setActivityDay(rs.getString("activityDays"));
+
+				act.setAccountId(rs.getString("accountId"));
+				act.setLikeCount(rs.getInt("likeCount"));
+				act.setDislikeCount(rs.getInt("dislikeCount"));
+				act.setCommentCount(rs.getString("postCount"));
+
 				act.setAccountName(rs.getString("givenName"));
 				act.setAccountId(rs.getString("accountId")); 
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
 				//act.setCommentCount(rs.getString("commentCount")); you dun have this in your view yet
+
 				System.out.println(rs.getString("imgUrl"));
 				act.setImgUrl(rs.getString("imgUrl"));
 				act.setOrganiserId(rs.getString("accountId"));
@@ -81,7 +88,7 @@ public class ActivityDB extends DBAO{
 			ps.setString(12, act.getActivityCategory());
 			ps.setString(13, act.getImgUrl());
 			ps.setString(14, act.getActivityLocation());
-			ps.setString(15, "ACC0000000");
+			ps.setString(15, act.getAccountId());
 			
 			System.out.println(ps);
 			int status = ps.executeUpdate();

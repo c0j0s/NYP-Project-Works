@@ -25,6 +25,7 @@
 	<div class="container">
 		<%
 			DecimalFormat df = new DecimalFormat("00");
+			DecimalFormat dt = new DecimalFormat("00");
 		%>
 		<h1>Activity Creation Page</h1>
 		<div class="col-md-2"></div>
@@ -35,22 +36,22 @@
 
 				<label for="actName">Activity Name : </label> <input type="text"
 					name="actName" class="form-control"
-					placeholder="Enter Activity Name : "> <br>
+					placeholder="Enter Activity Name : "><br>
 				<div class="vert">
 					<div class="col-md-7">
-						<br> <br> <br> <br> <label for="imgurl">Activity
-							Image: </label><input type="file" name="file" class="form-control"
+						<br> <br> <br><label for="imgurl">Activity
+							Image: </label><input type="file" name="file" class="form-control fullactpic"
 							id="form-upload" accept="image/*" size="60"><br> <input
 							type="hidden" name="imgurl" id="imgurl"
 							data-imgfolder="activity/ACC0000000" />
 					</div>
 					<div class="col-md-5">
-						<img alt="" src="../img/def.png" class="activitypic"
-							id="test-img-prev">
+						<img alt="" src="../img/def.png" id="test-img-prev" class = "fullactpic"
+							>
 					</div>
-				</div>
+				</div><br>
 				<br> <label for="">Activity Description:</label>
-				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea>
+				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea><br>
 				<br> <label for="actFee">Activity Fee:</label>
 				<div>
 					<div class="col-md-1">$</div>
@@ -64,7 +65,7 @@
 							placeholder="Cents" min="1" step="any">
 					</div>
 
-				</div>
+				<br><br></div><br>
 
 				<label for="actPart">Participant Number:</label> <input type="text"
 					name="actPart" class="form-control"
@@ -75,26 +76,29 @@
 					for="actDay">Activity Days : </label><br>
 				<div class="text-center">
 					<input type="checkbox" name="actDay" value="Monday "
-						class="activitycheckbox" >&nbsp Monday &nbsp&nbsp&nbsp<input
+						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Tuesday "
-						class="activitycheckbox" >&nbspTuesday &nbsp&nbsp&nbsp<input
+						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Wednesday "
-						class="activitycheckbox" ">&nbspWednesday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox"">&nbspWednesday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Thursday "
-						class="activitycheckbox" >&nbspThursday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Friday "
-						class="activitycheckbox" >&nbspFriday &nbsp&nbsp&nbsp <input
+						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
 						type="checkbox" name="actDay" value="Saturday "
 						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
 						type="checkbox" name="actDay" value="Sunday "
 						class="activitycheckbox">&nbsp Sunday &nbsp&nbsp&nbsp
 				</div>
-				<br> <br> <label for="actTime">Timing: </label>
+				<br> <br>
+				<div>
+		
+						 <label for="actTimeA">Start Time :  </label>
 				<div>
 					<div class="col-md-4">
 
-						<select name="actTimeHour" form="form-upload"
-							class="select form-control" placeholder="Hour">
+						<select name="actTimeHourA" form="form-upload"
+							class="select form-control" >
 							<%
 								for (int i = 0; i < 12; i++) {
 							%>
@@ -107,27 +111,71 @@
 					</div>
 					<div class="col-md-1 text-center">:</div>
 					<div class="col-md-4">
-						<select name="actTimeMin" form="form-upload"
-							class="select form-control" placeholder="Minute">
+						<select name="actTimeMinA" form="form-upload"
+							class="select form-control">
 							<%
 								for (int i = 0; i < 60; i += 5) {
+									String s = dt.format(i);
 							%>
-							<option value="<%=i%>"><%=df.format(i)%></option>
+							<option value="<%=s%>">
+							<%=dt.format(i)%></option>
 							<%
 								}
 							%>
 						</select>
 					</div>
 					<div class="col-md-3">
-						<select name="actTimeM" form="form-upload"
+						<select name="actTimeMA" form="form-upload"
 							class="select form-control">
 							<option value="AM">AM</option>
 							<option value="PM">PM</option>
 						</select>
 					</div>
+				<br><br></div>	<br>
+					
+					
+						 <label for="actTimeB">End Time: </label>
+				<div>
+					<div class="col-md-4">
+
+						<select name="actTimeHourB" form="form-upload"
+							class="select form-control" >
+							<%
+								for (int i = 0; i < 12; i++) {
+							%>
+							<option value="<%=i + 1%>"><%=i + 1%></option>
+							<%
+								}
+							%>
+						</select>
+
+					</div>
+					<div class="col-md-1 text-center">:</div>
+					<div class="col-md-4">
+						<select name="actTimeMinB" form="form-upload"
+							class="select form-control" placeholder="Minute">
+							<%
+								for (int i = 0; i < 60; i += 5) {
+									String s = dt.format(i);
+							%>
+							<option value="<%=s%>">
+							<%=df.format(i)%></option>
+							<%
+								}
+							%>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select name="actTimeMB" form="form-upload"
+							class="select form-control">
+							<option value="AM">AM</option>
+							<option value="PM">PM</option>
+						</select>
+					</div>
+				<br><br></div>
 				</div>
-				<br> <label for="actRegEnd">Registration End : </label> <input
-					type="date" name="actRegEnd" class="form-control"> <br>
+				<br> <label for="actRegEnd">Registration End : </label> <br><input
+					type="date" name="actRegEnd" class="form-control"><br>
 				<div>
 					<div class="col-md-5">
 						<label for="actStart">Activity Start Date : </label> <input
@@ -140,7 +188,7 @@
 						<label for="actEnd">Activity End Date : </label><br> <input
 							type="date" name="actEnd" class="form-control"><br>
 					</div>
-				</div>
+				<br></div>
 				<br> <label for="actCategory">Activity Category : </label><br>
 				<select name="actCategory" form="form-upload"
 					class="select form-control" placeholder="Pick Category">

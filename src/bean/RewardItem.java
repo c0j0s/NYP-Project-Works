@@ -1,8 +1,9 @@
 package bean;
 
 public class RewardItem {
-	private String rewardId,rewardTitle,rewardDescription,points,rewardAvailibility,rewardQuantity,imgUrl;
-	private char valid;
+	private String rewardId,rewardTitle,rewardDescription,imgUrl, itemCreatedOn;
+	private int rewardQuantity, points;
+	private char rewardAvailability, valid;
 	
 	public RewardItem(){
 		
@@ -32,27 +33,27 @@ public class RewardItem {
 		this.rewardDescription = rewardDescription;
 	}
 
-	public String getPoints() {
+	public int getPoints() {
 		return points;
 	}
 
-	public void setPoints(String points) {
+	public void setPoints(int points) {
 		this.points = points;
 	}
 
-	public String getRewardAvailibility() {
-		return rewardAvailibility;
+	public char getRewardAvailability() {
+		return rewardAvailability;
 	}
 
-	public void setRewardAvailibility(String rewardAvailibility) {
-		this.rewardAvailibility = rewardAvailibility;
+	public void setRewardAvailability(char rewardAvailability) {
+		this.rewardAvailability = rewardAvailability;
 	}
 
-	public String getRewardQuantity() {
+	public int getRewardQuantity() {
 		return rewardQuantity;
 	}
 
-	public void setRewardQuantity(String rewardQuantity) {
+	public void setRewardQuantity(int rewardQuantity) {
 		this.rewardQuantity = rewardQuantity;
 	}
 
@@ -70,6 +71,14 @@ public class RewardItem {
 
 	public void setValid(char valid) {
 		this.valid = valid;
+	}
+
+	public String getItemCreatedOn() {
+		return itemCreatedOn;
+	}
+
+	public void setItemCreatedOn(String itemCreatedOn) {
+		this.itemCreatedOn = itemCreatedOn;
 	}
 	
 }

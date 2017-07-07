@@ -16,10 +16,10 @@ public class DBAO {
 	//final protected String schema = "famforlife";
 	final protected static String schema = "ffl";
 	
-	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
-	final private String schpasswd = "ffl@db";
-	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
-	final private String passwd = "password";
+//	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
+//	final private String schpasswd = "ffl@db";
+//	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
+//	final private String passwd = "password";
 	
 	final private String lurl = "jdbc:mysql://localhost/ffl";
 	final private String lpasswd = "mysql";
