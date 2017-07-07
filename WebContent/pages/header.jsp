@@ -8,14 +8,14 @@
 				<c:choose>
 					<c:when test="${user eq null ? false : true }">
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
-						<img alt="" src="" class="img-circle profile-image-xxsmall">
+						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
 						<span>${user.givenName}</span>
 						</a></li>
-						<li><a class="white" href='logout.jsp'>Logout</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/logout.jsp">Logout</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">Login</a></li>
-						<li><a class="white">Sign up</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
 					</c:otherwise>
 				</c:choose>
 						<li><a class="white">Contact us</a></li>

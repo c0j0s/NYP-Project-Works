@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -19,19 +21,19 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-		<h2>User Sign Up</h2>
-			<form action="${pageContext.request.contextPath}/signupServlet" method="post" id="form-upload">
+		<h2>Update Profile</h2>
+		<form action="">
 			<div class="form-group">
 				<label for="firstName">First Name:</label> 
-				<input type="text" class="form-control" name="firstName" placeholder="First Name">
+				<input type="text" class="form-control" name="firstName" value="${user.givenName}" placeholder="First Name">
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name:</label> 
-				<input type="text" class="form-control" name="lastName" placeholder="Last Name">	
+				<input type="text" class="form-control" name="lastName" value="${user.surName}placeholder="Last Name">	
 			</div>
 			<div class="form-group">
 				<label for="dob">Date of Birth</label> 
-				<input type="date" class="form-control" name="dob">
+				<input type="date" class="form-control" value="${user.dob}"name="dob">
 			</div>
 			<div class="form-group">
 				<label for="gender">Gender:</label><br>
