@@ -35,7 +35,8 @@ public class CreateActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {	HttpSession s = request.getSession(true);
+		try {	
+			HttpSession s = request.getSession(true);
 			ActivityDB actdb = new ActivityDB();
 			Activity act = new Activity();
 			Account ac = (Account)s.getAttribute("account");
@@ -64,12 +65,13 @@ public class CreateActivity extends HttpServlet {
 		
 			
 			act.setActivityDay(days);
-			act.setAccountId(ac.getAccountId());
+  		act.setAccountId(ac.getAccountId());
+//			act.setAccountId("ACC0000000");
+			System.out.println(act.getAccountId());
 		
-			act.setActivityTime(request.getParameter("actTimeHour")+":"+request.getParameter("actTimeMin")+" "+request.getParameter("actTimeM"));
+			act.setActivityTime(request.getParameter("actTimeHourA")+":"+request.getParameter("actTimeMinA")+" "+request.getParameter("actTimeMA")+"-"+request.getParameter("actTimeHourB")+":"+request.getParameter("actTimeMinB")+" "+request.getParameter("actTimeMB"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 			act.setActivityId(actdb.createActivity(act));
-
 			if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
 				request.getRequestDispatcher("/pages/activityfull.jsp?actId="+act.getActivityId()).forward(request, response);
 			

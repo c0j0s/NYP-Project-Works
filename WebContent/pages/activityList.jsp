@@ -31,6 +31,7 @@
 		<div class="col-md-9">
 			<%
 				DecimalFormat df = new DecimalFormat("##.00");
+						
 			%>
 			<%
 				ArrayList<Activity> actList = actdb.getActivity(null);
@@ -39,7 +40,7 @@
 			<div class="clearfix">
 				<div class="col-md-4">
 			
-					<img class="activitypic" src="<%=act.getImgUrl() %>" />
+					<img id="actpic" src="<%=act.getImgUrl() %>" />
 					
 				</div>
 				<div class="col-md-8">

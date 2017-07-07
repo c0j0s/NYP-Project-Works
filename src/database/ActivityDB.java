@@ -43,11 +43,10 @@ public class ActivityDB extends DBAO{
 				act.setActivityTime(rs.getString("activityTime"));
 				act.setValid(rs.getString("valid").charAt(0));
 				act.setActivityDay(rs.getString("activityDays"));
-				act.setAccountName(rs.getString("givenName"));
-				act.setAccountId(rs.getString("UseraccountId"));
+				act.setAccountId(rs.getString("accountId"));
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
-				act.setCommentCount(rs.getString("commentCount"));
+				act.setCommentCount(rs.getString("postCount"));
 				System.out.println(rs.getString("imgUrl"));
 				act.setImgUrl(rs.getString("imgUrl"));
 				act.setOrganiserId(rs.getString("accountId"));

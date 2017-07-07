@@ -177,11 +177,15 @@ footer{
 /*=============================================================
 	CSS for activity
 */
-.activitypic{
+#actpic{
 	width:100%;
 	height:auto;
 }
 #fullactivitypic{
+	width:80%;
+	height:auto;
+}
+.fullactpic{
 	width:80%;
 	height:auto;
 }
