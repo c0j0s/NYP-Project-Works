@@ -13,7 +13,9 @@ public class Account {
 	private String accountId;
 	private int points;
 	private int creditLevel;
-		
+	private String password;
+	private String imgUrl;
+
 	public String getGivenName() {
 		return givenName;
 	}
@@ -74,6 +76,18 @@ public class Account {
 	}
 	public void setCreditLevel(int creditLevel) {
 		this.creditLevel = creditLevel;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 	/**

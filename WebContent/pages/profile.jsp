@@ -27,7 +27,7 @@
     <h3 class="panel-title">My Profile</h3>
   </div>
   <div class="panel-body">
-  	 
+  	 <img class = "profile-image-large" src = "${user.imgUrl}">
 	 <p>First Name:${user.givenName}</p> 
      <p>Last Name:${user.surName}</p> 
      <p>Date of Birth:${user.dob}</p> 
