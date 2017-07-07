@@ -70,46 +70,20 @@
 					placeholder="Enter Reward avaliability : "><br> <label
 					for="rewQuantity">Reward Quantity : </label><br> <input type="text"
 					name="rewQuantity" class="form-control"
-					placeholder="Enter Reward Quantity : "><br> <label></label>
+					placeholder="Enter Reward Quantity : "><br> <label
 					for="valid">Valid: </label> <input type="text"
 					name="valid" class="form-control"
 					placeholder="Enter valid : "><br> 
-					for="itemCreateOn">Item Create On: </label> <input type="text"
-					name="itemCreateOn" class="form-control"
-					placeholder="Enter Item Create On : "><br> 
+					<label for="itemCreatedOn">Item Created On: 
+					 <input type="text"
+					name="itemCreatedOn" class="form-control"
+					placeholder="Enter Item Created On : "><br> 
 				
-					<div class="col-md-4">
-
-						<select name="actTimeHour" form="form-upload"
-							class="select form-control" placeholder="Hour">
-							<%
-								for (int i = 0; i < 12; i++) {
-							%>
-							<option value="<%=i + 1%>"><%=i + 1%></option>
-							<%
-								}
-							%>
-						</select>
-
-					</div>
-					<div class="col-md-1 text-center">:</div>
-					<div class="col-md-4">
-						<select name="actTimeMin" form="form-upload"
-							class="select form-control" placeholder="Minute">
-							<%
-								for (int i = 0; i < 60; i += 5) {
-							%>
-							<option value="<%=i%>"><%=df.format(i)%></option>
-							<%
-								}
-							%>
-						</select>
-					</div>
 					
-				</div>
+			
 				
 				<div class="col-md-12">
-					<button type="reset" class="col-md-5 btn btn-danger pull-left">Redeem</button>
+					<button type="button" class="col-md-5 btn btn-danger pull-left">Redeem</button>
 					<p class="col-md-2"></p>
 				</div>
 				<br>

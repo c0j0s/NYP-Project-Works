@@ -39,30 +39,19 @@
 	<div class = "clearfix">
 		<div class="col-md-4"><img class = "rewarditempic" src = "../img/sample.jpg" /></div>
 		<div class="col-md-8"><h4>Redemption Title</h4>
-		<p>Reward Title : Dining Voucher</p>
-		<p>Reward Description : Voucher worth for $15</p>
-		<p>Points : 20</p>
-		<p>Reward Availability : Y </p>
-		<p>Reward Quantity : 55</p>
-		<p>Valid : Y</p>
+		<p>Reward Title : <%= rew.getRewardTitle() %></p>
+		<p>Reward Description :<%= rew.getRewardDescription() %></p>
+		<p>Points : <%= rew.getPoints() %></p>
+		<p>Reward Availability : <%= rew.getRewardAvailability() %></p>
+		<p>Reward Quantity : <%= rew.getRewardQuantity() %></p>
+		<p>Valid : <%= rew.getValid() %></p>
 		<p><span class="glyphicon glyphicon-thumbs-up"></span> 7	<span class="glyphicon glyphicon-thumbs-down"></span> 27</p> 
 		</div>
 		
 	</div>
 	 <br></br>
 	<%}  %></div>
-	<div class = "col-md-3">
-	<ul class = "list-group">
-	<h4>Redemption</h4>
-		<%for(int z = 0;z<20;z++){ %>
-		<li class="list-group-item">
-		<%=z+1 %>. Java
-			<span class = "badge"><%=z %></span>
-			
-		</li>
-		<%} %>
-		  
-	</ul></div>
+	
 </div>
 </div>
 
