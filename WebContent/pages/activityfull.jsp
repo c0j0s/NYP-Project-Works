@@ -40,7 +40,7 @@
 
 		<%
 			} else {
-				actfl = actdb.getActivityById(request.getParameter("actId"));
+				actfl = (ArrayList<Activity>)request.getAttribute("activityFull");
 
 				actf = actfl.get(0);
 		%>

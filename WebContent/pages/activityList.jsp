@@ -5,7 +5,7 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-<%!ActivityDB actdb = new ActivityDB();%>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
 				DecimalFormat df = new DecimalFormat("##.00");
 			%>
 			<%
-				ArrayList<Activity> actList = actdb.getActivity(null);
+				ArrayList<Activity> actList = (ArrayList<Activity>)request.getAttribute("activityList");
 				for (Activity act : actList) {
 			%>
 			<div class="clearfix">
@@ -83,12 +83,12 @@
 						</jsp:include>
 						<span aria-hidden="true">
 							<button
-								onclick="location.href = 'activityfull.jsp?actId=<%=act.getActivityId()%>'">More
+								onclick="location.href = 'ActFull?actId=<%=act.getActivityId()%>'">More
 								Info</button>
 						</span> 
 						<span aria-hidden="true">
 							<button
-								onclick="location.href = 'RegAct.jsp?actId=<%=act.getActivityId()%>'">Register For Activity</button>
+								onclick="location.href = 'ActReg?actId=<%=act.getActivityId()%>'">Register For Activity</button>
 						</span> 
 
 					</p>

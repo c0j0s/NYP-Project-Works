@@ -55,7 +55,7 @@
 							data-imgfolder="activity/ACC0000000" />
 					</div>
 					<div class="col-md-5">
-						<img alt="" src="../img/def.png" id="test-img-prev" class = "fullactpic"
+						<img alt="" src="${pageContext.request.contextPath}/img/def.png" id="test-img-prev" class = "fullactpic"
 							>
 					</div>
 				</div><br>

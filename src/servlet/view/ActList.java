@@ -1,40 +1,55 @@
-package servlet;
+package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Account;
+import bean.Activity;
+import bean.Post;
+import database.AccountDB;
+import database.ActivityDB;
 
 /**
- * Servlet implementation class ActRegLink
+ * Servlet implementation class ActList
  */
-@WebServlet("/ActRegLink")
-public class ActRegLink extends HttpServlet {
+@WebServlet("/ActList")
+public class ActList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ActRegLink() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ActList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ActivityDB adb = new ActivityDB();
+		ArrayList<Activity> activityList = adb.getActivity(null);
+		request.setAttribute("activityList", activityList);
+		request.getRequestDispatcher("pages/activityList.jsp").forward(request, response);
 	}
+
+
+
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
