@@ -71,10 +71,13 @@ public class ForumDB extends DBAO{
 		maxCount = 0;
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
+			PreparedStatement ps;
 			if(statement == null){
 				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC";
 			}
-			PreparedStatement ps = con.prepareStatement(statement);
+	
+			ps = con.prepareStatement(statement);
+			
 			
 			System.out.println("log Forum.java :" + ps);
 			
@@ -102,8 +105,8 @@ public class ForumDB extends DBAO{
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
 //				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
-//				post.setLikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"like"));
-//				post.setDislikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"dislike"));
+				post.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"like"));
+				post.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
 				
 				postList.add(post);
 				maxCount++;
@@ -124,18 +127,18 @@ public class ForumDB extends DBAO{
 	 * @param category 
 	 * @return ArrayList<Post>
 	 */
-	public static ArrayList<Post> getPost(int start,String category){
+	public ArrayList<Post> getPost(int start,String category){
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postDate DESC limit " + start + ", 100";
 		System.out.println(stmt);
 		return getPost(stmt);
 	}
-	
+		
 	/**
 	 * retrieve post by post id
 	 * @param postId
 	 * @return ArrayList<Post>
 	 */
-	public static ArrayList<Post> getPostById(String postId){
+	public ArrayList<Post> getPostById(String postId){
 		new DBAO();
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
 		return getPost(stmt);

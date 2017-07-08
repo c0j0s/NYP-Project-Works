@@ -12,6 +12,8 @@
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
+						<jsp:param value="${post.likeAccounts }" name="likeAccounts"/>
+						<jsp:param value="${post.dislikeAccounts }" name="dislikeAccounts"/>
 						<jsp:param value="post" name="table"/>
 						<jsp:param value="${post.postId }" name="Id"/>
 						<jsp:param value="postId" name="colName"/>
@@ -49,14 +51,14 @@
 							</c:when>
 							<c:otherwise>
 							<p>
-								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='forum-edit.jsp?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
+								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
 								<button type="button" class="btn btn-danger col-sm-6" id="delete-post">Delete</button>
 							</p>
 							</c:otherwise>
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn btn-success btn-block" onclick="location.href='login.jsp'">Please Login to Reply</button> 
+						<button type="button" class="btn btn-success btn-block" onclick="location.href='${pageContext.request.contextPath}/Login?redirect=Post?postId=${post.postId }'">Please Login to Reply</button> 
 					</c:otherwise>
 				</c:choose>
 			</div>

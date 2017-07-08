@@ -36,7 +36,7 @@
 							</div>
 						</div>
 						<button type="button" class="btn btn-success btn-block"
-							onclick="location.href='forum-edit.jsp?type=post&mode=create'">Ask
+							onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=create'">Ask
 							Something</button>
 					</div>
 				</c:when>

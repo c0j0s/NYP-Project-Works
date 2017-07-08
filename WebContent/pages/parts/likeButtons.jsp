@@ -4,9 +4,9 @@
 <c:choose>
 	<c:when test="${user eq null ? false:true }">
 		<c:set var="likedisable" scope="session"
-			value="${fn:contains(f:getMetaAccounts(param.table, param.colName, param.Id, 'like'), user.accountId)}" />
+			value="${fn:contains(param.likeAccounts, user.accountId)}" />
 		<c:set var="dislikedisable" scope="session"
-			value="${fn:contains(f:getMetaAccounts(param.table, param.colName, param.Id, 'dislike'), user.accountId)}" />
+			value="${fn:contains(param.dislikeAccounts, user.accountId)}" />
 	</c:when>
 	<c:otherwise>
 		<c:set var="likedisable" scope="session"
