@@ -7,9 +7,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.custom.css' rel='stylesheet'>
-<link href='../css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Template</title>
 </head>
@@ -22,18 +22,17 @@
   <ol class="carousel-indicators">
     <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
     <li data-target="#header-carousel" data-slide-to="1"></li>
-    <li data-target="#header-carousel" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="../img/header.jpg" alt="...">
+      <img src="${pageContext.request.contextPath}/img/header.jpg" alt="...">
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-      <img src="../img/header.jpg" alt="...">
+      <img src="${pageContext.request.contextPath}/img/header.jpg" alt="...">
       <div class="carousel-caption">
       </div>
     </div>
@@ -54,7 +53,7 @@
 <div class="container">
 	<div class="section section-forum">
 		<div class="col-md-3 section-intro">
-			<img src="../img/sample.jpg" alt="sample" class="img-circle">
+			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
 			<div class="section-intro-content">
 			<h4>
 				this is forum title
@@ -74,7 +73,7 @@
 	
 	<div class="section section-forum">
 		<div class="col-md-3 section-intro">
-			<img src="../img/sample.jpg" alt="sample" class="img-circle">
+			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
 			<div class="section-intro-content">
 			<h4>
 				this is forum title
@@ -94,7 +93,7 @@
 	
 	<div class="section section-forum">
 		<div class="col-md-3 section-intro">
-			<img src="../img/sample.jpg" alt="sample" class="img-circle">
+			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
 			<div class="section-intro-content">
 			<h4>
 				this is forum title
