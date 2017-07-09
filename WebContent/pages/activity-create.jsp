@@ -37,6 +37,15 @@
 				<label for="actName">Activity Name : </label> <input type="text"
 					name="actName" class="form-control"
 					placeholder="Enter Activity Name : "><br>
+					 <label for="actCategory">Activity Category : </label><br>
+				<select name="actCategory" form="form-upload"
+					class="select form-control" placeholder="Pick Category">
+					<option value="Leisure">Leisure</option>
+					<option value="Exercise">Exercise</option>
+					<option value="Sports">Sports</option>
+					<option value="Educational">Educational</option>
+
+				</select>
 				<div class="vert">
 					<div class="col-md-7">
 						<br> <br> <br><label for="imgurl">Activity
@@ -46,7 +55,7 @@
 							data-imgfolder="activity/ACC0000000" />
 					</div>
 					<div class="col-md-5">
-						<img alt="" src="../img/def.png" id="test-img-prev" class = "fullactpic"
+						<img alt="" src="${pageContext.request.contextPath}/img/def.png" id="test-img-prev" class = "fullactpic"
 							>
 					</div>
 				</div><br>
@@ -72,7 +81,20 @@
 					placeholder="Enter Participant Number : "> <br> <label
 					for="actLocation">Location: </label> <input type="text"
 					name="actLocation" class="form-control"
-					placeholder="Enter Location : "><br> <label
+					placeholder="Enter Location : "><br>
+					<div>
+					<div class="col-md-5">
+						<label for="actStart">Activity Start Date : </label> <input
+							type="date" name="actStart" class="form-control">
+					</div>
+					<div class="col-md-2 text-center">
+						<br>-
+					</div>
+					<div class="col-md-5">
+						<label for="actEnd">Activity End Date : </label><br> <input
+							type="date" name="actEnd" class="form-control"><br>
+					</div>
+				<br></div> <label
 					for="actDay">Activity Days : </label><br>
 				<div class="text-center">
 					<input type="checkbox" name="actDay" value="Monday "
@@ -176,28 +198,8 @@
 				</div>
 				<br> <label for="actRegEnd">Registration End : </label> <br><input
 					type="date" name="actRegEnd" class="form-control"><br>
-				<div>
-					<div class="col-md-5">
-						<label for="actStart">Activity Start Date : </label> <input
-							type="date" name="actStart" class="form-control">
-					</div>
-					<div class="col-md-2 text-center">
-						<br>-
-					</div>
-					<div class="col-md-5">
-						<label for="actEnd">Activity End Date : </label><br> <input
-							type="date" name="actEnd" class="form-control"><br>
-					</div>
-				<br></div>
-				<br> <label for="actCategory">Activity Category : </label><br>
-				<select name="actCategory" form="form-upload"
-					class="select form-control" placeholder="Pick Category">
-					<option value="Leisure">Leisure</option>
-					<option value="Exercise">Exercise</option>
-					<option value="Sports">Sports</option>
-					<option value="Educational">Educational</option>
-
-				</select><br>
+				
+				<br><br>
 
 
 

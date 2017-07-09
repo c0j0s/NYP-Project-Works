@@ -14,12 +14,7 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<%!ForumDB forumdb = new ForumDB();%>
 <title>Family Forum</title>
-<%	if(request.getParameter("category") == null) {%>
-<jsp:forward page="forum.jsp?category=general&page=1"></jsp:forward>
-<%}%>
-<%@ page import="java.util.ArrayList,bean.*,database.*" %>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -68,22 +63,20 @@
 		<div class="Forum-main-posts">
 		  <ul class="nav nav-tabs" role="tablist">
 		  	<c:forEach items="general,parenting" var="listItem">
-		  	<li role="presentation" class="${param.category eq listItem ? ' active' : ''}"><a class="tab-title" href="forum.jsp?category=${listItem}&page=1" >${listItem}</a></li>
+		  	<li role="presentation" class="${category eq listItem ? ' active' : ''}"><a class="tab-title" href="Forum?category=${listItem}&page=1" >${listItem}</a></li>
 		  	</c:forEach>
 		  </ul>
 		
 		  <div class="tab-content">
 		  	<c:forEach items="general,parenting" var="postCatTab">
-		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq postCatTab ? ' active' : ''}" id="a">
-		    	<c:set var="start" value="${param.page eq '1' ? '0' : (param.page * 10) - 9 }" scope="request"/>
-		    	<c:set var="postList" value="${f:getPostList(start,param.category)}" scope="request"/>
+		    <div role="tabpanel" class="tab-pane panel-body ${category eq postCatTab ? ' active' : ''}" id="a">
 		    	<c:forEach items="${postList}" var="post" begin="0" end="9" varStatus="loop">
 		    		<c:set var="post" value="${post}" scope="request"/>
 		    		<jsp:include page='parts/forum-postItem.jsp'>
 		    			<jsp:param value="${post}" name="post"/>
 		    		</jsp:include>
 		    	</c:forEach>
-		    	<f:PostListPagination pageCount="${f:getMaxCount(param.page) }" currentPage="${param.page }" category="${postCatTab }"/>
+		    	<f:PostListPagination pageCount="${f:getMaxCount(page) }" currentPage="${page }" category="${postCatTab }"/>
 		    </div>
 		    </c:forEach>
 		  </div>

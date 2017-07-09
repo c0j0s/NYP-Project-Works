@@ -189,6 +189,11 @@ footer{
 	width:80%;
 	height:auto;
 }
+#factpic{
+	width:100%;
+	height:auto;
+	padding:10px;
+}
 .select select{
 	color:#3b8ec2;
 	border-radius:5px;

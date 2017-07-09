@@ -9,11 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.custom.css' rel='stylesheet'>
-<link href='../css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Posting a Question</title>
+<title>${param.mode} a Question</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -73,7 +73,6 @@
 							<!-- end of create form -->
 						</c:when>
 						<c:when test="${param.mode eq 'edit' ? true : false }">
-							<c:set var="postList" scope="request" value="${f:getPostById(param.postId) }"/>
 							<c:forEach items="${postList }" var="post">
 							<form action="${pageContext.request.contextPath}/EditPost" method="post">
 							 	<div class="form-group">

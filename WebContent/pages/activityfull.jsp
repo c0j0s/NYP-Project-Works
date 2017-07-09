@@ -40,7 +40,7 @@
 
 		<%
 			} else {
-				actfl = actdb.getActivityById(request.getParameter("actId"));
+				actfl = (ArrayList<Activity>)request.getAttribute("activityFull");
 
 				actf = actfl.get(0);
 		%>
@@ -53,20 +53,20 @@
 		<div>
 			<h1 class="text-center"></h1>
 			<br>
-			
-			<div class="col-md-4 pull-left">
-				<img src="<%=actf.getImgUrl()%>" id="actpic"><br> <br>
-				<p>Activity Description :</p>
-				<p style="border-style: solid;"><%=actf.getActivityDescription()%></p>
-			</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-3">
-				<p>
-					Activity Title :
-					<%=actf.getActivityTitle()%></p>
-				<p>
+			<div class="col-md-1 pull-left"></div>
+			<div class="col-md-7">
+				<p><h3>
+					
+					<%=actf.getActivityTitle()%></p></h3>
+						<p>
 					Activity Categories :
 					<%=actf.getActivityCategory()%></p>
+				<img src="<%=actf.getImgUrl()%>" id="factpic"><br> <br>
+				<p>Activity Description :</p>
+				<p style="border-style: solid;"><%=actf.getActivityDescription()%></p>
+							
+			
+				
 				<p>
 					Organiser Id :
 					<%=actf.getOrganiserId()%></p>
@@ -86,11 +86,11 @@
 					Activity Location :
 					<%=actf.getActivityLocation()%></p>
 				<p>
-					Activity Start Date :
-					<%=actf.getActivityStartDate()%></p>
-				<p>
-					Activity End Date :
+					Activity Period :
+					<%=actf.getActivityStartDate()%> to 
 					<%=actf.getActivityEndDate()%></p>
+				<p>
+					</p>
 				<p>
 					Activity Post Date :
 					<%=actf.getActivityPostDate()%></p>
@@ -100,20 +100,18 @@
 					<%=actf.getActivityRegistrationEnd()%></p>
 
 				<div>
-					<div class="col-md-4"><button type="button"
-							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-up"></span><%=actf.getActivityLikes()%>
-						</button> </div>
-					<div class="col-md-4"><button type="button"
-							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-down"></span><%=actf.getActivityDislikes()%>
-						</button> </div>
-					<div class="col-md-4"><button type="button"
-							class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span><%=actf.getActivityPostCount()%>
-						</button> </div>
+					<jsp:include page="parts/likeButtons.jsp">
+						<jsp:param value="activity" name="table"/>
+						<jsp:param value="<%=actf.getActivityId() %>" name="Id"/>
+						<jsp:param value="activityId" name="colName"/>
+						<jsp:param value="<%=actf.getLikeCount() %>" name="likeCount"/>
+						<jsp:param value="<%=actf.getDislikeCount() %>" name="dislikeCount"/>
+					</jsp:include>
 				</div>
 			</div>
+			
+			</div>
+
 			<div class="col-md-1"></div>
 			<div class="col-md-3">
 				<ul class="list-group pull-right">

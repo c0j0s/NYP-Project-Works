@@ -16,10 +16,6 @@
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
 <%@ page import="java.util.ArrayList,bean.*,database.*"%>
-<%!ForumDB forumdb = new ForumDB();%>
-<%!CommentDB comdb = new CommentDB();%>
-<% request.setAttribute("postList", forumdb.getPostById(request.getParameter("postId")));%>
-<% request.setAttribute("commentList", comdb.getCommentByPostId(request.getParameter("postId"), 0, 5));%>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>

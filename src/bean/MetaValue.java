@@ -7,6 +7,7 @@ public class MetaValue {
 	private String date,accountName,accountImgUrl;
 	private int likeCount, dislikeCount, followerCount;
 	private ArrayList<String> followerAccounts,likeAccounts,dislikeAccounts;
+	private boolean liked,disliked;
 	
 	
 	public int getLikeCount() {
@@ -64,6 +65,18 @@ public class MetaValue {
 	}
 	public void setAccountImgUrl(String accountImgUrl) {
 		this.accountImgUrl = accountImgUrl;
+	}
+	public boolean isLiked() {
+		return liked;
+	}
+	public void setLiked(boolean liked) {
+		this.liked = liked;
+	}
+	public boolean isDisliked() {
+		return disliked;
+	}
+	public void setDisliked(boolean disliked) {
+		this.disliked = disliked;
 	}
 	
 

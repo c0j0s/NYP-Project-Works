@@ -28,9 +28,6 @@ public class ActivityDB extends DBAO{
 				act.setActivityId(rs.getString("activityId"));
 				act.setActivityTitle(rs.getString("activityTitle"));
 				act.setActivityDescription(rs.getString("activityDescription"));
-				act.setActivityLikes(rs.getInt("likeCount"));
-				act.setActivityDislikes(rs.getInt("dislikeCount"));
-				act.setActivityPostCount(rs.getInt("postCount"));
 				act.setParticipantNo(rs.getInt("participantNo"));
 				act.setActivityPostDate(rs.getString("activityPostDate"));
 				act.setActivityStartDate(rs.getString("activityStartDate"));

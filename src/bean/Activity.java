@@ -11,8 +11,7 @@ public class Activity extends MetaValue{
 	private String activityId;
 	private String activityTitle;
 	private String activityDescription;
-	private int activityLikes;
-	private int activityDislikes;
+
 	private int participantNo;
 	private String activityPostDate;
 	private String activityEndDate;
@@ -52,18 +51,7 @@ public class Activity extends MetaValue{
 	public void setActivityDescription(String activityDescription) {
 		this.activityDescription = activityDescription;
 	}
-	public int getActivityLikes() {
-		return activityLikes;
-	}
-	public void setActivityLikes(int activityLikes) {
-		this.activityLikes = activityLikes;
-	}
-	public int getActivityDislikes() {
-		return activityDislikes;
-	}
-	public void setActivityDislikes(int activityDislikes) {
-		this.activityDislikes = activityDislikes;
-	}
+
 	public int getParticipantNo() {
 		return participantNo;
 	}

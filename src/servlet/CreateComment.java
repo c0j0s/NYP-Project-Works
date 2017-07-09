@@ -59,9 +59,9 @@ public class CreateComment extends HttpServlet {
 				String path = "";
 				System.out.println("log CreateComment Servlet: " + result);
 				if(!result.equals("fail")){
-					path = "pages/post.jsp?postId=" + postId;
+					path = "Post?postId=" + postId;
 				}else{
-					path = "pages/post.jsp?message=fail&postId=" + postId;
+					path = "Post?message=fail&postId=" + postId;
 				}
 				RequestDispatcher rd = request.getRequestDispatcher(path);
 				rd.forward(request, response);
@@ -80,7 +80,7 @@ public class CreateComment extends HttpServlet {
 				out.println("<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
 						+ "<div class='col-sm-2'></div>"
 						+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body comment-box'>"
-						+ "<form action='../CreateComment?action="+action+"' method='post'>"
+						+ "<form action='"+ request.getContextPath() +"/CreateComment?action="+action+"' method='post'>"
 						+ "<div class='post-text-content'>"
 						+ "<div class='form-group'>"
 				  		+ "<label for='commentContent'>Your reply:</label>"

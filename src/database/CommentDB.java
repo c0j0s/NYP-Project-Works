@@ -96,8 +96,8 @@ public class CommentDB extends DBAO{
 				
 				
 //				com.setFollowerAccounts(getMetaAccounts(com.getPostId(),"follow"));
-//				com.setLikeAccounts(getMetaAccounts(com.getPostId(),"like"));
-//				com.setDislikeAccounts(getMetaAccounts(com.getPostId(),"dislike"));
+				com.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"like"));
+				com.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
 				System.out.println("Log comment: " + com.getCommentContent());
 				commentList.add(com);
 			}
