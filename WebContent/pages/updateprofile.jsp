@@ -42,15 +42,15 @@
 			</div>
 			<div class="form-group">
 				<label for="email">Email: </label> 
-				<input type="text" class="form-control" name="email" placeholder="Email">
+				<input type="text" class="form-control" name="email" value="${user.email}" placeholder="Email">
 			</div>
 			<div class="form-group">
 				<label for="address">Address: </label> 
-				<input type="text" class="form-control" name="address" placeholder="Address">
+				<input type="text" class="form-control" name="address" value="${user.address}" placeholder="Address">
 			</div>
 			<div class="form-group">
 				<label for="mobileno">Mobile No.: </label> 
-				<input type="text" class="form-control" name="mobileno">
+				<input type="text" class="form-control" value="${user.mobileno}" name="mobileno">
 			</div>
 			<div class="form-group">
 				<label for="pw">Password: </label> 
