@@ -64,9 +64,9 @@
 				<label for="profilepic">Choose your profile picture:</label>
 				<input type="file" name="file" size="60"/>
         		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
-        		<img alt="" src="" id="test-img-prev">
+        		<img alt="" src="${user.imgurl}" id="test-img-prev">
 			</div>
-			<button type="submit" class="btn btn-default" value="sendform">Submit</button>
+			<button type="submit" class="btn btn-default" value="sendform">Confirm Changes</button>
 		</form>
 </div>
 

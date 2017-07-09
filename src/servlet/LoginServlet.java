@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Log loginservlet: success");
 				HttpSession mySession = request.getSession(true);
 				mySession.setAttribute("account", ac);
-				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
+				request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 			}
 			else{
 
