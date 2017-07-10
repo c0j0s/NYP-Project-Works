@@ -2,6 +2,7 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,8 @@ public class ForumEdit extends HttpServlet {
 		if(request.getParameter("mode").equals("edit")) {
 			p = fdb.getPostById(request.getParameter("postId"));
 		}
+		Map<String, String> categoryList = fdb.getCategoryList();
+		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("postList", p);
 		request.getRequestDispatcher("pages/forum-edit.jsp").forward(request, response);
 	}

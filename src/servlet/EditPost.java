@@ -49,7 +49,7 @@ public class EditPost extends HttpServlet {
 		if(!request.getParameter("postContent").equals(oldP.getPostContent())) {
 			String newContent = request.getParameter("postContent");
 			String oldContent = oldP.getPostContent();
-			String sepeartor = "<hr><p>Last updated on:"+ fdb.getDateTime() +"</p><hr>";
+			String sepeartor = "<hr><p>Last updated on: "+ fdb.getDateTime() +"</p>";
 			newContent = newContent + sepeartor + "<div class=\"post-old-content\"><p>" +oldContent + "</p></div>";
 			
 			input.put("postContent", newContent);

@@ -91,7 +91,7 @@ public class ForumDB extends DBAO{
 				post.setPostTitle(rs.getString("postTitle"));
 				post.setPostContent(rs.getString("postContent"));
 				post.setPostCategory(rs.getString("postCategory"));
-				post.setTagList(rs.getString("postCategory"));
+				post.setTagList(rs.getString("tagList"));
 				post.setAccountName(rs.getString("givenName"));
 				post.setAccountImgUrl(rs.getString("imgUrl"));
 				post.setAccountId(rs.getString("UseraccountId"));
@@ -171,7 +171,7 @@ public class ForumDB extends DBAO{
 	 * 
 	 * @return
 	 */
-	public static Map<String, String> getCategoryList(){
+	public Map<String, String> getCategoryList(){
 		Map<String, String> categoryList = new HashMap<String, String>();
 		
 		try {

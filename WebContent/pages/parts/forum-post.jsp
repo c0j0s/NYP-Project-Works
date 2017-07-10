@@ -6,6 +6,19 @@
 		<div class="panel-body ">
 			<div class="post-text-content">
 				<h4>${post.postTitle}</h4>
+				<div class="clearfix post-catTag-group">
+					<div class="col-sm-3">
+						<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>			
+						<span class="tab-title">${post.postCategory }</span>
+					</div>
+					<c:if test="${post.tagList != '' ? true:false }">
+						<div class="col-sm-3">	
+						<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>	
+						<span class="tab-title">${post.tagList }</span>	
+					</div>
+					</c:if>
+				</div>
+				<hr>
 				<p>${post.postContent}</p>
 			</div>
 			<hr>

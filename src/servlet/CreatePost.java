@@ -54,9 +54,9 @@ public class CreatePost extends HttpServlet {
 			
 			String path = "";
 			if(!p.getPostId().equals("fail") || p.getPostId() == null){
-				path = "pages/post.jsp?postId=" + p.getPostId();
+				path = "Post?postId=" + p.getPostId();
 			}else{
-				path = "pages/forum-eidt?mode=create";
+				path = "ForumEdit?mode=create";
 				System.out.println("Log createPost.java: fail to create post");
 			}
 			response.sendRedirect(path);

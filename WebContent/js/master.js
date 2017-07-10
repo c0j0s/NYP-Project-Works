@@ -55,7 +55,7 @@ $( document ).ready(function() {
 	});
 	
 	/**
-	 *  method for meta value
+	 *  method for meta value TODO update with real time database result
 	 */
 	$(".meta-value").click(function(){
 		var data = $(this).data();
@@ -66,12 +66,22 @@ $( document ).ready(function() {
 		
 		if(data.action === "like"){
 			if($(this).next().attr("disabled") === undefined){
-				count = count + 1;
+				console.log("like");
+				if(count != meta.data().count){
+					count = meta.data().count + 1;
+				}
 				$(this).next().attr("disabled","disabled");
 				addMetaValue(data,function(){
 					meta.html(count);
 				});
 			}else{
+				console.log("liked");
+				if(count == meta.data().count){
+					count = meta.data().count - 1;
+				}else{
+					count = meta.data().count;
+				}
+				
 				$(this).next().removeAttr("disabled");
 				removeMetaValue(data,function(){
 					meta.html(count);
@@ -80,12 +90,23 @@ $( document ).ready(function() {
 			
 		}else if(data.action === "dislike"){
 			if($(this).prev().attr("disabled") === undefined){
-				count = count + 1;
+				console.log("dislike");
+				if(count != meta.data().count){
+					count = meta.data().count + 1;
+				}else{
+					count = meta.data().count - 1;
+				}
 				$(this).prev().attr("disabled","disabled");
 				addMetaValue(data,function(){
 					meta.html(count);
 				});
 			}else{
+				console.log("disliked");
+				if(count == meta.data().count){
+					count = meta.data().count + 1;
+				}else{
+					count = meta.data().count;
+				}
 				$(this).prev().removeAttr("disabled");
 				removeMetaValue(data,function(){
 					meta.html(count);
@@ -95,16 +116,13 @@ $( document ).ready(function() {
 			
 		}
 		
-		console.log(count);
 	});
 	
 	function addMetaValue(metaData,callback){
-		console.log(metaData);
 		$.ajax({
 			url: ContextPath + "/UpdateMetaValue?mode=add", 
 			data: metaData,
 			success: function(result){
-				console.log("ajax"+ result)
 				callback();
 			},
 			error:function(jqXHR, exception){
@@ -114,12 +132,10 @@ $( document ).ready(function() {
 	}
 	
 	function removeMetaValue(metaData,callback){
-		console.log(metaData);
 		$.ajax({
 			url: ContextPath + "/UpdateMetaValue?mode=remove", 
 			data: metaData,
 			success: function(result){
-				console.log("ajax"+ result)
 				callback();
 			}
 		});
