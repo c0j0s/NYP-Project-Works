@@ -15,14 +15,14 @@ import database.AccountDB;
 /**
  * Servlet implementation class updateServlet
  */
-@WebServlet("/updateServlet")
-public class updateServlet extends HttpServlet {
+@WebServlet("/updateprofileServlet")
+public class updateprofileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updateServlet() {
+    public updateprofileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +40,10 @@ public class updateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-Account ac = new Account();
-		
-		ac.setAccountId(UID.genAccountId());
+		HttpSession mySession = request.getSession(true);
+		Account ac = (Account)mySession.getAttribute("account");
+		System.out.println(ac.getGivenName());
+	
 		ac.setGivenName(request.getParameter("firstName"));
 		ac.setSurName(request.getParameter("lastName"));
 		ac.setDob(java.sql.Date.valueOf(request.getParameter("dob")));
@@ -55,13 +56,13 @@ Account ac = new Account();
 		String pw = request.getParameter("pw");
 		String cpw = request.getParameter("cpw");
 		if(!pw.equals(cpw)){
-			request.getRequestDispatcher("signup.jsp").forward(request, response);
+			request.getRequestDispatcher("pages/signup.jsp").forward(request, response);
 		}
 		else{
 			try{ 
 				AccountDB ac1 = new AccountDB();
 				ac1.regMember(ac, cpw);
-				HttpSession mySession = request.getSession(true);
+				
 				mySession.setAttribute("account", ac);
 				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 			}catch(Exception ex){

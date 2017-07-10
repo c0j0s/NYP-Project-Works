@@ -38,7 +38,7 @@
   </div>
  	
 </div>
-<button type="submit" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/pages/updateprofile.jsp'">Update Profile</button>
+<button type="submit" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update Profile</button>
 
 </div>
 <div class="col-md:4 pull-right" >
