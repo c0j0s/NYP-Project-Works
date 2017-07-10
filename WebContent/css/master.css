@@ -160,6 +160,10 @@ footer{
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
 }
+.post-old-content{
+	background-color: rgba(92, 184, 92, 0.1);
+	padding:10px;
+}
 .comment-box{
 	background-color:rgba(51, 122, 183, 0.1);
 }

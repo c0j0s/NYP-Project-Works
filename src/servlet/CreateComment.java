@@ -63,8 +63,7 @@ public class CreateComment extends HttpServlet {
 				}else{
 					path = "Post?message=fail&postId=" + postId;
 				}
-				RequestDispatcher rd = request.getRequestDispatcher(path);
-				rd.forward(request, response);
+				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
 				response.setContentType("html/text");
 				PrintWriter out = response.getWriter();

@@ -74,7 +74,7 @@
 						</c:when>
 						<c:when test="${param.mode eq 'edit' ? true : false }">
 							<c:forEach items="${postList }" var="post">
-							<form action="${pageContext.request.contextPath}/EditPost" method="post">
+							<form action="${pageContext.request.contextPath}/EditPost?postId=${post.postId }" method="post">
 							 	<div class="form-group">
 							   	 	<label for="postTitle">Question Title</label>
 							  		<input type="text" class="form-control" name="postTitle" id="postTitle" required value="${post.postTitle }">
