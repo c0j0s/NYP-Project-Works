@@ -65,7 +65,7 @@
 							<c:otherwise>
 							<p>
 								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
-								<button type="button" class="btn btn-danger col-sm-6" id="delete-post">Delete</button>
+								<button type="button" class="btn btn-danger col-sm-6" id="post-delete" data-postId="${post.postId }">Delete</button>
 							</p>
 							</c:otherwise>
 						</c:choose>

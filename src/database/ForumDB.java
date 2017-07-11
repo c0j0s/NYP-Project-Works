@@ -217,4 +217,21 @@ public class ForumDB extends DBAO{
 		} 
 		return "fail";
 	}
+
+	public void invalidPost(String postId) {
+		String statement = "update ffl.post set valid = 'N' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
+			}
+			ps.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

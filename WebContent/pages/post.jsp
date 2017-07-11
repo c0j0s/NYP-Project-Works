@@ -27,8 +27,8 @@
 		<c:choose>
 			<c:when test="${fn:length(postList) > 0 ? true : false}">
 				<c:forEach items="${postList}" var="post">
-					<div class="col-sm-9">
-						<div class="post post-orginal clearfix">
+					<div class="col-sm-9" id="post-container">
+						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
 								<img alt="" src="${post.accountImgUrl }"
 									class="img-circle profile-image-small">
@@ -74,7 +74,7 @@
 			<c:otherwise>
 				<div class="panel panel-default col-md-9">
 					<div class="panel-body ">
-						<h4>No Post Found</h4>
+						<h4>${message }</h4>
 					</div>
 				</div>
 			</c:otherwise>

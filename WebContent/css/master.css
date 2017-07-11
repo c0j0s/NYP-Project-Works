@@ -80,6 +80,9 @@ footer{
 	position:absolute;
 	bottom:0;
 }
+.auto-overflow{
+	overflow:auto;
+}
 /*===========================================================
 	CSS for index
 */
