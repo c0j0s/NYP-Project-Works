@@ -24,7 +24,7 @@
 		<jsp:param value="forum" name="type"/>
 	</jsp:include>
 	
-	<div class="col-md-9 Forum-main">
+	<div class="col-sm-9 Forum-main">
 		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Trending Topics</h3>
@@ -33,7 +33,7 @@
 		    <% 
 		    for(int i = 0; i<3; i++){
 		    	%>
-		    	<div class="col-md-4 ">
+		    	<div class="col-sm-4 ">
 					<div class="panel panel-default Forum-card forum-trending-card">
 					  <div class="panel-body text-center">
 					    <img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-medium">
