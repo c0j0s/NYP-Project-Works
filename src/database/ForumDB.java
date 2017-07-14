@@ -97,6 +97,7 @@ public class ForumDB extends DBAO{
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
+				post.setPostStatus(rs.getString("postStatus"));
 				
 				post.setLikeCount(rs.getInt("likeCount"));
 				post.setDislikeCount(rs.getInt("dislikeCount"));
@@ -241,7 +242,7 @@ public class ForumDB extends DBAO{
 		// TODO Auto-generated method stub
 		System.out.println(postId);
 		System.out.println(commentId);
-		String stmt = "update ffl.post set bestAnwser = ? where postId = ?";
+		String stmt = "update ffl.post set bestAnswer = ?, postStatus = 'closed' where postId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, commentId);

@@ -95,14 +95,17 @@ $( document ).ready(function() {
 		clearInterval(counter);
 	}
 	$(".post-best-answer-btn").on('click',function(){
-		console.log($(this).data());
+		var data = $(this).data()
+		$("#"+ data.commentid).addClass("post-best-answer");
 		$.ajax({
-			data: $(this).data(),
+			data: data,
 			url: ContextPath + "/pickBestAnswer", 
 			success:function(){
-				console.log("picked")
 			}
 		});
+		$(".post-button-action-group").empty();
+		$(".post-button-action-group").append("<button type='button' class='btn btn-success btn-block' disabled>Post Closed</button> ");
+		$(this).remove();
 	})
 	/**
 	 *  method for meta value TODO update with real time database result

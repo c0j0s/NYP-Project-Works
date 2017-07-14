@@ -171,10 +171,13 @@ footer{
 	padding:10px;
 	text-decoration: line-through;
 }
+.post-best-answer .post-comment-content .panel-body{
+	background-color: rgba(255, 242, 180, 0.45);
+}
 .post-best-answer-btn{
 	display:none;
 }
-.post:hover .post-best-answer-btn{
+.post-comment:hover > div > .post-best-answer-btn{
 	display:block;
 }
 .comment-box{

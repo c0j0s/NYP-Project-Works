@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="../../WEB-INF/ffl.tld"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<div class="col-sm-8">
+<div class="col-sm-8 post-comment-content">
 	<div class="panel panel-default">
 		<small class="pull-right post-date">${comment.date}</small>
 		<div class="panel-body ">

@@ -56,22 +56,40 @@
 				</div>
 				<br>
 				<br>
+			</div>
+			<div class="post-button-action-group">
 				<c:choose>
-					<c:when test="${user eq null ? 'false' : 'true' }">
+					<c:when test="${post.postStatus != 'closed' ? true : false }">
 						<c:choose>
-							<c:when test="${user.accountId eq post.accountId ? false : true}">
-								<button type="button" id="main-createComment" class="btn btn-success btn-block addCom" onclick="createCom('post-comment-container','before','post')">Give my answer</button> 
+							<c:when test="${user eq null ? 'false' : 'true' }">
+								<c:choose>
+									<c:when
+										test="${user.accountId eq post.accountId ? false : true}">
+										<button type="button" id="main-createComment"
+											class="btn btn-success btn-block addCom"
+											onclick="createCom('post-comment-container','before','post')">Give
+											my answer</button>
+									</c:when>
+									<c:otherwise>
+										<p>
+											<button type="button" class="btn btn-success col-sm-6"
+												onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=edit&postId=${post.postId}'">Edit</button>
+											<button type="button" class="btn btn-danger col-sm-6"
+												id="post-delete" data-postId="${post.postId }">Delete</button>
+										</p>
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<c:otherwise>
-							<p>
-								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
-								<button type="button" class="btn btn-danger col-sm-6" id="post-delete" data-postId="${post.postId }">Delete</button>
-							</p>
+								<button type="button" class="btn btn-success btn-block"
+									onclick="location.href='${pageContext.request.contextPath}/Login?redirect=Post?postId=${post.postId }'">Please
+									Login to Reply</button>
 							</c:otherwise>
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn btn-success btn-block" onclick="location.href='${pageContext.request.contextPath}/Login?redirect=Post?postId=${post.postId }'">Please Login to Reply</button> 
+						<button type="button" class="btn btn-success btn-block" disabled>Post
+							Closed</button>
 					</c:otherwise>
 				</c:choose>
 			</div>

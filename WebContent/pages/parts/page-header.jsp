@@ -2,7 +2,7 @@
 <div class="page-header">
 	<c:choose>
 		<c:when test="${param.type eq 'forum' ? true : false}">
-			<h1 class="col-md-3 col-sm-4 pull-left">
+			<h1 class="col-md-3 col-sm-5 pull-left">
 				<a href="${pageContext.request.contextPath}/Forum"> Family Forum
 					<br> <small class="page-header-subtitle">Everything
 						about life</small>
