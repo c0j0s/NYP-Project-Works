@@ -42,17 +42,19 @@ public class updateprofileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession mySession = request.getSession(true);
 		Account ac = (Account)mySession.getAttribute("account");
-		System.out.println(ac.getGivenName());
+		//System.out.println(ac.getAccountId());
 	
 		ac.setGivenName(request.getParameter("firstName"));
 		ac.setSurName(request.getParameter("lastName"));
 		ac.setDob(java.sql.Date.valueOf(request.getParameter("dob")));
+		//System.out.println(request.getParameter("gender"));
 		ac.setGender(request.getParameter("gender").charAt(0));
 		ac.setEmail(request.getParameter("email"));
 		ac.setAddress(request.getParameter("address"));
 		ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
 		String imgurl = request.getParameter("imgurl");
-		ac.setImgUrl(imgurl);System.out.println(imgurl);
+		ac.setImgUrl(imgurl);//System.out.println(imgurl);
+		ac.setPassword(request.getParameter("pw"));
 		String pw = request.getParameter("pw");
 		String cpw = request.getParameter("cpw");
 		if(!pw.equals(cpw)){
@@ -61,7 +63,7 @@ public class updateprofileServlet extends HttpServlet {
 		else{
 			try{ 
 				AccountDB ac1 = new AccountDB();
-				ac1.regMember(ac, cpw);
+				ac1.updateMember(ac);
 				
 				mySession.setAttribute("account", ac);
 				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);

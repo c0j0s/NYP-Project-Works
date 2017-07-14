@@ -11,10 +11,10 @@
 						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
 						<span>${user.givenName}</span>
 						</a></li>
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/logout.jsp">Logout</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">Login</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/Login">Login</a></li>
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
 					</c:otherwise>
 				</c:choose>
