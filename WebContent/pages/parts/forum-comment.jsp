@@ -41,15 +41,8 @@
 						<span class="meta-value-count" data-count="${comment.commentCount}">${comment.commentCount}</span>
 					</button>
 				</div>
-				<c:choose>
-					<c:when test="${(user eq null) || (user.accountId eq comment.accountId) ? false : true }">
-						<br>
-						<br>
-						<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom" onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
-					</c:when>
-				</c:choose>
 			</div>
-			<c:set var="commentComList" scope="request" value="${f:getCommentByCommentId(comment.commentId,0,5) }"/>
+			<c:set var="commentComList" scope="request" value="${comment.commentComList }"/>
 			<c:choose>
 				<c:when test="${fn:length(commentComList) gt 0 }">
 					<hr>
@@ -66,6 +59,13 @@
 							</div>
 						</c:forEach>
 					</div>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${(user eq null) ? false : true } ||">
+					<br>
+					<br>
+					<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom col-md-3" onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
 				</c:when>
 			</c:choose>
 		</div>

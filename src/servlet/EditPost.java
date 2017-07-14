@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,27 +38,42 @@ public class EditPost extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s = request.getSession(true);
 		Account ac = (Account)s.getAttribute("account");
-		ForumDB f = new ForumDB();
-		Post p = new Post();
-		p.setPostTitle(request.getParameter("postTitle"));
-		p.setDate(DBAO.getDateTime());
-		p.setPostContent(request.getParameter("postContent"));
-		p.setPostCategory(request.getParameter("postCategory"));
-		p.setTagList(request.getParameter("postTags"));
-		p.setPoints(100);
-		p.setAccountId(ac.getAccountId());
-		if(request.getParameter("hideId") != null){
-			p.setHideId(request.getParameter("hideId").charAt(0));
-		}else{
-			p.setHideId('N');
+		ForumDB fdb = new ForumDB();
+		
+		Post oldP = fdb.getPostById(request.getParameter("postId")).get(0);
+		Map<String, String> input = new HashMap<String, String>();
+		
+		if(!request.getParameter("postTitle").equals(oldP.getPostTitle())) {
+			input.put("postTitle", request.getParameter("postTitle"));
 		}
-		p.setPostId(f.createPost(p));
+		if(!request.getParameter("postContent").equals(oldP.getPostContent())) {
+			String newContent = request.getParameter("postContent");
+			String oldContent = oldP.getPostContent();
+			String sepeartor = "<hr><p>Last updated on: "+ fdb.getDateTime() +"</p>";
+			newContent = newContent + sepeartor + "<div class=\"post-old-content\"><p>" +oldContent + "</p></div>";
+			
+			input.put("postContent", newContent);
+		}
+		if(!request.getParameter("postCategory").equals(oldP.getPostCategory())) {
+			input.put("postCategory", request.getParameter("postCategory"));
+		}
+		if(!request.getParameter("postTags").equals(oldP.getTagList())) {
+			input.put("postTags", request.getParameter("postTags"));
+		}
+		if(request.getParameter("hideId") != null) {
+			if(!request.getParameter("hideId").equals(oldP.getHideId())) {
+				input.put("hideId", request.getParameter("hideId"));
+			}
+		}
+		
+		
+		oldP.setPostId(fdb.updatePost(input,oldP.getPostId()));
 		
 		String path = "";
-		if(!p.getPostId().equals("fail") || p.getPostId() == null){
-			path = "pages/post.jsp?postId=" + p.getPostId();
+		if(!oldP.getPostId().equals("fail") || oldP.getPostId() == null){
+			path = "Post?postId=" + oldP.getPostId();
 		}else{
-			path = "pages/forum-eidt?mode=create";
+			path = "ForumEidt?mode=create";
 			System.out.println("Log createPost.java: fail to create post");
 		}
 		response.sendRedirect(path);

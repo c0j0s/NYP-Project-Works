@@ -33,13 +33,22 @@ public class Post extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ForumDB fdb = new ForumDB();
 		CommentDB cdb = new CommentDB();
-		String postId = request.getParameter("postId");
+		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
 		
 		ArrayList<bean.Post> p = fdb.getPostById(postId);
 		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, 0, 10);
-		
-		request.setAttribute("postList", p);
-		request.setAttribute("commentList", c);
+		System.out.println(p.size());
+		if(p.size() > 0) {
+			if(p.get(0).getValid() == 'Y') {
+				request.setAttribute("postList", p);
+				request.setAttribute("commentList", c);
+			}else {
+				request.setAttribute("message", "Post deleted by owner");
+			}			
+		}else{
+			request.setAttribute("message", "Post not found");
+		}
+
 		request.getRequestDispatcher("pages/post.jsp").forward(request, response);
 	}
 

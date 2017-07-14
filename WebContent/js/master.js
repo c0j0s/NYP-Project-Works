@@ -1,4 +1,6 @@
 var createCom;
+var postDeleteCancel;
+var counter;
 $( document ).ready(function() {
 	var config = {
 		apiKey: "AIzaSyAIsMxruOQZcVlHGcpbJQ3c6CF9ZgpFMkQ",
@@ -50,12 +52,51 @@ $( document ).ready(function() {
 		$("#comment-box-"+id).remove();
 	}
 	
-	$("#delete-post").click(function(){
-		//TODO invalid post
-	});
+	$("#post-delete").on("click", function(){
+		var data = $(this).data();
+		$("#post-" + data.postid).css("display","none");
+		$(".post-comment-group").css("display","none");
+		$("#post-container").prepend("<div id='post-delete-message'><div class='panel panel-warning'><div class='panel-heading auto-overflow' >" +
+				"<h4 class='col-sm-9'>Post deleting in <span id='post-delete-countdown'>5</span>s. You will be directed to forum.</h4>" +
+				"<button type='button' class='btn btn-info col-sm-3' id='post-delete-cancel' onclick='postDeleteCancel(this)' data-postId='"+ data.postid +"'>Cancel</button>" +
+				"</div></div></div>");
+		console.log("#post-" + data.postid);
+		
+		var span = 5;
+		counter = setInterval(function(){
+			span = span - 1;
+			$("#post-delete-countdown").html(span)
+			console.log(span)
+			if(span == 0){
+				console.log(ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid);
+				console.log($("#post-delete-message").html());
+				if($("#post-delete-message").html()){
+					console.log("delete");
+					$.ajax({
+						url: ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid, 
+						success: function(result){	
+							location.href= ContextPath + "/Forum";
+						}
+					});		
+				}else{
+					clearInterval(counter)
+				}
+			}
+		},1000)
+		
+	})
+	
+	postDeleteCancel = function(e){
+		$("#post-delete-message").remove();
+		var data = $(e).data();
+		console.log(data);
+		$("#post-" + data.postid).css("display","block");
+		$(".post-comment-group").css("display","block");
+		clearInterval(counter);
+	}
 	
 	/**
-	 *  method for meta value
+	 *  method for meta value TODO update with real time database result
 	 */
 	$(".meta-value").click(function(){
 		var data = $(this).data();
@@ -66,12 +107,22 @@ $( document ).ready(function() {
 		
 		if(data.action === "like"){
 			if($(this).next().attr("disabled") === undefined){
-				count = count + 1;
+				console.log("like");
+				if(count != meta.data().count){
+					count = meta.data().count + 1;
+				}
 				$(this).next().attr("disabled","disabled");
 				addMetaValue(data,function(){
 					meta.html(count);
 				});
 			}else{
+				console.log("liked");
+				if(count == meta.data().count){
+					count = meta.data().count - 1;
+				}else{
+					count = meta.data().count;
+				}
+				
 				$(this).next().removeAttr("disabled");
 				removeMetaValue(data,function(){
 					meta.html(count);
@@ -80,12 +131,23 @@ $( document ).ready(function() {
 			
 		}else if(data.action === "dislike"){
 			if($(this).prev().attr("disabled") === undefined){
-				count = count + 1;
+				console.log("dislike");
+				if(count != meta.data().count){
+					count = meta.data().count + 1;
+				}else{
+					count = meta.data().count - 1;
+				}
 				$(this).prev().attr("disabled","disabled");
 				addMetaValue(data,function(){
 					meta.html(count);
 				});
 			}else{
+				console.log("disliked");
+				if(count == meta.data().count){
+					count = meta.data().count + 1;
+				}else{
+					count = meta.data().count;
+				}
 				$(this).prev().removeAttr("disabled");
 				removeMetaValue(data,function(){
 					meta.html(count);
@@ -95,16 +157,13 @@ $( document ).ready(function() {
 			
 		}
 		
-		console.log(count);
 	});
 	
 	function addMetaValue(metaData,callback){
-		console.log(metaData);
 		$.ajax({
 			url: ContextPath + "/UpdateMetaValue?mode=add", 
 			data: metaData,
 			success: function(result){
-				console.log("ajax"+ result)
 				callback();
 			},
 			error:function(jqXHR, exception){
@@ -114,12 +173,10 @@ $( document ).ready(function() {
 	}
 	
 	function removeMetaValue(metaData,callback){
-		console.log(metaData);
 		$.ajax({
 			url: ContextPath + "/UpdateMetaValue?mode=remove", 
 			data: metaData,
 			success: function(result){
-				console.log("ajax"+ result)
 				callback();
 			}
 		});

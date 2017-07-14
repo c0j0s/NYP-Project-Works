@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import bean.Post;
 
 /**
@@ -89,7 +91,7 @@ public class ForumDB extends DBAO{
 				post.setPostTitle(rs.getString("postTitle"));
 				post.setPostContent(rs.getString("postContent"));
 				post.setPostCategory(rs.getString("postCategory"));
-				post.setTagList(rs.getString("postCategory"));
+				post.setTagList(rs.getString("tagList"));
 				post.setAccountName(rs.getString("givenName"));
 				post.setAccountImgUrl(rs.getString("imgUrl"));
 				post.setAccountId(rs.getString("UseraccountId"));
@@ -169,7 +171,7 @@ public class ForumDB extends DBAO{
 	 * 
 	 * @return
 	 */
-	public static Map<String, String> getCategoryList(){
+	public Map<String, String> getCategoryList(){
 		Map<String, String> categoryList = new HashMap<String, String>();
 		
 		try {
@@ -183,5 +185,53 @@ public class ForumDB extends DBAO{
 			System.out.println("Log getCategory(): " + e.getMessage());
 		}
 		return categoryList;
+	}
+
+	public String updatePost(Map<String, String> input, String postId) {
+		String startStmt = "Update ffl.post set ";
+		String bodyStmt = "";
+		for(Entry<String, String> entry : input.entrySet()) {
+			 bodyStmt = bodyStmt + entry.getKey() + " = '" + entry.getValue() + "',";
+		}
+		bodyStmt = bodyStmt.substring(0, (bodyStmt.length()-1));
+		String endStmt = " Where postId = ?";
+		System.out.println(bodyStmt);
+		try {
+			String statement = startStmt + bodyStmt + endStmt;
+			System.out.println("Log statement: " + statement);
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+			
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log updatePost("+ postId +"): (success)" + ps);
+				return postId;
+			}else {
+				ps.close();
+				return "fail";
+			}
+		} catch (SQLException e) {
+			System.out.println("log updatePost(): (fail)" + e.getMessage());
+			e.printStackTrace();
+		} 
+		return "fail";
+	}
+
+	public void invalidPost(String postId) {
+		String statement = "update ffl.post set valid = 'N' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
+			}
+			ps.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

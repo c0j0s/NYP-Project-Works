@@ -2,6 +2,7 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +33,26 @@ public class ForumEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ForumDB fdb = new ForumDB();
-		ArrayList<bean.Post> p = new ArrayList<bean.Post>(); 
-		if(request.getParameter("mode").equals("edit")) {
+		
+		String type = request.getParameter("type");
+		String mode = request.getParameter("mode");
+		String postId = request.getParameter("postId");
+		String path = "";
+		System.out.println("Log ForumEdit:" + mode);
+		if(mode.equals("edit")) {
+			ArrayList<bean.Post> p = new ArrayList<bean.Post>(); 
 			p = fdb.getPostById(request.getParameter("postId"));
+			Map<String, String> categoryList = fdb.getCategoryList();
+			request.setAttribute("categoryList", categoryList);
+			request.setAttribute("postList", p);
+			path = "pages/forum-edit.jsp";
+		}else if (mode.equals("delete")) {
+			fdb.invalidPost(postId);
+			path = "/Forum";
 		}
-		request.setAttribute("postList", p);
-		request.getRequestDispatcher("pages/forum-edit.jsp").forward(request, response);
+		
+		request.getRequestDispatcher(path).forward(request, response);
+
 	}
 
 	/**

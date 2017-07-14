@@ -80,6 +80,9 @@ footer{
 	position:absolute;
 	bottom:0;
 }
+.auto-overflow{
+	overflow:auto;
+}
 /*===========================================================
 	CSS for index
 */
@@ -149,6 +152,9 @@ footer{
 .post-text-content{
 	overflow:auto;
 }
+.post-catTag-group div{
+	padding-left:0px;
+}
 .post-date{
 	color:grey;
 	padding:5px;
@@ -159,6 +165,11 @@ footer{
 }
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
+}
+.post-old-content{
+	background-color: rgba(92, 184, 92, 0.05);
+	padding:10px;
+	text-decoration: line-through;
 }
 .comment-box{
 	background-color:rgba(51, 122, 183, 0.1);

@@ -21,7 +21,7 @@ public class DBAO {
 //	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
 //	final private String passwd = "password";
 	
-	final private String lurl = "jdbc:mysql://localhost/ffl";
+	final private String lurl = "jdbc:mysql://localhost/ffl?autoReconnect=true&useSSL=false";
 	final private String lpasswd = "mysql";
 	
 	/**

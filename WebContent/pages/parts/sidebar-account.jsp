@@ -13,7 +13,7 @@
 			<c:choose>
 				<c:when test="${param.type eq 'forum' ? true : false}">
 					<div class="panel-heading ">
-						<img alt="../img/sample.jpg" src="../img/sample.jpg"
+						<img alt="../img/sample.jpg" src="${user.imgUrl }"
 							class="img-circle profile-image-medium">
 						<h3 class="panel-title text-center">${user.givenName}</h3>
 					</div>

@@ -52,7 +52,7 @@
 							Image: </label><input type="file" name="file" class="form-control fullactpic"
 							id="form-upload" accept="image/*" size="60"><br> <input
 							type="hidden" name="imgurl" id="imgurl"
-							data-imgfolder="activity/ACC0000000" />
+							data-imgfolder="activity/${user.accountId }" />
 					</div>
 					<div class="col-md-5">
 						<img alt="" src="${pageContext.request.contextPath}/img/def.png" id="test-img-prev" class = "fullactpic"

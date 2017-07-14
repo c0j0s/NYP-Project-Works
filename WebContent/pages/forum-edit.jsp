@@ -26,7 +26,7 @@
 			<div class="col-sm-9">
 			<div class="post post-orginal clearfix">
 				<div class="text-center col-sm-2">
-					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
+					<img alt="" src="${user.imgUrl}" class="img-circle profile-image-small">
 					<p>${user.givenName}</p>
 				</div>
 				<div class="col-sm-8">
@@ -51,7 +51,7 @@
 								 	 <div class="form-group col-md-4">
 									    <label for="postCategory">Category</label>
 									    <select class="form-control" name="postCategory" id="postCategory">
-									    	<c:forEach items="${f:getCategoryList() }" var="cat" >
+									    	<c:forEach items="${categoryList }" var="cat" >
 									    		<option value="${cat.key}">${cat.value}</option>
 									    	</c:forEach>
 										</select>
@@ -74,14 +74,18 @@
 						</c:when>
 						<c:when test="${param.mode eq 'edit' ? true : false }">
 							<c:forEach items="${postList }" var="post">
-							<form action="${pageContext.request.contextPath}/EditPost" method="post">
+							<form action="${pageContext.request.contextPath}/EditPost?postId=${post.postId }" method="post">
 							 	<div class="form-group">
 							   	 	<label for="postTitle">Question Title</label>
 							  		<input type="text" class="form-control" name="postTitle" id="postTitle" required value="${post.postTitle }">
 							 	</div>
 							 	<div class="form-group">
-							  		<label for="postContent">Detail descriptions</label>
-							  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required>${post.postContent }</textarea>
+							  		<label for="postContent">Detail descriptions</label>						  		
+							  		<p>Old content:</p>
+							  		<div class="post-old-content">
+							  		${post.postContent }
+							  		</div>
+							  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required></textarea>
 							 	</div>
 							 	<div class="row">
 								  	<div class="form-group col-md-2">
@@ -91,7 +95,7 @@
 								 	 <div class="form-group col-md-4">
 									    <label for="postCategory">Category</label>
 									    <select class="form-control" name="postCategory" id="postCategory">
-									    	<c:forEach items="${f:getCategoryList() }" var="cat" >
+									    	<c:forEach items="${categoryList }" var="cat" >
 									    		<c:choose>
 									    			<c:when test="${cat.value eq post.postCategory ? true : false }">
 									    				<option value="${cat.key}" selected>${cat.value}</option>
@@ -115,7 +119,7 @@
 								  </label>
 								</div>
 							<br>
-							<button type="submit" class="btn btn-success btn-block">Post</button> 
+							<button type="submit" class="btn btn-success btn-block">Update</button> 
 							</form>
 							<!-- end of edit form -->
 							</c:forEach>
