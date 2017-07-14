@@ -24,7 +24,7 @@
 		<jsp:param value="forum" name="type"/>
 	</jsp:include>
 	
-	<div class="col-sm-9 Forum-main">
+	<div class="col-md-9 col-sm-12 Forum-main">
 		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Trending Topics</h3>

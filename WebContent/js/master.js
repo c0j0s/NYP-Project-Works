@@ -94,7 +94,15 @@ $( document ).ready(function() {
 		$(".post-comment-group").css("display","block");
 		clearInterval(counter);
 	}
-	
+	$(".post-best-answer-btn").on('click',function(){
+		$.ajax({
+			data: "",
+			url: ContextPath + "/UpdateMetaValue?mode=add", 
+			success:function(){
+				
+			}
+		});
+	})
 	/**
 	 *  method for meta value TODO update with real time database result
 	 */
