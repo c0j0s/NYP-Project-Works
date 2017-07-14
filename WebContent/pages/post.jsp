@@ -27,7 +27,7 @@
 		<c:choose>
 			<c:when test="${fn:length(postList) > 0 ? true : false}">
 				<c:forEach items="${postList}" var="post">
-					<div class="col-sm-9" id="post-container">
+					<div class="col-md-9 col-sm-12" id="post-container">
 						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
 								<img alt="" src="${post.accountImgUrl }"
@@ -47,7 +47,14 @@
 									<c:forEach items="${commentList }" var="comment">
 										<div class="post-comment  clearfix "
 											id="${comment.commentId }">
-											<div class="col-sm-2"></div>
+											<div class="col-sm-2">
+												<c:if test="${user.accountId eq post.accountId ? true : false }">
+													<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn">
+													  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
+													  <sapn>Best<br>Answer</sapn>
+													</button>
+												</c:if>
+											</div>
 											<c:set var="comment" scope="request" value="${comment}" />
 											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">

@@ -34,39 +34,36 @@
 
 
 				<label for="rewId">Reward Id : </label> <input type="text"
-					name="rewId" class="form-control"
-					placeholder="Enter Reward Id : "> <br>
+					name="rewId" class="form-control"> <br>
 				<div class="vert">
 					<div class="col-md-7">
-						<br> <br> <br> <br> <label for="imgurl">Reward
+						<br> <label for="imgurl">Reward
 							Image: </label><input type="file" name="file" class="form-control"
 							id="form-upload" accept="image/*" size="60"><br> <input
 							type="hidden" name="imgurl" id="imgurl"
 							data-imgfolder="reward/ACC0000000" />
 					</div>
 					<div class="col-md-5">
-						<img alt="" src="../img/def.png" class="activitypic"
+						<img alt="" src="../img/def.png" class="fullactpic"
 							id="test-img-prev">
 					</div>
 				</div>
 				<br> <label for="">Reward Description:</label>
 				<textarea class="form-control" rows="10" cols="50" name="rewDesc"></textarea>
 				<br> <label for="rewTitle">Reward Title:</label>
-				<div>
-					<div class="col-md-1"></div>
-					<div class="col-md-5">
-						<input type="number" name="rewTitle" class="form-control"
-							placeholder="Reward Title " min="1" step="any">
-					</div>
-					
+				
+						<input type="text" name="rewTitle" class="form-control"
+							placeholder="Reward Title ">
+							
+					      
 
 				
 
 				<label for="Points">Points:</label> <input type="text"
 					name="Points" class="form-control"
 					placeholder="Enter Points : "> <br> <label
-					for="actLocation">Reward avaliability: </label> <input type="text"
-					name="rewAvalibility" class="form-control"
+					for="rewAvailability">Reward availability: </label> <input type="text"
+					name="rewAvailability" class="form-control"
 					placeholder="Enter Reward avaliability : "><br> <label
 					for="rewQuantity">Reward Quantity : </label><br> <input type="text"
 					name="rewQuantity" class="form-control"
@@ -75,15 +72,14 @@
 					name="valid" class="form-control"
 					placeholder="Enter valid : "><br> 
 					<label for="itemCreatedOn">Item Created On: 
-					 <input type="text"
-					name="itemCreatedOn" class="form-control"
-					placeholder="Enter Item Created On : "><br> 
+					 <input type="date"
+					name="itemCreatedOn" class="form-control"><br> 
 				
 					
 			
 				
 				<div class="col-md-12">
-					<button type="button" class="col-md-5 btn btn-danger pull-left">Redeem</button>
+					<input type="submit" value="create" class="col-md-5 btn btn-danger pull-left">
 					<p class="col-md-2"></p>
 				</div>
 				<br>

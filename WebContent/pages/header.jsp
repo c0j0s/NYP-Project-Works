@@ -11,10 +11,10 @@
 						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
 						<span>${user.givenName}</span>
 						</a></li>
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/logout.jsp">Logout</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/login.jsp">Login</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/Login">Login</a></li>
 						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -38,7 +38,7 @@
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Index">Home</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Forum">Family Forum</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/ActList">Family Activities</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/rewardList.jsp">Reward Redemption</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/RedemptionList">Reward Redemption</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/test.jsp">component testing page</a></li>
 			</ul>
 			<form class="navbar-form navbar-right" role="search">

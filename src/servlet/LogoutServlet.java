@@ -8,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Account;
-import database.AccountDB;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +28,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String userId=request.getParameter("email");
-		String userPw=request.getParameter("userPw");
-		try{
-			AccountDB myDatabase = new AccountDB();
-			Account ac = myDatabase.isMember(userId, userPw);
-			if(ac!=null){
-
-				System.out.println("Log loginservlet: success");
-				HttpSession mySession = request.getSession(true);
-				mySession.setAttribute("account", ac);
-				request.getRequestDispatcher("pages/index.jsp").forward(request, response);
-			}
-			else{
-
-				System.out.println("Log loginservlet: fail");
-				request.setAttribute("message", "Incorrect UserID or Password.");
-				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
-			}
-		}catch(Exception ex){
-			System.out.println("Error Accessing database: "+ex);
-		}
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		 request.getRequestDispatcher("index.jsp").include(request, response);  
+         
+         HttpSession session=request.getSession();  
+         session.invalidate();  
 	}
 
 	/**
@@ -61,7 +41,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-
 	}
 
 }

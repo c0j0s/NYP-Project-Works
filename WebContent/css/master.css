@@ -171,6 +171,12 @@ footer{
 	padding:10px;
 	text-decoration: line-through;
 }
+.post-best-answer-btn{
+	display:none;
+}
+.post:hover .post-best-answer-btn{
+	display:block;
+}
 .comment-box{
 	background-color:rgba(51, 122, 183, 0.1);
 }
