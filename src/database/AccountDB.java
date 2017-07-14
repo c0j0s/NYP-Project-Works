@@ -85,6 +85,7 @@ public class AccountDB extends DBAO{
 			prepStmt.setInt(7, ac.getMobileno());
 			prepStmt.setString(8, ac.getPassword());
 			prepStmt.setString(9, ac.getImgUrl());
+			prepStmt.setString(10, ac.getAccountId());
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
