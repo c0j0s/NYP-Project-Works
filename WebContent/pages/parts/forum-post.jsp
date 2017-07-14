@@ -6,6 +6,19 @@
 		<div class="panel-body ">
 			<div class="post-text-content">
 				<h4>${post.postTitle}</h4>
+				<div class="clearfix post-catTag-group">
+					<div class="col-sm-3">
+						<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>			
+						<span class="tab-title">${post.postCategory }</span>
+					</div>
+					<c:if test="${post.tagList != '' ? true:false }">
+						<div class="col-sm-3">	
+						<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>	
+						<span class="tab-title">${post.tagList }</span>	
+					</div>
+					</c:if>
+				</div>
+				<hr>
 				<p>${post.postContent}</p>
 			</div>
 			<hr>
@@ -52,7 +65,7 @@
 							<c:otherwise>
 							<p>
 								<button type="button" class="btn btn-success col-sm-6" onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=edit&postId=${post.postId}'">Edit</button> 
-								<button type="button" class="btn btn-danger col-sm-6" id="delete-post">Delete</button>
+								<button type="button" class="btn btn-danger col-sm-6" id="post-delete" data-postId="${post.postId }">Delete</button>
 							</p>
 							</c:otherwise>
 						</c:choose>

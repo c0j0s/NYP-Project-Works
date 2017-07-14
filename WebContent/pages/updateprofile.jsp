@@ -22,14 +22,14 @@
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 		<h2>Update Profile</h2>
-		<form action="">
+		<form action="updateprofileServlet" method="post">
 			<div class="form-group">
 				<label for="firstName">First Name:</label> 
 				<input type="text" class="form-control" name="firstName" value="${user.givenName}" placeholder="First Name">
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name:</label> 
-				<input type="text" class="form-control" name="lastName" value="${user.surName}placeholder="Last Name">	
+				<input type="text" class="form-control" name="lastName" value="${user.surName}" placeholder="Last Name">	
 			</div>
 			<div class="form-group">
 				<label for="dob">Date of Birth</label> 
@@ -42,15 +42,15 @@
 			</div>
 			<div class="form-group">
 				<label for="email">Email: </label> 
-				<input type="text" class="form-control" name="email" placeholder="Email">
+				<input type="text" class="form-control" name="email" value="${user.email}" placeholder="Email">
 			</div>
 			<div class="form-group">
 				<label for="address">Address: </label> 
-				<input type="text" class="form-control" name="address" placeholder="Address">
+				<input type="text" class="form-control" name="address" value="${user.address}" placeholder="Address">
 			</div>
 			<div class="form-group">
 				<label for="mobileno">Mobile No.: </label> 
-				<input type="text" class="form-control" name="mobileno">
+				<input type="text" class="form-control" value="${user.mobileno}" name="mobileno">
 			</div>
 			<div class="form-group">
 				<label for="pw">Password: </label> 
@@ -64,9 +64,9 @@
 				<label for="profilepic">Choose your profile picture:</label>
 				<input type="file" name="file" size="60"/>
         		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
-        		<img alt="" src="" id="test-img-prev">
+        		<img alt="" src="${user.imgUrl}" id="test-img-prev">
 			</div>
-			<button type="submit" class="btn btn-default" value="sendform">Submit</button>
+			<button type="submit" class="btn btn-default" value="sendform">Confirm Changes</button>
 		</form>
 </div>
 

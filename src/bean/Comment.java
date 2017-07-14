@@ -1,10 +1,12 @@
 package bean;
 
+import java.util.ArrayList;
+
 public class Comment extends MetaValue{
 	private String commentId, commentContent, commentGroup,commentStatus, postId, accountId, commentsComId;
 	private char hideId;
 	private int commentCount;
-	
+	private ArrayList<Comment> commentComList;
 	
 	public Comment() {
 		super();
@@ -80,6 +82,14 @@ public class Comment extends MetaValue{
 
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
+	}
+
+	public ArrayList<Comment> getCommentComList() {
+		return commentComList;
+	}
+
+	public void setCommentComList(ArrayList<Comment> commentComList) {
+		this.commentComList = commentComList;
 	}
 	
 	

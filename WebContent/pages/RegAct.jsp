@@ -5,7 +5,9 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <meta charset="utf-8">
 <%!ActivityDB actdb = new ActivityDB();%>
 <%!Activity actf;%>
@@ -25,7 +27,8 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<div class="container">	<jsp:include page="parts/page-header.jsp">
+	<div class="container">
+		<jsp:include page="parts/page-header.jsp">
 			<jsp:param value="activity" name="type" />
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
@@ -46,17 +49,17 @@
 
 			<%
 				} else {
-					actfl = actdb.getActivityById(request.getParameter("actId"));
+					actfl = (ArrayList<Activity>) request.getAttribute("activityRegistration");
 
 					actf = actfl.get(0);
 			%>
-		
+
 
 
 
 			<h3>
 				<%=actf.getActivityTitle()%></h3>
-				<img src="<%=actf.getImgUrl()%>" id="factpic">
+			<img src="<%=actf.getImgUrl()%>" id="factpic">
 			<p>
 				Activity Period :
 				<%=actf.getActivityStartDate()%>
@@ -75,26 +78,42 @@
 				Activity Fee : $
 				<%=df.format(actf.getActivityFee())%></p>
 
-			<p>
-				<input type="text">
-			</p>
+			<p>Your ID :  ${user.accountId}</p>
+			<p>Your Name : ${user.givenName}</p>
+	<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#cash">Pay By Cash</a></li>
+  <li><a data-toggle="tab" href="#online">Online Payment</a></li>
+ 
+</ul>
+
+<div class="tab-content">
+  <div id="cash" class="tab-pane fade in active">
+    <h3>Pay By Cash</h3>
+    <p>Submit <%=df.format(actf.getActivityFee())%> to any community centre 5 days before the start of the activity </p>
+  </div>
+  <div id="online" class="tab-pane fade">
+    <h3>Online Payment</h3>
+    <p>Supported Payment Types : <img src = "img/payment.jpg"></p>
+  </div>
+</div>
 		</div>
 		<%
 			}
 		%>
-	
-	<div class="col-md-3">
-		<ul class="list-group pull-right">
-			<h4>Activity Popularity Ranking</h4>
-			<%
-				for (int z = 0; z < 20; z++) {
-			%>
-			<li class="list-group-item"><%=z + 1%>. Java <span class="badge"><%=z%></span></li>
-			<%
-				}
-			%>
-		</ul>
-	</div>
+
+		<div class="col-md-3">
+			<ul class="list-group pull-right">
+				<h4>Activity Popularity Ranking</h4>
+				<%
+					for (int z = 0; z < 20; z++) {
+				%>
+				<li class="list-group-item"><%=z + 1%>. Java <span
+					class="badge"><%=z%></span></li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

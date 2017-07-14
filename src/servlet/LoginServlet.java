@@ -42,11 +42,12 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Log loginservlet: success");
 				HttpSession mySession = request.getSession(true);
 				mySession.setAttribute("account", ac);
-				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
+				request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 			}
 			else{
 
 				System.out.println("Log loginservlet: fail");
+				request.setAttribute("message", "Incorrect UserID or Password.");
 				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 			}
 		}catch(Exception ex){

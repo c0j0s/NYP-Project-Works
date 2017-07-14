@@ -1,11 +1,11 @@
 <div class="panel panel-default Forum-card">
 	<div class="panel-body">
-		<div class="col-md-2 text-center">
+		<div class="col-sm-2 text-center">
 			<img alt="profile image" src="${post.accountImgUrl }"
 				class="img-circle profile-image-small">
 			<p>${post.accountName}</p>
 		</div>
-		<div class="col-md-10">
+		<div class="col-sm-10">
 			<div class="post-link"
 				onclick="location.href='Post?postId=${post.postId}'">
 				<h4>${post.postTitle}</h4>
