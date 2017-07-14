@@ -49,11 +49,11 @@
 					<div class="comments-comment">
 						<c:forEach items="${commentComList }" var="commentCom">
 							<div class="row comment-under-comment">
-								<div class="col-sm-2">
+								<div class="col-md-2 col-sm-3">
 									<img src="${commentCom.accountImgUrl }" class="img-circle profile-image-xsmall">
 									<p>says: </p>
 								</div>
-								<div class="col-sm-10">
+								<div class="col-md-10 col-sm-9">
 									<p>${commentCom.commentContent }</p>
 								</div>
 							</div>
@@ -62,10 +62,11 @@
 				</c:when>
 			</c:choose>
 			<c:choose>
-				<c:when test="${(user eq null) ? false : true } ||">
+				<c:when test="${user eq null ? false : true }">
 					<br>
-					<br>
-					<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom col-md-3" onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
+					<div class="col-md-4 pull-right">
+					<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom " onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
+					</div>
 				</c:when>
 			</c:choose>
 		</div>

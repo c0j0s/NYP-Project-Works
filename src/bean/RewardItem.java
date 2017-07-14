@@ -1,7 +1,7 @@
 package bean;
 
 public class RewardItem {
-	private String rewardId,rewardTitle,rewardDescription,imgUrl, itemCreatedOn;
+	private String rewardId,rewardTitle,rewardDescription,imgUrl, itemCreatedOn, accountId;
 	private int rewardQuantity, points;
 	private char rewardAvailability, valid;
 	
@@ -79,6 +79,15 @@ public class RewardItem {
 
 	public void setItemCreatedOn(String itemCreatedOn) {
 		this.itemCreatedOn = itemCreatedOn;
+	}
+
+	public void setAccountId(String accountId) {
+		// TODO Auto-generated method stub
+		this.accountId = accountId;
+	}
+
+	public String getAccountId() {
+		return accountId;
 	}
 	
 }
