@@ -110,6 +110,8 @@ public class ForumDB extends DBAO{
 				post.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"like"));
 				post.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
 				
+				post.setBestAnswer(rs.getString("bestAnswer"));
+				
 				postList.add(post);
 				maxCount++;
 			}
@@ -230,6 +232,25 @@ public class ForumDB extends DBAO{
 				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
 			}
 			ps.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	public void pickBestAnswer(String postId, String commentId) {
+		// TODO Auto-generated method stub
+		System.out.println(postId);
+		System.out.println(commentId);
+		String stmt = "update ffl.post set bestAnwser = ? where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, commentId);
+			ps.setString(2, postId);
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			if (status != 0) {
+				System.out.println("log pickBestAnswer(): (success)");
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

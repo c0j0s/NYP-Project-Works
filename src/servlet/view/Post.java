@@ -2,6 +2,7 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Comment;
 import database.CommentDB;
 import database.ForumDB;
 
@@ -37,6 +39,22 @@ public class Post extends HttpServlet {
 		
 		ArrayList<bean.Post> p = fdb.getPostById(postId);
 		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, 0, 10);
+		Iterator<Comment> comIter = c.iterator();
+		while(comIter.hasNext()) {
+			Comment com = (Comment) comIter.next();
+			System.out.println("servlet 1" + com.getAccountId());
+			if(com.getCommentId().equals(p.get(0).getBestAnswer())) {
+				comIter = c.iterator();
+				System.out.println("com equal to best answer");
+			}
+			
+		}
+		c = new ArrayList<bean.Comment>();
+		while(comIter.hasNext()) {
+			Comment com = (Comment) comIter.next();
+			c.add(com);
+			System.out.println("servlet" + com.getAccountId());
+		}
 		System.out.println(p.size());
 		if(p.size() > 0) {
 			if(p.get(0).getValid() == 'Y') {

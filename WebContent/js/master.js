@@ -95,11 +95,12 @@ $( document ).ready(function() {
 		clearInterval(counter);
 	}
 	$(".post-best-answer-btn").on('click',function(){
+		console.log($(this).data());
 		$.ajax({
-			data: "",
-			url: ContextPath + "/UpdateMetaValue?mode=add", 
+			data: $(this).data(),
+			url: ContextPath + "/pickBestAnswer", 
 			success:function(){
-				
+				console.log("picked")
 			}
 		});
 	})

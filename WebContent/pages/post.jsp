@@ -49,7 +49,7 @@
 											id="${comment.commentId }">
 											<div class="col-sm-2">
 												<c:if test="${user.accountId eq post.accountId ? true : false }">
-													<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn">
+													<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn" data-postId="${post.postId }" data-commentId="${comment.commentId }">
 													  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
 													  <sapn>Best<br>Answer</sapn>
 													</button>
