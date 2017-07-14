@@ -34,8 +34,14 @@
 		<button onclick = "location.href = '${pageContext.request.contextPath}/CreateAct'" class = "btn btn-primary col-md-2 pull-right">Create Activity</button>
 		</h1></div>
 		</c:when>
-		<c:when test="${false}">
-			for other page
+		<c:when test="${param.title == 'Redemption'? true:false}">
+			<h1
+				class="col-sm-${param.titleWidth eq null ? '3' : param.titleWidth } pull-left">
+				<a href="${pageContext.request.contextPath}/ActList">${param.title }<br>
+					<small class="page-header-subtitle">${param.subTitle }</small>
+				</a>
+			</h1>
+			<button onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 		</c:when>
 		<c:otherwise>
 			<h1
