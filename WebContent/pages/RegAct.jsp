@@ -5,8 +5,10 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <meta charset="utf-8">
 <%!ActivityDB actdb = new ActivityDB();%>
@@ -75,27 +77,42 @@
 				Activity Location :
 				<%=actf.getActivityLocation()%></p>
 			<p>
-				Activity Fee : $
-				<%=df.format(actf.getActivityFee())%></p>
+				Activity Fee Per Participant : $<span id="generate2">
+				<%=df.format(actf.getActivityFee())%></span></p>
 
-			<p>Your ID :  ${user.accountId}</p>
+			<p>Your ID : ${user.accountId}</p>
 			<p>Your Name : ${user.givenName}</p>
-	<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#cash">Pay By Cash</a></li>
-  <li><a data-toggle="tab" href="#online">Online Payment</a></li>
- 
-</ul>
+			<div class="clearfix"><p class ="col-md-6">Number Of Participants : <select name="generate1" id="generate1"
+							class="select form-control" >
+				
+				<% for (int z = 0; z < 5; z++) {%>
+					<option value="<%=z + 1%>"><%=z + 1%></option>
+					<%} %>	</select></p>
+				<p>Total Price : <input type="text" id="total" name="total" class="col-md-6" disabled></input</p></div>
 
-<div class="tab-content">
-  <div id="cash" class="tab-pane fade in active">
-    <h3>Pay By Cash</h3>
-    <p>Submit <%=df.format(actf.getActivityFee())%> to any community centre 5 days before the start of the activity </p>
-  </div>
-  <div id="online" class="tab-pane fade">
-    <h3>Online Payment</h3>
-    <p>Supported Payment Types : <img src = "img/payment.jpg"></p>
-  </div>
-</div>
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#cash">Pay By
+						Cash</a></li>
+				<li><a data-toggle="tab" href="#online">Online Payment</a></li>
+
+			</ul>
+
+			<div class="tab-content">
+				<div id="cash" class="tab-pane fade in active">
+					<h3>Pay By Cash</h3>
+					<p>
+						Submit
+						<%=df.format(actf.getActivityFee())%>
+						to any community centre 5 days before the start of the activity
+					</p>
+				</div>
+				<div id="online" class="tab-pane fade">
+					<h3>Online Payment</h3>
+					<p>
+						Supported Payment Types : <img src="img/payment.jpg">
+					</p>
+				</div>
+			</div>
 		</div>
 		<%
 			}
