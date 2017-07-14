@@ -20,7 +20,7 @@
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 		<h2>User Sign Up</h2>
-			<form action="${pageContext.request.contextPath}/signupServlet" method="post" id="form-upload">
+			<form action="${pageContext.request.contextPath}/signupServlet" method="post" >
 			<div class="form-group">
 				<label for="firstName">First Name:</label> 
 				<input type="text" class="form-control" name="firstName" placeholder="First Name">

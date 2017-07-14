@@ -22,14 +22,14 @@
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 		<h2>Update Profile</h2>
-		<form action="">
+		<form action="updateprofileServlet" method="post">
 			<div class="form-group">
 				<label for="firstName">First Name:</label> 
 				<input type="text" class="form-control" name="firstName" value="${user.givenName}" placeholder="First Name">
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name:</label> 
-				<input type="text" class="form-control" name="lastName" value="${user.surName}placeholder="Last Name">	
+				<input type="text" class="form-control" name="lastName" value="${user.surName}" placeholder="Last Name">	
 			</div>
 			<div class="form-group">
 				<label for="dob">Date of Birth</label> 
@@ -64,7 +64,7 @@
 				<label for="profilepic">Choose your profile picture:</label>
 				<input type="file" name="file" size="60"/>
         		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
-        		<img alt="" src="${user.imgurl}" id="test-img-prev">
+        		<img alt="" src="${user.imgUrl}" id="test-img-prev">
 			</div>
 			<button type="submit" class="btn btn-default" value="sendform">Confirm Changes</button>
 		</form>

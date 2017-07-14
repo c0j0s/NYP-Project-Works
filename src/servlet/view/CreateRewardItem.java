@@ -1,29 +1,23 @@
 package servlet.view;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Activity;
-import database.AccountDB;
-import database.ActivityDB;
-
 /**
- * Servlet implementation class ActRegLink
+ * Servlet implementation class CreateRewardItem
  */
-@WebServlet("/ActReg")
-public class ActReg extends HttpServlet {
+@WebServlet("/CreateRewardItem")
+public class CreateRewardItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActReg() {
+    public CreateRewardItem() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +26,8 @@ public class ActReg extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("actId"));
-		request.setAttribute("activityRegistration", activityRegistration);
-		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("pages/reward-create.jsp").forward(request, response);
 	}
 
 	/**

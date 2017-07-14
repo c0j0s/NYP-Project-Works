@@ -71,5 +71,24 @@ public class AccountDB extends DBAO{
 			throw new Exception("Error:"+ex.getMessage());
 		}
 	}
+	public void updateMember(Account ac) throws Exception{
+		try{
+			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?"
+					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
+			PreparedStatement prepStmt=con.prepareStatement(updateStatement);
+			prepStmt.setString(1, ac.getGivenName());
+			prepStmt.setString(2, ac.getSurName());
+			prepStmt.setDate(3, (Date) ac.getDob());
+			prepStmt.setString(4, Character.toString(ac.getGender()));
+			prepStmt.setString(5, ac.getEmail());
+			prepStmt.setString(6, ac.getAddress());
+			prepStmt.setInt(7, ac.getMobileno());
+			prepStmt.setString(8, ac.getPassword());
+			prepStmt.setString(9, ac.getImgUrl());
+			prepStmt.setString(10, ac.getAccountId());
+		}catch(Exception ex){
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
 	
 }

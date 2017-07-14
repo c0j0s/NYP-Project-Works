@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 			else{
 
 				System.out.println("Log loginservlet: fail");
+				request.setAttribute("message", "Incorrect UserID or Password.");
 				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 			}
 		}catch(Exception ex){

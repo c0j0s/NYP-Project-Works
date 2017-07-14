@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
-import database.AccountDB;
+import bean.RewardItem;
 import database.ActivityDB;
+import database.RewardItemDB;
 
 /**
- * Servlet implementation class ActRegLink
+ * Servlet implementation class RedemptionList
  */
-@WebServlet("/ActReg")
-public class ActReg extends HttpServlet {
+@WebServlet("/RedemptionList")
+public class RedemptionList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActReg() {
+    public RedemptionList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +32,13 @@ public class ActReg extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("actId"));
-		request.setAttribute("activityRegistration", activityRegistration);
-		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RewardItemDB adb = new RewardItemDB();
+		ArrayList<RewardItem> rewardList = adb.getRewardItem(null);
+		request.setAttribute("rewardList", rewardList);
+		request.getRequestDispatcher("pages/rewardList.jsp").forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
