@@ -1,4 +1,4 @@
-<div class="panel panel-default Forum-card">
+<div class="panel panel-default Forum-card ${post.postStatus eq 'closed' ? 'post-closed':'' }">
 	<div class="panel-body">
 		<div class="col-sm-2 text-center">
 			<img alt="profile image" src="${post.accountImgUrl }"
@@ -9,7 +9,8 @@
 			<div class="post-link"
 				onclick="location.href='Post?postId=${post.postId}'">
 				<h4>${post.postTitle}</h4>
-				<small class="">${post.date}</small>
+				<small class="">${post.date}</small>&nbsp
+				 ${post.postStatus eq 'closed' ? '<span class="badge"><span class="glyphicon glyphicon-star"></span> Answered</span>':'' }
 			</div>
 			<div class="Forum-post-control-grps">
 				<div class="btn-toolbar" role="toolbar" aria-label="...">

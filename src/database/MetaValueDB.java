@@ -117,7 +117,6 @@ public class MetaValueDB extends DBAO{
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, action);
-			System.out.println("log 120"+ps);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("accountId"));

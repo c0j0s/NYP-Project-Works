@@ -41,9 +41,10 @@
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/RedemptionList">Reward Redemption</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/test.jsp">component testing page</a></li>
 			</ul>
-			<form class="navbar-form navbar-right" role="search">
+			<form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/Search?">
 			  <div class="form-group">
 			    <input type="text" class="form-control" name="globalSearch" placeholder="Search">
+			 	<input type="hidden" class="form-control" name="searchIn" value="all">
 			  </div>
 			  <button type="submit" class="btn btn-default">Submit</button>
 			</form>

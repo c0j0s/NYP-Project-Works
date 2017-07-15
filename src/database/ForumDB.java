@@ -75,7 +75,7 @@ public class ForumDB extends DBAO{
 		try {
 			PreparedStatement ps;
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC";
+				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postStatus DESC,postDate DESC";
 			}
 	
 			ps = con.prepareStatement(statement);
@@ -133,7 +133,7 @@ public class ForumDB extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start,String category){
-		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postDate DESC limit " + start + ", 100";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
 		System.out.println(stmt);
 		return getPost(stmt);
 	}

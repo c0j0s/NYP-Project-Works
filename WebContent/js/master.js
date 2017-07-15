@@ -105,6 +105,7 @@ $( document ).ready(function() {
 		});
 		$(".post-button-action-group").empty();
 		$(".post-button-action-group").append("<button type='button' class='btn btn-success btn-block' disabled>Post Closed</button> ");
+		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
 		$(this).remove();
 	})
 	/**

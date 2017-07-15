@@ -13,7 +13,7 @@
 					</div>
 					<c:if test="${post.tagList != '' ? true:false }">
 						<div class="col-sm-3">	
-						<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>	
+						<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
 						<span class="tab-title">${post.tagList }</span>	
 					</div>
 					</c:if>
