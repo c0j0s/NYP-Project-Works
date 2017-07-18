@@ -2,7 +2,7 @@ package bean;
 
 public class Post extends MetaValue{
 	private String postId,postTitle,postContent,postCategory,tagList,postStatus,accountId,activityId,bestAnswer;
-	private int points,commentCount;
+	private int points,commentCount,hitLevel;
 	private char valid, hideId;
 	
 	
@@ -91,6 +91,14 @@ public class Post extends MetaValue{
 
 	public void setBestAnswer(String bestAnswer) {
 		this.bestAnswer = bestAnswer;
+	}
+
+	public int getHitLevel() {
+		return hitLevel;
+	}
+
+	public void setHitLevel(int hitLevel) {
+		this.hitLevel = hitLevel;
 	}
 
 }

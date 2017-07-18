@@ -14,9 +14,7 @@
 					<jsp:include page="likeButtons.jsp">
 						<jsp:param value="${comment.likeAccounts }" name="likeAccounts"/>
 						<jsp:param value="${comment.dislikeAccounts }" name="dislikeAccounts"/>
-						<jsp:param value="post" name="table"/>
 						<jsp:param value="${comment.commentId }" name="Id"/>
-						<jsp:param value="commentId" name="colName"/>
 						<jsp:param value="${comment.likeCount }" name="likeCount"/>
 						<jsp:param value="${comment.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>

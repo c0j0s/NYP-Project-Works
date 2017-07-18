@@ -17,7 +17,6 @@
 <button type="button"
 	class="btn btn-default btn-sm btn-no-border meta-value meta-like-btn"
 	data-id="${param.Id}" 
-	data-colName="${param.colName}"
 	data-count="${param.likeCount}"
 	${dislikedisable eq true ? 'disabled':'' }>
 	<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
@@ -26,7 +25,6 @@
 <button type="button" 
 	class="btn btn-default btn-sm btn-no-border meta-value meta-dislike-btn"
 	data-id="${param.Id}" 
-	data-colName="${param.colName}" 
 	data-count="${param.dislikeCount}"
 	${likedisable eq true ? 'disabled':'' }>
 	<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>

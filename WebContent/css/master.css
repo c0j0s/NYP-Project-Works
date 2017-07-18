@@ -129,6 +129,9 @@ footer{
 	padding-top:20px;
 	padding-bottom:20px;
 }
+.Forum-card{
+    margin-bottom: 10px;
+}
 .post-link{
 	cursor:pointer;
 	margin-bottom:7px;
@@ -200,6 +203,7 @@ footer{
 	padding:5px;
 	margin: 0px;
 }
+
 /*=============================================================
 	CSS for activity
 */
