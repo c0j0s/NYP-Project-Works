@@ -13,10 +13,11 @@
 				<jsp:param value="${tPost.dislikeCount }" name="dislikeCount"/>
 			</jsp:include>
 			<button type="button"
-				class="btn btn-default btn-sm btn-no-border">
-				<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+				class="btn btn-danger btn-sm btn-no-border">
+				<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
 				<span>${tPost.hitLevel}</span>
 			</button>
+			<br>
 			<br>
 		    <button type="button" onclick="location.href='${pageContext.request.contextPath}/Post?postId=${tPost.postId}'" class="btn btn-primary">Participate</button>
 		  </div>
