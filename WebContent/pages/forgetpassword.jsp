@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -18,40 +20,14 @@
 <%-- end of header --%>
 
 <div class="container">
-		<div class="col-md-5">
-		<form action="${pageContext.request.contextPath}/LoginServlet" method="post" id="login">
-			<div class="form-group">Email:<input type="text" class="form-control" placeholder="email" name="email"></div>
-   			 <div class="form-group">Password:<input type="password" class="form-control" placeholder="password" name="userPw"></div>
-   			<button type="submit" class="btn btn-default">Login</button>
-   			
-   			<%if(request.getAttribute("message")!=null){%>
-   					<%=request.getAttribute("message") %>
-   			<%} %>
-   		
-   		</form>
- 		</div>
-  		
-	
+	<jsp:include page="parts/page-header.jsp"></jsp:include>
+content goes here
+
 </div>
 
 <%-- end of main container --%>
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>
-<script>
-$(document).ready(function () {
-    $('#login').validate({ 
-        rules: {
-            email: {
-                required: true,
-                email: true
-            },
-            userPw: {
-                required: true,
-            }
-        }
-    });
 
-});
-</script>
 </body>
 </html>

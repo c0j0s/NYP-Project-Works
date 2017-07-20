@@ -2,7 +2,7 @@
 <div class="page-header">
 	<c:choose>
 		<c:when test="${param.type eq 'forum' ? true : false}">
-			<h1 class="col-md-3 col-sm-4 pull-left">
+			<h1 class="col-md-3 col-sm-5 pull-left">
 				<a href="${pageContext.request.contextPath}/Forum"> Family Forum
 					<br> <small class="page-header-subtitle">Everything
 						about life</small>
@@ -53,6 +53,36 @@
 				</a>
 			</h1>
 			<button onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
+		</c:when>
+		<c:when test="${param.type == 'search'? true:false}">
+			<h1 class="col-md-3 col-sm-5 pull-left">
+				<a href="${pageContext.request.contextPath}/Search">${param.title }
+				</a>
+			</h1>
+			<form action="Search" id="searchForm">
+				<div class="col-sm-5 col-sm-6 row">
+					<div class="col-sm-3">
+						<div class="input-group">
+							<select class="form-control" name="searchIn">
+								<option value="all" ${searchIn eq 'all' ? 'selected' : ''}>All</option>
+								<option value="post" ${searchIn eq 'post' ? 'selected' : ''}>Forum</option>
+								<option value="activity"
+									${searchIn eq 'activity' ? 'selected' : ''}>Activity</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<input type="text" class="form-control" name="globalSearch"
+								placeholder="Search" value="${keyWord }"> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button"
+									onclick="this.form.submit()">Go!</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
 		</c:when>
 		<c:otherwise>
 			<h1

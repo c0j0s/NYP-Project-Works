@@ -1,29 +1,25 @@
-package servlet.view;
+package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Activity;
-import bean.RewardItem;
 import database.ForumDB;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class pickBestAnswer
  */
-@WebServlet("/Index")
-public class Index extends HttpServlet {
+@WebServlet("/pickBestAnswer")
+public class pickBestAnswer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public pickBestAnswer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +28,10 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String postId = request.getParameter("postid");
+		String commentId = request.getParameter("commentid");
 		ForumDB fdb = new ForumDB();
-		
-		ArrayList<bean.Post> trendingPost = fdb.getTrendingPost();
-		//ArrayList<Activity> popularActivity = null;
-		//ArrayList<RewardItem> latestRedemptions = null;
-		
-		request.setAttribute("trendingPost", trendingPost);
-		//request.setAttribute("popularActivity", popularActivity);
-		//request.setAttribute("latestRedemptions", latestRedemptions);
-		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+		fdb.pickBestAnswer(postId,commentId);
 	}
 
 	/**

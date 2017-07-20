@@ -129,9 +129,15 @@ footer{
 	padding-top:20px;
 	padding-bottom:20px;
 }
+.Forum-card{
+    margin-bottom: 10px;
+}
 .post-link{
 	cursor:pointer;
 	margin-bottom:7px;
+}
+.post-closed{
+	background-color:rgba(91, 192, 222, 0.1);
 }
 .forum-post-control-grps{
 	margin-bottom:10px;
@@ -171,11 +177,17 @@ footer{
 	padding:10px;
 	text-decoration: line-through;
 }
+.post-best-answer .post-comment-content .panel-body{
+	background-color: rgba(255, 242, 180, 0.45);
+}
 .post-best-answer-btn{
 	display:none;
 }
-.post:hover .post-best-answer-btn{
+.post-comment:hover > div > .post-best-answer-btn{
 	display:block;
+}
+#post-best-answer-badge{
+	cursor:auto;
 }
 .comment-box{
 	background-color:rgba(51, 122, 183, 0.1);
@@ -191,6 +203,7 @@ footer{
 	padding:5px;
 	margin: 0px;
 }
+
 /*=============================================================
 	CSS for activity
 */
@@ -227,3 +240,17 @@ footer{
 	box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 }
 
+/*=============================================================
+	CSS for Search
+*/
+#searchForm div{
+	padding-left:0px;
+	padding-right:0px;
+}
+#searchForm .input-group{
+	margin-left:0px;
+	margin-right:0px;
+}
+#searchForm .input-group:first-child{
+	width:100%;
+}

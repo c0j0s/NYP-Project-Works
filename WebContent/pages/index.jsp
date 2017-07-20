@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,7 +12,7 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Template</title>
+<title>FamforLife</title>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -65,9 +66,7 @@
 			</div>
 		</div>
 		<div class="col-md-9 section-content">
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
+		<jsp:include page="parts/forum-trendingPost.jsp"></jsp:include>
 		</div>
 	</div>
 	

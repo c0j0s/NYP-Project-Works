@@ -37,8 +37,9 @@ public class PostListPagination extends SimpleTagSupport {
 		}
 		
 		for(int i = 1; i<=pageCount; i++){
-	    	
-			out.println("<li><a href='?category="+category+"&page="+ (base + i) +"'>"+ (base + i) +"</a></li>");
+	    	String active = "";
+	    	if(currentPage == i) active = "active";
+			out.println("<li class='"+ active +"'><a href='?category="+category+"&page="+ (base + i) +"'>"+ (base + i) +"</a></li>");
 	    	 
 	    }
 		

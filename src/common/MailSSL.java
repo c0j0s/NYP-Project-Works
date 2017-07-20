@@ -22,16 +22,10 @@ public class MailSSL  {
 	public static void main(String args[])throws Exception
 	{
 		ArrayList<InternetAddress> to = new ArrayList<InternetAddress>();
-		if(args.length==0)
-		{
-			to.add(new InternetAddress("c.junsheng@hotmail.com"));
-		}else
-		{
-			for(int i = 0 ; i < args.length;i++)
-				to.add(new InternetAddress(args[i]));
-		}
 
-		MailSSL sender = new MailSSL(to,"測試信件","內容如下:");
+		to.add(new InternetAddress("c.junsheng@hotmail.com"));
+
+		MailSSL sender = new MailSSL(to,"subject","content");
 		sender.run();
 		//new Main(to);
 

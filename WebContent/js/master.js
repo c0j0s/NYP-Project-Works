@@ -95,101 +95,163 @@ $( document ).ready(function() {
 		clearInterval(counter);
 	}
 	$(".post-best-answer-btn").on('click',function(){
+		var data = $(this).data()
+		$("#"+ data.commentid).addClass("post-best-answer");
 		$.ajax({
-			data: "",
-			url: ContextPath + "/UpdateMetaValue?mode=add", 
+			data: data,
+			url: ContextPath + "/pickBestAnswer", 
 			success:function(){
-				
 			}
 		});
+		$(".post-button-action-group").empty();
+		$(".post-button-action-group").append("<button type='button' class='btn btn-success btn-block' disabled>Post Closed</button> ");
+		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
+		$(this).remove();
 	})
 	/**
 	 *  method for meta value TODO update with real time database result
 	 */
-	$(".meta-value").click(function(){
-		var data = $(this).data();
-		$(this).addClass("meta-clicked");
-		$(this).removeClass("meta-value");
-		var meta = $(this).children(".meta-value-count");
-		var count = meta.data().count;
+//	$(".meta-value").click(function(){
+//		var data = $(this).data();
+//		$(this).addClass("meta-clicked");
+//		$(this).removeClass("meta-value");
+//		var meta = $(this).children(".meta-value-count");
+//		var count = meta.data().count;
+//		
+//		if(data.action === "like"){
+//			if($(this).next().attr("disabled") === undefined){
+//				console.log("like");
+//				if(count != meta.data().count){
+//					count = meta.data().count + 1;
+//				}
+//				$(this).next().attr("disabled","disabled");
+//				addMetaValue(data,function(){
+//					meta.html(count);
+//				});
+//			}else{
+//				console.log("liked");
+//				if(count == meta.data().count){
+//					count = meta.data().count - 1;
+//				}else{
+//					count = meta.data().count;
+//				}
+//				
+//				$(this).next().removeAttr("disabled");
+//				removeMetaValue(data,function(){
+//					meta.html(count);
+//				});
+//			}
+//			
+//		}else if(data.action === "dislike"){
+//			if($(this).prev().attr("disabled") === undefined){
+//				console.log("dislike");
+//				if(count != meta.data().count){
+//					count = meta.data().count + 1;
+//				}else{
+//					count = meta.data().count - 1;
+//				}
+//				$(this).prev().attr("disabled","disabled");
+//				addMetaValue(data,function(){
+//					meta.html(count);
+//				});
+//			}else{
+//				console.log("disliked");
+//				if(count == meta.data().count){
+//					count = meta.data().count + 1;
+//				}else{
+//					count = meta.data().count;
+//				}
+//				$(this).prev().removeAttr("disabled");
+//				removeMetaValue(data,function(){
+//					meta.html(count);
+//				});
+//			}
+//		}else if(data.action === "follow"){
+//			
+//		}
+//		
+//	});
+//	
+//	function addMetaValue(metaData,callback){
+//		$.ajax({
+//			url: ContextPath + "/UpdateMetaValue?mode=add", 
+//			data: metaData,
+//			success: function(result){
+//				callback();
+//			},
+//			error:function(jqXHR, exception){
+//				console.log("ajax error"+jqXHR.responseText)
+//			}
+//		});
+//	}
+//	
+//	function removeMetaValue(metaData,callback){
+//		$.ajax({
+//			url: ContextPath + "/UpdateMetaValue?mode=remove", 
+//			data: metaData,
+//			success: function(result){
+//				callback();
+//			}
+//		});
+//	}
+	
+	$(".meta-like-btn").on('click',function(){
+		var mdata = $(this).data();
+		var id = mdata.id;
+		var colName = mdata.colName;
+		var loadCount = mdata.count;
+		var next = $(this).next();
+		var operator;
+		var displayCount = $(this).children(".meta-value-count");
+		console.log(mdata);
 		
-		if(data.action === "like"){
-			if($(this).next().attr("disabled") === undefined){
-				console.log("like");
-				if(count != meta.data().count){
-					count = meta.data().count + 1;
-				}
-				$(this).next().attr("disabled","disabled");
-				addMetaValue(data,function(){
-					meta.html(count);
-				});
-			}else{
-				console.log("liked");
-				if(count == meta.data().count){
-					count = meta.data().count - 1;
-				}else{
-					count = meta.data().count;
-				}
-				
-				$(this).next().removeAttr("disabled");
-				removeMetaValue(data,function(){
-					meta.html(count);
-				});
-			}
-			
-		}else if(data.action === "dislike"){
-			if($(this).prev().attr("disabled") === undefined){
-				console.log("dislike");
-				if(count != meta.data().count){
-					count = meta.data().count + 1;
-				}else{
-					count = meta.data().count - 1;
-				}
-				$(this).prev().attr("disabled","disabled");
-				addMetaValue(data,function(){
-					meta.html(count);
-				});
-			}else{
-				console.log("disliked");
-				if(count == meta.data().count){
-					count = meta.data().count + 1;
-				}else{
-					count = meta.data().count;
-				}
-				$(this).prev().removeAttr("disabled");
-				removeMetaValue(data,function(){
-					meta.html(count);
-				});
-			}
-		}else if(data.action === "follow"){
-			
+		if(next.attr('disabled')){
+			next.removeAttr("disabled");
+			operator = 'subtract'
+		}else{
+			operator = 'add'
+			next.attr("disabled","disabled");
 		}
 		
-	});
-	
-	function addMetaValue(metaData,callback){
 		$.ajax({
-			url: ContextPath + "/UpdateMetaValue?mode=add", 
-			data: metaData,
+			url: ContextPath + "/UpdateMetaValue?action=like&operator="+operator, 
+			data: mdata,
 			success: function(result){
-				callback();
-			},
-			error:function(jqXHR, exception){
-				console.log("ajax error"+jqXHR.responseText)
+				console.log(result)
+				displayCount.html(result);
 			}
 		});
-	}
+		
+	})
 	
-	function removeMetaValue(metaData,callback){
+	$(".meta-dislike-btn").on('click',function(){
+		var mdata = $(this).data();
+		var id = mdata.id;
+		var colName = mdata.colName;
+		var loadCount = mdata.count;
+		var prev = $(this).prev();
+		var operator;
+		var displayCount = $(this).children(".meta-value-count");
+		console.log(mdata);
+
+		if(prev.attr('disabled')){
+			prev.removeAttr("disabled");
+			operator = 'subtract';
+		}else{
+			operator = 'add';
+			prev.attr("disabled","disabled");
+		}
+
 		$.ajax({
-			url: ContextPath + "/UpdateMetaValue?mode=remove", 
-			data: metaData,
+			url: ContextPath + "/UpdateMetaValue?action=dislike&operator="+operator, 
+			data: mdata,
 			success: function(result){
-				callback();
+				console.log(result)
+				displayCount.html(result);
 			}
 		});
-	}
-	
+
+	})
 	/**
 	 * methods for file upload
 	 */
@@ -238,6 +300,9 @@ $( document ).ready(function() {
 		  callback();
 		});		
 	}
+	/**
+	 * methods for activity
+	 */
 	$("#generate1,#generate2").on('change', function () {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();

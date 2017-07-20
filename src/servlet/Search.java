@@ -1,4 +1,4 @@
-package servlet.view;
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Activity;
-import bean.RewardItem;
-import database.ForumDB;
+import bean.Result;
+import database.DBAO;
+import database.SearchDB;
 
 /**
- * Servlet implementation class Index
+ * Servlet implementation class Search
  */
-@WebServlet("/Index")
-public class Index extends HttpServlet {
+@WebServlet("/Search")
+public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index() {
+    public Search() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +32,23 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ForumDB fdb = new ForumDB();
+		String keyWord = request.getParameter("globalSearch");
+		if (!keyWord.equals("")) {
+			String searchIn = request.getParameter("searchIn");
+			String servletPath = (searchIn.equals("post")) ? "Post" : "ActFull";
+			SearchDB db = new SearchDB();
+			ArrayList<Result> resultList;
+			if(searchIn.equals("all")) {
+				resultList = db.searchAll(keyWord);
+			}else {
+				resultList = db.searchSpecific(searchIn,keyWord,servletPath);
+			}
 		
-		ArrayList<bean.Post> trendingPost = fdb.getTrendingPost();
-		//ArrayList<Activity> popularActivity = null;
-		//ArrayList<RewardItem> latestRedemptions = null;
-		
-		request.setAttribute("trendingPost", trendingPost);
-		//request.setAttribute("popularActivity", popularActivity);
-		//request.setAttribute("latestRedemptions", latestRedemptions);
-		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+			request.setAttribute("searchIn", searchIn);
+			request.setAttribute("keyWord", keyWord);
+			request.setAttribute("resultList", resultList);
+		}
+		request.getRequestDispatcher("pages/search.jsp").forward(request, response);
 	}
 
 	/**

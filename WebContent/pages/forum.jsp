@@ -30,31 +30,7 @@
 		    <h3 class="panel-title">Trending Topics</h3>
 		  </div>
 		  <div class="panel-body">
-		    <% 
-		    for(int i = 0; i<3; i++){
-		    	%>
-		    	<div class="col-sm-4 ">
-					<div class="panel panel-default Forum-card forum-trending-card">
-					  <div class="panel-body text-center">
-					    <img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-medium">
-					    <p>this will be the title area</p>
-					    <div class="Forum-post-control-grps">
-					    	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
-							</button>
-					    </div>
-					    <button type="button" onclick="location.href='post.jsp?postId=000000'" class="btn btn-primary">Participate</button>
-					  </div>
-					</div>
-				</div>
-		    	<%
-		    } %>
+		  <jsp:include page="parts/forum-trendingPost.jsp"></jsp:include>
 		  </div>
 		</div>
 		
@@ -76,7 +52,7 @@
 		    			<jsp:param value="${post}" name="post"/>
 		    		</jsp:include>
 		    	</c:forEach>
-		    	<f:PostListPagination pageCount="${f:getMaxCount(page) }" currentPage="${page }" category="${postCatTab }"/>
+		    	<f:PostListPagination pageCount="${postCount }" currentPage="${page }" category="${postCatTab }"/>
 		    </div>
 		    </c:forEach>
 		  </div>

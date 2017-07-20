@@ -47,7 +47,10 @@ public class Forum extends HttpServlet {
 		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 9;
 		
 		ArrayList<Post> postList = fdb.getPost(start, category);
+		ArrayList<Post> trendingPost = fdb.getTrendingPost();
 		request.setAttribute("postList", postList);
+		request.setAttribute("trendingPost", trendingPost);
+		request.setAttribute("postCount", fdb.getPostCount(category));
 		request.setAttribute("category", category);
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("pages/forum.jsp").forward(request, response);

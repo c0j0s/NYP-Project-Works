@@ -2,6 +2,7 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Comment;
+import common.UID;
 import database.CommentDB;
 import database.ForumDB;
 
@@ -37,11 +40,33 @@ public class Post extends HttpServlet {
 		
 		ArrayList<bean.Post> p = fdb.getPostById(postId);
 		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, 0, 10);
+		Iterator<bean.Comment> comIter = c.iterator();
+		Comment bestAnswer = null;
+		
+		while(comIter.hasNext()) {
+			Comment com = (bean.Comment) comIter.next();
+			
+			if(com.getCommentId().equals(p.get(0).getBestAnswer())) {
+				bestAnswer = com;
+				comIter.remove();
+				System.out.println("servlet 1 match " + com.getAccountId());
+			}else {
+				System.out.println("servlet 1 " + com.getAccountId());
+			}
+		}
+
+		ArrayList<bean.Comment> newC = new ArrayList<bean.Comment>();
+		if(bestAnswer != null) {
+			newC.add(bestAnswer);
+		}
+		newC.addAll(c);
+		
 		System.out.println(p.size());
 		if(p.size() > 0) {
 			if(p.get(0).getValid() == 'Y') {
+				System.out.println("log comment size:"+newC.size());
 				request.setAttribute("postList", p);
-				request.setAttribute("commentList", c);
+				request.setAttribute("commentList", newC);
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
