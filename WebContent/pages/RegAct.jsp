@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*" %>
+	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -24,7 +24,7 @@
 	rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css'
 	rel='stylesheet'>
-	<link href='${pageContext.request.contextPath}/css/card-js.min.css'
+<link href='${pageContext.request.contextPath}/css/card-js.min.css'
 	rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Insert title here</title>
@@ -41,6 +41,7 @@
 		</jsp:include>
 		<div class="col-md-1 pull-left"></div>
 		<div class=col-md-8>
+		
 			<%
 				DecimalFormat df = new DecimalFormat("##.00");
 			%>
@@ -57,7 +58,6 @@
 					actfl = (ArrayList<Activity>) request.getAttribute("activityRegistration");
 
 					actf = actfl.get(0);
-				
 			%>
 
 
@@ -80,49 +80,83 @@
 			<p>
 				Activity Location :
 				<%=actf.getActivityLocation()%></p>
+				<form action="${pageContext.request.contextPath}/RegisterActivity"
+				method="post" id="form-upload">
 			<p>
-				Activity Fee Per Participant : $<span id="generate2">
-				<%=df.format(actf.getActivityFee())%></span></p>
+				Activity Fee Per Participant : $<span id="generate2"> <%=df.format(actf.getActivityFee())%></span>
+			</p>
 
 			<p>Your ID : ${user.accountId}</p>
 			<p>Your Name : ${user.givenName}</p>
-			<form action="${pageContext.request.contextPath}/RegisterActivity" method="post" id="form-upload">
-			<div class="clearfix"><p class ="col-md-6">Number Of Participants : <select name="generate1" id="generate1"
-							class="select form-control" >
-				
-				<% for (int z = 0; z < 5; z++) {%>
-					<option value="<%=z + 1%>"><%=z + 1%></option>
-					<%} %>	</select></p>
-				<p>Total Price : <input type="text" id="total" name="total" class="col-md-6" disabled></p></div>
+			
+				<div class="clearfix">
+					<p class="col-md-6">
+						Number Of Participants : <select name="generate1" id="generate1"
+							class="select form-control">
 
-			<ul class="nav nav-tabs">
-			<input type="hidden" value="0" id="paytype">
-				<li class="active" onclick="paytype('1')"><a data-toggle="tab" href="#cash">Pay By
-						Cash</a>
-						</li>
-				<li><a data-toggle="tab" href="#online" onclick="paytype('2')">Online Payment</a></li>
-
-			</ul>
-
-			<div class="tab-content">
-				<div id="cash" class="tab-pane fade in active">
-					<h3>Pay By Cash</h3>
+							<%
+								for (int z = 0; z < 5; z++) {
+							%>
+							<option value="<%=z + 1%>"><%=z + 1%></option>
+							<%
+								}
+							%>
+						</select>
+					</p>
 					<p>
-					Go to the nearest 7-11 and request payment for Family For Life and present id number <%=request.getAttribute("registerId") %>
+						Total Price : <input type="text" id="total" name="total"
+							class="col-md-6" disabled>
 					</p>
 				</div>
-				<div id="online" class="tab-pane fade">
-					<h3>Online Payment</h3>
-					<p>
-						Supported Payment Types : <img src="img/payment.jpg"> 
+
+				<ul class="nav nav-tabs">
+					<input type="hidden" value="0" id="paytype">
+					<li class="active" onclick="paytype('1')"><a data-toggle="tab"
+						href="#cash">Pay By Cash</a></li>
+					<li><a data-toggle="tab" href="#online" onclick="paytype('2')">Online
+							Payment</a></li>
+
+				</ul>
+
+				<div class="tab-content">
+					<div id="cash" class="tab-pane fade in active">
+						<h3>Pay By Cash</h3>
+						<p>
+							Go to the nearest 7-11 and request payment for Family For Life
+							and present id number
+							<%=request.getAttribute("registerId")%>
+						</p>
+					</div>
+					<div id="online" class="tab-pane fade">
+						<h3>Online Payment</h3>
+						<p>
+							Supported Payment Types : <img src="img/payment.jpg">
+
+						</p>
+						<p>
 						
-					</p>
-					<p>Card Number: <% for (int z = 0; z < 4; z++) {%><input type="number" name="card<%=z %>" min="0000" max="9999"><%} %><br></p>
-					
+							<div class="card-js">
+								<input class="card-number my-custom-class" name="card-number">
+								<input class="name" id="the-card-name-id"
+									name="card-holders-name" placeholder="Name on card"> <input
+									class="expiry-month" name="expiry-month"> <input
+									class="expiry-year" name="expiry-year"> <input
+									class="cvc" name="cvc">
+							</div>
+						
+						<br>
+						</p>
+
+					</div>
 				</div>
-			</div>
-			</form>
+				<div class="col-md-12">
+					<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
+					<p class="col-md-2"></p>
+					<button type="submit" class="col-md-5 btn btn-success  pull-right">Register For Activity</button>
+				</div>
+		</form>	
 		</div>
+		
 		<%
 			}
 		%>
