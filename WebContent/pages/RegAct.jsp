@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <meta charset="utf-8">
 <%!ActivityDB actdb = new ActivityDB();%>
@@ -22,6 +23,8 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css'
 	rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css'
+	rel='stylesheet'>
+	<link href='${pageContext.request.contextPath}/css/card-js.min.css'
 	rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Insert title here</title>
