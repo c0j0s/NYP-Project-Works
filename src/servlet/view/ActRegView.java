@@ -18,13 +18,13 @@ import database.ActivityDB;
  * Servlet implementation class ActRegLink
  */
 @WebServlet("/ActReg")
-public class ActReg extends HttpServlet {
+public class ActRegView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActReg() {
+    public ActRegView() {
         super();
         // TODO Auto-generated constructor stub
     }

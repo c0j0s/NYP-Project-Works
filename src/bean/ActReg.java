@@ -1,6 +1,6 @@
 package bean;
 
-public class ActReg {
+public class ActReg extends BankDetails {
 private String registrationId;
 private java.sql.Timestamp registrationDate;
 private double registrationAmtPaid;

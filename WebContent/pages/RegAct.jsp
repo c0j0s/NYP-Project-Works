@@ -81,7 +81,7 @@
 				Activity Location :
 				<%=actf.getActivityLocation()%></p>
 				<form action="${pageContext.request.contextPath}/RegisterActivity"
-				method="post" id="form-upload">
+				method="post" >
 			<p>
 				Activity Fee Per Participant : $<span id="generate2"> <%=df.format(actf.getActivityFee())%></span>
 			</p>
@@ -136,11 +136,11 @@
 						<p>
 						
 							<div class="card-js">
-								<input class="card-number my-custom-class" name="card-number">
+								<input class="card-number my-custom-class" name="cardNumber">
 								<input class="name" id="the-card-name-id"
-									name="card-holders-name" placeholder="Name on card"> <input
-									class="expiry-month" name="expiry-month"> <input
-									class="expiry-year" name="expiry-year"> <input
+									name="NameOfCardholder" placeholder="Name on card"> <input
+									class="expiry-month" name="expiryMonth"> <input
+									class="expiry-year" name="expiryYear"> <input
 									class="cvc" name="cvc">
 							</div>
 						
