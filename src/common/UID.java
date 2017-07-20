@@ -35,4 +35,8 @@ public class UID{
 		UUID uid = UUID.randomUUID();
 		return uid;
 	}
+	public static String genRegistrationId(){
+		String id = "REG" + genId();
+		return id;
+	}
 }

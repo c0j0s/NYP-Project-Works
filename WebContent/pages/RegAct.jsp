@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*" %>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -54,6 +54,7 @@
 					actfl = (ArrayList<Activity>) request.getAttribute("activityRegistration");
 
 					actf = actfl.get(0);
+				
 			%>
 
 
@@ -82,18 +83,21 @@
 
 			<p>Your ID : ${user.accountId}</p>
 			<p>Your Name : ${user.givenName}</p>
+			<form action="${pageContext.request.contextPath}/RegisterActivity" method="post" id="form-upload">
 			<div class="clearfix"><p class ="col-md-6">Number Of Participants : <select name="generate1" id="generate1"
 							class="select form-control" >
 				
 				<% for (int z = 0; z < 5; z++) {%>
 					<option value="<%=z + 1%>"><%=z + 1%></option>
 					<%} %>	</select></p>
-				<p>Total Price : <input type="text" id="total" name="total" class="col-md-6" disabled></input</p></div>
+				<p>Total Price : <input type="text" id="total" name="total" class="col-md-6" disabled></p></div>
 
 			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#cash">Pay By
-						Cash</a></li>
-				<li><a data-toggle="tab" href="#online">Online Payment</a></li>
+			<input type="hidden" value="0" id="paytype">
+				<li class="active" onclick="paytype('1')"><a data-toggle="tab" href="#cash">Pay By
+						Cash</a>
+						</li>
+				<li><a data-toggle="tab" href="#online" onclick="paytype('2')">Online Payment</a></li>
 
 			</ul>
 
@@ -101,18 +105,20 @@
 				<div id="cash" class="tab-pane fade in active">
 					<h3>Pay By Cash</h3>
 					<p>
-						Submit
-						<%=df.format(actf.getActivityFee())%>
-						to any community centre 5 days before the start of the activity
+					Go to the nearest 7-11 and request payment for Family For Life and present id number <%=request.getAttribute("registerId") %>
 					</p>
 				</div>
 				<div id="online" class="tab-pane fade">
 					<h3>Online Payment</h3>
 					<p>
-						Supported Payment Types : <img src="img/payment.jpg">
+						Supported Payment Types : <img src="img/payment.jpg"> 
+						
 					</p>
+					<p>Card Number: <% for (int z = 0; z < 4; z++) {%><input type="number" name="card<%=z %>" min="0000" max="9999"><%} %><br></p>
+					
 				</div>
 			</div>
+			</form>
 		</div>
 		<%
 			}

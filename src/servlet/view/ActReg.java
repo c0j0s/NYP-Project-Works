@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
+import common.UID;
 import database.AccountDB;
 import database.ActivityDB;
 
@@ -33,8 +34,11 @@ public class ActReg extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
+		UID uid = new UID();
+		String RegistrationId = uid.genRegistrationId();
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("actId"));
 		request.setAttribute("activityRegistration", activityRegistration);
+		request.setAttribute("registerId",RegistrationId);
 		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
 	}
 
