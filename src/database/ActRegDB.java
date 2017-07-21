@@ -30,6 +30,7 @@ public class ActRegDB extends DBAO{
 				reg.setUserAccountId(rs.getString("useraccountId"));
 				reg.setParticipantNo(rs.getInt("participantNo"));
 				reg.setActivityactivityId(rs.getString("ActivityactivityId"));
+				reg.setCardNumber(cardNumber);
 				System.out.println("record retrieve");
 				regList.add(reg);
 			}
@@ -38,6 +39,13 @@ public class ActRegDB extends DBAO{
 		}
 		return regList;
 	}
+	public String RegisterActivity(ActReg ar) {
+		String stmt = "insert into" + schema + ".bankdetails('bankNumber','nameOnCard','accountId') values(?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			
+		} catch(SQLException ex) {}
+		return null;}
 
 	
 }
