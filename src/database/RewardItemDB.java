@@ -72,6 +72,37 @@ public class RewardItemDB extends DBAO{
 		}
 		return "fail";
 	}
+	public String createReward(RewardItem rew){
+		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`, `rewardAvailability`, `rewardQuantity`, `imgUrl`, `valid`) "
+		+  "VALUES (?,?,?,?,?,?,?,?)";
+		try
+		{
+			PreparedStatement ps = con.prepareStatement(stmt);
+			rew.setRewardId(common.UID.genRewardId());
+			System.out.println(rew.getRewardId());
+			ps.setString(1, rew.getRewardId());
+			ps.setString(2, rew.getRewardTitle());
+			ps.setString(3, rew.getRewardDescription());
+			ps.setInt(4, rew.getPoints());
+			ps.setString(5,Character.toString(rew.getRewardAvailability()));
+			ps.setInt(6, rew.getRewardQuantity());
+			ps.setString(7, rew.getImgUrl());
+			ps.setString(8, Character.toString(rew.getValid()));
+			
+			int status = ps.executeUpdate();
+			
+			if(status!=0)
+			{
+				System.out.println("Recorded Added");
+				return rew.getRewardId();
+			}
+		}catch (Exception ex)
+		{
+			
+			
+		}
+		return "fail";
+	}
 	public ArrayList<RewardItem> getRewardItemById(String rewardId){
 		String stmt = "SELECT * FROM "+ schema +".rewarditem WHERE rewardId = '"+ rewardId +"'";
 		return getRewardItem(stmt);
