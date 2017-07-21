@@ -9,11 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.lang3.StringUtils;
 
-import bean.Account;
 import bean.Post;
 import database.DBAO;
 import database.ForumDB;
@@ -36,9 +33,8 @@ public class EditPost extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings({ "deprecation", "unlikely-arg-type" })
+	@SuppressWarnings({ "unlikely-arg-type" })
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession ss = request.getSession(true);
 		ForumDB fdb = new ForumDB();
 		String path = "";
 		

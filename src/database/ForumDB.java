@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,10 +45,10 @@ public class ForumDB extends DBAO{
 			}else{
 				ps.setString(10, null);
 			}
-			System.out.println(ps);
+
 			int status = ps.executeUpdate();
 			if(status != 0){
-				System.out.println("Log createPost() :" + ps);
+
 				ps.close();
 				return post.getPostId();
 			}else{
@@ -78,9 +77,6 @@ public class ForumDB extends DBAO{
 			}
 	
 			ps = con.prepareStatement(statement);
-			
-			
-			System.out.println("log Forum.java :" + ps);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -135,7 +131,6 @@ public class ForumDB extends DBAO{
 	 */
 	public ArrayList<Post> getPost(int start,String category){
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
-		System.out.println(stmt);
 		return getPost(stmt);
 	}
 		
@@ -156,7 +151,6 @@ public class ForumDB extends DBAO{
 	 */
 	public ArrayList<Post> getTrendingPost() {
 		String stmt = "Select * from ffl.trendinglist";
-		System.out.println(stmt);
 		return getPost(stmt);
 	}
 
@@ -205,7 +199,6 @@ public class ForumDB extends DBAO{
 		
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM "+ schema +".category");
-			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				categoryList.put(rs.getString("categoryId"), rs.getString("categoryName"));
@@ -230,24 +223,21 @@ public class ForumDB extends DBAO{
 		}
 		bodyStmt = bodyStmt.substring(0, (bodyStmt.length()-1));
 		String endStmt = " Where postId = ?";
-		System.out.println(bodyStmt);
+
 		try {
 			String statement = startStmt + bodyStmt + endStmt;
-			System.out.println("Log statement: " + statement);
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, postId);
 			
 			int status = ps.executeUpdate();
 			
 			if(status != 0) {
-				System.out.println("log updatePost("+ postId +"): (success)" + ps);
 				return postId;
 			}else {
 				ps.close();
 				return "fail";
 			}
 		} catch (SQLException e) {
-			System.out.println("log updatePost(): (fail)" + e.getMessage());
 			e.printStackTrace();
 		} 
 		return "fail";
@@ -281,14 +271,12 @@ public class ForumDB extends DBAO{
 	 */
 	public void pickBestAnswer(String postId, String commentId) {
 		// TODO Auto-generated method stub
-		System.out.println(postId);
-		System.out.println(commentId);
 		String stmt = "update ffl.post set bestAnswer = ?, postStatus = 'closed' where postId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, commentId);
 			ps.setString(2, postId);
-			System.out.println(ps);
+
 			int status = ps.executeUpdate();
 			if (status != 0) {
 				System.out.println("log pickBestAnswer(): (success)");

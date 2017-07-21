@@ -48,9 +48,6 @@ public class Post extends HttpServlet {
 			if(com.getCommentId().equals(p.get(0).getBestAnswer())) {
 				bestAnswer = com;
 				comIter.remove();
-				System.out.println("servlet 1 match " + com.getAccountId());
-			}else {
-				System.out.println("servlet 1 " + com.getAccountId());
 			}
 		}
 
@@ -60,10 +57,8 @@ public class Post extends HttpServlet {
 		}
 		newC.addAll(c);
 		
-		System.out.println(p.size());
 		if(p.size() > 0) {
 			if(p.get(0).getValid() == 'Y') {
-				System.out.println("log comment size:"+newC.size());
 				request.setAttribute("postList", p);
 				request.setAttribute("commentList", newC);
 			}else {

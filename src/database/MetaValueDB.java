@@ -14,31 +14,6 @@ public class MetaValueDB extends DBAO{
 	public MetaValueDB(){
 		super();
 	}
-		
-//	public boolean checkifMetaExist(String colName, String id, String accountId, String action) {
-//		String stmt = "select count(*) from "+ schema +".metavalue where "+ colName +" = ? AND accountId = ? AND action = ?";
-//		try {
-//			PreparedStatement ps = con.prepareStatement(stmt);
-//			ps.setString(1, id);
-//			ps.setString(2, accountId);
-//			ps.setString(3, action);
-//			System.out.println("Log checkifMetaExist(): "+ps);
-//			
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()) {
-//				if(rs.getInt(1) > 0) {
-//					return false;
-//				}else {
-//					return true;
-//				}
-//			}
-//			rs.close();
-//			ps.close();
-//		} catch (Exception e) {
-//			return false;
-//		}
-//		return false;
-//	}
 
 	/**
 	 * create post meta values
@@ -58,8 +33,6 @@ public class MetaValueDB extends DBAO{
 			PreparedStatement ps1 = con.prepareStatement(select);
 			ps1.setString(1, id);
 			ps1.setString(2, action);
-			System.out.println(ps);
-			System.out.println(ps1);
 			int status = ps.executeUpdate();
 			if(status != 0) {
 				ResultSet rs = ps1.executeQuery();
