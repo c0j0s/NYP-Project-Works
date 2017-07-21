@@ -64,7 +64,6 @@ $( document ).ready(function() {
 		
 		var span = 5;
 		counter = setInterval(function(){
-			span = span - 1;
 			$("#post-delete-countdown").html(span)
 			console.log(span)
 			if(span == 0){
@@ -77,10 +76,13 @@ $( document ).ready(function() {
 						success: function(result){	
 							location.href= ContextPath + "/Forum";
 						}
-					});		
+					});	
+				span = 0;
 				}else{
 					clearInterval(counter)
 				}
+			}else{
+				span = span - 1;
 			}
 		},1000)
 		

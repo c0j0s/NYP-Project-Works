@@ -48,18 +48,20 @@
 										<div class="post-comment  clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
 											id="${comment.commentId}">
 											<div class="col-sm-2" id="comment-best-answer">
-												<c:if test="${user != null ? true : false }">
-													<c:if test="${post.bestAnswer == null ? true : false }">
-														<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn" data-postId="${post.postId }" data-commentId="${comment.commentId }">
-														  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
-														  <sapn>Best<br>Answer</sapn>
-														</button>
-													</c:if>
-													<c:if test="${comment.commentId eq post.bestAnswer ? true : false }">
-														<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled>
-														  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
-														  <sapn>Best<br>Answer</sapn>
-														</button>
+												<c:if test="${user.accountId eq post.accountId}">
+													<c:if test="${user != null ? true : false }">
+														<c:if test="${post.bestAnswer == null ? true : false }">
+															<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn" data-postId="${post.postId }" data-commentId="${comment.commentId }">
+															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
+															  <sapn>Best<br>Answer</sapn>
+															</button>
+														</c:if>
+														<c:if test="${comment.commentId eq post.bestAnswer ? true : false }">
+															<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled>
+															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
+															  <sapn>Best<br>Answer</sapn>
+															</button>
+														</c:if>
 													</c:if>
 												</c:if>
 											</div>

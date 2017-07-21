@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Comment;
-import common.UID;
 import database.CommentDB;
 import database.ForumDB;
 
