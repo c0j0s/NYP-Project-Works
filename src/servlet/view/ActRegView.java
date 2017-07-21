@@ -35,7 +35,7 @@ public class ActRegView extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		String RegistrationId = common.UID.genRegistrationId();
-		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("actId"));
+		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
 		request.setAttribute("registerId",RegistrationId);
 		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);

@@ -9,11 +9,15 @@
 				</a>
 			</h1>
 			<div class="col-sm-5 col-sm-6 input-group pull-left">
-				<input type="text" class="form-control"
-					placeholder="Search forum..."> <span
-					class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
-				</span>
+				<form action="${pageContext.request.contextPath}/Search" method="get">
+					<input type="hidden" class="form-control" name="searchIn" value="post">
+					<div class="input-group">
+						<input type="text" class="form-control" name="globalSearch" placeholder="Search"> 
+						<span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="form.submit()">Go!</button>
+					</div>
+					</span>
+				</form>
 			</div>
 		</c:when>
 		<c:when test="${param.type eq 'activity' ? true : false}">
@@ -65,7 +69,7 @@
 						<div class="input-group">
 							<select class="form-control" name="searchIn">
 								<option value="all" ${searchIn eq 'all' ? 'selected' : ''}>All</option>
-								<option value="post" ${searchIn eq 'post' ? 'selected' : ''}>Forum</option>
+								<option value="post" ${searchIn eq 'post' ? 'selected' : ''}>Post</option>
 								<option value="activity"
 									${searchIn eq 'activity' ? 'selected' : ''}>Activity</option>
 							</select>

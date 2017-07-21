@@ -47,7 +47,7 @@
 			%>
 
 			<%
-				if (request.getParameter("actId") == null) {
+				if (request.getParameter("activityId") == null) {
 			%>
 			<script language="javascript">
 				window.location.href = "activitypageerror.jsp"
