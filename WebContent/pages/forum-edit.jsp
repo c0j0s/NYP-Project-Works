@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -13,6 +13,8 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
+<script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
 <title>${param.mode} a Question</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
 					<div class="panel-body ">	
 					<c:choose>
 						<c:when test="${param.mode eq 'create' ? true : false }">
-							<form action="${pageContext.request.contextPath}/CreatePost" method="post">
+							<form action="${pageContext.request.contextPath}/CreatePost" method="post" novalidate>
 							 	<div class="form-group">
 							   	 	<label for="postTitle">Question Title</label>
 							  		<input type="text" class="form-control" name="postTitle" id="postTitle" required>
@@ -85,7 +87,10 @@
 							  		<div class="post-old-content">
 							  		${post.postContent }
 							  		</div>
-							  		<textarea class="form-control" name="postContent" id="postContent" rows="5" required></textarea>
+							  		<div class="alert alert-warning" role="alert">You cannot edit content for more than 5 times</div>
+							  		<textarea class="form-control" name="postContent" id="postContent" rows="5">
+							  		
+							  		</textarea>
 							 	</div>
 							 	<div class="row">
 								  	<div class="form-group col-md-2">
@@ -119,7 +124,12 @@
 								  </label>
 								</div>
 							<br>
-							<button type="submit" class="btn btn-success btn-block">Update</button> 
+							<div class="post-button-action-group">
+							<p>
+								<button type="submit" class="btn btn-success  col-md-6">Update</button>
+								<button type="submit" class="btn btn-warning  col-md-6">Cancel</button> 
+							</p>
+							</div>
 							</form>
 							<!-- end of edit form -->
 							</c:forEach>

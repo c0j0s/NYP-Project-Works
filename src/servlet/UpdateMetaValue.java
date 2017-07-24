@@ -34,28 +34,25 @@ public class UpdateMetaValue extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			HttpSession s = request.getSession(true);
-			Account ac = (Account)s.getAttribute("account");
-			
-			String id = request.getParameter("id");
-			String colName = request.getParameter("colname");
-			String action = request.getParameter("action");
 			MetaValueDB m = new MetaValueDB();
-			
-			if(request.getParameter("mode").equals("add")){
-				if(m.checkifMetaExist(colName, id, ac.getAccountId(), action)) {
-					m.addMeta(colName, id, ac.getAccountId(), action);
-				}else {
-					PrintWriter out = response.getWriter();
-					System.out.println("MetaExist");
-					response.setStatus(400);
-					out.print("MetaExist");
-					out.flush();
-				}
-			}else{
-				m.removeMeta(colName, id, ac.getAccountId(), action);
+			PrintWriter out = response.getWriter();
+			String newCount;
+			System.out.println("meta sevlet doget");
+			Account ac = (Account)s.getAttribute("account");
+			String id = request.getParameter("id");
+			String action = request.getParameter("action");
+			String operators = request.getParameter("operator");
+			System.out.println(id + action + operators);
+			if(operators.equals("add")) {
+				newCount = m.addMeta(id, ac.getAccountId(), action);
+				System.out.println(newCount);
+				out.print(newCount);
+			}else if (operators.equals("subtract")) {
+				newCount = m.removeMeta(id, ac.getAccountId(), action);
+				System.out.println(newCount);
+				out.print(newCount);
 			}
-			
-			
+			out.flush();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

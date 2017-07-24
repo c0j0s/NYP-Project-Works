@@ -72,8 +72,6 @@ public class CommentDB extends DBAO{
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
 			
-			System.out.println("log CommentDB.java :" + ps);
-			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
@@ -123,13 +121,11 @@ public class CommentDB extends DBAO{
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
 		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
-		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
 	}
 	
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
 		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
-		System.out.println("Log getCommentByCommentId(): " + stmt);
 		return getComment(stmt);
 	}
 

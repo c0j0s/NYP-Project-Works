@@ -33,7 +33,7 @@ public class ActFull extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityFull = adb.getActivityById(request.getParameter("actId"));
+		ArrayList<Activity> activityFull = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityFull", activityFull);
 		request.getRequestDispatcher("pages/activityfull.jsp").forward(request, response);
 	}

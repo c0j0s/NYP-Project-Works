@@ -14,31 +14,6 @@ public class MetaValueDB extends DBAO{
 	public MetaValueDB(){
 		super();
 	}
-		
-	public boolean checkifMetaExist(String colName, String id, String accountId, String action) {
-		String stmt = "select count(*) from "+ schema +".metavalue where "+ colName +" = ? AND accountId = ? AND action = ?";
-		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, id);
-			ps.setString(2, accountId);
-			ps.setString(3, action);
-			System.out.println("Log checkifMetaExist(): "+ps);
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				if(rs.getInt(1) > 0) {
-					return false;
-				}else {
-					return true;
-				}
-			}
-			rs.close();
-			ps.close();
-		} catch (Exception e) {
-			return false;
-		}
-		return false;
-	}
 
 	/**
 	 * create post meta values
@@ -46,22 +21,25 @@ public class MetaValueDB extends DBAO{
 	 * @param accountId
 	 * @param action like|dislike|follow
 	 */
-	public String addMeta(String colName, String id, String accountId, String action){
+	public String addMeta(String id, String accountId, String action){
 		
-		String stmt = "INSERT INTO "+ schema +".metavalue (`"+ colName +"`, `accountId`, `action`) VALUES (?, ?, ?)";
+		String stmt = "INSERT INTO "+ schema +".metavalue (`parentId`, `accountId`, `action`)  VALUES (?, ?, ?)";
+		String select = "Select Count(*) from "+ schema +".metavalue where `parentId` = ? And action = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
-			System.out.println(ps);
-			int Status = ps.executeUpdate();
-			if(Status != 0){
-				System.out.println("Log addMeta(): success");
-				ps.close();
-				return "success";
-			}else{
-				System.out.println("Log addMeta(): fail");
+			PreparedStatement ps1 = con.prepareStatement(select);
+			ps1.setString(1, id);
+			ps1.setString(2, action);
+			int status = ps.executeUpdate();
+			if(status != 0) {
+				ResultSet rs = ps1.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			}else {
 				return "fail";
 			}
 			
@@ -71,25 +49,32 @@ public class MetaValueDB extends DBAO{
 		return "fail";
 	}
 	
-	public void removeMeta(String colName, String id, String accountId, String action) {
-		String stmt = "DELETE FROM "+ schema +".metavalue WHERE "+colName+"= ? AND accountId = ? AND action = ?";
+	public String removeMeta(String id, String accountId, String action) {
+		String stmt = "DELETE FROM "+ schema +".metavalue WHERE `parentId`= ? AND accountId = ? AND action = ?";
+				String select = "Select Count(*) from "+ schema +".metavalue where `parentId` = ? And action = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
+			PreparedStatement ps1 = con.prepareStatement(select);
+			ps1.setString(1, id);
+			ps1.setString(2, action);
 			
 			int status = ps.executeUpdate();
-			if(status != 0){
-				System.out.println("Log removeMeta(): success");
-			}else{
-				System.out.println("Log removeMeta(): fail");
+			if(status != 0) {
+				ResultSet rs = ps1.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			}else {
+				return "fail";
 			}
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return "fail";
 	}
 	
 	/**
@@ -101,11 +86,10 @@ public class MetaValueDB extends DBAO{
 	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "select p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m."+ colName +" where p."+ colName +" = ? AND action = ?";
+			String stmt = "select p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND action = ?";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, action);
-			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("accountId"));

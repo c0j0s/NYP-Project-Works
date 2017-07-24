@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
+import common.UID;
 import database.AccountDB;
 import database.ActivityDB;
 
@@ -17,13 +18,13 @@ import database.ActivityDB;
  * Servlet implementation class ActRegLink
  */
 @WebServlet("/ActReg")
-public class ActReg extends HttpServlet {
+public class ActRegView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActReg() {
+    public ActRegView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +34,10 @@ public class ActReg extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("actId"));
+		String RegistrationId = common.UID.genRegistrationId();
+		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
+		request.setAttribute("registerId",RegistrationId);
 		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
 	}
 
