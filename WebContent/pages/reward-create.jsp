@@ -79,7 +79,7 @@
 			
 				
 				<div class="col-md-12">
-					<input type="submit" value="create" class="col-md-5 btn btn-danger pull-left">
+					<button type="submit" class="col-md-5 btn btn-success  pull-right">Create</button>
 					<p class="col-md-2"></p>
 				</div>
 				<br>

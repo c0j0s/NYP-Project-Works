@@ -51,7 +51,7 @@ public class RewardItemDB extends DBAO{
 			ps.setString(1, rew.getRewardId());
 			ps.setString(2, rew.getRewardTitle());
 			ps.setString(3, rew.getRewardDescription());
-			ps.setInt(4, rew.getPoints());
+		    ps.setInt(4, rew.getPoints());
 			ps.setString(5,Character.toString(rew.getRewardAvailability()));
 			ps.setInt(6, rew.getRewardQuantity());
 			ps.setString(7, rew.getImgUrl());
@@ -83,7 +83,7 @@ public class RewardItemDB extends DBAO{
 			ps.setString(1, rew.getRewardId());
 			ps.setString(2, rew.getRewardTitle());
 			ps.setString(3, rew.getRewardDescription());
-			ps.setInt(4, rew.getPoints());
+		    ps.setInt(4, rew.getPoints());
 			ps.setString(5,Character.toString(rew.getRewardAvailability()));
 			ps.setInt(6, rew.getRewardQuantity());
 			ps.setString(7, rew.getImgUrl());
