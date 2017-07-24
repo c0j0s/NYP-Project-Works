@@ -48,7 +48,7 @@ public class AccountDB extends DBAO{
 	}
 	public void regMember(Account ac, String pw) throws Exception{
 		try{
-			String insertStatement = "Insert into ffl.userinfo (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
+			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
 			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
 			prepStmt.setString(1, ac.getGivenName());
@@ -73,7 +73,7 @@ public class AccountDB extends DBAO{
 	}
 	public void updateMember(Account ac) throws Exception{
 		try{
-			String updateStatement = "update ffl.userinfo set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
+			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
 					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
 			PreparedStatement prepStmt=con.prepareStatement(updateStatement);
 			prepStmt.setString(1, ac.getGivenName());
@@ -93,7 +93,7 @@ public class AccountDB extends DBAO{
 	}
 	public void resetPw(String pw, String email) throws Exception{
 		try{
-			String updateStatement = "update ffl.userinfo set password = ? where email = ?";
+			String updateStatement = "update ffl.user set password = ? where email = ?";
 			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
 			prepStmt.setString(1, pw);
 			prepStmt.setString(2, email);
