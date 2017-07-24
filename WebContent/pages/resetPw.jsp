@@ -21,16 +21,18 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-	<h2>Forget Password</h2>
-	<p>Please key in your email below, an email will be sent to you regarding resetting your password.</p>
-	<form action="${pageContext.request.contextPath}/signupServlet" method="post" >
-		<div class="form-group">
-				<label for="email">Email: </label> 
-				<input type="text" class="form-control" name="email" placeholder="Email">
+	<h2>Reset Password</h2>
+		<form action="${pageContext.request.contextPath}/ResetPwServlet" method="post" >
+			<div class="form-group">
+				<label for="pw">Password: </label> 
+				<input type="password" class="form-control" name="pw" placeholder="Password">
 			</div>
-		<button type="submit" class="btn btn-default" value="sendform">Submit</button>
-	</form>
-
+			<div class="form-group">
+				<label for="cpw">Password: </label> 
+				<input type="password" class="form-control" name="cpw" placeholder="Confirm Password">
+			</div>
+			<button type="submit" class="btn btn-default" value="sendform">Submit</button>
+		</form>
 </div>
 
 <%-- end of main container --%>

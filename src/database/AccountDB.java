@@ -21,7 +21,7 @@ public class AccountDB extends DBAO{
 		// TODO Auto-generated method stub
 		Account ac = null;
 		try{
-			String selectStatement = "SELECT * FROM ffl.user where email = ? and password = ?";
+			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ?";
 			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
 			prepStmt.setString(1, userId);
 			prepStmt.setString(2, userPw);
@@ -48,7 +48,7 @@ public class AccountDB extends DBAO{
 	}
 	public void regMember(Account ac, String pw) throws Exception{
 		try{
-			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
+			String insertStatement = "Insert into ffl.userinfo (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
 			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
 			prepStmt.setString(1, ac.getGivenName());
@@ -73,7 +73,7 @@ public class AccountDB extends DBAO{
 	}
 	public void updateMember(Account ac) throws Exception{
 		try{
-			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
+			String updateStatement = "update ffl.userinfo set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
 					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
 			PreparedStatement prepStmt=con.prepareStatement(updateStatement);
 			prepStmt.setString(1, ac.getGivenName());
@@ -87,6 +87,16 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(9, ac.getImgUrl());
 			prepStmt.setString(10, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
+	public void resetPw(String pw, String email) throws Exception{
+		try{
+			String updateStatement = "update ffl.userinfo set password = ? where email = ?";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			prepStmt.setString(1, pw);
+			prepStmt.setString(2, email);
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
