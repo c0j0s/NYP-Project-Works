@@ -23,8 +23,8 @@ public class CommentDB extends DBAO{
 	 * @return postId
 	 */
 	public String createComment(Comment com){
-		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`,`hideId`)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, common.UID.genCommentId());	
@@ -32,6 +32,7 @@ public class CommentDB extends DBAO{
 			ps.setString(3, com.getDate());
 			ps.setString(4, com.getCommentGroup());
 			ps.setString(6, com.getAccountId());
+			ps.setString(8, ""+com.getHideId());
 			
 			if(com.getCommentsComId() != null){
 				ps.setString(5, null);

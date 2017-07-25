@@ -15,7 +15,7 @@
 						<div class="col-sm-3">	
 						<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
 						<span class="tab-title">${post.tagList }</span>	
-					</div>
+						</div>
 					</c:if>
 				</div>
 				<hr>

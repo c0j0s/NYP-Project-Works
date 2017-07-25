@@ -29,9 +29,11 @@
 					<div class="col-md-9 col-sm-12" id="post-container">
 						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
-								<img alt="" src="${post.accountImgUrl }"
-									class="img-circle profile-image-small">
-								<p>${post.accountName}</p>
+								<jsp:include page="parts/forum-accountInfo.jsp">
+									<jsp:param value="${post.hideId}" name="hideId"/>
+									<jsp:param value="${post.accountName}" name="name"/>
+									<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>
+								</jsp:include>
 							</div>
 							<c:set var="post" scope="request" value="${post }" />
 							<jsp:include page="parts/forum-post.jsp"></jsp:include>						
@@ -67,9 +69,11 @@
 											<c:set var="comment" scope="request" value="${comment}" />
 											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">
-												<img alt="" src="${comment.accountImgUrl }"
-													class="img-circle profile-image-small">
-												<p>${comment.accountName }</p>
+												<jsp:include page="parts/forum-accountInfo.jsp">
+													<jsp:param value="${comment.hideId}" name="hideId"/>
+													<jsp:param value="${comment.accountName}" name="name"/>
+													<jsp:param value="${comment.accountImgUrl }" name="imgUrl"/>
+												</jsp:include>
 											</div>
 										</div>
 										<br>
