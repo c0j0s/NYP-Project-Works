@@ -36,38 +36,23 @@ public class Post extends HttpServlet {
 		ForumDB fdb = new ForumDB();
 		CommentDB cdb = new CommentDB();
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
+		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
+		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 9;
 		
 		ArrayList<bean.Post> p = fdb.getPostById(postId);
-		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, 0, 10);
-		Iterator<bean.Comment> comIter = c.iterator();
-		Comment bestAnswer = null;
-		
-		while(comIter.hasNext()) {
-			Comment com = (bean.Comment) comIter.next();
-			
-			if(com.getCommentId().equals(p.get(0).getBestAnswer())) {
-				bestAnswer = com;
-				comIter.remove();
-			}
-		}
-
-		ArrayList<bean.Comment> newC = new ArrayList<bean.Comment>();
-		if(bestAnswer != null) {
-			newC.add(bestAnswer);
-		}
-		newC.addAll(c);
+		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, start, 5);
 		
 		if(p.size() > 0) {
 			if(p.get(0).getValid() == 'Y') {
 				request.setAttribute("postList", p);
-				request.setAttribute("commentList", newC);
+				request.setAttribute("commentList", c);
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
 		}else{
 			request.setAttribute("message", "Post not found");
 		}
-
+		request.setAttribute("page", page);
 		request.getRequestDispatcher("pages/post.jsp").forward(request, response);
 	}
 

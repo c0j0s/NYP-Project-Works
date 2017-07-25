@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="f" uri="../WEB-INF/ffl.tld"%>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -84,10 +84,11 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
+							<f:PostListPagination pageCount="${post.commentCount }" currentPage="${page }" itemPerPage="5" type="comment" postId="${post.postId}"/>
 						</div>
 					</div>
 				</c:forEach>
-			</c:when>
+				</c:when>
 			<c:otherwise>
 				<div class="panel panel-default col-md-9">
 					<div class="panel-body ">

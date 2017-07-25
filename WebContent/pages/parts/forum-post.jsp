@@ -31,10 +31,17 @@
 						<jsp:param value="${post.likeCount }" name="likeCount"/>
 						<jsp:param value="${post.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
-					<button type="button" class="btn btn-default btn-sm btn-no-border">
-						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-						Follow
-					</button>
+					<c:choose>
+						<c:when test="${ }">//check if contain account, edit servlet
+							<button type="button" class="btn btn-default btn-sm btn-no-border">
+								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+								Follow
+							</button>
+						</c:when>
+						<c:otherwise>
+						
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="btn-group pull-right dropdown">
 					<button id="post-controls-dropdown" type="button"
