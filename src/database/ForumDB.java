@@ -2,10 +2,12 @@ package database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import bean.Forum;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import bean.Post;
 
 /**
@@ -43,17 +45,17 @@ public class ForumDB extends DBAO{
 			}else{
 				ps.setString(10, null);
 			}
-			System.out.println(ps);
+
 			int status = ps.executeUpdate();
 			if(status != 0){
-				System.out.println("Log createPost() :" + ps);
+
 				ps.close();
 				return post.getPostId();
 			}else{
 				ps.close();
 				return "fail";
 			}
-
+	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,15 +68,15 @@ public class ForumDB extends DBAO{
 	 * @param statement
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Post> getPost(String statement){
+	public static ArrayList<Post> getPost(String statement){
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
+			PreparedStatement ps;
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC";
+				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postStatus DESC,postDate DESC";
 			}
-			PreparedStatement ps = con.prepareStatement(statement);
-			
-			System.out.println("log Forum.java :" + ps);
+	
+			ps = con.prepareStatement(statement);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
@@ -84,10 +86,13 @@ public class ForumDB extends DBAO{
 				post.setPostTitle(rs.getString("postTitle"));
 				post.setPostContent(rs.getString("postContent"));
 				post.setPostCategory(rs.getString("postCategory"));
-				post.setTagList(rs.getString("postCategory"));
+				post.setTagList(rs.getString("tagList"));
+				post.setAccountName(rs.getString("givenName"));
+				post.setAccountImgUrl(rs.getString("imgUrl"));
 				post.setAccountId(rs.getString("UseraccountId"));
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
+				post.setPostStatus(rs.getString("postStatus"));
 				
 				post.setLikeCount(rs.getInt("likeCount"));
 				post.setDislikeCount(rs.getInt("dislikeCount"));
@@ -97,10 +102,16 @@ public class ForumDB extends DBAO{
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-//				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
-//				post.setLikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"like"));
-//				post.setDislikeAccounts(meta.getMetaAccounts("postId",post.getPostId(),"dislike"));
+				post.setFollowerAccounts(MetaValueDB.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
+				post.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"like"));
+				post.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
 				
+				post.setBestAnswer(rs.getString("bestAnswer"));
+				
+				ResultSetMetaData rsmd = rs.getMetaData();		
+				if(rsmd.getColumnName(rsmd.getColumnCount()).equals("hitlevel")) {
+					post.setHitLevel(Integer.parseInt(rs.getString("hitlevel")));
+				}
 				postList.add(post);
 			}
 			rs.close();
@@ -109,72 +120,22 @@ public class ForumDB extends DBAO{
 			e.printStackTrace();
 		}
 		return postList;
-	}
-	
-	public Forum getPostAdvance(int start, int limit){
-		ResultSet rs = null;
-		PreparedStatement ps = null;
-		Forum forum = new Forum();
-		ArrayList<Post> postList = new ArrayList<Post>();
-
-		try {
-			
-			String postStmt = "SELECT * FROM "+ schema +".postlist ORDER BY postDate DESC limit "+start+" , "+limit;
-			String postCount = "SELECT COUNT(*) AS pageCount FROM "+ schema + ".postlist ORDER BY postDate DESC";
-
-			ps = con.prepareStatement(postStmt);
-			rs = ps.executeQuery();
-			while(rs.next()){
-				Post post = new Post();
-				
-				post.setPostId(rs.getString("postId"));
-				post.setPostTitle(rs.getString("postTitle"));
-				post.setPostContent(rs.getString("postContent"));
-				post.setPostCategory(rs.getString("postCategory"));
-				post.setTagList(rs.getString("postCategory"));
-				post.setAccountId(rs.getString("UseraccountId"));
-				post.setActivityId(rs.getString("ActivityactivityId"));
-				post.setDate(rs.getString("postDate"));
-				
-				post.setLikeCount(rs.getInt("likeCount"));
-				post.setDislikeCount(rs.getInt("dislikeCount"));
-				post.setFollowerCount(rs.getInt("followCount"));
-				
-				post.setCommentCount(rs.getInt("commentCount"));
-				post.setValid(rs.getString("valid").charAt(0));
-				post.setHideId(rs.getString("hideId").charAt(0));
-				
-				postList.add(post);
-			}
-			
-			ps = con.prepareStatement(postCount);
-			rs = ps.executeQuery();
-			while(rs.next()){
-				forum.setPageCount(rs.getInt("pageCount"));
-			}
-			System.out.println(ps);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		forum.setPostList(postList);
-		return forum;
-	}
+	}	
 	
 	/**
-	 * NOT TESTED
-	 * retrieve post for paginations
+	 * retrieve post by category
 	 * @param start 
 	 * @param limit 
 	 * @param category 
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Post> getPost(int start, int limit,String category){
-		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND category = '"+ category +"' ORDER BY postDate DESC limit = " + start + "," + limit;
+	public ArrayList<Post> getPost(int start,String category){
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
 		return getPost(stmt);
 	}
-	
+		
 	/**
-	 * retrieve post by post id
+	 * retrieve post for post page by post id
 	 * @param postId
 	 * @return ArrayList<Post>
 	 */
@@ -184,16 +145,38 @@ public class ForumDB extends DBAO{
 	}
 	
 	/**
-	 * NOT TESTED
-	 * to sort post by category only
-	 * @param category
+	 * get top three trending post
+	 * @param limit
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Post> getPostByCategory(String category){
-		String stmt = "SELECT * FROM "+ schema +".postlist WHERE category = '"+ category +"'";
+	public ArrayList<Post> getTrendingPost() {
+		String stmt = "Select * from ffl.trendinglist";
 		return getPost(stmt);
 	}
-	
+
+	/**
+	 * get max post count for pagination
+	 * @param category
+	 * @return
+	 */
+
+	public int getPostCount(String category) {
+		String stmt = "Select count(*) from ffl.postlist where postCategory = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, category);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) return rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
+
+	/**
+	 * add category [Not tested]
+	 * @param newCat
+	 */
 	public void addCategory(String newCat){
 		try {
 			PreparedStatement ps = con.prepareStatement("INSERT INTO "+ schema +".category(`categoryName`) VALUES (?)");
@@ -208,20 +191,98 @@ public class ForumDB extends DBAO{
 	}
 	
 	/**
-	 * 
+	 * retrieve category list
 	 * @return
 	 */
-	public ArrayList<String> getCategories(){
-		ArrayList<String> list = new ArrayList<String>();
+	public Map<String, String> getCategoryList(){
+		Map<String, String> categoryList = new HashMap<String, String>();
+		
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM "+ schema +".category");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				list.add(rs.getString("categoryName"));
+				categoryList.put(rs.getString("categoryId"), rs.getString("categoryName"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Log getCategory(): " + e.getMessage());
 		}
-		return list;
+		return categoryList;
+	}
+
+	/**
+	 * update post value
+	 * @param input
+	 * @param postId
+	 * @return
+	 */
+	public String updatePost(Map<String, String> input, String postId) {
+		String startStmt = "Update ffl.post set ";
+		String bodyStmt = "";
+		for(Entry<String, String> entry : input.entrySet()) {
+			 bodyStmt = bodyStmt + entry.getKey() + " = '" + entry.getValue() + "',";
+		}
+		bodyStmt = bodyStmt.substring(0, (bodyStmt.length()-1));
+		String endStmt = " Where postId = ?";
+
+		try {
+			String statement = startStmt + bodyStmt + endStmt;
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+			
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				return postId;
+			}else {
+				ps.close();
+				return "fail";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return "fail";
+	}
+
+	/**
+	 * for deleting post -- invalidate post 
+	 * @param postId
+	 */
+	public void invalidPost(String postId) {
+		String statement = "update ffl.post set valid = 'N' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
+			}
+			ps.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	/**
+	 * select comment as best answer for post
+	 * @param postId
+	 * @param commentId
+	 */
+	public void pickBestAnswer(String postId, String commentId) {
+		// TODO Auto-generated method stub
+		String stmt = "update ffl.post set bestAnswer = ?, postStatus = 'closed' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, commentId);
+			ps.setString(2, postId);
+
+			int status = ps.executeUpdate();
+			if (status != 0) {
+				System.out.println("log pickBestAnswer(): (success)");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

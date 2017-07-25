@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import bean.Comment;
 import common.UID;
 import database.CommentDB;
@@ -34,6 +36,8 @@ public class CreateComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s = request.getSession(true);
+		Account ac = (Account)s.getAttribute("account");
 		try {
 			String postId = request.getParameter("postId");
 			if(request.getParameter("action").equals("create")){
@@ -42,7 +46,7 @@ public class CreateComment extends HttpServlet {
 				com.setCommentContent(request.getParameter("commentContent"));
 				com.setDate(DBAO.getDateTime());
 				com.setCommentGroup("Parent");
-				com.setAccountId("ACC0000000");
+				com.setAccountId(ac.getAccountId());
 				com.setPostId(postId);
 				if(request.getParameter("commentId") != null){
 					System.out.println("Log: comments comment not null");
@@ -55,12 +59,11 @@ public class CreateComment extends HttpServlet {
 				String path = "";
 				System.out.println("log CreateComment Servlet: " + result);
 				if(!result.equals("fail")){
-					path = "pages/post.jsp?postId=" + postId;
+					path = "Post?postId=" + postId;
 				}else{
-					path = "pages/post.jsp?message=fail&postId=" + postId;
+					path = "Post?message=fail&postId=" + postId;
 				}
-				RequestDispatcher rd = request.getRequestDispatcher(path);
-				rd.forward(request, response);
+				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
 				response.setContentType("html/text");
 				PrintWriter out = response.getWriter();
@@ -76,7 +79,7 @@ public class CreateComment extends HttpServlet {
 				out.println("<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
 						+ "<div class='col-sm-2'></div>"
 						+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body comment-box'>"
-						+ "<form action='../CreateComment?action="+action+"' method='post'>"
+						+ "<form action='"+ request.getContextPath() +"/CreateComment?action="+action+"' method='post'>"
 						+ "<div class='post-text-content'>"
 						+ "<div class='form-group'>"
 				  		+ "<label for='commentContent'>Your reply:</label>"
@@ -90,7 +93,7 @@ public class CreateComment extends HttpServlet {
 						+ "</div></div></div>"
 						+ "<div class='text-center col-sm-2'>"
 						+ "<img alt='' src='../img/sample.jpg' class='img-circle profile-image-small'>"
-						+ "<p>user name</p>" //TODO replace with user name
+						+ "<p>"+ ac.getGivenName() +"</p>" //TODO replace with user name
 						+ "</div><br><br></div>");
 
 			}

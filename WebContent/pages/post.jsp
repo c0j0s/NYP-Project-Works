@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -9,90 +12,97 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
-<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css'= rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>post</title>
-<%@ page import="java.util.ArrayList,bean.*,database.*" %>
-<%! ForumDB forumdb = new ForumDB(); %>
-<%! CommentDB comdb = new CommentDB(); %>
+<%@ page import="java.util.ArrayList,bean.*,database.*"%>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<%-- end of header --%>
-<div class="container">
-	<jsp:include page="parts/page-header.jsp">
-		<jsp:param value="forum" name="type"/>
-	</jsp:include>
-<% 
-ArrayList<Post> list = forumdb.getPostById(request.getParameter("postId"));
-if(list.size() != 0){
-	Post p = list.get(0);
-	%>
-	<div class="col-sm-9">
-		<div class="post post-orginal clearfix">
-			<div class="text-center col-sm-2">
-			<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-			<p>user name</p>
-			</div>
-			<jsp:include page="parts/forum-post.jsp">
-				<jsp:param value="<%= p.getPostId() %>" name="postId"/>
-				<jsp:param value="<%= p.getAccountId() %>" name="accountId"/>
-				<jsp:param value="<%= p.getPostTitle() %>" name="postTitle"/>
-				<jsp:param value="<%= p.getPostContent() %>" name="postContent"/>
-				<jsp:param value="<%= p.getDate() %>" name="postDate"/>
-				<jsp:param value="<%= p.getLikeCount() %>" name="likeCount"/>
-				<jsp:param value="<%= p.getDislikeCount() %>" name="dislikeCount"/>
-				<jsp:param value="<%= p.getCommentCount() %>" name="commentCount"/>
-			</jsp:include>
-		</div>
-		<!-- end of original post -->
-		<hr>
-		
-		<div class="post post-comment-group clearfix" id="post-comment-container">	
-		<% 
-		ArrayList<Comment> comList = comdb.getCommentByPostId(request.getParameter("postId"), 0, 5);
-		for(Comment c:comList){
-		%>	
-			<div class="post-comment  clearfix " id="<%= c.getCommentId() %>">
-				<div class="col-sm-2"></div>
-					<jsp:include page="parts/forum-comment.jsp">
-						<jsp:param value="<%= c.getCommentId() %>" name="commentId"/>
-						<jsp:param value="<%= c.getAccountId() %>" name="accountId"/>
-						<jsp:param value="<%= c.getCommentContent() %>" name="postContent"/>
-						<jsp:param value="<%= c.getDate() %>" name="postDate"/>
-						<jsp:param value="<%= c.getLikeCount() %>" name="likeCount"/>
-						<jsp:param value="<%= c.getDislikeCount() %>" name="dislikeCount"/>
-						<jsp:param value="<%= c.getCommentCount() %>" name="commentCount"/>
-					</jsp:include>
-				<div class="text-center col-sm-2">
-					<img alt="" src="../img/sample.jpg" class="img-circle profile-image-small">
-					<p>user name</p>
-				</div>
-			</div>
-		<br>
-		<% } %>
-		</div>
-	</div>
-	<jsp:include page="parts/forum-sidebar.jsp">
-		<jsp:param value="forum" name="type"/>
-	</jsp:include>
-		
-		<% 
-	}else{
-		%>
-		<div class="panel panel-default">
-			<div class="panel-body ">
-				<h4>No Post Found</h4>
-			</div>
-		</div>
-		<%
-	}
-	%>
-</div>
+	<jsp:include page="header.jsp"></jsp:include>
+	<%-- end of header --%>
+	<div class="container">
+		<jsp:include page="parts/page-header.jsp">
+			<jsp:param value="forum" name="type" />
+		</jsp:include>
+		<c:choose>
+			<c:when test="${post != null ? true : false}">
+					<div class="col-md-9 col-sm-12" id="post-container">
+						<div class="post post-orginal clearfix" id="post-${post.postId }">
+							<div class="text-center col-sm-2">
+								<img alt="" src="${post.accountImgUrl }"
+									class="img-circle profile-image-small">
+								<p>${post.accountName}</p>
+							</div>
+							<c:set var="post" scope="request" value="${post }" />
+							<jsp:include page="parts/forum-post.jsp"></jsp:include>						
+						</div>
+						<!-- end of original post -->
+						<hr>
 
-<%-- end of main container --%>
-<jsp:include page="footer.jsp"></jsp:include>
-<%-- end of footer --%>
+						<div class="post post-comment-group clearfix"
+							id="post-comment-container">
+							<c:choose>
+								<c:when test="${fn:length(commentList) gt 0 }">
+									<c:forEach items="${commentList}" var="comment">
+										<div class="post-comment  clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
+											id="${comment.commentId}">
+											<div class="col-sm-2" id="comment-best-answer">
+												<c:if test="${user.accountId eq post.accountId}">
+													<c:if test="${user != null ? true : false }">
+														<c:if test="${post.bestAnswer == null ? true : false }">
+															<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn" data-postId="${post.postId }" data-commentId="${comment.commentId }">
+															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
+															  <sapn>Best<br>Answer</sapn>
+															</button>
+														</c:if>
+														<c:if test="${comment.commentId eq post.bestAnswer ? true : false }">
+															<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled>
+															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
+															  <sapn>Best<br>Answer</sapn>
+															</button>
+														</c:if>
+													</c:if>
+												</c:if>
+											</div>
+											<c:set var="comment" scope="request" value="${comment}" />
+											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
+											<div class="text-center col-sm-2">
+												<img alt="" src="${comment.accountImgUrl }"
+													class="img-circle profile-image-small">
+												<p>${comment.accountName }</p>
+											</div>
+										</div>
+										<br>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div class="panel panel-default col-md-12">
+										<div class="panel-body ">
+											<h4>No replies yet.</h4>
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+							<f:PostListPagination pageCount="${post.commentCount }" currentPage="${page }" itemPerPage="5" type="comment" postId="${post.postId}"/>
+						</div>
+					</div>
+				</c:when>
+			<c:otherwise>
+				<div class="panel panel-default col-md-9">
+					<div class="panel-body ">
+						<h4>${message }</h4>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		<jsp:include page="parts/forum-sidebar.jsp">
+			<jsp:param value="forum" name="type" />
+		</jsp:include>
+	</div>
+
+	<%-- end of main container --%>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<%-- end of footer --%>
 
 </body>
 </html>

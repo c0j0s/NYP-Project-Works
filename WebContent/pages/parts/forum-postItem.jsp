@@ -1,29 +1,31 @@
-<div class="panel panel-default Forum-card">
+<div class="panel panel-default Forum-card ${post.postStatus eq 'closed' ? 'post-closed':'' }">
 	<div class="panel-body">
-		<div class="col-md-2 text-center">
-			<img alt="profile image" src="../img/sample.jpg"
+		<div class="col-sm-2 text-center">
+			<img alt="profile image" src="${post.accountImgUrl }"
 				class="img-circle profile-image-small">
-			<p>${param.accountId}</p>
+			<p>${post.accountName}</p>
 		</div>
-		<div class="col-md-10">
+		<div class="col-sm-10">
 			<div class="post-link"
-				onclick="location.href='post.jsp?postId=${param.postId}'">
-				<h4>${param.postTitle}</h4>
-				<small class="">${param.date}</small>
+				onclick="location.href='Post?postId=${post.postId}'">
+				<h4>${post.postTitle}</h4>
+				<small class="">${post.date}</small>&nbsp
+				 ${post.postStatus eq 'closed' ? '<span class="badge"><span class="glyphicon glyphicon-star"></span> Answered</span>':'' }
 			</div>
 			<div class="Forum-post-control-grps">
 				<div class="btn-toolbar" role="toolbar" aria-label="...">
 					<div class="btn-group" role="group" aria-label="...">
 						<jsp:include page="likeButtons.jsp">
-							<jsp:param value="${param.postId }" name="Id"/>
-							<jsp:param value="postId" name="colName"/>
-							<jsp:param value="${param.likeCount}" name="likeCount"/>
-							<jsp:param value="${param.dislikeCount}" name="dislikeCount"/>
+							<jsp:param value="${post.likeAccounts }" name="likeAccounts"/>
+							<jsp:param value="${post.dislikeAccounts }" name="dislikeAccounts"/>
+							<jsp:param value="${post.postId }" name="Id"/>
+							<jsp:param value="${post.likeCount}" name="likeCount"/>
+							<jsp:param value="${post.dislikeCount}" name="dislikeCount"/>
 						</jsp:include>
 						<button type="button" class="btn btn-default btn-sm btn-no-border">
 							<span class="glyphicon glyphicon-comment " aria-hidden="true"></span>
 							<span class="meta-value-count"
-								data-count="${param.commentCount}">${param.commentCount}</span>
+								data-count="9">${post.commentCount}</span>
 						</button>
 					</div>
 					<div class="btn-group dropdown">

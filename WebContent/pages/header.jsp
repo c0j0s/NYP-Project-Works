@@ -1,9 +1,24 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
+<c:set var = "user" scope = "session" value = "${sessionScope.account}"/>
 <nav class="navbar navbar-default">
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
-				<li><a class="white">SIGN UP</a></li>
-        		<li><a class="white">CONTACT US</a></li>
+				<c:choose>
+					<c:when test="${user eq null ? false : true }">
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
+						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
+						<span>${user.givenName}</span>
+						</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a class="white" href="${pageContext.request.contextPath}/Login">Login</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
+					</c:otherwise>
+				</c:choose>
+						<li><a class="white">Contact us</a></li>
 			</ul>
 		</div>
 	</div>
@@ -16,18 +31,20 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">FFL</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/Index">FFL</a>
 		</div>
 		<div class="collapse navbar-collapse" id="ffl-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/index.jsp">Home</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/forum.jsp?category=1&page=1">Family Forum</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/activityList.jsp">Family Activities</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="#">Reward Redemption</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/index.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Index">Home</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Forum">Family Forum</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/ActList">Family Activities</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/RedemptionList">Reward Redemption</a></li>
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/test.jsp">component testing page</a></li>
 			</ul>
-			<form class="navbar-form navbar-right" role="search">
+			<form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/Search?">
 			  <div class="form-group">
 			    <input type="text" class="form-control" name="globalSearch" placeholder="Search">
+			 	<input type="hidden" class="form-control" name="searchIn" value="all">
 			  </div>
 			  <button type="submit" class="btn btn-default">Submit</button>
 			</form>

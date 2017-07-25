@@ -72,8 +72,6 @@ public class CommentDB extends DBAO{
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
 			
-			System.out.println("log CommentDB.java :" + ps);
-			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
@@ -85,6 +83,8 @@ public class CommentDB extends DBAO{
 				com.setCommentsComId(rs.getString("CommentscommentId"));
 				com.setDate(rs.getString("commentDate"));
 				com.setAccountId(rs.getString("accountId"));
+				com.setAccountName(rs.getString("givenName"));
+				com.setAccountImgUrl(rs.getString("imgUrl"));
 				
 				com.setLikeCount(rs.getInt("likeCount"));
 				com.setDislikeCount(rs.getInt("dislikeCount"));	
@@ -94,8 +94,10 @@ public class CommentDB extends DBAO{
 				
 				
 //				com.setFollowerAccounts(getMetaAccounts(com.getPostId(),"follow"));
-//				com.setLikeAccounts(getMetaAccounts(com.getPostId(),"like"));
-//				com.setDislikeAccounts(getMetaAccounts(com.getPostId(),"dislike"));
+				com.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"like"));
+				com.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
+			
+				com.setCommentComList(getCommentByCommentId(com.getCommentId(),0,5));
 				
 				commentList.add(com);
 			}
@@ -117,138 +119,13 @@ public class CommentDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
-		System.out.println("Log getCommentByPostId(): " + stmt);
+		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
 		return getComment(stmt);
 	}
 	
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
 		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
-		System.out.println("Log getCommentByPostId(): " + stmt);
 		return getComment(stmt);
 	}
-//	
-//	/**
-//	 * retrieve post by post id
-//	 * @param postId
-//	 * @return ArrayList<Post>
-//	 */
-//	public ArrayList<Post> getPostById(String postId){
-//		String stmt = "SELECT * FROM ffl.post WHERE postId = '"+ postId +"'";
-//		return getPost(stmt);
-//	}
-//	
-//	/**
-//	 * NOT TESTED
-//	 * to sort post by category only
-//	 * @param category
-//	 * @return ArrayList<Post>
-//	 */
-//	public ArrayList<Post> getPostByCategory(String category){
-//		String stmt = "SELECT * FROM ffl.post WHERE category = '"+ category +"'";
-//		return getPost(stmt);
-//	}
-//	
-//	/**
-//	 * create post meta values
-//	 * @param postId
-//	 * @param accountId
-//	 * @param action like|dislike|follow
-//	 */
-//	public void addPostMeta(String postId, String accountId, String action){
-//		String stmt = "INSERT INTO `ffl`.`postmeta` (`postId`, `accountId`, `postAction`) VALUES ('?', '?', '?')";
-//		try {
-//			PreparedStatement ps = con.prepareStatement(stmt);
-//			ps.setString(1, postId);
-//			ps.setString(2, accountId);
-//			ps.setString(3, action);
-//			
-//			int status = ps.executeUpdate();
-//			if(status != 0){
-//				System.out.println("Log updatePostMeta(): " + ps);
-//			}else{
-//				System.out.println("Log updatePostMeta(): fail " + ps);
-//			}
-//			
-//		} catch (SQLException e) {
-//			System.out.println(e.getMessage());
-//		}
-//	}
-//	
-//	public void delPostMeta(){}
-//	
-//	/**
-//	 * get post meta value counts
-//	 * @param postId
-//	 * @param action like|dislike|follow
-//	 * @return
-//	 */
-//	public int getPostMetaCounts(String postId,String action){
-//		int count = 0;
-//		try {
-//			String stmt = "SELECT COUNT(*) AS count FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
-//			PreparedStatement ps = con.prepareStatement(stmt);
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()){
-//				count = rs.getInt("count");
-//			}
-//			
-//		} catch (SQLException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return count;
-//	}
-//		
-//	/**
-//	 * get post meta value accounts
-//	 * @param postId
-//	 * @param action like|dislike|follow
-//	 * @return
-//	 */
-//	public ArrayList<String> getPostMetaAccounts(String postId,String action){
-//		ArrayList<String> list = new ArrayList<String>();
-//		try {
-//			String stmt = "SELECT * FROM `ffl`.`postmeta` WHERE postId = '"+ postId +"' AND postAction = '"+ action +"'";
-//			PreparedStatement ps = con.prepareStatement(stmt);
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()){
-//				list.add(rs.getString("accountId"));
-//			}
-//			
-//		} catch (SQLException e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return list;
-//	}
-//	
-//	public void addCategory(String newCat){
-//		try {
-//			PreparedStatement ps = con.prepareStatement("INSERT INTO ffl.category(`categoryName`) VALUES (?)");
-//			ps.setString(1, newCat);
-//			int status = ps.executeUpdate();
-//			if(status != 0){
-//				System.out.println("Log addCategory(): " + ps);
-//			}
-//		} catch (SQLException e) {
-//			System.out.println("Log addCategory(): " + e.getMessage());
-//		}
-//	}
-//	
-//	/**
-//	 * 
-//	 * @return
-//	 */
-//	public ArrayList<String> getCategories(){
-//		ArrayList<String> list = new ArrayList<String>();
-//		try {
-//			PreparedStatement ps = con.prepareStatement("SELECT * FROM ffl.category");
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()){
-//				list.add(rs.getString("categoryName"));
-//			}
-//		} catch (SQLException e) {
-//			System.out.println("Log getCategory(): " + e.getMessage());
-//		}
-//		return list;
-//	}
+
 }

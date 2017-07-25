@@ -6,14 +6,17 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class DBAO {
-	protected Connection con;
+	protected static Connection con;
 	//final protected String schema = "famforlife";
-	final protected String schema = "ffl";
+	final protected static String schema = "ffl";
 	
-	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
-	final private String schpasswd = "ffl@db";
-	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
-	final private String passwd = "password";
+//	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
+//	final private String schpasswd = "ffl@db";
+//	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
+//	final private String passwd = "password";
+	
+	final private String lurl = "jdbc:mysql://localhost/ffl?autoReconnect=true&useSSL=false";
+	final private String lpasswd = "mysql";
 	
 	/**
 	 * Default constructor
@@ -22,9 +25,9 @@ public class DBAO {
 	public DBAO(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(lurl,"root",lpasswd);
 			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
-			con = DriverManager.getConnection(url,"root",passwd);
-			con.setAutoCommit(true);
+			//con = DriverManager.getConnection(url,"root",passwd);
 		} catch (Exception e) {
 			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
 		} 
@@ -36,5 +39,7 @@ public class DBAO {
 		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
 		return formatter.format(sqlDate).substring(0, 19);
 	}
-	
+
+
+
 }

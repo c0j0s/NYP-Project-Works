@@ -5,7 +5,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import bean.Account;
 import bean.Post;
 import database.DBAO;
 import database.ForumDB;
@@ -30,6 +34,8 @@ public class CreatePost extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			HttpSession s = request.getSession(true);
+			Account ac = (Account)s.getAttribute("account");
 			ForumDB f = new ForumDB();
 			Post p = new Post();
 			p.setPostTitle(request.getParameter("postTitle"));
@@ -38,21 +44,22 @@ public class CreatePost extends HttpServlet {
 			p.setPostCategory(request.getParameter("postCategory"));
 			p.setTagList(request.getParameter("postTags"));
 			p.setPoints(100);
-			p.setAccountId("ACC0000000");
+			p.setAccountId(ac.getAccountId());
 			if(request.getParameter("hideId") != null){
 				p.setHideId(request.getParameter("hideId").charAt(0));
+			}else{
+				p.setHideId('N');
 			}
 			p.setPostId(f.createPost(p));
 			
 			String path = "";
 			if(!p.getPostId().equals("fail") || p.getPostId() == null){
-				path = "pages/post.jsp?postId=" + p.getPostId();
+				path = "Post?postId=" + p.getPostId();
 			}else{
-				path = "pages/forum-eidt?mode=create";
+				path = "ForumEdit?mode=create";
 				System.out.println("Log createPost.java: fail to create post");
 			}
-			RequestDispatcher rd = request.getRequestDispatcher(path);
-			rd.forward(request, response);
+			response.sendRedirect(path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

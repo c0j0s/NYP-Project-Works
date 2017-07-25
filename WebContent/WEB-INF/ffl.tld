@@ -1,23 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+<!DOCTYPE taglib >  
 <taglib>
 	<tlib-version>1.0</tlib-version>
-	<jsp-version>2.0</jsp-version>
+	<jsp-version>1.2</jsp-version> 
 	<short-name>FFL TLD</short-name>
-	<uri>/ffl.tld</uri>
+	<uri>/WEB-INF/ffl.tld</uri>
 
 	<tag>
-		<name>getPostList</name>
-		<tag-class>tags.PostList</tag-class>
-		<body-content>scriptless</body-content>
-
-		<attribute>
-			<name>start</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
+		<name>PostListPagination</name>
+		<tag-class>tags.PostListPagination</tag-class>
+		<body-content>empty</body-content>
 		<attribute>
 			<name>currentPage</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>category</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>pageCount</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>itemPerPage</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>postId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
+
+	<function>
+		<name>getPostById</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.lang.String getPostById(java.lang.String)
+		</function-signature>
+	</function>
+
+	<function>
+		<name>getPostList</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.util.ArrayList getPost(int,java.lang.String)
+		</function-signature>
+	</function>
+	
+	<function>
+		<name>getMaxCount</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>int getMaxCount(int)</function-signature>
+	</function>
+
+	<function>
+		<name>getCategoryList</name>
+		<function-class>database.ForumDB</function-class>
+		<function-signature>java.util.Map getCategoryList()</function-signature>
+	</function>
+	
+	<function>
+		<name>getCommentByCommentId</name>
+		<function-class>database.CommentDB</function-class>
+		<function-signature>java.util.ArrayList getCommentByCommentId(java.lang.String,int,int)</function-signature>
+	</function>
+	
+	<function>
+		<name>getMetaAccounts</name>
+		<function-class>database.MetaValueDB</function-class>
+		<function-signature>java.util.ArrayList getMetaAccounts(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+	</function>
 </taglib>

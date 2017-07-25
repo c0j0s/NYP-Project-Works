@@ -1,12 +1,16 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import database.MetaValueDB;
 
 /**
@@ -29,15 +33,33 @@ public class UpdateMetaValue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String id = request.getParameter("id");
-			String colName = request.getParameter("colname");
-			String action = request.getParameter("action");
+			HttpSession s = request.getSession(true);
 			MetaValueDB m = new MetaValueDB();
-			if(request.getParameter("mode").equals("add")){
-				m.addMeta(colName, id, "ACC0000000", action);
-			}else{
-				m.removeMeta(colName, id, "ACC0000000", action);
+			PrintWriter out = response.getWriter();
+			String newCount;
+			System.out.println("meta sevlet doget");
+			Account ac = (Account)s.getAttribute("account");
+			String action = request.getParameter("action");
+			String id = request.getParameter("id");
+			if(action.equals("follow")) {
+				m.addMeta(id, ac.getAccountId(), action);
+			}else if(action.equals("unfollow")){
+				m.removeMeta(id, ac.getAccountId(), "follow");
+			}else {
+				String operators = request.getParameter("operator");
+				System.out.println(id + action + operators);
+				if(operators.equals("add")) {
+					newCount = m.addMeta(id, ac.getAccountId(), action);
+					System.out.println(newCount);
+					out.print(newCount);
+				}else if (operators.equals("subtract")) {
+					newCount = m.removeMeta(id, ac.getAccountId(), action);
+					System.out.println(newCount);
+					out.print(newCount);
+				}
 			}
+			out.flush();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

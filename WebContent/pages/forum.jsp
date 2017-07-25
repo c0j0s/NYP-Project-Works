@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -14,13 +15,6 @@
 <link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Family Forum</title>
-<%	if(request.getParameter("category") == null) {%>
-<jsp:forward page="forum.jsp?category=1&page=1"></jsp:forward>
-<%}%>
-<%@ page import="java.util.ArrayList,bean.*,database.*" %>
-<%! ForumDB forumDB = new ForumDB(); %>
-<%! Forum forum = forumDB.getPostAdvance(0,10);%>
-
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -30,66 +24,37 @@
 		<jsp:param value="forum" name="type"/>
 	</jsp:include>
 	
-	<div class="col-md-9 Forum-main">
-		<div class="panel panel-default Forum-main-trending">
+	<div class="col-md-9 col-sm-12 Forum-main">
+		<div class="panel panel-default forum-main-trending">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Trending Topics</h3>
 		  </div>
 		  <div class="panel-body">
-		    <% 
-		    //ArrayList<Post> postList = (ArrayList<Post>) session.getAttribute("ForumList");
-		    for(int i = 0; i<3; i++){
-		    	%>
-		    	<div class="col-md-4 ">
-					<div class="panel panel-default Forum-card Forum-trending-card">
-					  <div class="panel-body text-center">
-					    <img alt="profile image" src="../img/sample.jpg" class="img-circle profile-image-medium">
-					    <p>this will be the title area</p>
-					    <div class="Forum-post-control-grps">
-					    	<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border" onclick="">
-							  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 10
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 100
-							</button>
-					    </div>
-					    <button type="button" onclick="location.href='post.jsp?postId=000000'" class="btn btn-primary">Participate</button>
-					  </div>
-					</div>
-				</div>
-		    	<%
-		    } %>
+		  <jsp:include page="parts/forum-trendingPost.jsp"></jsp:include>
 		  </div>
 		</div>
+		
 		<!-- end of trending post panel -->
+		
 		<div class="Forum-main-posts">
 		  <ul class="nav nav-tabs" role="tablist">
-		    <li role="presentation" class="${param.category eq '1' ? ' active' : ''}"><a href="#a" aria-controls="a" role="tab" data-toggle="tab">Category</a></li>
-		    <li role="presentation" class="${param.category eq '2' ? ' active' : ''}"><a href="#b" aria-controls="b" role="tab" data-toggle="tab">Category</a></li>
-		    <li role="presentation" class="${param.category eq '3' ? ' active' : ''}"><a href="#c" aria-controls="c" role="tab" data-toggle="tab">Category</a></li>
-		    <li role="presentation" class="${param.category eq '4' ? ' active' : ''}"><a href="#d" aria-controls="d" role="tab" data-toggle="tab">Category</a></li>
+		  	<c:forEach items="general,parenting" var="listItem">
+		  	<li role="presentation" class="${category eq listItem ? ' active' : ''}"><a class="tab-title" href="Forum?category=${listItem}&page=1" >${listItem}</a></li>
+		  	</c:forEach>
 		  </ul>
 		
 		  <div class="tab-content">
-		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '1' ? ' active' : ''}" id="a">
-		    	<f:getPostList start="${param.page eq 1 ? param.page - 1 : param.page*10 - 10}" currentPage="${param.page }">
+		  	<c:forEach items="general,parenting" var="postCatTab">
+		    <div role="tabpanel" class="tab-pane panel-body ${category eq postCatTab ? ' active' : ''}" id="a">
+		    	<c:forEach items="${postList}" var="post" begin="0" end="9" varStatus="loop">
+		    		<c:set var="post" value="${post}" scope="request"/>
 		    		<jsp:include page='parts/forum-postItem.jsp'>
-		    			<jsp:param value="FFL:postId" name="postId"/>
-						<jsp:param value="FFL:accountId" name="accountId"/>
-						<jsp:param value="FFL:postTitle" name="postTitle"/>
-						<jsp:param value="FFL:date" name="date"/>
-						<jsp:param value="FFL:likeCount" name="likeCount"/>
-						<jsp:param value="FFL:dislikeCount" name="dislikeCount"/>
-						<jsp:param value="FFL:commentCount" name="commentCount"/>
+		    			<jsp:param value="${post}" name="post"/>
 		    		</jsp:include>
-		    	</f:getPostList>
+		    	</c:forEach>
+		    	<f:PostListPagination pageCount="${postCount }" currentPage="${page }" category="${postCatTab }" itemPerPage="10" type="post"/>
 		    </div>
-		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '2' ? ' active' : ''}" id="b">2...</div>
-		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '3' ? ' active' : ''}" id="c">3...</div>
-		    <div role="tabpanel" class="tab-pane panel-body ${param.category eq '4' ? ' active' : ''}" id="d">4...</div>
+		    </c:forEach>
 		  </div>
 		</div>
 	</div>

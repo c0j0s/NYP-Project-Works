@@ -1,13 +1,13 @@
 package bean;
 
-public class Registration {
+public class ActReg extends BankDetails {
 private String registrationId;
 private java.sql.Timestamp registrationDate;
 private double registrationAmtPaid;
 private int participantNo;
 private String userAccountId;
 private String ActivityactivityId;
-public Registration(){
+public ActReg(){
 	
 }
 

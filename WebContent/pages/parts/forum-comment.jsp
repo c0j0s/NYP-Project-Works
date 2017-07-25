@@ -1,19 +1,22 @@
-<div class="col-sm-8">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="../../WEB-INF/ffl.tld"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<div class="col-sm-8 post-comment-content">
 	<div class="panel panel-default">
-		<small class="pull-right post-date">${param.postDate}</small>
+		<small class="pull-right post-date">${comment.date}</small>
 		<div class="panel-body ">
 			<div class="post-text-content">
-				<h4>${param.postTitle}</h4>
-				<p>${param.postContent}</p>
+				<p>${comment.commentContent}</p>
 			</div>
 			<hr>
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
-						<jsp:param value="${param.postId }" name="Id"/>
-						<jsp:param value="commentId" name="colName"/>
-						<jsp:param value="${param.likeCount }" name="likeCount"/>
-						<jsp:param value="${param.dislikeCount }" name="dislikeCount"/>
+						<jsp:param value="${comment.likeAccounts }" name="likeAccounts"/>
+						<jsp:param value="${comment.dislikeAccounts }" name="dislikeAccounts"/>
+						<jsp:param value="${comment.commentId }" name="Id"/>
+						<jsp:param value="${comment.likeCount }" name="likeCount"/>
+						<jsp:param value="${comment.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
@@ -33,38 +36,37 @@
 					</ul>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-						<span class="meta-value-count" data-count="${param.commentCount}">${param.commentCount}</span>
+						<span class="meta-value-count" data-count="${comment.commentCount}">${comment.commentCount}</span>
 					</button>
 				</div>
-				<br>
-				<br>
-				<% if(true){ // TODO check if post is close
-							// TODO jvascript method to create Comments
-					%> 
-					<button type="button" id="createComment-${param.count }" class="btn btn-success btn-block addCom" onclick="createCom('${param.commentId }','after','comment')">Reply</button> 
-					<%
-				} %>
 			</div>
-			<%@ page import="java.util.ArrayList,bean.*,database.*" %>
-			<%! CommentDB comdb = new CommentDB(); %>
-			${param.commentCount eq 0 ? '' : '<hr>'}
-			<div class="comments-comment">
-				<% ArrayList<Comment> comComList = comdb.getCommentByCommentId(request.getParameter("commentId"), 0, 5); 
-					for(Comment cc : comComList){
-						%>
+			<c:set var="commentComList" scope="request" value="${comment.commentComList }"/>
+			<c:choose>
+				<c:when test="${fn:length(commentComList) gt 0 }">
+					<hr>
+					<div class="comments-comment">
+						<c:forEach items="${commentComList }" var="commentCom">
 							<div class="row comment-under-comment">
-								<div class="col-sm-2">
-									<img src = '../img/sample.jpg' class="img-circle profile-image-xsmall">
+								<div class="col-md-2 col-sm-3">
+									<img src="${commentCom.accountImgUrl }" class="img-circle profile-image-xsmall">
 									<p>says: </p>
 								</div>
-								<div class="col-sm-10">
-									<p><%= cc.getCommentContent() %></p>
+								<div class="col-md-10 col-sm-9">
+									<p>${commentCom.commentContent }</p>
 								</div>
 							</div>
-						<% 
-					}
-				%>
-			</div>
+						</c:forEach>
+					</div>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${user eq null ? false : true }">
+					<br>
+					<div class="col-md-4 pull-right">
+					<button type="button" id="createComment-${comment.commentCount }" class="btn btn-success btn-block addCom " onclick="createCom('${comment.commentId }','after','comment')">Reply</button> 
+					</div>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </div>

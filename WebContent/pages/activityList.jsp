@@ -5,16 +5,19 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-<%!ActivityDB actdb = new ActivityDB();%>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='../css/bootstrap.css' rel='stylesheet'>
-<link href='../css/bootstrap.custom.css' rel='stylesheet'>
-<link href='../css/master.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css'
+	rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css'
+	rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css'
+	rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>Activities for families</title>
+<title class="col=-md-4">Activities for families</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -22,22 +25,26 @@
 
 	<div class="container">
 		<jsp:include page="parts/page-header.jsp">
+			<jsp:param value="activity" name="type" />
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
 			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<br>
+
 		<div class="col-md-9">
 			<%
 				DecimalFormat df = new DecimalFormat("##.00");
 			%>
 			<%
-				ArrayList<Activity> actList = actdb.getActivity(null);
+				ArrayList<Activity> actList = (ArrayList<Activity>)request.getAttribute("activityList");
 				for (Activity act : actList) {
 			%>
 			<div class="clearfix">
 				<div class="col-md-4">
-					<img class="activitypic" src="../img/sample.jpg" />
+
+					<img id="actpic" src="<%=act.getImgUrl()%>" />
+
 				</div>
 				<div class="col-md-8">
 					<h4><%=act.getActivityTitle()%></h4>
@@ -52,7 +59,8 @@
 						<%=act.getParticipantNo()%></p>
 					<p>
 						Fee : $
-						<%=act.getActivityFee()%></p>
+						<%=df.format(act.getActivityFee())%>
+					</p>
 					<p>
 						Date :
 						<%=act.getActivityStartDate()%>
@@ -65,47 +73,53 @@
 						Timing :
 						<%=act.getActivityTime()%>
 					</p>
-					<p><div class="forum-post-control-grps">
-					    	<button type="button"
-							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-up"></span><%=act.getActivityLikes()%>
-						</button> 	<button type="button"
-							class="btn btn-default btn-sm btn-no-border" onclick="">
-							<span class="glyphicon glyphicon-thumbs-down"></span><%=act.getActivityDislikes()%>
-						</button> <button type="button"
-							class="btn btn-default btn-sm btn-no-border">
-								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span><%=act.getActivityPostCount()%>
-						</button> 
-							</div>
-					</p> 
+					<p><jsp:include page="parts/likeButtons.jsp">
+							<jsp:param value="activity" name="table" />
+							<jsp:param value="<%=act.getActivityId()%>" name="Id" />
+							<jsp:param value="activityId" name="colName" />
+							<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
+							<jsp:param value="<%=act.getDislikeCount()%>"
+								name="dislikeCount" />
+						</jsp:include>
+						<span aria-hidden="true">
+							<button
+								onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
+								Info</button>
+						</span> 
+						<span aria-hidden="true">
+							<button
+								onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register For Activity</button>
+						</span> 
+
+					</p>
+				</div>
+
+			</div>
+			<br></br>
+			<%
+				}
+			%>
 		</div>
-		
+		<div class="col-md-3">
+			<ul class="list-group">
+				<h4>Activity Popularity Ranking</h4>
+				<%
+					for (int z = 0; z < 20; z++) {
+				%>
+				<li class="list-group-item"><%=z + 1%>. Java <span class="badge"><%=z%></span>
+				</li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
 	</div>
-	 <br></br>
-	<%
-		}
-	%>
-		</div>
-	<div class="col-md-3">
-	<ul class="list-group">
-	<h4> Activity Popularity Ranking</h4>
-		<%
-			for (int z = 0; z < 20; z++) {
-		%>
-		<li class="list-group-item">
-		<%=z+1 %>. Java
-			<span class="badge"><%=z %></span>
-		</li>
-		<%} %>
-	</ul>
-		</div>
-</div>
 
-<%-- end of main container --%>
+	<%-- end of main container --%>
 
-						<jsp:include page="footer.jsp"></jsp:include>
-<%-- end of footer --%>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<%-- end of footer --%>
 
 
-					</body>
+</body>
 </html>

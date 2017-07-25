@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class MetaValue {
 
-	private String date;
+	private String date,accountName,accountImgUrl;
 	private int likeCount, dislikeCount, followerCount;
 	private ArrayList<String> followerAccounts,likeAccounts,dislikeAccounts;
+	private boolean liked,disliked;
 	
 	
 	public int getLikeCount() {
@@ -52,6 +53,30 @@ public class MetaValue {
 
 	public void setDate(String date) {
 		this.date = date.substring(0,19);
+	}
+	public String getAccountName() {
+		return accountName;
+	}
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+	public String getAccountImgUrl() {
+		return accountImgUrl;
+	}
+	public void setAccountImgUrl(String accountImgUrl) {
+		this.accountImgUrl = accountImgUrl;
+	}
+	public boolean isLiked() {
+		return liked;
+	}
+	public void setLiked(boolean liked) {
+		this.liked = liked;
+	}
+	public boolean isDisliked() {
+		return disliked;
+	}
+	public void setDisliked(boolean disliked) {
+		this.disliked = disliked;
 	}
 	
 

@@ -14,93 +14,83 @@ public class MetaValueDB extends DBAO{
 	public MetaValueDB(){
 		super();
 	}
-		
+
 	/**
 	 * create post meta values
 	 * @param parentId
 	 * @param accountId
 	 * @param action like|dislike|follow
 	 */
-	public String addMeta(String colName, String id, String accountId, String action){
+	public String addMeta(String id, String accountId, String action){
 		
-		String stmt = "INSERT INTO "+ schema +".metavalue (`"+ colName +"`, `accountId`, `action`) VALUES (?, ?, ?)";
+		String stmt = "INSERT INTO "+ schema +".metavalue (`parentId`, `accountId`, `action`)  VALUES (?, ?, ?)";
+		String select = "Select Count(*) from "+ schema +".metavalue where `parentId` = ? And action = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
+			PreparedStatement ps1 = con.prepareStatement(select);
+			ps1.setString(1, id);
+			ps1.setString(2, action);
 			System.out.println(ps);
-			int Status = ps.executeUpdate();
-			ps.close();
-			if(Status != 0){
-				System.out.println("Log addMeta(): success");
-				return "success";
-			}else{
-				System.out.println("Log addMeta(): fail");
+			int status = ps.executeUpdate();
+			if(status != 0) {
+				ResultSet rs = ps1.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			}else {
 				return "fail";
 			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return "fail";
 	}
 	
-	public void removeMeta(String colName, String id, String accountId, String action) {
-		String stmt = "DELETE FROM "+ schema +".metavalue WHERE "+colName+"= ? AND accountId = ? AND action = ?";
+	public String removeMeta(String id, String accountId, String action) {
+		String stmt = "DELETE FROM "+ schema +".metavalue WHERE `parentId`= ? AND accountId = ? AND action = ?";
+				String select = "Select Count(*) from "+ schema +".metavalue where `parentId` = ? And action = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
 			ps.setString(3, action);
-			
+			PreparedStatement ps1 = con.prepareStatement(select);
+			ps1.setString(1, id);
+			ps1.setString(2, action);
+			System.out.println(ps);
 			int status = ps.executeUpdate();
-			if(status != 0){
-				System.out.println("Log removeMeta(): success");
-			}else{
-				System.out.println("Log removeMeta(): fail");
+			if(status != 0) {
+				ResultSet rs = ps1.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			}else {
+				return "fail";
 			}
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return "fail";
 	}
-
-	public void delPostMeta(){}
 	
-	/**
-	 * get post meta value counts
-	 * @param parentId
-	 * @param action like|dislike|follow
-	 * @return
-	 */
-	public int getMetaCounts(String colName, String parentId,String action){
-		int count = 0;
-		try {
-			String stmt = "SELECT COUNT(*) AS count FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
-			PreparedStatement ps = con.prepareStatement(stmt);
-			System.out.println(ps);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				count = rs.getInt("count");
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return count;
-	}
-		
 	/**
 	 * get post meta value accounts
 	 * @param parentId
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public ArrayList<String> getMetaAccounts(String colName, String parentId,String action){
+	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "SELECT * FROM "+ schema +".metavalue WHERE "+ colName +" = '"+ parentId +"' AND action = '"+ action +"'";
+			String stmt = "select distinct p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND m.action = ?";
 			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, id);
+			ps.setString(2, action);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("accountId"));
@@ -111,4 +101,5 @@ public class MetaValueDB extends DBAO{
 		}
 		return list;
 	}
+
 }

@@ -3,14 +3,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import bean.Registration;
-public class RegistrationDB extends DBAO{
+import bean.ActReg;
+public class ActRegDB extends DBAO{
 	
-	public RegistrationDB(){
+	public ActRegDB(){
 		super();
 	}
-	public ArrayList<Registration> getRegistration(String statement){
-		ArrayList<Registration> regList = new ArrayList<Registration>();
+	public ArrayList<ActReg> getRegistration(String statement){
+		ArrayList<ActReg> regList = new ArrayList<ActReg>();
 		try {
 			if(statement == null){
 				statement = "SELECT * FROM "+ schema +".registration ORDER BY registrationId DESC";
@@ -22,7 +22,7 @@ public class RegistrationDB extends DBAO{
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				Registration reg = new Registration();
+				ActReg reg = new ActReg();
 				reg.setRegistrationId(rs.getString("registrationId"));
 				reg.setRegistrationDate(java.sql.Timestamp.valueOf(rs.getString("registrationDate")));
 				reg.setRegistrationAmtPaid(rs.getDouble("registrationAmountPaid"));
@@ -30,6 +30,7 @@ public class RegistrationDB extends DBAO{
 				reg.setUserAccountId(rs.getString("useraccountId"));
 				reg.setParticipantNo(rs.getInt("participantNo"));
 				reg.setActivityactivityId(rs.getString("ActivityactivityId"));
+				reg.setCardNumber(cardNumber);
 				System.out.println("record retrieve");
 				regList.add(reg);
 			}
@@ -38,6 +39,13 @@ public class RegistrationDB extends DBAO{
 		}
 		return regList;
 	}
+	public String RegisterActivity(ActReg ar) {
+		String stmt = "insert into" + schema + ".bankdetails('bankNumber','nameOnCard','accountId') values(?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			
+		} catch(SQLException ex) {}
+		return null;}
 
 	
 }
