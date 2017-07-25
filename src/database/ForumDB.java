@@ -102,7 +102,7 @@ public class ForumDB extends DBAO{
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 				
-//				post.setFollowerAccounts(meta.getMetaAccounts("postId",post.getPostId(),"follow"));
+				post.setFollowerAccounts(MetaValueDB.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
 				post.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"like"));
 				post.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
 				

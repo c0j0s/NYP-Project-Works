@@ -33,6 +33,7 @@ public class MetaValueDB extends DBAO{
 			PreparedStatement ps1 = con.prepareStatement(select);
 			ps1.setString(1, id);
 			ps1.setString(2, action);
+			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0) {
 				ResultSet rs = ps1.executeQuery();
@@ -60,7 +61,7 @@ public class MetaValueDB extends DBAO{
 			PreparedStatement ps1 = con.prepareStatement(select);
 			ps1.setString(1, id);
 			ps1.setString(2, action);
-			
+			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0) {
 				ResultSet rs = ps1.executeQuery();
@@ -86,7 +87,7 @@ public class MetaValueDB extends DBAO{
 	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "select p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND action = ?";
+			String stmt = "select distinct p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND m.action = ?";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, action);

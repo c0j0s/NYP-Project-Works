@@ -25,8 +25,7 @@
 			<jsp:param value="forum" name="type" />
 		</jsp:include>
 		<c:choose>
-			<c:when test="${fn:length(postList) > 0 ? true : false}">
-				<c:forEach items="${postList}" var="post">
+			<c:when test="${post != null ? true : false}">
 					<div class="col-md-9 col-sm-12" id="post-container">
 						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
@@ -87,7 +86,6 @@
 							<f:PostListPagination pageCount="${post.commentCount }" currentPage="${page }" itemPerPage="5" type="comment" postId="${post.postId}"/>
 						</div>
 					</div>
-				</c:forEach>
 				</c:when>
 			<c:otherwise>
 				<div class="panel panel-default col-md-9">
