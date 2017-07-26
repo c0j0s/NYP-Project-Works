@@ -45,8 +45,18 @@
 								    <div class="col-md-1 col-sm-2">
 								    	<span class="glyphicon glyphicon-${result.type eq 'post' ? 'comment' : 'certificate' } btn-lg" aria-hidden="true"></span>
 								    </div>
-								    <div class="col-md-8 col-sm-6">
-								   		<h4 class="list-group-item-heading">${result.title }</h4>
+								    <div class="col-md-8 col-sm-10">
+								    	<div class="list-group-item-heading">
+								   		<h4>${result.title }</h4>
+								   		<h6>
+									   		<c:if test="${result.metadata['tagList'] ne '' ? true:false }">
+												<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
+												<span class="tab-title"> &nbsp
+												${result.metadata['tagList'] } 
+												</span>	
+											</c:if>
+										</h6>
+										</div>
 								    	<p class="list-group-item-text">${result.content }</p>
 								    </div>
 								  </a>

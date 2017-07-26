@@ -9,6 +9,13 @@ import bean.Result;
 
 public class SearchDB extends DBAO {
 
+	/**
+	 * for searching specific table
+	 * @param table
+	 * @param keyWord
+	 * @param servletPath
+	 * @return list of result objects
+	 */
 	public ArrayList<Result> searchSpecific(String table, String keyWord, String servletPath) {
 		ArrayList<Result> list = new ArrayList<Result>();
 		ArrayList<String> colList = getTableColumns(table);
@@ -16,12 +23,15 @@ public class SearchDB extends DBAO {
 		if(table.equals("activity")) {
 			stmt = stmt + ""+ table +"Description like ?";
 		}else {
-			stmt = stmt + ""+ table +"Content like ?";
+			stmt = stmt + ""+ table +"Content like ? or taglist like ?";
 		}
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, "%"+keyWord+"%");
 			ps.setString(2, "%"+keyWord+"%");
+			if(table.equals("post")) { 
+				ps.setString(3, "%"+keyWord+"%");
+			}
 			System.out.println("Log searchSpecific(): " + ps);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -50,6 +60,12 @@ public class SearchDB extends DBAO {
 					}else if (colName.toLowerCase().contains("postdate")) {
 						r.setCreatedOn(rs.getString(colName));
 						System.out.println("Log searchSpecific(): r.setCreatedOn() = " + rs.getString(colName));
+					}else if (colName.toLowerCase().contains("category")) {
+						r.addMetadata(colName,rs.getString(colName));
+						System.out.println("Log searchSpecific(): r.addMetadata() = "+ colName + rs.getString(colName));
+					}else if (colName.toLowerCase().contains("tag")) {
+						r.addMetadata(colName,rs.getString(colName));
+						System.out.println("Log searchSpecific(): r.addMetadata() = "+ colName + rs.getString(colName));
 					}
 				}
 				
@@ -68,6 +84,11 @@ public class SearchDB extends DBAO {
 		return list;
 	}
 
+	/**
+	 * for searching all tables
+	 * @param keyWord
+	 * @return list of result objects
+	 */
 	public ArrayList<Result> searchAll(String keyWord) {
 		ArrayList<Result> combineList = new ArrayList<Result>();
 		String tables[] = {"post","activity"};
@@ -79,6 +100,11 @@ public class SearchDB extends DBAO {
 		return combineList;
 	}
 
+	/**
+	 * get column names from table
+	 * @param table
+	 * @return list of column names
+	 */
 	public ArrayList<String> getTableColumns(String table){
 		String stmt = "SHOW COLUMNS FROM "+table;
 		ArrayList<String> list = new ArrayList<String>();

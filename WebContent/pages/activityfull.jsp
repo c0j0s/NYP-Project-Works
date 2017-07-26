@@ -5,7 +5,6 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-<%!ActivityDB actdb = new ActivityDB();%>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -32,7 +31,7 @@
 			DecimalFormat df = new DecimalFormat("##.00");
 		%>
 		<%
-			if (request.getParameter("actId") == null) {
+			if (request.getParameter("activityId") == null) {
 		%>
 		<script language="javascript">
 			window.location.href = "activitypageerror.jsp"
@@ -55,18 +54,20 @@
 			<br>
 			<div class="col-md-1 pull-left"></div>
 			<div class="col-md-7">
-				<p><h3>
-					
-					<%=actf.getActivityTitle()%></p></h3>
-						<p>
+				<p>
+				<h3>
+
+					<%=actf.getActivityTitle()%></p>
+				</h3>
+				<p>
 					Activity Categories :
 					<%=actf.getActivityCategory()%></p>
 				<img src="<%=actf.getImgUrl()%>" id="factpic"><br> <br>
 				<p>Activity Description :</p>
 				<p style="border-style: solid;"><%=actf.getActivityDescription()%></p>
-							
-			
-				
+
+
+
 				<p>
 					Organiser Id :
 					<%=actf.getOrganiserId()%></p>
@@ -74,8 +75,8 @@
 					Slots Available:
 					<%=actf.getParticipantNo()%></p>
 				<p>
-					Activity Fee :
-					$ <%=df.format(actf.getActivityFee())%></p>
+					Activity Fee : $
+					<%=df.format(actf.getActivityFee())%></p>
 				<p>
 					Activity Time :
 					<%=actf.getActivityTime()%></p>
@@ -87,10 +88,10 @@
 					<%=actf.getActivityLocation()%></p>
 				<p>
 					Activity Period :
-					<%=actf.getActivityStartDate()%> to 
+					<%=actf.getActivityStartDate()%>
+					to
 					<%=actf.getActivityEndDate()%></p>
-				<p>
-					</p>
+				<p></p>
 				<p>
 					Activity Post Date :
 					<%=actf.getActivityPostDate()%></p>
@@ -103,36 +104,56 @@
 					<jsp:include page="parts/likeButtons.jsp">
 						<jsp:param value="activity" name="table"/>
 						<jsp:param value="<%=actf.getActivityId() %>" name="Id"/>
-						<jsp:param value="activityId" name="colName"/>
-						<jsp:param value="<%=actf.getLikeCount() %>" name="likeCount"/>
-						<jsp:param value="<%=actf.getDislikeCount() %>" name="dislikeCount"/>
+						<jsp:param value="activity" name="table" />
+						<jsp:param value="<%=actf.getActivityId()%>" name="Id" />
+						<jsp:param value="activityId" name="colName" />
+						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
+						<jsp:param value="<%=actf.getDislikeCount()%>"
+							name="dislikeCount" />
 					</jsp:include>
-				</div>
-			</div>
-			
-			</div>
-
-			<div class="col-md-1"></div>
-			<div class="col-md-3">
-				<ul class="list-group pull-right">
-					<h4>Activity Popularity Ranking</h4>
 					<%
-						for (int z = 0; z < 20; z++) {
+						Account currentUser = (Account) session.getAttribute("account");
+							if (currentUser.getAccountId().equals(actf.getOrganiserId())) {
 					%>
-					<li class="list-group-item"><%=z + 1%>. Java <span
-						class="badge"><%=z%></span></li>
+					<span aria-hidden="true">
+						<button
+							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
+							Activity</button>
+					</span>
 					<%
 						}
 					%>
-				</ul>
+					<span aria-hidden="true">
+						<button
+							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
+							For Activity</button>
+					</span>
+				</div>
 			</div>
 
-
-
-			<%
-				}
-			%>
 		</div>
+
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<ul class="list-group pull-right">
+				<h4>Activity Popularity Ranking</h4>
+				<%
+					for (int z = 0; z < 20; z++) {
+				%>
+				<li class="list-group-item"><%=z + 1%>. Java <span
+					class="badge"><%=z%></span></li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
+
+
+
+		<%
+			}
+		%>
+	</div>
 	</div>
 
 	<%-- end of main container --%>

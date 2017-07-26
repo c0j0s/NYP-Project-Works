@@ -52,7 +52,7 @@
 		    			<jsp:param value="${post}" name="post"/>
 		    		</jsp:include>
 		    	</c:forEach>
-		    	<f:PostListPagination pageCount="${postCount }" currentPage="${page }" category="${postCatTab }"/>
+		    	<f:PostListPagination pageCount="${postCount }" currentPage="${page }" category="${postCatTab }" itemPerPage="10" type="post"/>
 		    </div>
 		    </c:forEach>
 		  </div>

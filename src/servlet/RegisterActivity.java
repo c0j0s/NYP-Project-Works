@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Account;
+import bean.ActReg;
+import database.ActRegDB;
 
 /**
  * Servlet implementation class RegAct
@@ -26,6 +31,11 @@ public class RegisterActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession s = request.getSession(true);
+		ActRegDB ardb = new ActRegDB();
+		ActReg ar = new ActReg();
+		Account ac = (Account)s.getAttribute("account");
+		
 		}
 
 	/**

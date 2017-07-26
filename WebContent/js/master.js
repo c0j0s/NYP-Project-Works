@@ -1,4 +1,4 @@
-var createCom;
+var createCom, openMessage,closeMessage;
 var postDeleteCancel;
 var counter;
 $( document ).ready(function() {
@@ -64,7 +64,6 @@ $( document ).ready(function() {
 		
 		var span = 5;
 		counter = setInterval(function(){
-			span = span - 1;
 			$("#post-delete-countdown").html(span)
 			console.log(span)
 			if(span == 0){
@@ -77,10 +76,13 @@ $( document ).ready(function() {
 						success: function(result){	
 							location.href= ContextPath + "/Forum";
 						}
-					});		
+					});	
+				span = 0;
 				}else{
 					clearInterval(counter)
 				}
+			}else{
+				span = span - 1;
 			}
 		},1000)
 		
@@ -108,92 +110,10 @@ $( document ).ready(function() {
 		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
 		$(this).remove();
 	})
+	
 	/**
-	 *  method for meta value TODO update with real time database result
+	 *  method for meta value TODO update with real time database metavalue
 	 */
-//	$(".meta-value").click(function(){
-//		var data = $(this).data();
-//		$(this).addClass("meta-clicked");
-//		$(this).removeClass("meta-value");
-//		var meta = $(this).children(".meta-value-count");
-//		var count = meta.data().count;
-//		
-//		if(data.action === "like"){
-//			if($(this).next().attr("disabled") === undefined){
-//				console.log("like");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}
-//				$(this).next().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("liked");
-//				if(count == meta.data().count){
-//					count = meta.data().count - 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				
-//				$(this).next().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//			
-//		}else if(data.action === "dislike"){
-//			if($(this).prev().attr("disabled") === undefined){
-//				console.log("dislike");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count - 1;
-//				}
-//				$(this).prev().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("disliked");
-//				if(count == meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				$(this).prev().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//		}else if(data.action === "follow"){
-//			
-//		}
-//		
-//	});
-//	
-//	function addMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=add", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			},
-//			error:function(jqXHR, exception){
-//				console.log("ajax error"+jqXHR.responseText)
-//			}
-//		});
-//	}
-//	
-//	function removeMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=remove", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			}
-//		});
-//	}
 	
 	$(".meta-like-btn").on('click',function(){
 		var mdata = $(this).data();
@@ -252,6 +172,33 @@ $( document ).ready(function() {
 		});
 
 	})
+	
+	$("#follow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=follow", 
+			data: $(this).data(),
+			success: function(result){	
+				console.log("add success");
+				btn.addClass("hide");
+				$("#unfollow-post").removeClass("hide");
+			}
+		});	
+	})
+	
+	$("#unfollow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=unfollow", 
+			data: $(this).data(),
+			success: function(result){	
+				console.log("remove success");
+				btn.addClass("hide");
+				$("#follow-post").removeClass("hide");
+			}
+		});	
+	})
+	
 	/**
 	 * methods for file upload
 	 */
@@ -307,10 +254,9 @@ $( document ).ready(function() {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
-		   var finaltotal = format2(total, "$")
-		$('#total').val(finaltotal)
-		$('#total1').val(finaltotal)
-				$('#total2').val(finaltotal)
+		   var finaltotal = format2(total, "$");
+		$('#total').val(finaltotal);
+	
 	    console.log(num1);
 	    console.log(num2);
 	});
@@ -318,21 +264,90 @@ $( document ).ready(function() {
 	function format2(n, currency) {
 	    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 	}
-	
-	function paytype(type){
-		switch(expression) {
-	    case 1:
-	     $('paytype').val(type)
-	        break;
-	    case 2:
-	     $('paytype').val(type)
-	        break;
-	   
-	}
-	}
-	
-	
-	
 
+	/**
+	 * methods for notification
+	 */
+	
+	$("#toogle-notification").on("click",function(){
+		var panel = $("#notification-panel").css("display");
+		if (panel === 'none') {
+			$("#notification-panel").css("display","block");
+			$.ajax({
+				url: ContextPath + '/getNotifications',
+				success: function(result){
+					console.log("get notifications" + result)
+					if(result != undefined){
+						var item = JSON.parse(result);
+						$("#notification-body").empty();
+						for(var i = 0; i< item.length; i++){
+							var li = "<a class='list-group-item notification-list-item'>" +
+									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
+							$("#notification-body").append(li);
+							if(item[i].actionText != undefined){
+								console.log( ".notification-list-item-text-" + +item[i].id + " action = " + item[i].actionText);
+								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
+							}
+						}
+					}
+				}
+			});
+		}else{
+			console.log("close panel")
+			$("#notification-panel").css("display","none");
+			$("#notification-body").empty();
+		}
+	});
+	$("#close-notification").on("click",function(){
+		$("#notification-panel").css("display","none");
+		$("#notification-body").empty();
+	});
+	
+	openMessage = function(id){
+		$(".notification-list-item-text-" + id).css('display','block');
+		$(".glyphicon-" + id).attr('onclick','closeMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-up').removeClass('glyphicon-menu-down');
+		$.ajax({
+			url: ContextPath +'/setNotificationRead',
+			data: {'id':id},
+			success: function(result){
+				$(".notification-count").each(function(){
+					console.log("item read count left " + result)
+					$(this).html(result);
+				});
+			}
+		});
+	}
+	closeMessage = function(id){
+		$(".glyphicon-" + id).attr('onclick','openMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-down').removeClass('glyphicon-menu-up');
+		$(".notification-list-item-text-" + id).css('display','none');
+	}
+	
+	setInterval(function(){
+		$.ajax({
+			url: ContextPath +'/getNotificationCount',
+			success: function(result){
+				$(".notification-count").each(function(){
+					console.log("refreash count " + result)
+					$(this).html(result);
+				});
+			}
+		});
+	},10000);
 
 });
+
+function paytype(type){
+	switch(type) {
+	case 1:
+		$('#paytype').val(type)
+		break;
+	case 2:
+		$('#paytype').val(type)
+		break;
+
+	}
+	console.log(type);
+}

@@ -21,7 +21,15 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-content goes here
+	<h2>Forget Password</h2>
+	<p>Please key in your email below, an email will be sent to you regarding resetting your password.</p>
+	<form action="${pageContext.request.contextPath}/signupServlet" method="post" >
+		<div class="form-group">
+				<label for="email">Email: </label> 
+				<input type="text" class="form-control" name="email" placeholder="Email">
+			</div>
+		<button type="submit" class="btn btn-default" value="sendform">Submit</button>
+	</form>
 
 </div>
 

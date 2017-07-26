@@ -13,9 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import bean.Comment;
+import bean.Post;
 import common.UID;
 import database.CommentDB;
 import database.DBAO;
+import database.ForumDB;
+import database.NotificationDB;
 
 /**
  * Servlet implementation class createComment
@@ -52,8 +55,11 @@ public class CreateComment extends HttpServlet {
 					System.out.println("Log: comments comment not null");
 					com.setCommentsComId(request.getParameter("commentId"));
 				}
+				String name = ac.getGivenName();
 				if(request.getParameter("hideId") != null){
+					System.out.println("log hideid test: "+request.getParameter("hideId").charAt(0));
 					com.setHideId(request.getParameter("hideId").charAt(0));
+					name = "Anonymous";
 				}
 				String result = combd.createComment(com);
 				String path = "";
@@ -63,6 +69,13 @@ public class CreateComment extends HttpServlet {
 				}else{
 					path = "Post?message=fail&postId=" + postId;
 				}
+				
+				ForumDB fdb = new ForumDB();
+				Post p = fdb.getPostById(postId).get(0);
+				NotificationDB ndb = new NotificationDB();
+				String message =  name + " answered your post.";
+				ndb.sendNotification("New Answers!", message, "Forum", p.getAccountId(),"Check it out", "Post?postId="+postId);
+				
 				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
 				response.setContentType("html/text");

@@ -14,31 +14,6 @@ public class MetaValueDB extends DBAO{
 	public MetaValueDB(){
 		super();
 	}
-		
-//	public boolean checkifMetaExist(String colName, String id, String accountId, String action) {
-//		String stmt = "select count(*) from "+ schema +".metavalue where "+ colName +" = ? AND accountId = ? AND action = ?";
-//		try {
-//			PreparedStatement ps = con.prepareStatement(stmt);
-//			ps.setString(1, id);
-//			ps.setString(2, accountId);
-//			ps.setString(3, action);
-//			System.out.println("Log checkifMetaExist(): "+ps);
-//			
-//			ResultSet rs = ps.executeQuery();
-//			while(rs.next()) {
-//				if(rs.getInt(1) > 0) {
-//					return false;
-//				}else {
-//					return true;
-//				}
-//			}
-//			rs.close();
-//			ps.close();
-//		} catch (Exception e) {
-//			return false;
-//		}
-//		return false;
-//	}
 
 	/**
 	 * create post meta values
@@ -59,7 +34,6 @@ public class MetaValueDB extends DBAO{
 			ps1.setString(1, id);
 			ps1.setString(2, action);
 			System.out.println(ps);
-			System.out.println(ps1);
 			int status = ps.executeUpdate();
 			if(status != 0) {
 				ResultSet rs = ps1.executeQuery();
@@ -87,7 +61,7 @@ public class MetaValueDB extends DBAO{
 			PreparedStatement ps1 = con.prepareStatement(select);
 			ps1.setString(1, id);
 			ps1.setString(2, action);
-			
+			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0) {
 				ResultSet rs = ps1.executeQuery();
@@ -113,7 +87,7 @@ public class MetaValueDB extends DBAO{
 	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			String stmt = "select p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND action = ?";
+			String stmt = "select distinct p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND m.action = ?";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, action);

@@ -38,6 +38,23 @@ public class ActRegDB extends DBAO{
 		}
 		return regList;
 	}
+	public String RegisterActivity(ActReg ar) {
+		String stmt = "insert into" + schema + ".registration(registrationId, registrationDate, registrationAmountPaid, participantNo, UseraccountId, ActivityactivityId) values(?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setInt(1, ar.getCardNumber());
+			ps.setString(2, ar.getNameOfCardHolder());
+			ps.setString(3,ar.getUserAccountId());
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			if(status != 0){
+				System.out.println("Log createActivity() :" + ps);
+				return ar.getRegistrationId();
+			}else{
+				return "fail";
+			}
+		} catch(SQLException ex) {}
+		return null;}
 
 	
 }

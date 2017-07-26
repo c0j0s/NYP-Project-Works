@@ -83,12 +83,12 @@
 						</jsp:include>
 						<span aria-hidden="true">
 							<button
-								onclick="location.href = 'ActFull?actId=<%=act.getActivityId()%>'">More
+								onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 								Info</button>
 						</span> 
 						<span aria-hidden="true">
 							<button
-								onclick="location.href = 'ActReg?actId=<%=act.getActivityId()%>'">Register For Activity</button>
+								onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register For Activity</button>
 						</span> 
 
 					</p>
