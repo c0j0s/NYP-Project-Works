@@ -32,14 +32,12 @@ public class DBAO {
 			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
 		} 
 	}
-	
-	public void openConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(lurl,"root",lpasswd);
-		} catch (Exception e) {
-			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
-		} 
+
+	public static String getDateTime(){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		java.util.Date myDate = new java.util.Date();
+		Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
+		return formatter.format(sqlDate).substring(0, 19);
 	}
 
 }
