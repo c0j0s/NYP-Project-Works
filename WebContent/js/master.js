@@ -64,7 +64,6 @@ $( document ).ready(function() {
 		
 		var span = 5;
 		counter = setInterval(function(){
-			span = span - 1;
 			$("#post-delete-countdown").html(span)
 			console.log(span)
 			if(span == 0){
@@ -77,10 +76,13 @@ $( document ).ready(function() {
 						success: function(result){	
 							location.href= ContextPath + "/Forum";
 						}
-					});		
+					});	
+				span = 0;
 				}else{
 					clearInterval(counter)
 				}
+			}else{
+				span = span - 1;
 			}
 		},1000)
 		
@@ -108,92 +110,10 @@ $( document ).ready(function() {
 		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
 		$(this).remove();
 	})
+	
 	/**
-	 *  method for meta value TODO update with real time database result
+	 *  method for meta value TODO update with real time database metavalue
 	 */
-//	$(".meta-value").click(function(){
-//		var data = $(this).data();
-//		$(this).addClass("meta-clicked");
-//		$(this).removeClass("meta-value");
-//		var meta = $(this).children(".meta-value-count");
-//		var count = meta.data().count;
-//		
-//		if(data.action === "like"){
-//			if($(this).next().attr("disabled") === undefined){
-//				console.log("like");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}
-//				$(this).next().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("liked");
-//				if(count == meta.data().count){
-//					count = meta.data().count - 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				
-//				$(this).next().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//			
-//		}else if(data.action === "dislike"){
-//			if($(this).prev().attr("disabled") === undefined){
-//				console.log("dislike");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count - 1;
-//				}
-//				$(this).prev().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("disliked");
-//				if(count == meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				$(this).prev().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//		}else if(data.action === "follow"){
-//			
-//		}
-//		
-//	});
-//	
-//	function addMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=add", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			},
-//			error:function(jqXHR, exception){
-//				console.log("ajax error"+jqXHR.responseText)
-//			}
-//		});
-//	}
-//	
-//	function removeMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=remove", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			}
-//		});
-//	}
 	
 	$(".meta-like-btn").on('click',function(){
 		var mdata = $(this).data();
@@ -252,6 +172,33 @@ $( document ).ready(function() {
 		});
 
 	})
+	
+	$("#follow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=follow", 
+			data: $(this).data(),
+			success: function(result){	
+				console.log("add success");
+				btn.addClass("hide");
+				$("#unfollow-post").removeClass("hide");
+			}
+		});	
+	})
+	
+	$("#unfollow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=unfollow", 
+			data: $(this).data(),
+			success: function(result){	
+				console.log("remove success");
+				btn.addClass("hide");
+				$("#follow-post").removeClass("hide");
+			}
+		});	
+	})
+	
 	/**
 	 * methods for file upload
 	 */

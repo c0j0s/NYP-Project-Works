@@ -39,18 +39,24 @@ public class UpdateMetaValue extends HttpServlet {
 			String newCount;
 			System.out.println("meta sevlet doget");
 			Account ac = (Account)s.getAttribute("account");
-			String id = request.getParameter("id");
 			String action = request.getParameter("action");
-			String operators = request.getParameter("operator");
-			System.out.println(id + action + operators);
-			if(operators.equals("add")) {
-				newCount = m.addMeta(id, ac.getAccountId(), action);
-				System.out.println(newCount);
-				out.print(newCount);
-			}else if (operators.equals("subtract")) {
-				newCount = m.removeMeta(id, ac.getAccountId(), action);
-				System.out.println(newCount);
-				out.print(newCount);
+			String id = request.getParameter("id");
+			if(action.equals("follow")) {
+				m.addMeta(id, ac.getAccountId(), action);
+			}else if(action.equals("unfollow")){
+				m.removeMeta(id, ac.getAccountId(), "follow");
+			}else {
+				String operators = request.getParameter("operator");
+				System.out.println(id + action + operators);
+				if(operators.equals("add")) {
+					newCount = m.addMeta(id, ac.getAccountId(), action);
+					System.out.println(newCount);
+					out.print(newCount);
+				}else if (operators.equals("subtract")) {
+					newCount = m.removeMeta(id, ac.getAccountId(), action);
+					System.out.println(newCount);
+					out.print(newCount);
+				}
 			}
 			out.flush();
 			

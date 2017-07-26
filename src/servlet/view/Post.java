@@ -9,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Account;
 import bean.Comment;
-import common.UID;
 import database.CommentDB;
 import database.ForumDB;
 
@@ -36,44 +37,34 @@ public class Post extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ForumDB fdb = new ForumDB();
 		CommentDB cdb = new CommentDB();
+		HttpSession ss = request.getSession(true);
+		Account ac = (Account) ss.getAttribute("account");
+		boolean followed = false;
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
+		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
+		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 9;
 		
-		ArrayList<bean.Post> p = fdb.getPostById(postId);
-		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, 0, 10);
-		Iterator<bean.Comment> comIter = c.iterator();
-		Comment bestAnswer = null;
+		bean.Post p = fdb.getPostById(postId).get(0);
+		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, start, 5);
 		
-		while(comIter.hasNext()) {
-			Comment com = (bean.Comment) comIter.next();
-			
-			if(com.getCommentId().equals(p.get(0).getBestAnswer())) {
-				bestAnswer = com;
-				comIter.remove();
-				System.out.println("servlet 1 match " + com.getAccountId());
-			}else {
-				System.out.println("servlet 1 " + com.getAccountId());
-			}
-		}
-
-		ArrayList<bean.Comment> newC = new ArrayList<bean.Comment>();
-		if(bestAnswer != null) {
-			newC.add(bestAnswer);
-		}
-		newC.addAll(c);
-		
-		System.out.println(p.size());
-		if(p.size() > 0) {
-			if(p.get(0).getValid() == 'Y') {
-				System.out.println("log comment size:"+newC.size());
-				request.setAttribute("postList", p);
-				request.setAttribute("commentList", newC);
+		if(p != null) {
+			if(p.getValid() == 'Y') {
+				request.setAttribute("post", p);
+				request.setAttribute("commentList", c);
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
 		}else{
 			request.setAttribute("message", "Post not found");
 		}
-
+		if(ac != null) {
+			if(p.getFollowerAccounts().contains(ac.getAccountId())){
+				followed = true;
+			}
+		}
+		
+		request.setAttribute("followed", followed);
+		request.setAttribute("page", page);
 		request.getRequestDispatcher("pages/post.jsp").forward(request, response);
 	}
 

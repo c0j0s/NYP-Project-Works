@@ -37,3 +37,4 @@
 <script src='${pageContext.request.contextPath}/js/code39.js'></script>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+

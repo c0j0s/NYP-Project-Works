@@ -1,7 +1,11 @@
 package bean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Result {
 	String itemId,title,content,url,imgUrl,type,createdOn;
+	Map<String,String> metadata = new HashMap<String, String>();
 
 	public String getItemId() {
 		return itemId;
@@ -58,4 +62,17 @@ public class Result {
 	public void setCreatedOn(String createdOn) {
 		this.createdOn = createdOn;
 	}
+
+	public Map<String, String> getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(Map<String, String> metadata) {
+		this.metadata = metadata;
+	}
+	
+	public void addMetadata(String key,String value) {
+		this.metadata.put(key, value);
+	}
+	
 }

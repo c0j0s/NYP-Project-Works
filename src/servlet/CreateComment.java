@@ -53,6 +53,7 @@ public class CreateComment extends HttpServlet {
 					com.setCommentsComId(request.getParameter("commentId"));
 				}
 				if(request.getParameter("hideId") != null){
+					System.out.println("log hideid test: "+request.getParameter("hideId").charAt(0));
 					com.setHideId(request.getParameter("hideId").charAt(0));
 				}
 				String result = combd.createComment(com);

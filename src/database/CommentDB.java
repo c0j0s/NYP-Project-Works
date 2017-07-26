@@ -23,8 +23,8 @@ public class CommentDB extends DBAO{
 	 * @return postId
 	 */
 	public String createComment(Comment com){
-		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`,`hideId`)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, common.UID.genCommentId());	
@@ -32,6 +32,7 @@ public class CommentDB extends DBAO{
 			ps.setString(3, com.getDate());
 			ps.setString(4, com.getCommentGroup());
 			ps.setString(6, com.getAccountId());
+			ps.setString(8, ""+com.getHideId());
 			
 			if(com.getCommentsComId() != null){
 				ps.setString(5, null);
@@ -72,8 +73,6 @@ public class CommentDB extends DBAO{
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
 			
-			System.out.println("log CommentDB.java :" + ps);
-			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
@@ -98,8 +97,7 @@ public class CommentDB extends DBAO{
 //				com.setFollowerAccounts(getMetaAccounts(com.getPostId(),"follow"));
 				com.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"like"));
 				com.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
-				System.out.println("Log comment: " + com.getCommentContent());
-				
+			
 				com.setCommentComList(getCommentByCommentId(com.getCommentId(),0,5));
 				
 				commentList.add(com);
@@ -122,14 +120,12 @@ public class CommentDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit;
-		System.out.println("Log getCommentByPostId(): " + stmt);
+		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
 		return getComment(stmt);
 	}
 	
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
 		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
-		System.out.println("Log getCommentByCommentId(): " + stmt);
 		return getComment(stmt);
 	}
 

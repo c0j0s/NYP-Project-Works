@@ -21,7 +21,7 @@ public class AccountDB extends DBAO{
 		// TODO Auto-generated method stub
 		Account ac = null;
 		try{
-			String selectStatement = "SELECT * FROM ffl.user where email = ? and password = ?";
+			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ?";
 			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
 			prepStmt.setString(1, userId);
 			prepStmt.setString(2, userPw);
@@ -87,6 +87,16 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(9, ac.getImgUrl());
 			prepStmt.setString(10, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
+	public void resetPw(String pw, String email) throws Exception{
+		try{
+			String updateStatement = "update ffl.user set password = ? where email = ?";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			prepStmt.setString(1, pw);
+			prepStmt.setString(2, email);
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
