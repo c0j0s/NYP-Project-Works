@@ -33,6 +33,8 @@ public class NotificationDB extends DBAO{
 				no.setTitle(rs.getString("title"));
 				no.setMessage(rs.getString("message"));
 				no.setServiceType(rs.getString("serviceType"));
+				no.setActionText(rs.getString("actionText"));
+				no.setActionUrl(rs.getString("actionUrl"));
 				list.add(no);
 			}
 		} catch (Exception e) {
@@ -65,14 +67,16 @@ public class NotificationDB extends DBAO{
 		return count;
 	}
 	
-	public void sendNotification(String title,String message,String serviceType,String accountId) {
-		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId) values (?,?,?,?)";
+	public void sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
+		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId,actionText,actionUrl) values (?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, title);
 			ps.setString(2, message);
 			ps.setString(3, serviceType);
 			ps.setString(4, accountId);
+			ps.setString(5, actionText);
+			ps.setString(6, actionUrl);
 			
 			int status = ps.executeUpdate();
 			if (status != 0) {
@@ -90,7 +94,7 @@ public class NotificationDB extends DBAO{
 	public void sentNotificationToAccounts(ArrayList<String> accountIds,Notification no) {
 		for (Iterator<String> iterator = accountIds.iterator(); iterator.hasNext();) {
 			String accountId = (String) iterator.next();
-			sendNotification(no.getTitle(),no.getMessage(),no.getServiceType(),accountId);
+			sendNotification(no.getTitle(),no.getMessage(),no.getServiceType(),accountId,no.getActionText(),no.getActionUrl());
 		}
 	}
 

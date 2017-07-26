@@ -1,7 +1,7 @@
 package bean;
 
 public class Notification {
-	private String id, title, message, createdOn, accountId, serviceType;
+	private String id, title, message, createdOn, accountId, serviceType, actionUrl,actionText;
 
 	public Notification() {
 		super();
@@ -53,5 +53,21 @@ public class Notification {
 
 	public void setServiceType(String serviceType) {
 		this.serviceType = serviceType;
+	}
+
+	public String getActionUrl() {
+		return actionUrl;
+	}
+
+	public void setActionUrl(String actionUrl) {
+		this.actionUrl = actionUrl;
+	}
+
+	public String getActionText() {
+		return actionText;
+	}
+
+	public void setActionText(String actionText) {
+		this.actionText = actionText;
 	}
 }

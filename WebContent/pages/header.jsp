@@ -16,12 +16,12 @@
 						<li  class="notification-li">
 							<a class="white" id="toogle-notification">
 								<span class="glyphicon glyphicon glyphicon-bell" aria-hidden="true"></span>
-								<span class="badge notification-count"><jsp:include page="../getNotificationCount" /></span>
+								<span class="label notification-count  label-danger"><jsp:include page="../getNotificationCount" /></span>
 							</a>
 							<div class='panel panel-info' id='notification-panel'>
 								<div class='panel-heading'>
 									You have 
-									<span class='notification-count'>${notificationCount }</span>
+									<span class='notification-count '>${notificationCount }</span>
 									unread messages 
 									<span class='close-notification' class='glyphicon glyphicon glyphicon-remove pull-right' aria-hidden='true'></span>
 								</div>

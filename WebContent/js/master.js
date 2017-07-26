@@ -279,12 +279,16 @@ $( document ).ready(function() {
 					console.log("get notifications" + result)
 					if(result != undefined){
 						var item = JSON.parse(result);
+						$("#notification-body").empty();
 						for(var i = 0; i< item.length; i++){
 							var li = "<a class='list-group-item notification-list-item'>" +
-									"<h4 class='list-group-item-heading'>" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
-									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br><br> from "+ item[i].serviceType +"</p>" +
-									"</a>"
+									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
 							$("#notification-body").append(li);
+							if(item[i].actionText != undefined){
+								console.log( ".notification-list-item-text-" + +item[i].id + " action = " + item[i].actionText);
+								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
+							}
 						}
 					}
 				}
@@ -320,6 +324,18 @@ $( document ).ready(function() {
 		$(".glyphicon-" + id).addClass('glyphicon-menu-down').removeClass('glyphicon-menu-up');
 		$(".notification-list-item-text-" + id).css('display','none');
 	}
+	
+	setInterval(function(){
+		$.ajax({
+			url: ContextPath +'/getNotificationCount',
+			success: function(result){
+				$(".notification-count").each(function(){
+					console.log("refreash count " + result)
+					$(this).html(result);
+				});
+			}
+		});
+	},10000);
 
 });
 

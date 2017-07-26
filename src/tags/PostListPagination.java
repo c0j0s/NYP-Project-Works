@@ -44,9 +44,9 @@ public class PostListPagination extends SimpleTagSupport {
 	
 	public void setPageCount(int postCount) {
 		maxCount = postCount;
-		double pageCount = Math.ceil(postCount/10.0);
-		if(pageCount > (base + itemPerPage)){
-			base = base + itemPerPage;
+		double pageCount = Math.ceil(postCount/(double)getItemPerPage());
+		if(pageCount > (base + getItemPerPage())){
+			base = base + getItemPerPage();
 		}else{
 			this.pageCount = (int)pageCount;
 		}
@@ -56,8 +56,8 @@ public class PostListPagination extends SimpleTagSupport {
 		JspWriter out = getJspContext().getOut();
 
 		//pagination
-		if(maxCount > itemPerPage) {
-			out.println("<nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
+		if(maxCount > getItemPerPage()) {
+			out.println("<div class='col-sm-2'></div><nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
 			if(type.equalsIgnoreCase("post")) {
 			
 				if(currentPage != 1){
@@ -77,7 +77,6 @@ public class PostListPagination extends SimpleTagSupport {
 			
 			}else if(type.equalsIgnoreCase("comment")){
 				
-				out.println("<div class='col-md-2'></div>");
 				if(currentPage != 1){
 					out.println("<li><a href='?postId="+getPostId()+"&page="+ (currentPage - 1) +"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
 				}

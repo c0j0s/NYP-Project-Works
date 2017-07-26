@@ -74,7 +74,7 @@ public class CreateComment extends HttpServlet {
 				Post p = fdb.getPostById(postId).get(0);
 				NotificationDB ndb = new NotificationDB();
 				String message =  name + " answered your post.";
-				ndb.sendNotification("New Answers!", message, "Forum", p.getAccountId());
+				ndb.sendNotification("New Answers!", message, "Forum", p.getAccountId(),"Check it out", "Post?postId="+postId);
 				
 				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){

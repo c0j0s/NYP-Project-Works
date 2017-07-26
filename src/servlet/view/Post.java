@@ -42,8 +42,8 @@ public class Post extends HttpServlet {
 		boolean followed = false;
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
-		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 9;
-		
+		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
+		System.out.println("log start: " + start);
 		bean.Post p = fdb.getPostById(postId).get(0);
 		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, start, 5);
 		

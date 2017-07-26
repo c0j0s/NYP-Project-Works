@@ -272,6 +272,7 @@ footer{
     min-width: 300px;
     display:none;
     z-index: 1000;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.12);
 }
 #close-notification{
 	cursor:pointer;
