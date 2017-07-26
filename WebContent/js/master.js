@@ -1,4 +1,4 @@
-var createCom, openMessage,closeMessage;
+var createCom, openMessage,closeMessage,closeCommentBox ;
 var postDeleteCancel;
 var counter;
 $( document ).ready(function() {
@@ -45,7 +45,7 @@ $( document ).ready(function() {
 	    }});
 	}
 	
-	function closeCommentBox(id){
+	closeCommentBox = function(id){
 		$(".addCom").each(function(){
 			$(this).removeAttr("disabled");
 		});

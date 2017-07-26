@@ -51,9 +51,15 @@ public class CreateComment extends HttpServlet {
 				com.setCommentGroup("Parent");
 				com.setAccountId(ac.getAccountId());
 				com.setPostId(postId);
+				
+				ForumDB fdb = new ForumDB();
+				Post p = fdb.getPostById(postId).get(0);
+				
+				String to = p.getAccountId();
 				if(request.getParameter("commentId") != null){
 					System.out.println("Log: comments comment not null");
 					com.setCommentsComId(request.getParameter("commentId"));
+					to = combd.getCommentOwnerbyId(request.getParameter("commentId"));
 				}
 				String name = ac.getGivenName();
 				if(request.getParameter("hideId") != null){
@@ -70,12 +76,11 @@ public class CreateComment extends HttpServlet {
 					path = "Post?message=fail&postId=" + postId;
 				}
 				
-				ForumDB fdb = new ForumDB();
-				Post p = fdb.getPostById(postId).get(0);
-				NotificationDB ndb = new NotificationDB();
-				String message =  name + " answered your post.";
-				ndb.sendNotification("New Answers!", message, "Forum", p.getAccountId(),"Check it out", "Post?postId="+postId);
-				
+				if(!ac.getAccountId().equals(to)) {
+					NotificationDB ndb = new NotificationDB();
+					String message =  name + " answered your post.";
+					ndb.sendNotification("New Answers!", message, "Forum", to,"Check it out", "Post?postId="+postId);
+				}
 				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
 				response.setContentType("html/text");
@@ -89,7 +94,9 @@ public class CreateComment extends HttpServlet {
 					action = "create&postId="+ postId + "&commentId=" + request.getParameter("commentId");
 				}
 				String id =  UID.genId();
-				out.println("<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
+				out.println("<script src=\"${pageContext.request.contextPath}/js/tinymce/tinymce.min.js\"></script>\r\n" + 
+						"<script>tinymce.init({ selector:'#commenttContent' });</script>"
+						+ "<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
 						+ "<div class='col-sm-2'></div>"
 						+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body comment-box'>"
 						+ "<form action='"+ request.getContextPath() +"/CreateComment?action="+action+"' method='post'>"
