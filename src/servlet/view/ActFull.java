@@ -31,7 +31,6 @@ public class ActFull extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		ActivityDB adb = new ActivityDB();
 		ArrayList<Activity> activityFull = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityFull", activityFull);

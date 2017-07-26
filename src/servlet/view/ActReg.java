@@ -1,28 +1,30 @@
-package servlet;
+package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.Account;
-import bean.ActReg;
-import database.ActRegDB;
+import bean.Activity;
+import common.UID;
+import database.AccountDB;
+import database.ActivityDB;
 
 /**
- * Servlet implementation class RegAct
+ * Servlet implementation class ActRegLink
  */
-@WebServlet("/RegisterActivity")
-public class RegisterActivity extends HttpServlet {
+@WebServlet("/ActReg")
+public class ActReg extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterActivity() {
+    public ActReg() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +33,13 @@ public class RegisterActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s = request.getSession(true);
-		ActRegDB ardb = new ActRegDB();
-		ActReg ar = new ActReg();
-		Account ac = (Account)s.getAttribute("account");
-		
-		}
+		ActivityDB adb = new ActivityDB();
+		String RegistrationId = common.UID.genRegistrationId();
+		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
+		request.setAttribute("activityRegistration", activityRegistration);
+		request.setAttribute("registerId",RegistrationId);
+		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

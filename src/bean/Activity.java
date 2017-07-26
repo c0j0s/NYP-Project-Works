@@ -28,6 +28,7 @@ public class Activity extends MetaValue{
 	private String activityTime;
 	private int activityPostCount;
 	private String accountId;
+	private int points;
 
 	
 	public Activity(){
@@ -153,6 +154,12 @@ public class Activity extends MetaValue{
 	}
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int i) {
+		this.points = i;
 	}
 
 	

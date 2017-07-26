@@ -307,10 +307,9 @@ $( document ).ready(function() {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
-		   var finaltotal = format2(total, "$")
-		$('#total').val(finaltotal)
-		$('#total1').val(finaltotal)
-				$('#total2').val(finaltotal)
+		   var finaltotal = format2(total, "$");
+		$('#total').val(finaltotal);
+	
 	    console.log(num1);
 	    console.log(num2);
 	});
@@ -319,20 +318,17 @@ $( document ).ready(function() {
 	    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 	}
 	
-	function paytype(type){
-		switch(expression) {
-	    case 1:
-	     $('paytype').val(type)
-	        break;
-	    case 2:
-	     $('paytype').val(type)
-	        break;
-	   
-	}
-	}
-	
-	
-	
-
 
 });
+function paytype(type){
+	switch(type) {
+	case 1:
+		$('#paytype').val(type)
+		break;
+	case 2:
+		$('#paytype').val(type)
+		break;
+
+	}
+	console.log(type);
+}
