@@ -341,10 +341,12 @@ $( document ).ready(function() {
 
 function paytype(type){
 	switch(type) {
-	case 1:
+	case "Cash":
+		type="Cash"
 		$('#paytype').val(type)
 		break;
-	case 2:
+	case "Online":
+		type="Online"
 		$('#paytype').val(type)
 		break;
 

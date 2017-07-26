@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -102,7 +102,8 @@
 							name="dislikeCount" />
 					</jsp:include>
 					<%
-						Account currentUser = (Account) session.getAttribute("account");
+						if(session.getAttribute("account")!=null){
+							Account currentUser = (Account) session.getAttribute("account");
 							if (currentUser.getAccountId().equals(actf.getOrganiserId())) {
 					%>
 					<span aria-hidden="true">
@@ -111,7 +112,7 @@
 							Activity</button>
 					</span>
 					<%
-						}
+						}}
 					%>
 					<span aria-hidden="true">
 						<button
@@ -142,7 +143,7 @@
 
 		
 	</div>
-	</div>
+	
 
 	<%-- end of main container --%>
 	<jsp:include page="footer.jsp"></jsp:include>

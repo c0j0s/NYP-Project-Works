@@ -26,7 +26,7 @@
 
 	<div class="container">
 	<form action="${pageContext.request.contextPath}/EditActivity"
-				method="post" class="col-md-12" id="form-upload">
+				method="post" class="col-md-12" >
 		<%
 		
 		DecimalFormat df = new DecimalFormat("##.00");
@@ -49,15 +49,15 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<form action="${pageContext.request.contextPath}/CreateActivity"
-				method="post" class="col-md-12" id="form-upload">
+				method="post" class="col-md-12" >
 
-
+<input type="hidden" value="<%=actf.getActivityId() %>" name="activityId">
 				<label for="actName">Activity Name : </label> <input type="text"
 					name="actName" class="form-control"
 					value="<%=actf.getActivityTitle()%>"><br>
 					 <label for="actCategory">Activity Category : </label><br>
-				<select name="actCategory" form="form-upload"
-					class="select form-control" value="<%=actf.getActivityCategory()%>">
+				<select name="actCategory" 
+					class="select form-control" >
 					<option value="Leisure">Leisure</option>
 					<option value="Exercise">Exercise</option>
 					<option value="Sports">Sports</option>

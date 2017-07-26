@@ -7,7 +7,7 @@ import bean.Activity;
 import bean.Post;
 
 public class ActivityDB extends DBAO{
-	
+
 	public ActivityDB(){
 		super();
 	}
@@ -19,9 +19,9 @@ public class ActivityDB extends DBAO{
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
-			
+
 			System.out.println("log Activity.java :" + ps);
-			
+
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Activity act = new Activity();
@@ -86,7 +86,7 @@ public class ActivityDB extends DBAO{
 			ps.setString(13, act.getImgUrl());
 			ps.setString(14, act.getActivityLocation());
 			ps.setString(15, act.getAccountId());
-			
+
 			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0){
@@ -102,16 +102,26 @@ public class ActivityDB extends DBAO{
 		return "fail";
 	}
 	public String editActivity(Activity act){
-		String stmt ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ? ,imgUrl= ? where activityId =? ";
+		String stmt ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ? ,activityCategory = ?,imgUrl= ? where activityId =? ";
+		String stmt2 ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ?,activityCategory = ? where activityId =? ";
 		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
+			PreparedStatement ps;
+			if(!act.getImgUrl().equals("")) {
+			ps=con.prepareStatement(stmt);
+			ps.setString(5, act.getImgUrl());
+			ps.setString(6, act.getActivityId());
+			} 
+			else {
+				ps=con.prepareStatement(stmt2);
+				ps.setString(5, act.getActivityId());
+			}
+
 			ps.setString(1, act.getActivityTitle());
 			ps.setString(2, act.getActivityDescription());
 			ps.setInt(3, act.getParticipantNo());
 			ps.setString(4, act.getActivityCategory());
-			ps.setString(5, act.getImgUrl());
-			ps.setString(6, act.getActivityId());
 			
+
 			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0){
@@ -125,7 +135,7 @@ public class ActivityDB extends DBAO{
 			e.printStackTrace();
 		}
 		return "fail";
-		}
+	}
 	public ArrayList<Activity> getActivityById(String activityId){
 		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
 		return getActivity(stmt);
@@ -135,15 +145,15 @@ public class ActivityDB extends DBAO{
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, act.getActivityId());
-			
+
 			System.out.println(ps);
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "fail";
-		}
+	}
 }
 

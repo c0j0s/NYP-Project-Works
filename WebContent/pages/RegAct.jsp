@@ -91,7 +91,7 @@
 
 				<div class="clearfix">
 					<p class="col-md-6">
-						Number Of Participants : <select name="generate1" id="generate1"
+						Number Of Participants : <select name="noOfParticipants" id="generate1"
 							class="select form-control">
 
 							<%
@@ -155,14 +155,14 @@
 					</p>
 
 				</div>
-		</div>
+		
 		<div class="col-md-12">
 			<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
 			<p class="col-md-2"></p>
 			<button type="submit" class="col-md-5 btn btn-success  pull-right">Register
 				For Activity</button>
-		</div>
-		</form>
+		</div></form>
+		
 	</div>
 
 	<%
@@ -181,6 +181,7 @@
 				%>
 		</ul>
 	</div>
+	
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
