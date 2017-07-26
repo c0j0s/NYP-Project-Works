@@ -4,8 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
-	<%!ActivityDB actdb = new ActivityDB();%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -68,9 +67,9 @@
 				<div class="vert">
 					<div class="col-md-7">
 						<br> <br> <br><label for="imgurl">Activity
-							Image: </label><input type="file" name="file" class="form-control fullactpic"
-							id="form-upload imgurl" accept="image/*" size="60" ><br> <input
-							type="hidden" name="imgurl" 
+							Image: </label><input type="file" name="file" 
+							 size="60" ><br> <input
+							type="hidden" name="imgurl" id="imgurl"
 							data-imgfolder="activity/${user.accountId }" />
 					</div>
 					<div class="col-md-5">

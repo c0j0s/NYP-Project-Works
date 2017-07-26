@@ -41,7 +41,8 @@ public class EditActivity extends HttpServlet {
 		act.setActivityDescription(request.getParameter("actDesc"));
 		act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 		act.setActivityCategory(request.getParameter("actCategory"));
-		act.setImgUrl(request.getParameter("imgurl"));
+		 String img = request.getParameter("imgurl");
+		if(!(img ==null)) {act.setImgUrl(img);}
 		act.setActivityId(actdb.createActivity(act));
 		if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
 			request.getRequestDispatcher("/pages/activityfull.jsp?activityId="+act.getActivityId()).forward(request, response);

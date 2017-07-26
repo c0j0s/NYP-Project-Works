@@ -130,5 +130,20 @@ public class ActivityDB extends DBAO{
 		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
 		return getActivity(stmt);
 	}
-	
+	public String deleteActivity(Activity act){
+		String stmt ="delete from "+ schema +".activity where activityId=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, act.getActivityId());
+			
+			System.out.println(ps);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+		}
 }
+

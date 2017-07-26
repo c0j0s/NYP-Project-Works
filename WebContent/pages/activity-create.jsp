@@ -77,7 +77,7 @@
 				<br><br></div><br>
 
 				<label for="actPart">Participant Number:</label> <input type="number"
-					name="actPart" class="form-control"
+					name="actPart" class="form-control" min="0"
 					placeholder="Enter Participant Number : "> <br> <label
 					for="actLocation">Location: </label> <input type="text"
 					name="actLocation" class="form-control"

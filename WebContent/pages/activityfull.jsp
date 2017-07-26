@@ -30,16 +30,9 @@
 		<%
 			DecimalFormat df = new DecimalFormat("##.00");
 		%>
-		<%
-			if (request.getParameter("activityId") == null) {
-		%>
-		<script language="javascript">
-			window.location.href = "activitypageerror.jsp"
-		</script>
 
 		<%
-			} else {
-				actfl = (ArrayList<Activity>)request.getAttribute("activityFull");
+				actfl = (ArrayList<Activity>) request.getAttribute("activityFull");
 
 				actf = actfl.get(0);
 		%>
@@ -102,10 +95,7 @@
 
 				<div>
 					<jsp:include page="parts/likeButtons.jsp">
-						<jsp:param value="activity" name="table"/>
-						<jsp:param value="<%=actf.getActivityId() %>" name="Id"/>
 						<jsp:param value="activity" name="table" />
-						<jsp:param value="<%=actf.getActivityId()%>" name="Id" />
 						<jsp:param value="activityId" name="colName" />
 						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
 						<jsp:param value="<%=actf.getDislikeCount()%>"
@@ -150,9 +140,7 @@
 
 
 
-		<%
-			}
-		%>
+		
 	</div>
 	</div>
 
