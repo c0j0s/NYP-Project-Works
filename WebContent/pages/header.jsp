@@ -1,16 +1,35 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
-<c:set var = "user" scope = "session" value = "${sessionScope.account}"/>
+<c:set var = "user" scope = "session" value = "${sessionScope.account}"></c:set>
 <nav class="navbar navbar-default">
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
 				<c:choose>
 					<c:when test="${user eq null ? false : true }">
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
-						<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
-						<span>${user.givenName}</span>
-						</a></li>
+						<li>
+							<a class="white" href="${pageContext.request.contextPath}/pages/profile.jsp">
+							<img alt="" src="${user.imgUrl}" class="img-circle profile-image-xxsmall">
+							<span>${user.givenName}</span>
+							</a>
+						</li>
+						<li  class="notification-li">
+							<a class="white" id="toogle-notification">
+								<span class="glyphicon glyphicon glyphicon-bell" aria-hidden="true"></span>
+								<span class="badge notification-count"><jsp:include page="../getNotificationCount" /></span>
+							</a>
+							<div class='panel panel-info' id='notification-panel'>
+								<div class='panel-heading'>
+									You have 
+									<span class='notification-count'>${notificationCount }</span>
+									unread messages 
+									<span class='close-notification' class='glyphicon glyphicon glyphicon-remove pull-right' aria-hidden='true'></span>
+								</div>
+							<div class='panel-body list-group' id="notification-body">
+							</div>
+							<a class="btn btn-info btn-block" href="#" role="button">view all past notifications</a>
+							</div>
+						</li>
 						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
 					</c:when>
 					<c:otherwise>

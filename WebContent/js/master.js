@@ -1,4 +1,4 @@
-var createCom;
+var createCom, openMessage,closeMessage;
 var postDeleteCancel;
 var counter;
 $( document ).ready(function() {
@@ -274,12 +274,63 @@ $( document ).ready(function() {
 	    case 2:
 	     $('paytype').val(type)
 	        break;
-	   
+		}
 	}
+	
+	/**
+	 * methods for notification
+	 */
+	
+	$("#toogle-notification").on("click",function(){
+		var panel = $("#notification-panel").css("display");
+		if (panel === 'none') {
+			$("#notification-panel").css("display","block");
+			$.ajax({
+				url: ContextPath + '/getNotifications',
+				success: function(result){
+					console.log("get notifications" + result)
+					if(result != undefined){
+						var item = JSON.parse(result);
+						for(var i = 0; i< item.length; i++){
+							var li = "<a class='list-group-item notification-list-item'>" +
+									"<h4 class='list-group-item-heading'>" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br><br> from "+ item[i].serviceType +"</p>" +
+									"</a>"
+							$("#notification-body").append(li);
+						}
+					}
+				}
+			});
+		}else{
+			console.log("close panel")
+			$("#notification-panel").css("display","none");
+			$("#notification-body").empty();
+		}
+	});
+	$("#close-notification").on("click",function(){
+		$("#notification-panel").css("display","none");
+		$("#notification-body").empty();
+	});
+	
+	openMessage = function(id){
+		$(".notification-list-item-text-" + id).css('display','block');
+		$(".glyphicon-" + id).attr('onclick','closeMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-up').removeClass('glyphicon-menu-down');
+		$.ajax({
+			url: ContextPath +'/setNotificationRead',
+			data: {'id':id},
+			success: function(result){
+				$(".notification-count").each(function(){
+					console.log("item read count left " + result)
+					$(this).html(result);
+				});
+			}
+		});
 	}
-	
-	
-	
-
+	closeMessage = function(id){
+		$(".glyphicon-" + id).attr('onclick','openMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-down').removeClass('glyphicon-menu-up');
+		$(".notification-list-item-text-" + id).css('display','none');
+	}
 
 });

@@ -4,7 +4,7 @@ public class Notification {
 	private String id, title, message, createdOn, accountId, serviceType;
 
 	public Notification() {
-		
+		super();
 	}
 	
 	public String getId() {
