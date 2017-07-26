@@ -34,7 +34,7 @@
 					</c:when>
 					<c:otherwise>
 						<li><a class="white" href="${pageContext.request.contextPath}/Login">Login</a></li>
-						<li><a class="white" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a></li>
+						<li><a class="white" href="${pageContext.request.contextPath}/Signup">Sign up</a></li>
 					</c:otherwise>
 				</c:choose>
 						<li><a class="white">Contact us</a></li>
