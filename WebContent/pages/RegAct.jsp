@@ -111,10 +111,10 @@
 
 				<ul class="nav nav-tabs">
 					<input type="hidden" id="paytype" name="type">
-					<li class="active" onclick="paytype(Cash)"><a
+					<li class="active" onclick="paytype('Cash')"><a
 						data-toggle="tab" href="#cash">Pay By Cash</a></li>
 					<li><a data-toggle="tab" href="#online"
-						onclick="paytype(Online)">Online Payment</a></li>
+						onclick="paytype('Online')">Online Payment</a></li>
 
 				</ul>
 
@@ -135,7 +135,7 @@
 
 					
 
-				</div>
+				
 				<div id="online" class="tab-pane fade">
 					<h3>Online Payment</h3>
 					<p>
@@ -154,6 +154,7 @@
 					<br>
 					</p>
 
+				</div>
 				</div>
 		
 		<div class="col-md-12">

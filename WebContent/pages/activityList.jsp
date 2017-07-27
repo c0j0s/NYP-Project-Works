@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,6 +90,7 @@
 							<button
 								onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register For Activity</button>
 						</span> 
+						
 
 					</p>
 				</div>

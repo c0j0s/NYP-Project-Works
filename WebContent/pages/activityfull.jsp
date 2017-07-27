@@ -111,6 +111,7 @@
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
+					
 					<%
 						}}
 					%>
