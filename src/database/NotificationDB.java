@@ -36,7 +36,7 @@ public class NotificationDB extends DBAO{
 				no.setActionUrl(rs.getString("actionUrl"));
 				list.add(no);
 			}
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,7 +61,7 @@ public class NotificationDB extends DBAO{
 				count = rs.getInt(1);
 			}
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,12 +84,12 @@ public class NotificationDB extends DBAO{
 			if (status != 0) {
 				System.out.println("create notification success");
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return;
 			}else {
 				System.out.println("Log notifiaction ps: ("+accountId+")" + ps);
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return;
 			}
 		} catch (Exception e) {
@@ -116,12 +116,12 @@ public class NotificationDB extends DBAO{
 			if (status != 0) {
 				System.out.println("read notification success");
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return;
 			}else {
 				System.out.println("Log notifiaction ps: " + ps);
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return;
 			}
 		} catch (Exception e) {

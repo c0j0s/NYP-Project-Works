@@ -30,6 +30,7 @@
 	</div>
 </footer>
 <script>var ContextPath = "${pageContext.request.contextPath}"</script>
+<script>var login = ${user ne null ? true:false}</script>
 <script src='${pageContext.request.contextPath}/js/jquery-3.2.1.js'></script>
 <script src='${pageContext.request.contextPath}/js/bootstrap.js'></script>
 <script src='${pageContext.request.contextPath}/js/master.js'></script>

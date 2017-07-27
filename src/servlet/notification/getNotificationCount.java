@@ -30,9 +30,9 @@ public class getNotificationCount extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NotificationDB ndb = new NotificationDB();
 		HttpSession ss = request.getSession();
 		if(ss.getAttribute("account") != null) {
+			NotificationDB ndb = new NotificationDB();
 			Account ac = (Account) ss.getAttribute("account");
 			int count = ndb.getNotificationCount(ac.getAccountId());
 			request.setAttribute("notificationCount", count);

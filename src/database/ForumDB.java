@@ -50,11 +50,11 @@ public class ForumDB extends DBAO{
 			int status = ps.executeUpdate();
 			if(status != 0){
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return post.getPostId();
 			}else{
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return "fail";
 			}
 	
@@ -119,7 +119,7 @@ public class ForumDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -172,7 +172,7 @@ public class ForumDB extends DBAO{
 			ps.setString(1, category);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) return rs.getInt(1);
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -192,7 +192,7 @@ public class ForumDB extends DBAO{
 			if(status != 0){
 				System.out.println("Log addCategory(): " + ps);
 			}
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (SQLException e) {
 			System.out.println("Log addCategory(): " + e.getMessage());
 		}
@@ -244,10 +244,10 @@ public class ForumDB extends DBAO{
 			
 			if(status != 0) {
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				return postId;
 			}else {
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				ps.close();
 				return "fail";
 			}
@@ -274,7 +274,7 @@ public class ForumDB extends DBAO{
 				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
 			}
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -295,7 +295,7 @@ public class ForumDB extends DBAO{
 
 			int status = ps.executeUpdate();
 			if (status != 0) {
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				System.out.println("log pickBestAnswer(): (success)");
 			}
 		} catch (Exception e) {

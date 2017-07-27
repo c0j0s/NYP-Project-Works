@@ -312,14 +312,17 @@ $( document ).ready(function() {
 	}
 	
 	setInterval(function(){
-		$.ajax({
-			url: ContextPath +'/getNotificationCount',
-			success: function(result){
-				$(".notification-count").each(function(){
-					$(this).html(result);
-				});
-			}
-		});
+		console.log(login)
+		if(login){
+			$.ajax({
+				url: ContextPath +'/getNotificationCount',
+				success: function(result){
+					$(".notification-count").each(function(){
+						$(this).html(result);
+					});
+				}
+			});
+		}
 	},10000);
 
 });
