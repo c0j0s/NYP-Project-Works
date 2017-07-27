@@ -23,8 +23,6 @@ public class NotificationDB extends DBAO{
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
 			
-			System.out.println(ps);
-			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Notification no = new Notification();
@@ -57,8 +55,6 @@ public class NotificationDB extends DBAO{
 			String stmt = "Select COUNT(*) from ffl.notification where accountId = ? and `read` = 'N' ";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
-			
-			System.out.println(ps);
 			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -115,7 +111,6 @@ public class NotificationDB extends DBAO{
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
-			System.out.println("Log notifiaction ps: " + ps);
 			
 			int status = ps.executeUpdate();
 			if (status != 0) {

@@ -35,7 +35,6 @@ public class getNotificationCount extends HttpServlet {
 		if(ss.getAttribute("account") != null) {
 			Account ac = (Account) ss.getAttribute("account");
 			int count = ndb.getNotificationCount(ac.getAccountId());
-			System.out.println(count);
 			request.setAttribute("notificationCount", count);
 			response.getWriter().append(Integer.toString(count));
 		}

@@ -41,7 +41,6 @@ public class getNotifications extends HttpServlet {
 		if(ss.getAttribute("account") != null) {
 			Account ac = (Account) ss.getAttribute("account");
 			ArrayList<Notification> list = ndb.getAccountUnNotifications(ac.getAccountId());
-			System.out.println(list.size());
 			String json = new Gson().toJson(list);
 			response.getWriter().append(json);
 		}
