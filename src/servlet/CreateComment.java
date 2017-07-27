@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import bean.Comment;
+import bean.Notification;
 import bean.Post;
 import common.UID;
 import database.CommentDB;
@@ -76,10 +78,23 @@ public class CreateComment extends HttpServlet {
 					path = "Post?message=fail&postId=" + postId;
 				}
 				
+				/**
+				 * send notification to owner and follower
+				 */
 				if(!ac.getAccountId().equals(to)) {
 					NotificationDB ndb = new NotificationDB();
-					String message =  name + " answered your post.";
-					ndb.sendNotification("New Answers!", message, "Forum", to,"Check it out", "Post?postId="+postId);
+					ArrayList<String> accountIds = new ArrayList<String>();
+					accountIds.addAll(p.getFollowerAccounts());
+					accountIds.add(to);
+					accountIds.remove(ac.getAccountId());
+					String message =  name + " answered for post (" + p.getPostTitle() + ")";
+					Notification no = new Notification();
+					no.setTitle("New Answer!");
+					no.setMessage(message);
+					no.setServiceType("Forum");
+					no.setActionText("Check it out");
+					no.setActionUrl("Post?postId="+postId);
+					ndb.sentNotificationToAccounts(accountIds, no);
 				}
 				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
