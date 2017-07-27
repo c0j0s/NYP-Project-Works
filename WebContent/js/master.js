@@ -194,11 +194,16 @@ $( document ).ready(function() {
 	})
 	
 	$('#form-upload').submit( function(event) {
-	     var form = this;
-	    event.preventDefault();
-	    uploadFile(function(){
-	    	form.submit();
-	    })	
+		var file = $("input:file").prop('files')[0];
+		if(file != undefined){
+		     var form = this;
+		    event.preventDefault();
+		    uploadFile(function(){
+		    	form.submit();
+		    })	
+		}else{
+			form.submit();
+		}
 	}); 
 	
 	function uploadFile(callback){
