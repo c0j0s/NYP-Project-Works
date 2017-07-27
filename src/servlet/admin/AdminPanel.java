@@ -1,9 +1,6 @@
-package servlet.notification;
+package servlet.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.json.JsonArray;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,23 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import bean.Account;
-import bean.Notification;
-import database.NotificationDB;
 
 /**
- * Servlet implementation class getNotifications
+ * Servlet implementation class AdminPanel
  */
-@WebServlet("/getNotifications")
-public class getNotifications extends HttpServlet {
+@WebServlet("/AdminPanel")
+public class AdminPanel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getNotifications() {
+    public AdminPanel() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,14 +28,17 @@ public class getNotifications extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NotificationDB ndb = new NotificationDB();
-		HttpSession ss = request.getSession();
-		if(ss.getAttribute("account") != null) {
-			Account ac = (Account) ss.getAttribute("account");
-			ArrayList<Notification> list = ndb.getAccountUnNotifications(ac.getAccountId());
-			String json = new Gson().toJson(list);
-			response.getWriter().append(json);
+		HttpSession ss = request.getSession(false);
+		Account ac = (Account) ss.getAttribute("account");
+		String tab = (request.getParameter("tab") == null) ? "Forum" : request.getParameter("tab");
+		if(true) {//check if role equals to admin
+			request.setAttribute("tab", tab);
+			request.getRequestDispatcher("/pages/admin/admin-panel.jsp").forward(request, response);
+		}else {
+			request.setAttribute("errorMessage", "You do not have admin rights to access the admin panel.");
+			request.getRequestDispatcher("/pages/error.jsp").forward(request, response);
 		}
 	}
 

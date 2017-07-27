@@ -23,6 +23,7 @@ public class CommentDB extends DBAO{
 	 * @return postId
 	 */
 	public String createComment(Comment com){
+		
 		String stmt = "INSERT INTO `"+ schema +"`.`comments` (`commentId`, `commentContent`, `commentDate`,`commentGroup`, `postId`, `AccountId`, `CommentscommentId`,`hideId`)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
@@ -45,9 +46,13 @@ public class CommentDB extends DBAO{
 			int status = ps.executeUpdate();
 			ps.close();
 			if(status != 0){
+				ps.close();
+				if (con != null && con.isClosed()) { con.close(); }
 				System.out.println("Log createComment() :" + ps);
 				return com.getPostId();
 			}else{
+				ps.close();
+				if (con != null && con.isClosed()) { con.close(); }
 				System.out.println("Log createComment() Fail:" + ps);
 				return "fail";
 			}
@@ -64,6 +69,7 @@ public class CommentDB extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Comment> getComment(String statement){
+		
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		try {
 			if(statement == null){
@@ -93,10 +99,9 @@ public class CommentDB extends DBAO{
 				
 				com.setHideId(rs.getString("hideId").charAt(0));
 				
-				
-//				com.setFollowerAccounts(getMetaAccounts(com.getPostId(),"follow"));
-				com.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"like"));
-				com.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
+				MetaValueDB mdb = new MetaValueDB();
+				com.setLikeAccounts(mdb.getMetaAccounts("post","postId",com.getPostId(),"like"));
+				com.setDislikeAccounts(mdb.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
 			
 				com.setCommentComList(getCommentByCommentId(com.getCommentId(),0,5));
 				
@@ -104,7 +109,7 @@ public class CommentDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
-		
+			if (con != null && con.isClosed()) { con.close(); }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,6 +133,26 @@ public class CommentDB extends DBAO{
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
 		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
 		return getComment(stmt);
+	}
+
+	public String getCommentOwnerbyId(String id) {
+		//
+		try {
+			String statement = "SELECT * FROM "+ schema +".commentlist WHERE commentId = ?";
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				return rs.getString("accountId");
+			}
+			rs.close();
+			ps.close();
+			if (con != null && con.isClosed()) { con.close(); }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 }

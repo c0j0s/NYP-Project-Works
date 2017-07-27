@@ -44,25 +44,29 @@ public class Post extends HttpServlet {
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
 		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
 		System.out.println("log start: " + start);
-		bean.Post p = fdb.getPostById(postId).get(0);
-		ArrayList<bean.Comment> c = cdb.getCommentByPostId(postId, start, 5);
+		bean.Post p = null;
+		ArrayList<bean.Comment> c = null;
 		
-		if(p != null) {
+		if(fdb.getPostById(postId).size() > 0) {
+			p = fdb.getPostById(postId).get(0);
+			c = cdb.getCommentByPostId(postId, start, 5);
+		
 			if(p.getValid() == 'Y') {
 				request.setAttribute("post", p);
 				request.setAttribute("commentList", c);
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
-		}else{
+			
+			if(ac != null) {
+				if(p.getFollowerAccounts().contains(ac.getAccountId())){
+					followed = true;
+				}
+			}
+		
+		}else {
 			request.setAttribute("message", "Post not found");
 		}
-		if(ac != null) {
-			if(p.getFollowerAccounts().contains(ac.getAccountId())){
-				followed = true;
-			}
-		}
-		
 		request.setAttribute("followed", followed);
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("pages/post.jsp").forward(request, response);

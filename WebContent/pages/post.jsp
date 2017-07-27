@@ -14,8 +14,6 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css'= rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<script src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
 <title>${post.postTitle} | Post</title>
 <%@ page import="java.util.ArrayList,bean.*,database.*"%>
 </head>

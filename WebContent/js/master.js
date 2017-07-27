@@ -1,4 +1,4 @@
-var createCom, openMessage,closeMessage;
+var createCom, openMessage,closeMessage,closeCommentBox ;
 var postDeleteCancel;
 var counter;
 $( document ).ready(function() {
@@ -33,7 +33,6 @@ $( document ).ready(function() {
 			servletUrl = ContextPath + "/CreateComment?action=open&postId=" + getURLParameter("postId") + "&commentId=" + id;
 		}
 	
-		console.log(servletUrl);
 		$.ajax({
 			url: servletUrl, 
 			success: function(result){
@@ -45,7 +44,7 @@ $( document ).ready(function() {
 	    }});
 	}
 	
-	function closeCommentBox(id){
+	closeCommentBox = function(id){
 		$(".addCom").each(function(){
 			$(this).removeAttr("disabled");
 		});
@@ -60,17 +59,12 @@ $( document ).ready(function() {
 				"<h4 class='col-sm-9'>Post deleting in <span id='post-delete-countdown'>5</span>s. You will be directed to forum.</h4>" +
 				"<button type='button' class='btn btn-info col-sm-3' id='post-delete-cancel' onclick='postDeleteCancel(this)' data-postId='"+ data.postid +"'>Cancel</button>" +
 				"</div></div></div>");
-		console.log("#post-" + data.postid);
 		
 		var span = 5;
 		counter = setInterval(function(){
 			$("#post-delete-countdown").html(span)
-			console.log(span)
 			if(span == 0){
-				console.log(ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid);
-				console.log($("#post-delete-message").html());
 				if($("#post-delete-message").html()){
-					console.log("delete");
 					$.ajax({
 						url: ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid, 
 						success: function(result){	
@@ -91,7 +85,6 @@ $( document ).ready(function() {
 	postDeleteCancel = function(e){
 		$("#post-delete-message").remove();
 		var data = $(e).data();
-		console.log(data);
 		$("#post-" + data.postid).css("display","block");
 		$(".post-comment-group").css("display","block");
 		clearInterval(counter);
@@ -123,7 +116,6 @@ $( document ).ready(function() {
 		var next = $(this).next();
 		var operator;
 		var displayCount = $(this).children(".meta-value-count");
-		console.log(mdata);
 		
 		if(next.attr('disabled')){
 			next.removeAttr("disabled");
@@ -137,7 +129,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=like&operator="+operator, 
 			data: mdata,
 			success: function(result){
-				console.log(result)
 				displayCount.html(result);
 			}
 		});
@@ -152,7 +143,6 @@ $( document ).ready(function() {
 		var prev = $(this).prev();
 		var operator;
 		var displayCount = $(this).children(".meta-value-count");
-		console.log(mdata);
 
 		if(prev.attr('disabled')){
 			prev.removeAttr("disabled");
@@ -166,7 +156,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=dislike&operator="+operator, 
 			data: mdata,
 			success: function(result){
-				console.log(result)
 				displayCount.html(result);
 			}
 		});
@@ -179,7 +168,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=follow", 
 			data: $(this).data(),
 			success: function(result){	
-				console.log("add success");
 				btn.addClass("hide");
 				$("#unfollow-post").removeClass("hide");
 			}
@@ -192,7 +180,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=unfollow", 
 			data: $(this).data(),
 			success: function(result){	
-				console.log("remove success");
 				btn.addClass("hide");
 				$("#follow-post").removeClass("hide");
 			}
@@ -203,7 +190,6 @@ $( document ).ready(function() {
 	 * methods for file upload
 	 */
 	$("input:file").on("change",function(event){
-		console.log("change " + URL.createObjectURL(event.target.files[0]))
 		$("#test-img-prev").attr('src', URL.createObjectURL(event.target.files[0]));
 	})
 	
@@ -211,7 +197,6 @@ $( document ).ready(function() {
 	     var form = this;
 	    event.preventDefault();
 	    uploadFile(function(){
-	    	console.log("callback");
 	    	form.submit();
 	    })	
 	}); 
@@ -276,7 +261,6 @@ $( document ).ready(function() {
 			$.ajax({
 				url: ContextPath + '/getNotifications',
 				success: function(result){
-					console.log("get notifications" + result)
 					if(result != undefined){
 						var item = JSON.parse(result);
 						$("#notification-body").empty();
@@ -286,7 +270,6 @@ $( document ).ready(function() {
 									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
 							$("#notification-body").append(li);
 							if(item[i].actionText != undefined){
-								console.log( ".notification-list-item-text-" + +item[i].id + " action = " + item[i].actionText);
 								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
 							}
 						}
@@ -294,12 +277,11 @@ $( document ).ready(function() {
 				}
 			});
 		}else{
-			console.log("close panel")
 			$("#notification-panel").css("display","none");
 			$("#notification-body").empty();
 		}
 	});
-	$("#close-notification").on("click",function(){
+	$(".close-notification").on("click",function(){
 		$("#notification-panel").css("display","none");
 		$("#notification-body").empty();
 	});
@@ -313,7 +295,6 @@ $( document ).ready(function() {
 			data: {'id':id},
 			success: function(result){
 				$(".notification-count").each(function(){
-					console.log("item read count left " + result)
 					$(this).html(result);
 				});
 			}
@@ -330,7 +311,6 @@ $( document ).ready(function() {
 			url: ContextPath +'/getNotificationCount',
 			success: function(result){
 				$(".notification-count").each(function(){
-					console.log("refreash count " + result)
 					$(this).html(result);
 				});
 			}
