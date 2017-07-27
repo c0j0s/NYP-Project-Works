@@ -56,8 +56,15 @@
 							onclick="location.href=''">Rewards Page</button>
 					</div>
 				</c:when>
-				<c:when test="${false}">
-
+				<c:when test="${param.type eq 'admin' ? true : false}">
+					<div class="panel-heading ">
+						<img alt="../img/sample.jpg" src="${user.imgUrl }"
+							class="img-circle profile-image-medium">
+						<h3 class="panel-title text-center">${user.givenName}</h3>
+					</div>
+					<div class="panel-body">
+						<span class="label label-info">Admin</span>
+					</div>
 				</c:when>
 				<c:when test="${false}">
 

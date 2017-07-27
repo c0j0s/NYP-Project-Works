@@ -299,7 +299,7 @@ $( document ).ready(function() {
 			$("#notification-body").empty();
 		}
 	});
-	$("#close-notification").on("click",function(){
+	$(".close-notification").on("click",function(){
 		$("#notification-panel").css("display","none");
 		$("#notification-body").empty();
 	});

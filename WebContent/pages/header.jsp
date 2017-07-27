@@ -23,7 +23,7 @@
 									You have 
 									<span class='notification-count '>${notificationCount }</span>
 									unread messages 
-									<span class='close-notification' class='glyphicon glyphicon glyphicon-remove pull-right' aria-hidden='true'></span>
+									<span class='close-notification glyphicon glyphicon glyphicon-remove pull-right' aria-hidden='true'></span>
 								</div>
 							<div class='panel-body list-group' id="notification-body">
 							</div>
@@ -31,6 +31,9 @@
 							</div>
 						</li>
 						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
+						<c:if test="${true }">
+							<li><a class="white" href="${pageContext.request.contextPath}/AdminPanel">Admin Panel</a></li>
+						</c:if>
 					</c:when>
 					<c:otherwise>
 						<li><a class="white" href="${pageContext.request.contextPath}/Login">Login</a></li>
