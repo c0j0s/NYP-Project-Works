@@ -75,7 +75,7 @@ public class SearchDB extends DBAO {
 				System.out.println("=================================================================================");
 				list.add(r);
 			}
-
+			if (con != null && con.isClosed()) { con.close(); }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,6 +115,7 @@ public class SearchDB extends DBAO {
 				list.add(rs.getString(1));
 				System.out.println("log getTableColumns(): colName = " + rs.getString(1));
 			}
+			if (con != null && con.isClosed()) { con.close(); }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
