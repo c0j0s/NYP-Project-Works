@@ -23,7 +23,7 @@
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	<h2>Forget Password</h2>
 	<p>Please key in your email below, an email will be sent to you regarding resetting your password.</p>
-	<form action="${pageContext.request.contextPath}/signupServlet" method="post" >
+	<form action="${pageContext.request.contextPath}/ForgetPwServlet" method="post" >
 		<div class="form-group">
 				<label for="email">Email: </label> 
 				<input type="text" class="form-control" name="email" placeholder="Email">

@@ -54,7 +54,7 @@ public class ForgetPwServlet extends HttpServlet {
 		ArrayList<InternetAddress> to = new ArrayList<InternetAddress>();
 		
 		try {
-			to.add(new InternetAddress(email));
+			to.add(new InternetAddress("joshlimwk@gmail.com"));
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
