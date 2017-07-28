@@ -1,5 +1,7 @@
+var getReported;
 $( document ).ready(function() {
 	console.log("admin ready")
+	
 	$(".admin-subpanel-btn").on('click', function(){
 		var type = $(this).data().type;
 		var list;
@@ -15,7 +17,7 @@ $( document ).ready(function() {
 		}
 	})
 	
-	function getReported(){
+	getReported = function(){
 		console.log('reported')
 		getList('AdminForum?get=reported')
 		
@@ -38,9 +40,27 @@ $( document ).ready(function() {
 		})
 	}
 	function updateTabContent(results){
-//		var json = json.parse(list);
-//		console.log(json)
 		$("#admin-forum-body").empty();
-		$("#admin-forum-body").append(results);
+		var json = JSON.parse(results);
+		console.log(json)
+		for(var i = 0; i< json.length; i++){
+			var tr = "<tr>" +
+					"<td><img class='profile-image-xsmall' src='"+json[i].imgUrl+"'/> " + json[i].type +
+					"</td><td>"+ json[i].title +"</td>" +
+					"<td>"+ json[i].metadata.itemCreatedOn +"</td>" +
+					"<td>"+ json[i].metadata.reporterAccountId +"</td>" +
+					"<td class='tStatus'>Reported</td?" +
+					"<td><div class='btn-group' role='group' aria-label='Actions'>" +
+					"<button type='button' class='btn btn-success' id='removeReport' data-itemId='"+json[i].itemId+"'>Remove Report</botton>" +
+					"<button type='button' class='btn btn-danger' id='inValidItem' data-itemId='"+json[i].itemId+"'>Delete Post</botton>" +
+					"</div></td>" +
+					"</tr>"
+			$("#admin-forum-body").append(tr);
+		}
 	}
+	$("#removeReport").on("click",function(){
+		$(this).data("itemId");
+		$(this).parent().parent().remove();
+	})
+	getReported()
 })
