@@ -47,12 +47,12 @@ public class CommentDB extends DBAO{
 			ps.close();
 			if(status != 0){
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				System.out.println("Log createComment() :" + ps);
 				return com.getPostId();
 			}else{
 				ps.close();
-				if (con != null && con.isClosed()) { con.close(); }
+				
 				System.out.println("Log createComment() Fail:" + ps);
 				return "fail";
 			}
@@ -109,7 +109,7 @@ public class CommentDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,7 +148,7 @@ public class CommentDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

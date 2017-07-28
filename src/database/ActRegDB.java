@@ -33,6 +33,7 @@ public class ActRegDB extends DBAO{
 				System.out.println("record retrieve");
 				regList.add(reg);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +51,7 @@ public class ActRegDB extends DBAO{
 			ps.setString(6, ar.getCashOrBank());
 			System.out.println(ps);
 			int status = ps.executeUpdate();
+			
 			if(status != 0){
 				System.out.println("Log createActivity() :" + ps);
 				return ar.getRegistrationId();

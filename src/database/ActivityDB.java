@@ -59,6 +59,8 @@ public class ActivityDB extends DBAO{
 				activityList.add(act);
 				System.out.println(act);		
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,6 +91,7 @@ public class ActivityDB extends DBAO{
 
 			System.out.println(ps);
 			int status = ps.executeUpdate();
+			
 			if(status != 0){
 				System.out.println("Log createActivity() :" + ps);
 				return act.getActivityId();
@@ -124,6 +127,7 @@ public class ActivityDB extends DBAO{
 
 			System.out.println(ps);
 			int status = ps.executeUpdate();
+			
 			if(status != 0){
 				System.out.println("Log createActivity() :" + ps);
 				return act.getActivityId();
@@ -148,7 +152,7 @@ public class ActivityDB extends DBAO{
 
 			System.out.println(ps);
 			ps.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

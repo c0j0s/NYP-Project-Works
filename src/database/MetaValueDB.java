@@ -43,7 +43,7 @@ public class MetaValueDB extends DBAO{
 			}else {
 				return "fail";
 			}
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -73,7 +73,7 @@ public class MetaValueDB extends DBAO{
 				return "fail";
 			}
 			ps.close();
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +98,7 @@ public class MetaValueDB extends DBAO{
 			while(rs.next()){
 				list.add(rs.getString("accountId"));
 			}
-			if (con != null && con.isClosed()) { con.close(); }
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

@@ -194,11 +194,16 @@ $( document ).ready(function() {
 	})
 	
 	$('#form-upload').submit( function(event) {
-	     var form = this;
-	    event.preventDefault();
-	    uploadFile(function(){
-	    	form.submit();
-	    })	
+		var file = $("input:file").prop('files')[0];
+		if(file != undefined){
+		     var form = this;
+		    event.preventDefault();
+		    uploadFile(function(){
+		    	form.submit();
+		    })	
+		}else{
+			form.submit();
+		}
 	}); 
 	
 	function uploadFile(callback){
@@ -307,14 +312,17 @@ $( document ).ready(function() {
 	}
 	
 	setInterval(function(){
-		$.ajax({
-			url: ContextPath +'/getNotificationCount',
-			success: function(result){
-				$(".notification-count").each(function(){
-					$(this).html(result);
-				});
-			}
-		});
+		console.log(login)
+		if(login){
+			$.ajax({
+				url: ContextPath +'/getNotificationCount',
+				success: function(result){
+					$(".notification-count").each(function(){
+						$(this).html(result);
+					});
+				}
+			});
+		}
 	},10000);
 
 });

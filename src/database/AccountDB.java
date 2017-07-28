@@ -41,6 +41,7 @@ public class AccountDB extends DBAO{
 				ac.setCreditLevel(rs.getInt("creditLevel"));
 				ac.setImgUrl(rs.getString("imgUrl"));
 			}
+			
 		}catch(Exception ex){
 			System.out.println("Error: "+ex.getMessage());
 		}
@@ -66,6 +67,7 @@ public class AccountDB extends DBAO{
 			if(status!=0){
 				System.out.println("Recorded Added");
 			}
+			
 		}catch (Exception ex)
 		{
 			throw new Exception("Error:"+ex.getMessage());
@@ -87,6 +89,8 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(9, ac.getImgUrl());
 			prepStmt.setString(10, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
+			
+			
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
@@ -97,6 +101,8 @@ public class AccountDB extends DBAO{
 			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
 			prepStmt.setString(1, pw);
 			prepStmt.setString(2, email);
+			
+			
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
