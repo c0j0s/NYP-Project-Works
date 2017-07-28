@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import bean.Notification;
 import database.DBAO;
 import database.ForumDB;
@@ -19,7 +22,7 @@ public class test {
 //		input.put("b", "b");
 //		fdb.updatePost(input, "POS0000000");
 		
-		NotificationDB db = new NotificationDB();
+//		NotificationDB db = new NotificationDB();
 //		Notification no = new Notification();
 //		no.setTitle("test");
 //		no.setMessage("body");
@@ -35,6 +38,19 @@ public class test {
 //			System.out.println(notification.getMessage());
 //		}
 //		System.out.println(db.getNotificationCount("ACC0000000"));
+		//ArrayList<InternetAddress> to = new ArrayList<InternetAddress>();
+		
+		//try {
+		//	to.add(new InternetAddress("joshlimwk@gmail.com"));
+		//} catch (AddressException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		//}
+
+		//MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
+		//sender.run();
+		Mail mail = new Mail("");
+		mail.sendSimpleMail();
 	}
 
 }

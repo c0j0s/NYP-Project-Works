@@ -15,6 +15,7 @@ import javax.mail.internet.*;
 import com.sun.mail.util.MailSSLSocketFactory;
 
 import bean.Account;
+import common.Mail;
 import common.MailSSL;
 import common.UID;
 
@@ -51,17 +52,11 @@ public class ForgetPwServlet extends HttpServlet {
 		UUID id = UID.genSessionId(); 
 		HttpSession session = request.getSession();
 		session.setAttribute("UUID", id);
-		ArrayList<InternetAddress> to = new ArrayList<InternetAddress>();
-		
-		try {
-			to.add(new InternetAddress("joshlimwk@gmail.com"));
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Mail mail = new Mail();
+		mail.sendSimpleMail(email, "Reset Password","Click the link below to reset your password. <a href = 'http://localhost:8080/FFL/ResetPw'>Reset your password here.</a>");
 
-		MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
-		sender.run();
+		//MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
+		//sender.run();
 		request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 	}
 
