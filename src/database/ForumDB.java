@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import com.google.gson.JsonElement;
+
 import bean.Post;
+import bean.Result;
 
 /**
  * @author cjuns
@@ -301,5 +305,26 @@ public class ForumDB extends DBAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Result> getSimpleList(String get) {
+		ArrayList<Result> list = new ArrayList<Result>();
+		String stmt = "";
+		if (get.equals("reported")) {
+			stmt = "";
+		} else if (get.equals("post")) {
+			stmt = "";
+		} else if (get.equals("comment")){
+			stmt = "";
+		}
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }

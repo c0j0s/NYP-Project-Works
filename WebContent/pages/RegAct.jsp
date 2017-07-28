@@ -80,7 +80,7 @@
 			<p>
 				Activity Location :
 				<%=actf.getActivityLocation()%></p>
-			<form action="${pageContext.request.contextPath}/RegisterActivity"
+			<form action="${pageContext.request.contextPath}/RegisterActivity?activityId=<%=actf.getActivityId() %>"
 				method="post">
 				<p>
 					Activity Fee Per Participant : $<span id="generate2"> <%=df.format(actf.getActivityFee())%></span>
@@ -104,14 +104,16 @@
 						</select>
 					</p>
 					<p>
-						Total Price : <input type="text" id="total" name="total"
-							class="col-md-6" disabled>
+						<input type="hidden" id="total" name="total"
+							 value="<%=df.format(actf.getActivityFee())%>">
+							Total Price : <input type="text" id="total1" name="total"
+							class="col-md-6" value="<%=df.format(actf.getActivityFee())%>"disabled>
 					
 					</p>
 				</div>
 
 				<ul class="nav nav-tabs">
-					<input type="hidden" id="paytype" name="type">
+					<input type="hidden" id="paytype" name="type" value="Cash">
 					<li class="active" onclick="paytype('Cash')"><a
 						data-toggle="tab" href="#cash">Pay By Cash</a></li>
 					<li><a data-toggle="tab" href="#online"

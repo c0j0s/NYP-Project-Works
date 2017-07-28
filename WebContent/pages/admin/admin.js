@@ -13,31 +13,34 @@ $( document ).ready(function() {
 			$("#tabName").html("All Comments");
 			list = getAllComment();
 		}
-		console.log(list)
-//		var json = json.parse(list);
-//		console.log(json)
-		$("#admin-forum-body").append(list);
 	})
 	
 	function getReported(){
 		console.log('reported')
-		return getList('AdminForum?get=reported')
+		getList('AdminForum?get=reported')
+		
 	}
 	function getAllPost(){
 		console.log('post')
-		return getList('')
+		getList('AdminForum?get=reported')
 	}
 	function getAllComment(){
 		console.log('comment')
-		return getList('')
+		getList('AdminForum?get=reported')
 	}
-	
 	function getList(servletUrl){
 		$.ajax({
 			url:ContextPath + "/" +servletUrl,
 			success: function(results){
-				return results;
+				console.log("log results: " + results)
+				updateTabContent(results)
 			}
 		})
+	}
+	function updateTabContent(results){
+//		var json = json.parse(list);
+//		console.log(json)
+		$("#admin-forum-body").empty();
+		$("#admin-forum-body").append(results);
 	}
 })
