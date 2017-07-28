@@ -54,10 +54,13 @@ public class PostListPagination extends SimpleTagSupport {
 
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
-
+		
 		//pagination
 		if(maxCount > getItemPerPage()) {
-			out.println("<div class='col-sm-2'></div><nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
+			if(!type.equalsIgnoreCase("post")) {
+				out.println("<div class='col-sm-2'></div>");
+			}
+			out.println("<nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
 			if(type.equalsIgnoreCase("post")) {
 			
 				if(currentPage != 1){

@@ -14,14 +14,14 @@ $( document ).ready(function() {
 			list = getAllComment();
 		}
 		console.log(list)
-		var json = json.parse(list);
-		console.log(json)
-		$("#admin-forum-body").append();
+//		var json = json.parse(list);
+//		console.log(json)
+		$("#admin-forum-body").append(list);
 	})
 	
 	function getReported(){
 		console.log('reported')
-		return getList('')
+		return getList('AdminForum?get=reported')
 	}
 	function getAllPost(){
 		console.log('post')
@@ -34,7 +34,7 @@ $( document ).ready(function() {
 	
 	function getList(servletUrl){
 		$.ajax({
-			url:servletUrl,
+			url:ContextPath + "/" +servletUrl,
 			success: function(results){
 				return results;
 			}
