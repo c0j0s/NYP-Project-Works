@@ -44,7 +44,7 @@ public class Forum extends HttpServlet {
 			page = (String) request.getParameter("page");
 		}
 		
-		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 9;
+		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 10;
 		
 		ArrayList<Post> postList = fdb.getPost(start, category);
 		ArrayList<Post> trendingPost = fdb.getTrendingPost();

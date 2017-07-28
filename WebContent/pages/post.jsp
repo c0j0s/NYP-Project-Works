@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="f" uri="../WEB-INF/ffl.tld"%>
+<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/master.css'= rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
-<title>post</title>
+<title>${post.postTitle} | Post</title>
 <%@ page import="java.util.ArrayList,bean.*,database.*"%>
 </head>
 <body>
@@ -25,14 +25,15 @@
 			<jsp:param value="forum" name="type" />
 		</jsp:include>
 		<c:choose>
-			<c:when test="${fn:length(postList) > 0 ? true : false}">
-				<c:forEach items="${postList}" var="post">
+			<c:when test="${post != null ? true : false}">
 					<div class="col-md-9 col-sm-12" id="post-container">
 						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
-								<img alt="" src="${post.accountImgUrl }"
-									class="img-circle profile-image-small">
-								<p>${post.accountName}</p>
+								<jsp:include page="parts/forum-accountInfo.jsp">
+									<jsp:param value="${post.hideId}" name="hideId"/>
+									<jsp:param value="${post.accountName}" name="name"/>
+									<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>
+								</jsp:include>
 							</div>
 							<c:set var="post" scope="request" value="${post }" />
 							<jsp:include page="parts/forum-post.jsp"></jsp:include>						
@@ -68,9 +69,11 @@
 											<c:set var="comment" scope="request" value="${comment}" />
 											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">
-												<img alt="" src="${comment.accountImgUrl }"
-													class="img-circle profile-image-small">
-												<p>${comment.accountName }</p>
+												<jsp:include page="parts/forum-accountInfo.jsp">
+													<jsp:param value="${comment.hideId}" name="hideId"/>
+													<jsp:param value="${comment.accountName}" name="name"/>
+													<jsp:param value="${comment.accountImgUrl }" name="imgUrl"/>
+												</jsp:include>
 											</div>
 										</div>
 										<br>
@@ -84,10 +87,10 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
+							<f:PostListPagination itemPerPage="5" pageCount="${post.commentCount }" currentPage="${page }" type="comment" postId="${post.postId}"/>
 						</div>
 					</div>
-				</c:forEach>
-			</c:when>
+				</c:when>
 			<c:otherwise>
 				<div class="panel panel-default col-md-9">
 					<div class="panel-body ">

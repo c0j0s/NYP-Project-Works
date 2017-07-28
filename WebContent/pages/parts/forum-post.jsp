@@ -15,7 +15,7 @@
 						<div class="col-sm-3">	
 						<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
 						<span class="tab-title">${post.tagList }</span>	
-					</div>
+						</div>
 					</c:if>
 				</div>
 				<hr>
@@ -31,10 +31,40 @@
 						<jsp:param value="${post.likeCount }" name="likeCount"/>
 						<jsp:param value="${post.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
-					<button type="button" class="btn btn-default btn-sm btn-no-border">
-						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-						Follow
-					</button>
+					<c:choose>
+						<c:when test="${followed}">
+							<button type="button" class="btn btn-danger btn-sm btn-no-border post-followed" id='unfollow-post' data-id="${post.postId }">
+								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+								Followed
+							</button>
+							<button type="button" class="btn btn-default btn-sm btn-no-border hide" id='follow-post' data-id="${post.postId }"> 
+								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+								Follow Post
+							</button>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${user ne null }">
+									<c:if test="${user.accountId ne post.accountId }">
+										<button type="button" class="btn btn-danger btn-sm btn-no-border post-followed hide" id='unfollow-post' data-id="${post.postId }">
+											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+											Followed
+										</button>
+										<button type="button" class="btn btn-default btn-sm btn-no-border" id='follow-post' data-id="${post.postId }"> 
+											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+											Follow Post
+										</button>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+										<button type="button" class="btn btn-default btn-sm btn-no-border" disabled> 
+											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+											Login to follow post
+										</button>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="btn-group pull-right dropdown">
 					<button id="post-controls-dropdown" type="button"

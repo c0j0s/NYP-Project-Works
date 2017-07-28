@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<c:set var = "user" scope = "session" value = "${sessionScope.account}"/>
 <%@ page import ="bean.*" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,7 +40,7 @@
 <button type="submit" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update Profile</button>
 
 </div>
-<div class="col-md:4 pull-right" >
+<div class="col-md-4" >
 	<jsp:include page="parts/sidebar-account.jsp">
 		<jsp:param value="profile" name="type"/>
 		<jsp:param value="${user.points}" name="points"/>

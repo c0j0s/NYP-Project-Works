@@ -6,6 +6,6 @@
   </welcome-file-list>
   <error-page>
     <error-code>404</error-code>
-    <location>/Index</location>
+    <location>/pages/error.jsp?message=404</location>
   </error-page>
 </web-app>

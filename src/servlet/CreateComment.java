@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,9 +14,13 @@ import javax.servlet.http.HttpSession;
 
 import bean.Account;
 import bean.Comment;
+import bean.Notification;
+import bean.Post;
 import common.UID;
 import database.CommentDB;
 import database.DBAO;
+import database.ForumDB;
+import database.NotificationDB;
 
 /**
  * Servlet implementation class createComment
@@ -48,12 +53,21 @@ public class CreateComment extends HttpServlet {
 				com.setCommentGroup("Parent");
 				com.setAccountId(ac.getAccountId());
 				com.setPostId(postId);
+				
+				ForumDB fdb = new ForumDB();
+				Post p = fdb.getPostById(postId).get(0);
+				
+				String to = p.getAccountId();
 				if(request.getParameter("commentId") != null){
 					System.out.println("Log: comments comment not null");
 					com.setCommentsComId(request.getParameter("commentId"));
+					to = combd.getCommentOwnerbyId(request.getParameter("commentId"));
 				}
+				String name = ac.getGivenName();
 				if(request.getParameter("hideId") != null){
+					System.out.println("log hideid test: "+request.getParameter("hideId").charAt(0));
 					com.setHideId(request.getParameter("hideId").charAt(0));
+					name = "Anonymous";
 				}
 				String result = combd.createComment(com);
 				String path = "";
@@ -62,6 +76,25 @@ public class CreateComment extends HttpServlet {
 					path = "Post?postId=" + postId;
 				}else{
 					path = "Post?message=fail&postId=" + postId;
+				}
+				
+				/**
+				 * send notification to owner and follower
+				 */
+				if(!ac.getAccountId().equals(to)) {
+					NotificationDB ndb = new NotificationDB();
+					ArrayList<String> accountIds = new ArrayList<String>();
+					accountIds.addAll(p.getFollowerAccounts());
+					accountIds.add(to);
+					accountIds.remove(ac.getAccountId());
+					String message =  name + " answered for post (" + p.getPostTitle() + ")";
+					Notification no = new Notification();
+					no.setTitle("New Answer!");
+					no.setMessage(message);
+					no.setServiceType("Forum");
+					no.setActionText("Check it out");
+					no.setActionUrl("Post?postId="+postId);
+					ndb.sentNotificationToAccounts(accountIds, no);
 				}
 				response.sendRedirect(path);
 			}else if(request.getParameter("action").equals("open")){
@@ -76,7 +109,9 @@ public class CreateComment extends HttpServlet {
 					action = "create&postId="+ postId + "&commentId=" + request.getParameter("commentId");
 				}
 				String id =  UID.genId();
-				out.println("<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
+				out.println("<script src=\"${pageContext.request.contextPath}/js/tinymce/tinymce.min.js\"></script>\r\n" + 
+						"<script>tinymce.init({ selector:'#commenttContent' });</script>"
+						+ "<div class='post-comment  clearfix' id='comment-box-"+ id +"'>"
 						+ "<div class='col-sm-2'></div>"
 						+ "<div class='col-sm-8'><div class='panel panel-default'><div class='panel-body comment-box'>"
 						+ "<form action='"+ request.getContextPath() +"/CreateComment?action="+action+"' method='post'>"

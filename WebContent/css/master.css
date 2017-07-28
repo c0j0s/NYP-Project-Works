@@ -172,6 +172,10 @@ footer{
 .post-button-group div button{
 	background-color:rgba(0,0,0,0);
 }
+.post-button-group > div > .post-followed{
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
 .post-old-content{
 	background-color: rgba(92, 184, 92, 0.05);
 	padding:10px;
@@ -253,4 +257,26 @@ footer{
 }
 #searchForm .input-group:first-child{
 	width:100%;
+}
+
+/*=============================================================
+	CSS for notification panel
+*/
+.notification-li{
+	position: relative;
+}
+#notification-panel{
+    position: absolute;
+    left: 0;
+    margin: 10px;
+    min-width: 300px;
+    display:none;
+    z-index: 1000;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.12);
+}
+.close-notification{
+	cursor:pointer;
+}
+.notification-list-item p{
+	display:none;
 }

@@ -1,9 +1,11 @@
 <div class="panel panel-default Forum-card ${post.postStatus eq 'closed' ? 'post-closed':'' }">
 	<div class="panel-body">
 		<div class="col-sm-2 text-center">
-			<img alt="profile image" src="${post.accountImgUrl }"
-				class="img-circle profile-image-small">
-			<p>${post.accountName}</p>
+			<jsp:include page="forum-accountInfo.jsp">
+				<jsp:param value="${post.hideId}" name="hideId"/>
+				<jsp:param value="${post.accountName}" name="name"/>
+				<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>
+			</jsp:include>
 		</div>
 		<div class="col-sm-10">
 			<div class="post-link"

@@ -1,4 +1,4 @@
-var createCom;
+var createCom, openMessage,closeMessage,closeCommentBox ;
 var postDeleteCancel;
 var counter;
 $( document ).ready(function() {
@@ -33,7 +33,6 @@ $( document ).ready(function() {
 			servletUrl = ContextPath + "/CreateComment?action=open&postId=" + getURLParameter("postId") + "&commentId=" + id;
 		}
 	
-		console.log(servletUrl);
 		$.ajax({
 			url: servletUrl, 
 			success: function(result){
@@ -45,7 +44,7 @@ $( document ).ready(function() {
 	    }});
 	}
 	
-	function closeCommentBox(id){
+	closeCommentBox = function(id){
 		$(".addCom").each(function(){
 			$(this).removeAttr("disabled");
 		});
@@ -60,17 +59,12 @@ $( document ).ready(function() {
 				"<h4 class='col-sm-9'>Post deleting in <span id='post-delete-countdown'>5</span>s. You will be directed to forum.</h4>" +
 				"<button type='button' class='btn btn-info col-sm-3' id='post-delete-cancel' onclick='postDeleteCancel(this)' data-postId='"+ data.postid +"'>Cancel</button>" +
 				"</div></div></div>");
-		console.log("#post-" + data.postid);
 		
 		var span = 5;
 		counter = setInterval(function(){
 			$("#post-delete-countdown").html(span)
-			console.log(span)
 			if(span == 0){
-				console.log(ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid);
-				console.log($("#post-delete-message").html());
 				if($("#post-delete-message").html()){
-					console.log("delete");
 					$.ajax({
 						url: ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid, 
 						success: function(result){	
@@ -91,7 +85,6 @@ $( document ).ready(function() {
 	postDeleteCancel = function(e){
 		$("#post-delete-message").remove();
 		var data = $(e).data();
-		console.log(data);
 		$("#post-" + data.postid).css("display","block");
 		$(".post-comment-group").css("display","block");
 		clearInterval(counter);
@@ -110,92 +103,10 @@ $( document ).ready(function() {
 		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
 		$(this).remove();
 	})
+	
 	/**
-	 *  method for meta value TODO update with real time database result
+	 *  method for meta value TODO update with real time database metavalue
 	 */
-//	$(".meta-value").click(function(){
-//		var data = $(this).data();
-//		$(this).addClass("meta-clicked");
-//		$(this).removeClass("meta-value");
-//		var meta = $(this).children(".meta-value-count");
-//		var count = meta.data().count;
-//		
-//		if(data.action === "like"){
-//			if($(this).next().attr("disabled") === undefined){
-//				console.log("like");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}
-//				$(this).next().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("liked");
-//				if(count == meta.data().count){
-//					count = meta.data().count - 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				
-//				$(this).next().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//			
-//		}else if(data.action === "dislike"){
-//			if($(this).prev().attr("disabled") === undefined){
-//				console.log("dislike");
-//				if(count != meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count - 1;
-//				}
-//				$(this).prev().attr("disabled","disabled");
-//				addMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}else{
-//				console.log("disliked");
-//				if(count == meta.data().count){
-//					count = meta.data().count + 1;
-//				}else{
-//					count = meta.data().count;
-//				}
-//				$(this).prev().removeAttr("disabled");
-//				removeMetaValue(data,function(){
-//					meta.html(count);
-//				});
-//			}
-//		}else if(data.action === "follow"){
-//			
-//		}
-//		
-//	});
-//	
-//	function addMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=add", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			},
-//			error:function(jqXHR, exception){
-//				console.log("ajax error"+jqXHR.responseText)
-//			}
-//		});
-//	}
-//	
-//	function removeMetaValue(metaData,callback){
-//		$.ajax({
-//			url: ContextPath + "/UpdateMetaValue?mode=remove", 
-//			data: metaData,
-//			success: function(result){
-//				callback();
-//			}
-//		});
-//	}
 	
 	$(".meta-like-btn").on('click',function(){
 		var mdata = $(this).data();
@@ -205,7 +116,6 @@ $( document ).ready(function() {
 		var next = $(this).next();
 		var operator;
 		var displayCount = $(this).children(".meta-value-count");
-		console.log(mdata);
 		
 		if(next.attr('disabled')){
 			next.removeAttr("disabled");
@@ -219,7 +129,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=like&operator="+operator, 
 			data: mdata,
 			success: function(result){
-				console.log(result)
 				displayCount.html(result);
 			}
 		});
@@ -234,7 +143,6 @@ $( document ).ready(function() {
 		var prev = $(this).prev();
 		var operator;
 		var displayCount = $(this).children(".meta-value-count");
-		console.log(mdata);
 
 		if(prev.attr('disabled')){
 			prev.removeAttr("disabled");
@@ -248,27 +156,54 @@ $( document ).ready(function() {
 			url: ContextPath + "/UpdateMetaValue?action=dislike&operator="+operator, 
 			data: mdata,
 			success: function(result){
-				console.log(result)
 				displayCount.html(result);
 			}
 		});
 
 	})
+	
+	$("#follow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=follow", 
+			data: $(this).data(),
+			success: function(result){	
+				btn.addClass("hide");
+				$("#unfollow-post").removeClass("hide");
+			}
+		});	
+	})
+	
+	$("#unfollow-post").on("click", function(){
+		var btn = $(this);
+		$.ajax({
+			url: ContextPath + "/UpdateMetaValue?action=unfollow", 
+			data: $(this).data(),
+			success: function(result){	
+				btn.addClass("hide");
+				$("#follow-post").removeClass("hide");
+			}
+		});	
+	})
+	
 	/**
 	 * methods for file upload
 	 */
 	$("input:file").on("change",function(event){
-		console.log("change " + URL.createObjectURL(event.target.files[0]))
 		$("#test-img-prev").attr('src', URL.createObjectURL(event.target.files[0]));
 	})
 	
 	$('#form-upload').submit( function(event) {
-	     var form = this;
-	    event.preventDefault();
-	    uploadFile(function(){
-	    	console.log("callback");
-	    	form.submit();
-	    })	
+		var file = $("input:file").prop('files')[0];
+		if(file != undefined){
+		     var form = this;
+		    event.preventDefault();
+		    uploadFile(function(){
+		    	form.submit();
+		    })	
+		}else{
+			form.submit();
+		}
 	}); 
 	
 	function uploadFile(callback){
@@ -309,10 +244,9 @@ $( document ).ready(function() {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
-		   var finaltotal = format2(total, "$")
-		$('#total').val(finaltotal)
-		$('#total1').val(finaltotal)
-				$('#total2').val(finaltotal)
+		   var finaltotal = format2(total, "$");
+		$('#total').val(finaltotal);
+	
 	    console.log(num1);
 	    console.log(num2);
 	});
@@ -320,21 +254,90 @@ $( document ).ready(function() {
 	function format2(n, currency) {
 	    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 	}
-	
-	function paytype(type){
-		switch(expression) {
-	    case 1:
-	     $('paytype').val(type)
-	        break;
-	    case 2:
-	     $('paytype').val(type)
-	        break;
-	   
-	}
-	}
-	
-	
-	
 
+	/**
+	 * methods for notification
+	 */
+	
+	$("#toogle-notification").on("click",function(){
+		var panel = $("#notification-panel").css("display");
+		if (panel === 'none') {
+			$("#notification-panel").css("display","block");
+			$.ajax({
+				url: ContextPath + '/getNotifications',
+				success: function(result){
+					if(result != undefined){
+						var item = JSON.parse(result);
+						$("#notification-body").empty();
+						for(var i = 0; i< item.length; i++){
+							var li = "<a class='list-group-item notification-list-item'>" +
+									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
+							$("#notification-body").append(li);
+							if(item[i].actionText != undefined){
+								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
+							}
+						}
+					}
+				}
+			});
+		}else{
+			$("#notification-panel").css("display","none");
+			$("#notification-body").empty();
+		}
+	});
+	$(".close-notification").on("click",function(){
+		$("#notification-panel").css("display","none");
+		$("#notification-body").empty();
+	});
+	
+	openMessage = function(id){
+		$(".notification-list-item-text-" + id).css('display','block');
+		$(".glyphicon-" + id).attr('onclick','closeMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-up').removeClass('glyphicon-menu-down');
+		$.ajax({
+			url: ContextPath +'/setNotificationRead',
+			data: {'id':id},
+			success: function(result){
+				$(".notification-count").each(function(){
+					$(this).html(result);
+				});
+			}
+		});
+	}
+	closeMessage = function(id){
+		$(".glyphicon-" + id).attr('onclick','openMessage('+id+')')
+		$(".glyphicon-" + id).addClass('glyphicon-menu-down').removeClass('glyphicon-menu-up');
+		$(".notification-list-item-text-" + id).css('display','none');
+	}
+	
+	setInterval(function(){
+		console.log(login)
+		if(login){
+			$.ajax({
+				url: ContextPath +'/getNotificationCount',
+				success: function(result){
+					$(".notification-count").each(function(){
+						$(this).html(result);
+					});
+				}
+			});
+		}
+	},10000);
 
 });
+
+function paytype(type){
+	switch(type) {
+	case "Cash":
+		type="Cash"
+		$('#paytype').val(type)
+		break;
+	case "Online":
+		type="Online"
+		$('#paytype').val(type)
+		break;
+
+	}
+	console.log(type);
+}
