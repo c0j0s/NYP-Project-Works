@@ -14,10 +14,10 @@ public class DBAO {
 	
 //	final private String schurl = "jdbc:mysql://db4free.net:3307/famforlife";
 //	final private String schpasswd = "ffl@db";
-//	final private String url = "jdbc:mysql://138.75.188.127:3306/ffl";
+	final private String lurl = "jdbc:mysql://25.53.148.109:3306/ffl";
 //	final private String passwd = "password";
 	
-	final private String lurl = "jdbc:mysql://localhost/ffl?autoReconnect=true&useSSL=false";
+//	final private String lurl = "jdbc:mysql://localhost/ffl?autoReconnect=true&useSSL=false";
 	final private String lpasswd = "mysql";
 	
 	/**
@@ -40,7 +40,7 @@ public class DBAO {
 	public void openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(lurl,"root",lpasswd);
+			con = DriverManager.getConnection(lurl,"root","password");
 			System.out.println("Open Connection: " + connectionCount);
 			connectionCount++;
 			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
