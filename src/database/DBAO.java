@@ -28,7 +28,6 @@ public class DBAO {
 		if(con == null) {
 			openConnection();
 		}
-		System.out.println("log connection: " + con);
 	}
 
 	public static String getDateTime(){
