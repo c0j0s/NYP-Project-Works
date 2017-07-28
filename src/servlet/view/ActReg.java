@@ -37,7 +37,6 @@ public class ActReg extends HttpServlet {
 		String RegistrationId = common.UID.genRegistrationId();
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
-		request.setAttribute("registerId",RegistrationId);
 		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
 	}
 

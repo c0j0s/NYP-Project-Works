@@ -25,9 +25,13 @@
 				<h1>
 					<a href="${pageContext.request.contextPath}/ActList"
 						class="col-md-6">Activities For Families </a>
-					<div class="col-md-4"></div>
+					<div class="col-md-1"></div>
 					<button onclick="location.href = 'CreateAct'"
-						class="btn btn-primary col-md-2 pull-right">Create
+						class="btn btn-primary col-md-2 ">Create
+						Activity</button>
+						<div class="col-md-1"></div>
+						<button onclick="location.href = 'ActDelete'"
+						class="btn btn-primary col-md-2 pull-right">Delete
 						Activity</button>
 				</h1>
 			</div>

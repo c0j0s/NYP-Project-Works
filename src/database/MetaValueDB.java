@@ -51,6 +51,7 @@ public class MetaValueDB extends DBAO{
 	}
 	
 	public String removeMeta(String id, String accountId, String action) {
+		
 		String stmt = "DELETE FROM "+ schema +".metavalue WHERE `parentId`= ? AND accountId = ? AND action = ?";
 				String select = "Select Count(*) from "+ schema +".metavalue where `parentId` = ? And action = ?";
 		try {
@@ -72,6 +73,7 @@ public class MetaValueDB extends DBAO{
 				return "fail";
 			}
 			ps.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +86,8 @@ public class MetaValueDB extends DBAO{
 	 * @param action like|dislike|follow
 	 * @return
 	 */
-	public static ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
+	public ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
+		
 		ArrayList<String> list = new ArrayList<String>();
 		try {
 			String stmt = "select distinct p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND m.action = ?";

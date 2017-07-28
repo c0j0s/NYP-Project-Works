@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,22 +36,25 @@ public class EditActivity extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			HttpSession s = request.getSession(true);
-		ActivityDB actdb = new ActivityDB();
-		Activity act = new Activity();
+		
+		
+		ActivityDB adb = new ActivityDB();
+		Activity act = adb.getActivityById(request.getParameter("activityId")).get(0);
+		
 
 		act.setActivityTitle(request.getParameter("actName"));
 		act.setActivityDescription(request.getParameter("actDesc"));
 		act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 		act.setActivityCategory(request.getParameter("actCategory"));
-		act.setImgUrl(request.getParameter("imgurl"));
-		act.setActivityId(actdb.createActivity(act));
-		if(!act.getActivityId().equals("fail") || act.getActivityId() == null){
-			request.getRequestDispatcher("/pages/activityfull.jsp?activityId="+act.getActivityId()).forward(request, response);
+		System.out.println(request.getParameter("actCategory"));
+		
+		 String img = request.getParameter("imgurl");
+		if(img.equals("")) {act.setImgUrl(img);}
+		adb.editActivity(act);
+		
+			request.getRequestDispatcher("ActFull?activityId="+act.getActivityId()).forward(request, response);
 
-		}else{
-			request.getRequestDispatcher("/pages/activity-create.jsp").forward(request, response);
-			System.out.println("Log createActivity.java: fail to create activity");
-		}
+		
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

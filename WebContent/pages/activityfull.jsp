@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -30,16 +30,9 @@
 		<%
 			DecimalFormat df = new DecimalFormat("##.00");
 		%>
-		<%
-			if (request.getParameter("activityId") == null) {
-		%>
-		<script language="javascript">
-			window.location.href = "activitypageerror.jsp"
-		</script>
 
 		<%
-			} else {
-				actfl = (ArrayList<Activity>)request.getAttribute("activityFull");
+				actfl = (ArrayList<Activity>) request.getAttribute("activityFull");
 
 				actf = actfl.get(0);
 		%>
@@ -102,17 +95,15 @@
 
 				<div>
 					<jsp:include page="parts/likeButtons.jsp">
-						<jsp:param value="activity" name="table"/>
-						<jsp:param value="<%=actf.getActivityId() %>" name="Id"/>
 						<jsp:param value="activity" name="table" />
-						<jsp:param value="<%=actf.getActivityId()%>" name="Id" />
 						<jsp:param value="activityId" name="colName" />
 						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
 						<jsp:param value="<%=actf.getDislikeCount()%>"
 							name="dislikeCount" />
 					</jsp:include>
 					<%
-						Account currentUser = (Account) session.getAttribute("account");
+						if(session.getAttribute("account")!=null){
+							Account currentUser = (Account) session.getAttribute("account");
 							if (currentUser.getAccountId().equals(actf.getOrganiserId())) {
 					%>
 					<span aria-hidden="true">
@@ -120,8 +111,9 @@
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
+					
 					<%
-						}
+						}}
 					%>
 					<span aria-hidden="true">
 						<button
@@ -150,11 +142,9 @@
 
 
 
-		<%
-			}
-		%>
+		
 	</div>
-	</div>
+	
 
 	<%-- end of main container --%>
 	<jsp:include page="footer.jsp"></jsp:include>

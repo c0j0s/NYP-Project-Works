@@ -14,6 +14,7 @@ public class NotificationDB extends DBAO{
 	}
 	
 	public ArrayList<Notification> getAccountNotifications(String stmt,String accountId) {
+		//
 		ArrayList<Notification> list = new ArrayList<Notification>();
 		try {
 			if(stmt == null) {
@@ -21,8 +22,6 @@ public class NotificationDB extends DBAO{
 			}
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
-			
-			System.out.println(ps);
 			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -37,6 +36,7 @@ public class NotificationDB extends DBAO{
 				no.setActionUrl(rs.getString("actionUrl"));
 				list.add(no);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,18 +49,19 @@ public class NotificationDB extends DBAO{
 	}
 
 	public int getNotificationCount(String accountId) {
+		
 		int count = 0;
 		try {
 			String stmt = "Select COUNT(*) from ffl.notification where accountId = ? and `read` = 'N' ";
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
 			
-			System.out.println(ps);
-			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				count = rs.getInt(1);
 			}
+			ps.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,6 +69,7 @@ public class NotificationDB extends DBAO{
 	}
 	
 	public void sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
+		
 		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId,actionText,actionUrl) values (?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -81,9 +83,13 @@ public class NotificationDB extends DBAO{
 			int status = ps.executeUpdate();
 			if (status != 0) {
 				System.out.println("create notification success");
+				ps.close();
+				
 				return;
 			}else {
 				System.out.println("Log notifiaction ps: ("+accountId+")" + ps);
+				ps.close();
+				
 				return;
 			}
 		} catch (Exception e) {
@@ -99,19 +105,23 @@ public class NotificationDB extends DBAO{
 	}
 
 	public void setRead(String accountId, String id) {
+		
 		String stmt = "Update ffl.notification set `read` = 'Y' where notificationId = ? and accountId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, accountId);
-			System.out.println("Log notifiaction ps: " + ps);
 			
 			int status = ps.executeUpdate();
 			if (status != 0) {
 				System.out.println("read notification success");
+				ps.close();
+				
 				return;
 			}else {
 				System.out.println("Log notifiaction ps: " + ps);
+				ps.close();
+				
 				return;
 			}
 		} catch (Exception e) {

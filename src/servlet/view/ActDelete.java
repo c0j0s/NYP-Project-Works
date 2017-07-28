@@ -1,27 +1,28 @@
-package servlet.notification;
+package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.Account;
-import database.NotificationDB;
+import bean.Activity;
+import database.ActivityDB;
 
 /**
- * Servlet implementation class getNotificationCount
+ * Servlet implementation class ActDelete
  */
-@WebServlet("/getNotificationCount")
-public class getNotificationCount extends HttpServlet {
+@WebServlet("/ActDelete")
+public class ActDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getNotificationCount() {
+    public ActDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +31,12 @@ public class getNotificationCount extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession ss = request.getSession();
-		if(ss.getAttribute("account") != null) {
-			NotificationDB ndb = new NotificationDB();
-			Account ac = (Account) ss.getAttribute("account");
-			int count = ndb.getNotificationCount(ac.getAccountId());
-			request.setAttribute("notificationCount", count);
-			response.getWriter().append(Integer.toString(count));
-		}
+		ActivityDB adb = new ActivityDB();
+		ArrayList<Activity> activityDelete = adb.getActivity(null);
+		request.setAttribute("activityDelete", activityDelete);
+		request.getRequestDispatcher("pages/activityDelete.jsp").forward(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

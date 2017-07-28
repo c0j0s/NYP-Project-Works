@@ -36,6 +36,7 @@ public class RewardItemDB extends DBAO{
 				System.out.println("record retrieve");
 				rewardList.add(rew);
 				System.out.println(rew);		}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +61,7 @@ public class RewardItemDB extends DBAO{
 			
 			System.out.println(rew);
 			int status = ps.executeUpdate();
+			
 			if(status != 0){
 				System.out.println("Log CreateReward() :" + rew);
 				return rew.getRewardId();

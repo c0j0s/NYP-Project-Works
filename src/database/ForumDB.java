@@ -26,6 +26,7 @@ public class ForumDB extends DBAO{
 	 * @return postId
 	 */
 	public String createPost(Post post){
+		
 		String stmt = "INSERT INTO "+ schema +".post (`postId`, `postTitle`, `postDate`, `postContent`, `postCategory`, `points`, `valid`, `hideId`, `tagList`, `UseraccountId`,`ActivityactivityId`) "
 				+ "VALUES (?,?,?,?,?,?,'Y',?,?,?,?)";
 		try {
@@ -48,11 +49,12 @@ public class ForumDB extends DBAO{
 
 			int status = ps.executeUpdate();
 			if(status != 0){
-
 				ps.close();
+				
 				return post.getPostId();
 			}else{
 				ps.close();
+				
 				return "fail";
 			}
 	
@@ -68,7 +70,8 @@ public class ForumDB extends DBAO{
 	 * @param statement
 	 * @return ArrayList<Post>
 	 */
-	public static ArrayList<Post> getPost(String statement){
+	public ArrayList<Post> getPost(String statement){
+		
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
 			PreparedStatement ps;
@@ -101,10 +104,10 @@ public class ForumDB extends DBAO{
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
-				
-				post.setFollowerAccounts(MetaValueDB.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
-				post.setLikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"like"));
-				post.setDislikeAccounts(MetaValueDB.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
+				MetaValueDB mdb = new MetaValueDB();
+				post.setFollowerAccounts(mdb.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
+				post.setLikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"like"));
+				post.setDislikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
 				
 				post.setBestAnswer(rs.getString("bestAnswer"));
 				
@@ -116,6 +119,7 @@ public class ForumDB extends DBAO{
 			}
 			rs.close();
 			ps.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -161,12 +165,14 @@ public class ForumDB extends DBAO{
 	 */
 
 	public int getPostCount(String category) {
+		
 		String stmt = "Select count(*) from ffl.postlist where postCategory = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, category);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) return rs.getInt(1);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -178,6 +184,7 @@ public class ForumDB extends DBAO{
 	 * @param newCat
 	 */
 	public void addCategory(String newCat){
+		
 		try {
 			PreparedStatement ps = con.prepareStatement("INSERT INTO "+ schema +".category(`categoryName`) VALUES (?)");
 			ps.setString(1, newCat);
@@ -185,6 +192,7 @@ public class ForumDB extends DBAO{
 			if(status != 0){
 				System.out.println("Log addCategory(): " + ps);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Log addCategory(): " + e.getMessage());
 		}
@@ -195,6 +203,7 @@ public class ForumDB extends DBAO{
 	 * @return
 	 */
 	public Map<String, String> getCategoryList(){
+		
 		Map<String, String> categoryList = new HashMap<String, String>();
 		
 		try {
@@ -203,6 +212,7 @@ public class ForumDB extends DBAO{
 			while(rs.next()){
 				categoryList.put(rs.getString("categoryId"), rs.getString("categoryName"));
 			}
+			con.createStatement();
 		} catch (SQLException e) {
 			System.out.println("Log getCategory(): " + e.getMessage());
 		}
@@ -216,6 +226,7 @@ public class ForumDB extends DBAO{
 	 * @return
 	 */
 	public String updatePost(Map<String, String> input, String postId) {
+		
 		String startStmt = "Update ffl.post set ";
 		String bodyStmt = "";
 		for(Entry<String, String> entry : input.entrySet()) {
@@ -232,8 +243,11 @@ public class ForumDB extends DBAO{
 			int status = ps.executeUpdate();
 			
 			if(status != 0) {
+				ps.close();
+				
 				return postId;
 			}else {
+				
 				ps.close();
 				return "fail";
 			}
@@ -248,6 +262,7 @@ public class ForumDB extends DBAO{
 	 * @param postId
 	 */
 	public void invalidPost(String postId) {
+		
 		String statement = "update ffl.post set valid = 'N' where postId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(statement);
@@ -259,8 +274,9 @@ public class ForumDB extends DBAO{
 				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
 			}
 			ps.close();
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -270,7 +286,7 @@ public class ForumDB extends DBAO{
 	 * @param commentId
 	 */
 	public void pickBestAnswer(String postId, String commentId) {
-		// TODO Auto-generated method stub
+		
 		String stmt = "update ffl.post set bestAnswer = ?, postStatus = 'closed' where postId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -279,10 +295,11 @@ public class ForumDB extends DBAO{
 
 			int status = ps.executeUpdate();
 			if (status != 0) {
+				
 				System.out.println("log pickBestAnswer(): (success)");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }

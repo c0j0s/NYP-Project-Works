@@ -2,11 +2,13 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class DBAO {
 	protected static Connection con;
+	public static int connectionCount = 0;
 	//final protected String schema = "famforlife";
 	final protected static String schema = "ffl";
 	
@@ -23,16 +25,11 @@ public class DBAO {
 	 * init connection to database
 	 */
 	public DBAO(){
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(lurl,"root",lpasswd);
-			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
-			//con = DriverManager.getConnection(url,"root",passwd);
-		} catch (Exception e) {
-			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
-		} 
+		if(con == null) {
+			openConnection();
+		}
 	}
-	
+
 	public static String getDateTime(){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		java.util.Date myDate = new java.util.Date();
@@ -40,6 +37,16 @@ public class DBAO {
 		return formatter.format(sqlDate).substring(0, 19);
 	}
 
-
-
+	public void openConnection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(lurl,"root",lpasswd);
+			System.out.println("Open Connection: " + connectionCount);
+			connectionCount++;
+			//con = DriverManager.getConnection(schurl,"fflmysqldatabase",schpasswd);
+			//con = DriverManager.getConnection(url,"root",passwd);
+		} catch (Exception e) {
+			System.out.println("Log DBAO: fail to connect to database" + e.getMessage());
+		} 
+	}
 }

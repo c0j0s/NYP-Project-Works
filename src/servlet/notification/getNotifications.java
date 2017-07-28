@@ -36,12 +36,11 @@ public class getNotifications extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NotificationDB ndb = new NotificationDB();
 		HttpSession ss = request.getSession();
 		if(ss.getAttribute("account") != null) {
+			NotificationDB ndb = new NotificationDB();
 			Account ac = (Account) ss.getAttribute("account");
 			ArrayList<Notification> list = ndb.getAccountUnNotifications(ac.getAccountId());
-			System.out.println(list.size());
 			String json = new Gson().toJson(list);
 			response.getWriter().append(json);
 		}
