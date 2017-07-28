@@ -1,11 +1,18 @@
 package servlet.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import bean.Result;
+import database.ForumDB;
 
 /**
  * Servlet implementation class AdminForum
@@ -26,7 +33,11 @@ public class AdminForum extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("test");
+		String get = request.getParameter("get");
+		Gson gson = new Gson();
+		ForumDB fdb = new ForumDB();
+		String json = gson.toJson(fdb.getSimpleList(get));
+		response.getWriter().append(json);
 	}
 
 	/**

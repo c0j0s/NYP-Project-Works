@@ -245,7 +245,8 @@ $( document ).ready(function() {
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
 		   var finaltotal = format2(total, "$");
-		$('#total').val(finaltotal);
+		$('#total').val(total);
+		$('#total1').val(finaltotal);
 	
 	    console.log(num1);
 	    console.log(num2);

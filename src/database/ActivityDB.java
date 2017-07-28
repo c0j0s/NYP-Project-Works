@@ -15,7 +15,7 @@ public class ActivityDB extends DBAO{
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".activitylist ORDER BY activityId ";
+				statement = "SELECT * FROM ffl.activitylist where valid='Y' ORDER BY activityPostDate";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
@@ -145,7 +145,7 @@ public class ActivityDB extends DBAO{
 		return getActivity(stmt);
 	}
 	public String deleteActivity(Activity act){
-		String stmt ="delete from "+ schema +".activity where activityId=?";
+		String stmt ="update "+ schema +".activity set valid='N' where activityId=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, act.getActivityId());
