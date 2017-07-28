@@ -24,12 +24,12 @@ public class ActRegDB extends DBAO{
 			while(rs.next()){
 				ActReg reg = new ActReg();
 				reg.setRegistrationId(rs.getString("registrationId"));
-				reg.setRegistrationDate(java.sql.Timestamp.valueOf(rs.getString("registrationDate")));
 				reg.setRegistrationAmtPaid(rs.getDouble("registrationAmountPaid"));
 				reg.setParticipantNo(rs.getInt("participantNo"));
 				reg.setUserAccountId(rs.getString("useraccountId"));
 				reg.setParticipantNo(rs.getInt("participantNo"));
 				reg.setActivityactivityId(rs.getString("ActivityactivityId"));
+				reg.setCashOrBank(rs.getString("cashOrBank"));
 				System.out.println("record retrieve");
 				regList.add(reg);
 			}
@@ -39,12 +39,15 @@ public class ActRegDB extends DBAO{
 		return regList;
 	}
 	public String RegisterActivity(ActReg ar) {
-		String stmt = "insert into" + schema + ".registration(registrationId, registrationDate, registrationAmountPaid, participantNo, UseraccountId, ActivityactivityId) values(?,?,?)";
+		String stmt = "insert into" + schema + ".registration(registrationId, registrationAmountPaid, participantNo, UseraccountId, ActivityactivityId,bankOrCash) values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setInt(1, ar.getCardNumber());
-			ps.setString(2, ar.getNameOfCardHolder());
-			ps.setString(3,ar.getUserAccountId());
+			ps.setString(1, ar.getRegistrationId());
+			ps.setDouble(2, ar.getRegistrationAmtPaid());
+			ps.setInt(3, ar.getParticipantNo());
+			ps.setString(4, ar.getUserAccountId());
+			ps.setString(5, ar.getActivityactivityId());
+			ps.setString(6, ar.getCashOrBank());
 			System.out.println(ps);
 			int status = ps.executeUpdate();
 			if(status != 0){

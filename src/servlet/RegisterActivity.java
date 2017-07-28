@@ -31,11 +31,20 @@ public class RegisterActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s = request.getSession(true);
+	try {	HttpSession s = request.getSession(true);
 		ActRegDB ardb = new ActRegDB();
 		ActReg ar = new ActReg();
 		Account ac = (Account)s.getAttribute("account");
-		
+		ar.setRegistrationId(request.getParameter("registerId"));
+		ar.setRegistrationAmtPaid(Double.valueOf(request.getParameter("total")));
+		ar.setParticipantNo(Integer.parseInt(request.getParameter("noOfParticipants")));
+		ar.setUserAccountId(ac.getAccountId());
+		ar.setCashOrBank(request.getParameter("type"));
+		ar.setActivityactivityId(request.getParameter("activityId"));
+		ardb.RegisterActivity(ar);
+		System.out.println("pls help"+ar);
+		response.sendRedirect("ActList");
+		}catch(Exception ex) {}
 		}
 
 	/**

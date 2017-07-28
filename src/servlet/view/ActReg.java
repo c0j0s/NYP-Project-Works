@@ -35,9 +35,12 @@ public class ActReg extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		String RegistrationId = common.UID.genRegistrationId();
+		request.setAttribute("registerId",RegistrationId);
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
 		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

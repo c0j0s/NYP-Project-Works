@@ -106,6 +106,7 @@
 					<p>
 						Total Price : <input type="text" id="total" name="total"
 							class="col-md-6" disabled>
+					
 					</p>
 				</div>
 
@@ -124,14 +125,12 @@
 						<h3>Pay By Cash</h3>
 						<p>
 							Go to the nearest 7-11 and request payment for Family For Life
-							and present id number
-
-
-							<%=request.getAttribute("registerId")%>
+							and present id number <%=request.getAttribute("registerId")%>
 					</div>
 
 					<br />
-
+					<input type="hidden" value ="<%=request.getAttribute("registerId")%>" name ="registerId">
+<input type="hidden" value="<%=actf.getActivityId() %>" name="activityId">
 
 					
 
