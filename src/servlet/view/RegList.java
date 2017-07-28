@@ -1,29 +1,31 @@
-package servlet;
+
+
+package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bean.Account;
-import bean.ActReg;
+import bean.Activity;
 import database.ActRegDB;
-import database.DBAO;
+import database.ActivityDB;
 
 /**
- * Servlet implementation class RegAct
+ * Servlet implementation class RegList
  */
-@WebServlet("/RegisterActivity")
-public class RegisterActivity extends HttpServlet {
+@WebServlet("/RegList")
+public class RegList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterActivity() {
+    public RegList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +34,12 @@ public class RegisterActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	try {	HttpSession s = request.getSession(true);
+		ActivityDB adb = new ActivityDB();
 		ActRegDB ardb = new ActRegDB();
-		ActReg ar = new ActReg();
-		Account ac = (Account)s.getAttribute("account");
-		ar.setRegistrationId(request.getParameter("registerId"));
-		ar.setRegistrationAmtPaid(Double.valueOf(request.getParameter("total")));
-		ar.setParticipantNo(Integer.parseInt(request.getParameter("noOfParticipants")));
-		ar.setUserAccountId(ac.getAccountId());
-		ar.setActivityRegistrationDate(DBAO.getDateTime());
-		ar.setCashOrBank(request.getParameter("type"));
-		ar.setActivityactivityId(request.getParameter("activityId"));
-		ardb.RegisterActivity(ar);
-		System.out.println("pls help"+ar);
-		response.sendRedirect("ActList");
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
+		ArrayList<Activity> Registration = ardb.getActivityById(request.getParameter("activityId"));
+		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
+		request.setAttribute("activityRegistration", activityRegistration);
+		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
 		}
 
 	/**

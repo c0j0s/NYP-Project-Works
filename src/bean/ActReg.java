@@ -1,12 +1,13 @@
 package bean;
 
-public class ActReg extends BankDetails {
+public class ActReg extends Activity {
 private String registrationId;
 private double registrationAmtPaid;
 private int participantNo;
 private String userAccountId;
 private String cashOrBank;
 private String ActivityactivityId;
+private String activityRegistrationDate;
 public ActReg(){
 	
 }
@@ -58,6 +59,14 @@ public String getCashOrBank() {
 
 public void setCashOrBank(String cashOrBank) {
 	this.cashOrBank = cashOrBank;
+}
+
+public String getActivityRegistrationDate() {
+	return activityRegistrationDate;
+}
+
+public void setActivityRegistrationDate(String activityRegistrationDate) {
+	this.activityRegistrationDate = activityRegistrationDate;
 }
 
 
