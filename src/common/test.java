@@ -12,6 +12,7 @@ import bean.Notification;
 import database.DBAO;
 import database.ForumDB;
 import database.NotificationDB;
+import database.Point;;
 
 public class test {
 
@@ -49,8 +50,11 @@ public class test {
 
 		//MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
 		//sender.run();
-		Mail mail = new Mail("");
-		mail.sendSimpleMail();
+	//	Mail mail = new Mail("");
+		//mail.sendSimpleMail();
+		Point p = new Point();
+		p.pointsCalc("ACC0000000",300);
+		
 	}
 
 }

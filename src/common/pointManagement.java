@@ -1,18 +1,15 @@
 package common;
+import database.Point;
 
 public class pointManagement {
-	public int pointsAdd(int currPoint, int pointAdded) {
-		int value1= currPoint;
+	public int pointsCalc(String userId, int pointAdded) {
+		Point p = new Point();
+		int currPoint = p.getPoints(userId);
 		int value2 = pointAdded;
-		int total=value1+value2;
+		int total=currPoint+value2;
+		p.SetPoints(total,userId);
 		return total;
 		
 	}
 
-	public int pointMinus(int currPoint, int pointMinus) {
-		int value1 = currPoint;
-		int value2 = pointMinus;
-		int total = value1+value2;
-		return total;
-	}
 }

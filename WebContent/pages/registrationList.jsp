@@ -34,12 +34,13 @@
 				actf=actfl.get(0);
 				arlist =(ArrayList<ActReg>)request.getAttribute("Registration");
 			%>		<h2><%=actf.getActivityTitle() %></h2>
-  <p>Organised By : <%=actf.getOrganiserId() %></p>            
+  <p>Organised By : <%=actf.getOrganiserId() %>, Activity Periods : <%=actf.getActivityStartDate()%>-<%=actf.getActivityEndDate() %></p><p> Activity Day : <%=actf.getActivityDay() %>, Activity Time : <%=actf.getActivityTime() %></p>            
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>No.</th>
         <th>Registration Id</th>
+        <th>User Id</th>
         <th>Name</th>
         <th>Participant No.</th>
         <th>Amount Paid</th>
@@ -53,6 +54,7 @@
         <td><%=i %></td>
         <td><%=ar.getRegistrationId() %></td>
         <td><%=ar.getUserAccountId() %></td>
+         <td><%=ar.getParticipantName() %></td>
         <td><%=ar.getParticipantNo() %></td>
         <td><%=ar.getRegistrationAmtPaid() %></td>
         <td><%=ar.getCashOrBank() %></td>

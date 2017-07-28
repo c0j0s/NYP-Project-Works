@@ -8,6 +8,7 @@ private String userAccountId;
 private String cashOrBank;
 private String ActivityactivityId;
 private String activityRegistrationDate;
+private String participantName;
 public ActReg(){
 	
 }
@@ -67,6 +68,14 @@ public String getActivityRegistrationDate() {
 
 public void setActivityRegistrationDate(String activityRegistrationDate) {
 	this.activityRegistrationDate = activityRegistrationDate;
+}
+
+public String getParticipantName() {
+	return participantName;
+}
+
+public void setParticipantName(String participantName) {
+	this.participantName = participantName;
 }
 
 
