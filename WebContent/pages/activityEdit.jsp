@@ -118,7 +118,7 @@
 				<div class="col-md-12">
 					<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
 					<p class="col-md-2"></p>
-					<button type="submit" class="col-md-5 btn btn-success  pull-right">Create</button>
+					<button type="submit" class="col-md-5 btn btn-success  pull-right">Edit</button>
 				</div>
 				<br>
 			</form><%
