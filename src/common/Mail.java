@@ -30,12 +30,12 @@ public class Mail {
 	final private static String password = "admin@gmail";
 	private String path;
 	
-	public Mail(String path){
+	public Mail(){
 		properties = System.getProperties();
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-		this.path = path;
+		//this.path = path;
 	}
 	public void sendNotificationMail(String to, String subject, String title, String htmlbody){
 		Map<String, String> input = new HashMap<String, String>();
@@ -118,16 +118,16 @@ public class Mail {
 	}
 
 	//for testing
-	public void sendSimpleMail() {
+	public void sendSimpleMail(String to,String subject,String text) {
 		try {
 			session = Session.getDefaultInstance(properties, null);
 			message = new MimeMessage(session);
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("c.junsheng@hotmail.com"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setFrom(new InternetAddress("bt1602gp@gmail.com","FamForLife"));
-			message.setSubject("FamForLife: " + "test");
+			message.setSubject("FamForLife: " + subject);
 			
-			System.out.println("Log htmlText: ");
-			message.setContent("test", "text/html");
+			System.out.println("Log htmlText: " + text);
+			message.setContent(text, "text/html");
 			
 		} catch (AddressException e) {
 			System.out.println(e.getMessage());
@@ -142,7 +142,7 @@ public class Mail {
 			transport.connect("smtp.gmail.com", "bt1602gp@gmail.com", "admin@gmail");
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
-			System.out.println("mail sent to:" + "c.junsheng@hotmail.com");
+			System.out.println("mail sent to:" + to);
 		} catch (MessagingException e) {
 			System.out.println(e.getMessage());
 		}
