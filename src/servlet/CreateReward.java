@@ -45,7 +45,7 @@ public class CreateReward extends HttpServlet {
 			rew.setRewardId(request.getParameter("rewId"));
 			rew.setRewardTitle(request.getParameter("rewTitle"));
 			rew.setRewardDescription(request.getParameter("rewDesc"));
-			rew.setPoints(Integer.parseInt(request.getParameter("Points")));
+		    rew.setPoints(Integer.parseInt(request.getParameter("Points")));
 			rew.setRewardAvailability(request.getParameter("rewAvailability").charAt(0));
 			rew.setRewardQuantity(request.getParameter("rewQuantity").charAt(0));
 			
@@ -59,16 +59,16 @@ public class CreateReward extends HttpServlet {
 			
   		// rew.setAccountId(ac.getAccountId());
 			rew.setAccountId("ACC0000000");
-			rewdb.createRewardItem(rew);
+			rew.setRewardId(rewdb.createRewardItem(rew));
 			
 		
 			
 			if(!rew.getRewardId().equals("fail") || rew.getRewardId() == null){
-				request.getRequestDispatcher("RedemptionList?").forward(request, response);
+				request.getRequestDispatcher("RedemptionList").forward(request, response);
 			
 			}else{
 			
-				request.getRequestDispatcher("RedemptionList?").forward(request, response);
+				request.getRequestDispatcher("RedemptionList").forward(request, response);
 				System.out.println("Log createActivity.java: fail to create activity");
 			}
 		} catch (Exception e) {
