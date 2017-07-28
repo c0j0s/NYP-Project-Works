@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.ActReg;
+import bean.Activity;
 public class ActRegDB extends DBAO{
 	
 	public ActRegDB(){
@@ -30,7 +31,7 @@ public class ActRegDB extends DBAO{
 				reg.setUserAccountId(rs.getString("useraccountId"));
 				reg.setParticipantNo(rs.getInt("participantNo"));
 				reg.setActivityactivityId(rs.getString("ActivityactivityId"));
-				reg.setCashOrBank(rs.getString("cashOrBank"));
+				reg.setCashOrBank(rs.getString("bankOrCash"));
 				System.out.println("record retrieve");
 				regList.add(reg);
 			}
@@ -39,6 +40,10 @@ public class ActRegDB extends DBAO{
 			e.printStackTrace();
 		}
 		return regList;
+	}
+	public ArrayList<ActReg> getActivityById(String activityId){
+		String stmt = "SELECT * FROM "+ schema +".registration WHERE ActivityactivityId = '"+ activityId +"'";
+		return getRegistration(stmt);
 	}
 	public String RegisterActivity(ActReg ar) {
 		String stmt = "insert into " + schema + ".registration(registrationId,registrationDate,registrationAmountPaid, participantNo, UseraccountId, ActivityactivityId,bankOrCash) values(?,?,?,?,?,?,?)";

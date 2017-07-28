@@ -111,6 +111,10 @@
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
+					<span aria-hidden="true">
+						<button
+							onclick="location.href = 'RegList?activityActivityId=<%=actf.getActivityId()%>&activityId=<%=actf.getActivityId()%>'">Participants List</button>
+					</span>
 					
 					<%
 						}}

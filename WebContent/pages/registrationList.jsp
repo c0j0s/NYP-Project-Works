@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
+<%@ page
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
+	<%!Activity actf;%>
+<%!ArrayList<Activity> actfl;%>
+<%!ArrayList<ActReg> arlist; %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -21,8 +26,41 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
-content goes here
-
+	<%
+				DecimalFormat df = new DecimalFormat("##.00");
+			%>
+			<%
+				actfl = (ArrayList<Activity>)request.getAttribute("activityRegistration");
+				actf=actfl.get(0);
+				arlist =(ArrayList<ActReg>)request.getAttribute("Registration");
+			%>		<h2><%=actf.getActivityTitle() %></h2>
+  <p>Organised By : <%=actf.getOrganiserId() %></p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Registration Id</th>
+        <th>Name</th>
+        <th>Participant No.</th>
+        <th>Amount Paid</th>
+        <th>Cash Or Online Payment</th>
+      </tr>
+    </thead><%int i =0; %>
+    <tbody><% 	for(ActReg ar : arlist){ i++;
+			%>
+	
+      <tr>
+        <td><%=i %></td>
+        <td><%=ar.getRegistrationId() %></td>
+        <td><%=ar.getUserAccountId() %></td>
+        <td><%=ar.getParticipantNo() %></td>
+        <td><%=ar.getRegistrationAmtPaid() %></td>
+        <td><%=ar.getCashOrBank() %></td>
+       
+        
+      </tr>
+      
+<%} %></tbody></table>
 </div>
 
 <%-- end of main container --%>

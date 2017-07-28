@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ActReg;
 import bean.Activity;
 import database.ActRegDB;
 import database.ActivityDB;
@@ -36,11 +37,13 @@ public class RegList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		ActRegDB ardb = new ActRegDB();
-		ArrayList<Activity> Registration = ardb.getActivityById(request.getParameter("activityId"));
+		ArrayList<ActReg> Registration = ardb.getActivityById(request.getParameter("activityActivityId"));
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
-		request.getRequestDispatcher("pages/RegAct.jsp").forward(request, response);
-		}
+		request.setAttribute("Registration", Registration);
+		request.getRequestDispatcher("pages/registrationList.jsp").forward(request, response);
+		System.out.println(Registration);
+		System.out.println(activityRegistration);}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
