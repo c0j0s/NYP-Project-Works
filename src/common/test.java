@@ -53,7 +53,8 @@ public class test {
 	//	Mail mail = new Mail("");
 		//mail.sendSimpleMail();
 		Point p = new Point();
-		p.pointsCalc("ACC0000000",300);
+		p.pointsCalc("ACC0000000",500);
+		p.calcRank();
 		
 	}
 
