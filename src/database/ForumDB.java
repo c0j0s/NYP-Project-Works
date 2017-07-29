@@ -170,7 +170,7 @@ public class ForumDB extends DBAO{
 
 	public int getPostCount(String category) {
 		
-		String stmt = "Select count(*) from ffl.postlist where postCategory = ?";
+		String stmt = "Select count(*) from ffl.postlist where postCategory = ? and valid = 'Y'";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, category);
@@ -284,6 +284,24 @@ public class ForumDB extends DBAO{
 		}
 	}
 
+	public void validPost(String postId) {
+		String statement = "update ffl.post set valid = 'Y' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
+			}
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * select comment as best answer for post
 	 * @param postId
@@ -296,7 +314,7 @@ public class ForumDB extends DBAO{
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, commentId);
 			ps.setString(2, postId);
-
+			
 			int status = ps.executeUpdate();
 			if (status != 0) {
 				
@@ -307,39 +325,4 @@ public class ForumDB extends DBAO{
 		}
 	}
 	
-	public ArrayList<Result> getSimpleList(String get) {
-		ArrayList<Result> list = new ArrayList<Result>();
-		String stmt = "";
-		if (get.equals("reported")) {
-			stmt = "Select * from ffl.reportlist where valid = 'Y' order by reportCreatedOn DESC";
-		} else if (get.equals("post")) {
-			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'post' order by reportCreatedOn DESC";
-		} else if (get.equals("comment")){
-			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'comment' order by reportCreatedOn DESC";
-		}
-		
-		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				Result r = new Result();
-				r.setItemId(rs.getString("itemId"));
-				r.setTitle(rs.getString("title"));
-				r.setImgUrl(rs.getString("itemImgUrl"));
-				r.setCreatedOn(rs.getString("reportCreatedOn"));
-				Map<String,String> m = new HashMap<String,String>();
-				r.setType(rs.getString("type"));
-				m.put("reporterAccountId", rs.getString("reporterAccountId"));
-				m.put("itemCreatedOn", rs.getString("itemCreatedOn"));
-				r.setMetadata(m);
-				list.add(r);
-			}
-			rs.close();
-			ps.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 }
