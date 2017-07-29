@@ -104,6 +104,16 @@ $( document ).ready(function() {
 		$(this).remove();
 	})
 	
+	$('.comment-delete').on('click',function(){
+		var id = $(this).data.id
+		$.ajax({
+			url: ContextPath + "/",
+			data:{'commentId': id},
+			success: function(message){
+				popup('body',message)
+			}
+		})
+	})
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */

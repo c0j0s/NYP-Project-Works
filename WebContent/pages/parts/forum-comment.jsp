@@ -18,10 +18,12 @@
 						<jsp:param value="${comment.likeCount }" name="likeCount"/>
 						<jsp:param value="${comment.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
-					<button type="button" class="btn btn-default btn-sm btn-no-border">
-						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-						Follow
-					</button>
+					<c:if test="${user.accountId eq comment.accountId }">
+						<button type="button" class="btn btn-default btn-sm btn-no-border comment-delete" data-id="${comment.commentId }">
+							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+							<span>Delete My Answer</span>
+						</button>
+					</c:if>
 				</div>
 				<div class="btn-group pull-right dropdown">
 					<jsp:include page="reportList.jsp">

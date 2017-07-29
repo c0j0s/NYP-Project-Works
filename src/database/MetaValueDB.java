@@ -87,18 +87,18 @@ public class MetaValueDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<String> getMetaAccounts(String table, String colName, String id,String action){
-		
+		PreparedStatement ps = null;
 		ArrayList<String> list = new ArrayList<String>();
 		try {
 			String stmt = "select distinct p."+ colName +",m.accountId,m.action from ffl."+ table +" p join metavalue m on p."+ colName +" = m.parentId where p."+ colName +" = ? AND m.action = ?";
-			PreparedStatement ps = con.prepareStatement(stmt);
+			ps = con.prepareStatement(stmt);
 			ps.setString(1, id);
 			ps.setString(2, action);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				list.add(rs.getString("accountId"));
 			}
-			
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
