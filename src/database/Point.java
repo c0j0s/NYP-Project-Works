@@ -52,6 +52,23 @@ public class Point extends DBAO{
 			return total;
 			
 		}
+		public ArrayList<Activity> getRank() {
+			ArrayList<Activity> rankList = new ArrayList<Activity>();
+			try {
+				String ss = "SELECT activityId,activityTitle,valid,likeCount,dislikeCount,((likeCount * likeCount)-dislikeCount-dislikeCount) actRank FROM ffl.ranklist where valid = 'Y' order by actRank desc;"; 
+				PreparedStatement ps =con.prepareStatement(ss);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+				Activity act= new Activity();
+				act.setActivityId(rs.getString("activityId"));
+				act.setActivityTitle(rs.getString("activityTitle"));
+				act.setRankPoints(rs.getInt("actRank"));
+				rankList.add(act);
+				System.out.println(rs.getString("activityId"));}
+
+			}catch(Exception ex) {ex.printStackTrace();}
+			return rankList;
+		}
 		}
 
 	

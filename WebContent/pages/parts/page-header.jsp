@@ -26,13 +26,18 @@
 					<a href="${pageContext.request.contextPath}/ActList"
 						class="col-md-6">Activities For Families </a>
 					<div class="col-md-1"></div>
+							<%
+						if(session.getAttribute("account")!=null){
+						
+					%>
+					
 					<button onclick="location.href = 'CreateAct'"
 						class="btn btn-primary col-md-2 ">Create
 						Activity</button>
 						<div class="col-md-1"></div>
 						<button onclick="location.href = 'ActDelete'"
 						class="btn btn-primary col-md-2 pull-right">Delete
-						Activity</button>
+						Activity</button><%} %>
 				</h1>
 			</div>
 		</c:when>
@@ -46,10 +51,13 @@
 						onclick="location.href = '${pageContext.request.contextPath}/ActList'"
 						class="btn btn-primary col-md-2">View Activity List</button>
 					<div class="col-md-1"></div>
-					<button
+					<%
+						if(session.getAttribute("account")!=null){
+						
+					%><button
 						onclick="location.href = '${pageContext.request.contextPath}/CreateAct'"
 						class="btn btn-primary col-md-2 pull-right">Create
-						Activity</button>
+						Activity</button><%} %>
 				</h1>
 			</div>
 		</c:when>

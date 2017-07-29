@@ -118,12 +118,15 @@
 					
 					<%
 						}}
+					%><%
+						if(session.getAttribute("account")!=null){
+						
 					%>
 					<span aria-hidden="true">
 						<button
 							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 							For Activity</button>
-					</span>
+					</span><%} %>
 				</div>
 			</div>
 
@@ -135,7 +138,7 @@
 				<h4>Activity Popularity Ranking</h4>
 				<%
 					int z=0;
-						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("activityList");
+						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
 						for (Activity act : actRank) {
 				%>
 				<li class="list-group-item"><%=z + 1%>. <%=act.getActivityTitle() %> <span class="badge"><%=act.getRankPoints()%></span>
