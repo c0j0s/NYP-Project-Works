@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.Activity;
-import bean.Post;
+
 
 public class ActivityDB extends DBAO{
 
@@ -50,6 +50,7 @@ public class ActivityDB extends DBAO{
 				act.setAccountId(rs.getString("accountId")); 
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
+				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));
 				//act.setCommentCount(rs.getString("commentCount")); you dun have this in your view yet
 
 				System.out.println(rs.getString("imgUrl"));

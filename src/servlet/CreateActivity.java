@@ -7,7 +7,7 @@ import bean.Account;
 import bean.Activity;
 import database.ActivityDB;
 import database.DBAO;
-
+import database.Point;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +58,8 @@ public class CreateActivity extends HttpServlet {
 			act.setImgUrl(request.getParameter("imgurl"));
 			StringBuilder builder = new StringBuilder();
 			String day[] =request.getParameterValues("actDay");
+			Point p = new Point();
+			p.pointsCalc(ac.getAccountId(), 30);
 			for (String value : day) {
 			    builder.append(value);
 			}
