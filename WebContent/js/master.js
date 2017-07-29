@@ -326,6 +326,29 @@ $( document ).ready(function() {
 		}
 	},10000);
 
+	/**
+	 * methods for reporting items
+	 */
+	$(".report-item").click(function(){
+		var rdata = $(this).data();
+		$.ajax({
+			url: ContextPath + "/ReportItem",
+			data:rdata,
+			success: function(success){
+				console.log(success);
+				popup('body',success)
+				$('#reportUser-'+rdata.itemid).modal('hide')
+				$('#reportItem-'+rdata.itemid).modal('hide')
+			}
+		})
+	})
+	
+	function popup(id,message){
+		$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-info" role="alert" data-dismiss="alert">'+message+'</div>')
+		setTimeout(function(){
+			$('.alert.alert-info').alert('close');
+		},5000)
+	}
 });
 
 function paytype(type){
