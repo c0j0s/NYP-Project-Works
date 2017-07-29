@@ -154,22 +154,25 @@ public class CommentDB extends DBAO{
 		return id;
 	}
 
-	public void invalidComment(String itemId) {
+	public boolean invalidComment(String itemId) {
 		String statement = "update ffl.comments set valid = 'N' where commentId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, itemId);
-
+			System.out.println(ps);
 			int status = ps.executeUpdate();
 			
 			if(status != 0) {
 				System.out.println("log invalidPost("+ itemId +"): (success)" + ps);
+				return true;
 			}
 			ps.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
+		return false;
 	}
 
 	public void validComment(String itemId) {

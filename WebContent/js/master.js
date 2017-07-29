@@ -1,5 +1,5 @@
 var createCom, openMessage,closeMessage,closeCommentBox ;
-var postDeleteCancel;
+var postDeleteCancel,commentDeleteCancel;
 var counter;
 $( document ).ready(function() {
 	var config = {
@@ -105,15 +105,45 @@ $( document ).ready(function() {
 	})
 	
 	$('.comment-delete').on('click',function(){
-		var id = $(this).data.id
-		$.ajax({
-			url: ContextPath + "/",
-			data:{'commentId': id},
-			success: function(message){
-				popup('body',message)
+		var id = $(this).data().id
+		console.log("log .post-comment-" + id)
+		$(".post-comment-" + id).css("display","none");
+		$(".post-comment-" + id).after("<div id='comment-delete-message'><div class='panel panel-warning'><div class='panel-heading auto-overflow' >" +
+				"<h4 class='col-sm-9'>Comment deleting in <span id='comment-delete-countdown'>5</span>s.</h4>" +
+				"<button type='button' class='btn btn-info col-sm-3' id='post-delete-cancel' onclick='commentDeleteCancel(this)' data-id='"+ id+"'>Cancel</button>" +
+				"</div></div></div>");
+		
+		var span = 5;
+		counter = setInterval(function(){
+			$("#comment-delete-countdown").html(span)
+			if(span == 0){
+				if($("#comment-delete-message").html()){
+					$.ajax({
+						url: ContextPath + "/InvalidComment",
+						data:{'commentId':id},
+						success: function(message){	
+							popup('body',message)
+							$(".post-comment-" + id).remove()
+							$("#comment-delete-message").remove();
+							console.log('success')
+						}
+					});	
+				span = 0;
+				}else{
+					clearInterval(counter)
+				}
+			}else{
+				span = span - 1;
 			}
-		})
+		},1000)
 	})
+	
+	commentDeleteCancel = function(e){
+		var id = $(e).data().id;
+		$(".post-comment-" + id).css("display","block");
+		$("#comment-delete-message").remove();
+		clearInterval(counter);
+	}
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */
