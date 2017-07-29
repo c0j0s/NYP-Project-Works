@@ -7,7 +7,11 @@
  		<button type="button" class="btn btn-default admin-subpanel-btn" data-type="comment">All Comments</button>
 	</div>
 	<hr>
-	<div id="admin-forum-body">
-		
-	</div>
+	<table class="table table-hover" >
+	<thead>
+	<tr><th>Type</th><th>Title</th><th>Reported On</th><th>Reported By</th><th>Status</th><th>Actions</th></tr>
+	</thead>
+	<tbody id="admin-forum-body">
+	</tbody>
+	</table>
 </div>

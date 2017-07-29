@@ -311,16 +311,31 @@ public class ForumDB extends DBAO{
 		ArrayList<Result> list = new ArrayList<Result>();
 		String stmt = "";
 		if (get.equals("reported")) {
-			stmt = "";
+			stmt = "Select * from ffl.reportlist where valid = 'Y' order by reportCreatedOn DESC";
 		} else if (get.equals("post")) {
-			stmt = "";
+			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'post' order by reportCreatedOn DESC";
 		} else if (get.equals("comment")){
-			stmt = "";
+			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'comment' order by reportCreatedOn DESC";
 		}
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Result r = new Result();
+				r.setItemId(rs.getString("itemId"));
+				r.setTitle(rs.getString("title"));
+				r.setImgUrl(rs.getString("itemImgUrl"));
+				r.setCreatedOn(rs.getString("reportCreatedOn"));
+				Map<String,String> m = new HashMap<String,String>();
+				r.setType(rs.getString("type"));
+				m.put("reporterAccountId", rs.getString("reporterAccountId"));
+				m.put("itemCreatedOn", rs.getString("itemCreatedOn"));
+				r.setMetadata(m);
+				list.add(r);
+			}
+			rs.close();
+			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
