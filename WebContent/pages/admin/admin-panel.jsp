@@ -44,7 +44,7 @@
 		    	<jsp:include page="admin-forum.jsp"></jsp:include>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="Activity">
-		    	<jsp:include page="admin-forum.jsp"></jsp:include>
+		    	<jsp:include page="admin-activity.jsp"></jsp:include>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="Notification">
 		    	<jsp:include page="admin-forum.jsp"></jsp:include>

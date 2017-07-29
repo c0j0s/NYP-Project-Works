@@ -38,12 +38,19 @@ public class ActList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		Point p = new Point();
+		 String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
+			int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
 		ArrayList<Activity> actRank = p.getRank();
+	     int totalNo = adb.getTotalActivityCount();
+	     request.setAttribute("page", page);
+	     request.setAttribute("actCount", totalNo);
 		request.setAttribute("actRank", actRank);
-		ArrayList<Activity> activityList = adb.getActivity(null);
+		ArrayList<Activity> activityList = adb.getActivity(null,start);
 		request.setAttribute("activityList", activityList);
 		request.getRequestDispatcher("pages/activityList.jsp").forward(request, response);
-	System.out.println("help me pls many many");}
+	
+	    
+	 }
 
 
 

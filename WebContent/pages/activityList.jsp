@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -102,7 +103,7 @@
 			<br></br>
 			<%
 				}
-			%>
+			%><f:PostListPagination itemPerPage="5" pageCount="${actCount }" currentPage="${page }"  type="activity"/>
 		</div>
 		<div class="col-md-3">
 			<ul class="list-group">

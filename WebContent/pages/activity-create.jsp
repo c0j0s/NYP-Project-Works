@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +85,7 @@
 					<div>
 					<div class="col-md-5">
 						<label for="actStart">Activity Start Date : </label> <input
-							type="date" name="actStart" class="form-control">
+							type="date" name="actStart" class="form-control" >
 					</div>
 					<div class="col-md-2 text-center">
 						<br>-
