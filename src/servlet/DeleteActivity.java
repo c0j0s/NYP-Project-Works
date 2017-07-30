@@ -32,10 +32,10 @@ public class DeleteActivity extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s = request.getSession(true);
 		ActivityDB actdb = new ActivityDB();
-		Activity act = new Activity();
+		
 	
-		act.setActivityId(request.getParameter("actId"));
-		actdb.deleteActivity(act);
+		String actId =(request.getParameter("actId"));
+		actdb.deleteActivity(actId);
 		response.sendRedirect("ActList");
 	}
 
