@@ -15,7 +15,7 @@
 </c:choose>
 
 <button type="button"
-	class="btn btn-default btn-sm btn-no-border meta-value meta-like-btn"
+	class="btn btn-default btn-sm btn-no-border meta-value meta-like-btn actRank"
 	data-id="${param.Id}" 
 	data-count="${param.likeCount}"
 	${dislikedisable eq true ? 'disabled':'' }>
@@ -23,7 +23,7 @@
 	<span class="meta-value-count">${param.likeCount}</span>
 </button>
 <button type="button" 
-	class="btn btn-default btn-sm btn-no-border meta-value meta-dislike-btn"
+	class="btn btn-default btn-sm btn-no-border meta-value meta-dislike-btn actRank"
 	data-id="${param.Id}" 
 	data-count="${param.dislikeCount}"
 	${likedisable eq true ? 'disabled':'' }>

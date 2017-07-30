@@ -291,6 +291,20 @@ $( document ).ready(function() {
 	/**
 	 * methods for activity
 	 */
+	$(".actRank").on('click',function(){
+		$("#aMultiPlatformList").empty();
+		$.ajax({
+			url : "actRankList",
+			success : function(rankingList){
+				var json = JSON.parse(rankingList);
+				console.log(json)
+				for(var i = 0; i< json.length; i++){
+				var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
+			$("#aMultiPlatformList").append(list);
+				console.log(":()()()()()()()()()()(");
+				}}
+		})
+	});
 	$("#generate1,#generate2").on('change', function () {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();
@@ -427,6 +441,7 @@ $( document ).ready(function() {
 			$('.alert.alert-info').alert('close');
 		},5000)
 	}
+	
 });
 
 function paytype(type){

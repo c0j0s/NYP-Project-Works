@@ -15,7 +15,7 @@ $( document ).ready(function() {
 		}else if(type === 'comment'){
 			$("#tabName").html("All Comments");
 			getAllComment();
-		}
+			}
 	})
 	
 	getReported = function(){
