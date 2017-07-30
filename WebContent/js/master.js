@@ -458,12 +458,6 @@ $( document ).ready(function() {
 		})
 	})
 	
-	function popup(id,message){
-		$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-info" role="alert" data-dismiss="alert">'+message+'</div>')
-		setTimeout(function(){
-			$('.alert.alert-info').alert('close');
-		},5000)
-	}
 });
 
 function paytype(type){
@@ -479,4 +473,11 @@ function paytype(type){
 
 	}
 	console.log(type);
+}
+
+function popup(id,message){
+	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
+	setTimeout(function(){
+		$('.alert.alert-warning').alert('close');
+	},5000)
 }

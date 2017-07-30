@@ -91,5 +91,20 @@ $( document ).ready(function() {
 		})
 	}
 
-	
+	$("#admin-others-send-message").on('click',function(){
+		var value = $("#admin-others-input-message").val()
+		adminOthers("message")
+	})
+	$("#admin-others-add-catgory").on('click',function(){
+		var value = $("#admin-others-input-category").val()
+		adminOthers("category")
+	})
+	function adminOthers(type){
+		$.ajax({
+			url:ContextPath + "/AdminOthers?type=" + type,
+			success:function(results){
+				popup('body',results)
+			}
+		})
+	}
 })
