@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -21,6 +22,10 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
+	<form action ="${pageContext.request.contextPath}/test" method="post">
+	<input type="hidden" value="30" name="add">
+	<input type="hidden" value="ACC0000000" name="id">
+	<input type="submit" value="click"></form>
 	
 	<div>
 	<h1>Example for form with image to upload [firebase method, update 2]</h1>

@@ -4,18 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.Activity;
-import bean.Post;
+
 
 public class ActivityDB extends DBAO{
 
 	public ActivityDB(){
 		super();
 	}
-	public ArrayList<Activity> getActivity(String statement){
+	public ArrayList<Activity> getActivity(String statement, int start){
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.activitylist where valid='Y' ORDER BY activityPostDate";
+				statement = "SELECT * FROM ffl.activitylist where valid='Y' ORDER BY activityPostDate desc limit "+start+",5;";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
@@ -50,6 +50,7 @@ public class ActivityDB extends DBAO{
 				act.setAccountId(rs.getString("accountId")); 
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
+				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));
 				//act.setCommentCount(rs.getString("commentCount")); you dun have this in your view yet
 
 				System.out.println(rs.getString("imgUrl"));
@@ -142,7 +143,7 @@ public class ActivityDB extends DBAO{
 	}
 	public ArrayList<Activity> getActivityById(String activityId){
 		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
-		return getActivity(stmt);
+		return getActivity(stmt,0);
 	}
 	public String deleteActivity(Activity act){
 		String stmt ="update "+ schema +".activity set valid='N' where activityId=?";
@@ -158,6 +159,18 @@ public class ActivityDB extends DBAO{
 			e.printStackTrace();
 		}
 		return "fail";
+	}
+	public int getTotalActivityCount() {
+		String stmt = "select count(*) from ffl.activityList where valid ='Y';";
+		try {PreparedStatement ps = con.prepareStatement(stmt);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+			
+		}catch(Exception ex) {ex.printStackTrace();}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 

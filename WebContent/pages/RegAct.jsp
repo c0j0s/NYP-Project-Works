@@ -172,17 +172,20 @@
 				%>
 
 	<div class="col-md-3">
-		<ul class="list-group pull-right">
-			<h4>Activity Popularity Ranking</h4>
-			<%
-					for (int z = 0; z < 20; z++) {
+			<ul class="list-group">
+				<h4>Activity Popularity Ranking</h4>
+				<%
+					int z=0;
+						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
+						for (Activity act : actRank) {
 				%>
-			<li class="list-group-item"><%=z + 1%>. Java <span class="badge"><%=z%></span></li>
-			<%
-					}
+				<li class="list-group-item"><%=z + 1%>. <%=act.getActivityTitle() %> <span class="badge"><%=act.getRankPoints()%></span>
+				</li>
+				<%
+					z++;}
 				%>
-		</ul>
-	</div>
+			</ul>
+		</div>
 	
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>

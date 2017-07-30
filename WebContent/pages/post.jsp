@@ -46,7 +46,7 @@
 							<c:choose>
 								<c:when test="${fn:length(commentList) gt 0 }">
 									<c:forEach items="${commentList}" var="comment">
-										<div class="post-comment  clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
+										<div class="post-comment post-comment-${comment.commentId } clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
 											id="${comment.commentId}">
 											<div class="col-sm-2" id="comment-best-answer">
 												<c:if test="${user.accountId eq post.accountId}">

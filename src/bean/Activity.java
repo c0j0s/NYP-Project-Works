@@ -29,6 +29,7 @@ public class Activity extends MetaValue{
 	private int activityPostCount;
 	private String accountId;
 	private int points;
+	private int rankPoints;
 
 	
 	public Activity(){
@@ -159,7 +160,13 @@ public class Activity extends MetaValue{
 		return points;
 	}
 	public void setPoints(int i) {
-		this.points = i;
+		this.points =i;
+	}
+	public int getRankPoints() {
+		return rankPoints;
+	}
+	public void setRankPoints(int rankPoints) {
+		this.rankPoints = rankPoints;
 	}
 
 	

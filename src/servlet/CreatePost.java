@@ -13,6 +13,7 @@ import bean.Account;
 import bean.Post;
 import database.DBAO;
 import database.ForumDB;
+import database.Point;
 
 /**
  * Servlet implementation class createPost
@@ -36,6 +37,7 @@ public class CreatePost extends HttpServlet {
 		try {
 			HttpSession s = request.getSession(true);
 			Account ac = (Account)s.getAttribute("account");
+			Point point = new Point();
 			ForumDB f = new ForumDB();
 			Post p = new Post();
 			p.setPostTitle(request.getParameter("postTitle"));
@@ -43,7 +45,7 @@ public class CreatePost extends HttpServlet {
 			p.setPostContent(request.getParameter("postContent"));
 			p.setPostCategory(request.getParameter("postCategory"));
 			p.setTagList(request.getParameter("postTags"));
-			p.setPoints(100);
+			p.setPoints(Integer.parseInt(request.getParameter("postPoints")));
 			p.setAccountId(ac.getAccountId());
 			if(request.getParameter("hideId") != null){
 				p.setHideId(request.getParameter("hideId").charAt(0));
@@ -51,7 +53,7 @@ public class CreatePost extends HttpServlet {
 				p.setHideId('N');
 			}
 			p.setPostId(f.createPost(p));
-			
+			point.pointsCalc(ac.getAccountId(), -p.getPoints());
 			String path = "";
 			if(!p.getPostId().equals("fail") || p.getPostId() == null){
 				path = "Post?postId=" + p.getPostId();

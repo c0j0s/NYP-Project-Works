@@ -1,32 +1,27 @@
-
-
-package servlet.view;
+package servlet.notification;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.ActReg;
-import bean.Activity;
-import database.ActRegDB;
-import database.ActivityDB;
+import bean.Account;
+import database.Point;
 
 /**
- * Servlet implementation class RegList
+ * Servlet implementation class getUserPoints
  */
-@WebServlet("/RegList")
-public class RegList extends HttpServlet {
+@WebServlet("/getUserPoints")
+public class getUserPoints extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegList() {
+    public getUserPoints() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +30,16 @@ public class RegList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ActivityDB adb = new ActivityDB();
-		ActRegDB ardb = new ActRegDB();
-		ArrayList<ActReg> Registration = ardb.getActivityById(request.getParameter("activityActivityId"));
-		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
-		request.setAttribute("activityRegistration", activityRegistration);
-		request.setAttribute("Registration", Registration);
-		request.getRequestDispatcher("pages/registrationList.jsp").forward(request, response);
-		System.out.println(Registration);
-		System.out.println(activityRegistration);}
+		HttpSession ss = request.getSession(true);
+		if(ss.getAttribute("account")!=null) {
+			Account ac = (Account) ss.getAttribute("account");
+			Point pt = new Point();
+			int points = pt.getPoints(ac.getAccountId());
+			response.getWriter().append(Integer.toString(points));
+		}else {
+			response.getWriter().append("Session Expired");
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

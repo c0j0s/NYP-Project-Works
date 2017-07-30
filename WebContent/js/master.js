@@ -1,5 +1,5 @@
 var createCom, openMessage,closeMessage,closeCommentBox ;
-var postDeleteCancel;
+var postDeleteCancel,commentDeleteCancel;
 var counter;
 $( document ).ready(function() {
 	var config = {
@@ -104,6 +104,46 @@ $( document ).ready(function() {
 		$(this).remove();
 	})
 	
+	$('.comment-delete').on('click',function(){
+		var id = $(this).data().id
+		console.log("log .post-comment-" + id)
+		$(".post-comment-" + id).css("display","none");
+		$(".post-comment-" + id).after("<div id='comment-delete-message'><div class='panel panel-warning'><div class='panel-heading auto-overflow' >" +
+				"<h4 class='col-sm-9'>Comment deleting in <span id='comment-delete-countdown'>5</span>s.</h4>" +
+				"<button type='button' class='btn btn-info col-sm-3' id='post-delete-cancel' onclick='commentDeleteCancel(this)' data-id='"+ id+"'>Cancel</button>" +
+				"</div></div></div>");
+		
+		var span = 5;
+		counter = setInterval(function(){
+			$("#comment-delete-countdown").html(span)
+			if(span == 0){
+				if($("#comment-delete-message").html()){
+					$.ajax({
+						url: ContextPath + "/InvalidComment",
+						data:{'commentId':id},
+						success: function(message){	
+							popup('body',message)
+							$(".post-comment-" + id).remove()
+							$("#comment-delete-message").remove();
+							console.log('success')
+						}
+					});	
+				span = 0;
+				}else{
+					clearInterval(counter)
+				}
+			}else{
+				span = span - 1;
+			}
+		},1000)
+	})
+	
+	commentDeleteCancel = function(e){
+		var id = $(e).data().id;
+		$(".post-comment-" + id).css("display","block");
+		$("#comment-delete-message").remove();
+		clearInterval(counter);
+	}
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */
@@ -265,7 +305,7 @@ $( document ).ready(function() {
 		if (panel === 'none') {
 			$("#notification-panel").css("display","block");
 			$.ajax({
-				url: ContextPath + '/getNotifications',
+				url: ContextPath + '/getNotifications?type=unread',
 				success: function(result){
 					if(result != undefined){
 						var item = JSON.parse(result);
@@ -273,7 +313,7 @@ $( document ).ready(function() {
 						for(var i = 0; i< item.length; i++){
 							var li = "<a class='list-group-item notification-list-item'>" +
 									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
-									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br>"+ item[i].createdOn.substring(0,10) +"</p></a>";
 							$("#notification-body").append(li);
 							if(item[i].actionText != undefined){
 								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
@@ -326,6 +366,56 @@ $( document ).ready(function() {
 		}
 	},10000);
 
+
+	$("#toogle-allnotification").on("click",function(){
+		var panel = $("#notification-panel").css("display");
+		if (panel === 'block') {
+			$("#notification-body").empty();
+			$.ajax({
+				url: ContextPath + '/getNotifications?type=all',
+				success: function(result){
+					if(result != undefined){
+						var item = JSON.parse(result);
+						$("#notification-body").empty();
+						for(var i = 0; i< item.length; i++){
+							var li = "<a class='list-group-item notification-list-item'>" +
+									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br>"+ item[i].createdOn.substring(0,10) +"</p></a>";
+							$("#notification-body").append(li);
+							if(item[i].actionText != undefined){
+								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
+							}
+						}
+					}
+				}
+			});
+			$("#toogle-allnotification").remove();
+		}
+	});
+	
+	/**
+	 * methods for reporting items
+	 */
+	$(".report-item").click(function(){
+		var rdata = $(this).data();
+		$.ajax({
+			url: ContextPath + "/ReportItem",
+			data:rdata,
+			success: function(success){
+				console.log(success);
+				popup('body',success)
+				$('#reportUser-'+rdata.itemid).modal('hide')
+				$('#reportItem-'+rdata.itemid).modal('hide')
+			}
+		})
+	})
+	
+	function popup(id,message){
+		$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-info" role="alert" data-dismiss="alert">'+message+'</div>')
+		setTimeout(function(){
+			$('.alert.alert-info').alert('close');
+		},5000)
+	}
 });
 
 function paytype(type){

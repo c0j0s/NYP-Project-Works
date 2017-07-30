@@ -18,22 +18,19 @@
 						<jsp:param value="${comment.likeCount }" name="likeCount"/>
 						<jsp:param value="${comment.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
-					<button type="button" class="btn btn-default btn-sm btn-no-border">
-						<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-						Follow
-					</button>
+					<c:if test="${user.accountId eq comment.accountId }">
+						<button type="button" class="btn btn-default btn-sm btn-no-border comment-delete" data-id="${comment.commentId }">
+							<span class="glyphicon glyphicon-comment" aria-hidden="true"> </span>
+							<span>Delete My Answer</span>
+						</button>
+					</c:if>
 				</div>
 				<div class="btn-group pull-right dropdown">
-					<button id="post-controls-dropdown" type="button"
-						class="btn btn-default btn-sm btn-no-border dropdown-toggle pull-right"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-option-horizontal"
-							aria-hidden="true"></span>&nbsp <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
-						<li><a href="#">Report post</a></li>
-						<li><a href="#">Report user</a></li>
-					</ul>
+					<jsp:include page="reportList.jsp">
+						<jsp:param value="${comment.commentId }" name="itemId"/>
+						<jsp:param value="${comment.accountId }" name="accountId"/>
+						<jsp:param value="comment" name="type"/>
+					</jsp:include>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 						<span class="meta-value-count" data-count="${comment.commentCount}">${comment.commentCount}</span>

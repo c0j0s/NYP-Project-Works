@@ -111,15 +111,22 @@
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
+					<span aria-hidden="true">
+						<button
+							onclick="location.href = 'RegList?activityActivityId=<%=actf.getActivityId()%>&activityId=<%=actf.getActivityId()%>'">Participants List</button>
+					</span>
 					
 					<%
 						}}
+					%><%
+						if(session.getAttribute("account")!=null){
+						
 					%>
 					<span aria-hidden="true">
 						<button
 							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 							For Activity</button>
-					</span>
+					</span><%} %>
 				</div>
 			</div>
 
@@ -127,15 +134,17 @@
 
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
-			<ul class="list-group pull-right">
+			<ul class="list-group">
 				<h4>Activity Popularity Ranking</h4>
 				<%
-					for (int z = 0; z < 20; z++) {
+					int z=0;
+						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
+						for (Activity act : actRank) {
 				%>
-				<li class="list-group-item"><%=z + 1%>. Java <span
-					class="badge"><%=z%></span></li>
+				<li class="list-group-item"><%=z + 1%>. <%=act.getActivityTitle() %> <span class="badge"><%=act.getRankPoints()%></span>
+				</li>
 				<%
-					}
+					z++;}
 				%>
 			</ul>
 		</div>

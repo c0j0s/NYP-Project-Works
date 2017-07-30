@@ -13,12 +13,18 @@ public class NotificationDB extends DBAO{
 		super();
 	}
 	
+	/**
+	 * get users notifications
+	 * @param stmt
+	 * @param accountId
+	 * @return
+	 */
 	public ArrayList<Notification> getAccountNotifications(String stmt,String accountId) {
 		//
 		ArrayList<Notification> list = new ArrayList<Notification>();
 		try {
 			if(stmt == null) {
-				stmt = "Select * from ffl.notification where accountId = ? order by createdOn DESC";
+				stmt = "Select * from ffl.notification where accountId = ?  order by createdOn DESC";
 			}
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
@@ -43,11 +49,21 @@ public class NotificationDB extends DBAO{
 		return list;
 	}
 	
+	/**
+	 * get users unread notifications
+	 * @param accountId
+	 * @return
+	 */
 	public ArrayList<Notification> getAccountUnNotifications(String accountId) {
 		String stmt = "Select * from ffl.notification where accountId = ? and `read` = 'N' order by createdOn DESC";
 		return getAccountNotifications(stmt,accountId);
 	}
 
+	/**
+	 * get user unread notification count
+	 * @param accountId
+	 * @return
+	 */
 	public int getNotificationCount(String accountId) {
 		
 		int count = 0;
@@ -68,6 +84,15 @@ public class NotificationDB extends DBAO{
 		return count;
 	}
 	
+	/**
+	 * sent notification to specific users
+	 * @param title
+	 * @param message
+	 * @param serviceType
+	 * @param accountId
+	 * @param actionText
+	 * @param actionUrl
+	 */
 	public void sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
 		
 		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId,actionText,actionUrl) values (?,?,?,?,?,?)";
@@ -97,6 +122,11 @@ public class NotificationDB extends DBAO{
 		}
 	}
 	
+	/**
+	 * sent notification to multiple users
+	 * @param accountIds
+	 * @param no
+	 */
 	public void sentNotificationToAccounts(ArrayList<String> accountIds,Notification no) {
 		for (Iterator<String> iterator = accountIds.iterator(); iterator.hasNext();) {
 			String accountId = (String) iterator.next();
@@ -104,6 +134,11 @@ public class NotificationDB extends DBAO{
 		}
 	}
 
+	/**
+	 * set nitification status to read
+	 * @param accountId
+	 * @param id
+	 */
 	public void setRead(String accountId, String id) {
 		
 		String stmt = "Update ffl.notification set `read` = 'Y' where notificationId = ? and accountId = ?";
