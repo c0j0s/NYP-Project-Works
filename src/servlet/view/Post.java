@@ -43,9 +43,10 @@ public class Post extends HttpServlet {
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
 		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
-		System.out.println("log start: " + start);
 		bean.Post p = null;
 		ArrayList<bean.Comment> c = null;
+		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
+		request.setAttribute("topAnswerer", topAnswerer);
 		
 		if(fdb.getPostById(postId).size() > 0) {
 			p = fdb.getPostById(postId).get(0);
@@ -63,7 +64,6 @@ public class Post extends HttpServlet {
 					followed = true;
 				}
 			}
-		
 		}else {
 			request.setAttribute("message", "Post not found");
 		}

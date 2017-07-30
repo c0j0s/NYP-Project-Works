@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 
 import com.google.gson.JsonElement;
 
+import bean.Account;
 import bean.Post;
 import bean.Result;
 
@@ -167,7 +168,6 @@ public class ForumDB extends DBAO{
 	 * @param category
 	 * @return
 	 */
-
 	public int getPostCount(String category) {
 		
 		String stmt = "Select count(*) from ffl.postlist where postCategory = ? and valid = 'Y'";
@@ -183,6 +183,28 @@ public class ForumDB extends DBAO{
 		return 0;
 	}
 
+	/**
+	 * get top 5 answerer
+	 * @return ArrayList<Account>
+	 */
+	public ArrayList<Account> getTopAnswerer(){
+		ArrayList<Account> list = new ArrayList<Account>();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT *,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Account ac = new Account();
+				ac.setImgUrl(rs.getString("imgUrl"));
+				ac.setGivenName(rs.getString("givenName"));
+				ac.setPostsCounts(rs.getInt("hitLevel"));
+				list.add(ac);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	/**
 	 * add category [Not tested]
 	 * @param newCat
@@ -284,6 +306,10 @@ public class ForumDB extends DBAO{
 		}
 	}
 
+	/**
+	 * valid post
+	 * @param postId
+	 */
 	public void validPost(String postId) {
 		String statement = "update ffl.post set valid = 'Y' where postId = ?";
 		try {

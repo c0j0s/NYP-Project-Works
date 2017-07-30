@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Account;
 import bean.Post;
 import database.ForumDB;
 
@@ -48,8 +49,10 @@ public class Forum extends HttpServlet {
 		
 		ArrayList<Post> postList = fdb.getPost(start, category);
 		ArrayList<Post> trendingPost = fdb.getTrendingPost();
+		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
 		request.setAttribute("postList", postList);
 		request.setAttribute("trendingPost", trendingPost);
+		request.setAttribute("topAnswerer", topAnswerer);
 		request.setAttribute("postCount", fdb.getPostCount(category));
 		request.setAttribute("category", category);
 		request.setAttribute("page", page);

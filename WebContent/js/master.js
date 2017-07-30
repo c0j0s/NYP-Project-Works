@@ -305,7 +305,7 @@ $( document ).ready(function() {
 		if (panel === 'none') {
 			$("#notification-panel").css("display","block");
 			$.ajax({
-				url: ContextPath + '/getNotifications',
+				url: ContextPath + '/getNotifications?type=unread',
 				success: function(result){
 					if(result != undefined){
 						var item = JSON.parse(result);
@@ -313,7 +313,7 @@ $( document ).ready(function() {
 						for(var i = 0; i< item.length; i++){
 							var li = "<a class='list-group-item notification-list-item'>" +
 									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
-									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"</p></a>";
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br>"+ item[i].createdOn.substring(0,10) +"</p></a>";
 							$("#notification-body").append(li);
 							if(item[i].actionText != undefined){
 								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
@@ -366,6 +366,33 @@ $( document ).ready(function() {
 		}
 	},10000);
 
+
+	$("#toogle-allnotification").on("click",function(){
+		var panel = $("#notification-panel").css("display");
+		if (panel === 'block') {
+			$("#notification-body").empty();
+			$.ajax({
+				url: ContextPath + '/getNotifications?type=all',
+				success: function(result){
+					if(result != undefined){
+						var item = JSON.parse(result);
+						$("#notification-body").empty();
+						for(var i = 0; i< item.length; i++){
+							var li = "<a class='list-group-item notification-list-item'>" +
+									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
+									"<p class='list-group-item-text notification-list-item-text-"+item[i].id+"'>"+ item[i].message +"<br>"+ item[i].createdOn.substring(0,10) +"</p></a>";
+							$("#notification-body").append(li);
+							if(item[i].actionText != undefined){
+								$(".notification-list-item-text-" + +item[i].id).append("<br><a class='btn btn-default' role='button' href='"+ item[i].actionUrl +"'>"+ item[i].actionText +"</a>");
+							}
+						}
+					}
+				}
+			});
+			$("#toogle-allnotification").remove();
+		}
+	});
+	
 	/**
 	 * methods for reporting items
 	 */
