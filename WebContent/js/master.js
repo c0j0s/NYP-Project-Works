@@ -13,6 +13,17 @@ $( document ).ready(function() {
 	firebase.initializeApp(config);
     console.log( "ready!" );
 
+    $(function() {
+        $("#main-container").animate(
+            {
+            	top : "-88vh",
+            	opacity:"1"
+            }, 1000, function() {
+            	
+            }
+        );
+    });
+
 	/**
 	 * 
 	 * method for forum post and comment
