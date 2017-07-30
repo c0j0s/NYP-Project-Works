@@ -74,14 +74,14 @@
 						Timing :
 						<%=act.getActivityTime()%>
 					</p>
-					<p><jsp:include page="parts/likeButtons.jsp">
+					<p><div id = "actRanklistRefresh"><jsp:include page="parts/likeButtons.jsp">
 							<jsp:param value="activity" name="table" />
 							<jsp:param value="<%=act.getActivityId()%>" name="Id" />
 							<jsp:param value="activityId" name="colName" />
 							<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
 							<jsp:param value="<%=act.getDislikeCount()%>"
 								name="dislikeCount" />
-						</jsp:include>
+						</jsp:include></div>
 						<span aria-hidden="true">
 							<button
 								onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
@@ -107,17 +107,17 @@
 		</div>
 		<div class="col-md-3">
 			<ul class="list-group">
-				<h4>Activity Popularity Ranking</h4>
+				<h4>Activity Popularity Ranking</h4><div id ="aMultiPlatformList">
 				<%
 					int z=0;
 						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
 						for (Activity act : actRank) {
 				%>
-				<li class="list-group-item"><%=z + 1%>. <%=act.getActivityTitle() %> <span class="badge"><%=act.getRankPoints()%></span>
+				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
 				</li>
 				<%
 					z++;}
-				%>
+				%></div>
 			</ul>
 		</div>
 	</div>

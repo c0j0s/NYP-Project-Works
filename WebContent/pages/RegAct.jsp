@@ -179,7 +179,7 @@
 						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
 						for (Activity act : actRank) {
 				%>
-				<li class="list-group-item"><%=z + 1%>. <%=act.getActivityTitle() %> <span class="badge"><%=act.getRankPoints()%></span>
+				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
 				</li>
 				<%
 					z++;}
