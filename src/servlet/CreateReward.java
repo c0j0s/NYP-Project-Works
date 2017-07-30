@@ -1,10 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Arrays;
 import bean.Account;
 import bean.RewardItem;
-import database.DBAO;
 import database.RewardItemDB;
 
 import javax.servlet.ServletException;

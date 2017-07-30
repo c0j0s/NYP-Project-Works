@@ -16,7 +16,6 @@ import com.sun.mail.util.MailSSLSocketFactory;
 
 import bean.Account;
 import common.Mail;
-import common.MailSSL;
 import common.UID;
 
 /**

@@ -1,21 +1,4 @@
-package common;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
-import bean.Notification;
-import database.DBAO;
-import database.ForumDB;
-import database.NotificationDB;
-import database.Point;;
+package common;;
 
 public class test {
 
