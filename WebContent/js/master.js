@@ -23,6 +23,43 @@ $( document ).ready(function() {
             }
         );
     });
+    
+    jQuery(function($) {
+    	function fixDiv() {
+    		var cache = $('.sticky-sidebar');
+    		if($( window ).width() > 990){
+    			if ($(window).scrollTop() > 300)
+    				if($( window ).width() > 1200){
+    					cache.css({
+        					'position': 'fixed',
+        					'width':'255px',
+        					'top':'10px'
+        				});
+    				}else{
+        				cache.css({
+        					'position': 'fixed',
+        					'width':cache.width(),
+        					'top':'10px'
+        				});
+    				}
+    			else
+    				cache.css({
+    					'position': 'relative',
+    					'width':'auto',
+						'top':'auto'
+    				});
+    		}else{
+    			cache.css({
+    				'position': 'relative',
+					'width':'auto',
+					'top':'auto'
+				});
+    		}
+    	}
+    	$(window).scroll(fixDiv);
+    	$(window).resize(fixDiv);
+    	fixDiv();
+    });
 
 	/**
 	 * 

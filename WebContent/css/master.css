@@ -172,6 +172,12 @@ footer{
 	padding-top:20px;
 	padding-bottom:20px;
 }
+.trending-panel-heading{
+	padding-top:25px;
+}
+.trending-panel-heading span{
+	color:red;
+}
 .Forum-card{
     margin-bottom: 10px;
 }

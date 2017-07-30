@@ -2,6 +2,8 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,9 +52,11 @@ public class Forum extends HttpServlet {
 		ArrayList<Post> postList = fdb.getPost(start, category);
 		ArrayList<Post> trendingPost = fdb.getTrendingPost();
 		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
+		Collection<String> categoryList = fdb.getCategoryList().values();
 		request.setAttribute("postList", postList);
 		request.setAttribute("trendingPost", trendingPost);
 		request.setAttribute("topAnswerer", topAnswerer);
+		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("postCount", fdb.getPostCount(category));
 		request.setAttribute("category", category);
 		request.setAttribute("page", page);

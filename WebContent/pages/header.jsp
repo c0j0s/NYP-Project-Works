@@ -14,7 +14,7 @@
 							</a>
 						</li>
 						<li>
-							<span class="btn btn-warning btn-xs btn-no-border">
+							<span class="btn btn-warning btn-xs btn-no-border" onclick='location.href="RedemptionList"'>
 								<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
 								<span><jsp:include page="../getUserPoints"></jsp:include></span>
 							</span>
