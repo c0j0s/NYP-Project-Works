@@ -1,5 +1,6 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-3 col-sm-12 forum-sidebar">
+	<div class="sticky-sidebar">
 	<div class="col-md-12 col-sm-4">
 		<jsp:include page="sidebar-account.jsp"></jsp:include>
 	</div>
@@ -23,5 +24,6 @@
 				</ul>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>
