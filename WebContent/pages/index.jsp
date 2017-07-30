@@ -53,60 +53,41 @@
 
 <div class="container">
 	<div class="section section-forum">
-		<div class="col-md-3 section-intro">
-			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
-			<div class="section-intro-content">
-			<h4>
-				this is forum title
-			</h4>
-			<p>
-				this is an intro paragraph
-			</p>
-			<button type="button" class="btn btn-primary">Explore</button>
-			</div>
-		</div>
-		<div class="col-md-9 section-content">
-		<jsp:include page="parts/forum-trendingPost.jsp"></jsp:include>
-		</div>
-	</div>
-	
-	<div class="section section-forum">
-		<div class="col-md-3 section-intro">
-			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
-			<div class="section-intro-content">
-			<h4>
-				this is forum title
-			</h4>
-			<p>
-				this is an intro paragraph
-			</p>
-			<button type="button" class="btn btn-primary">Explore</button>
-			</div>
-		</div>
-		<div class="col-md-9 section-content">
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
-		</div>
-	</div>
-	
-	<div class="section section-forum">
-		<div class="col-md-3 section-intro">
-			<img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" class="img-circle">
-			<div class="section-intro-content">
-			<h4>
-				this is forum title
-			</h4>
-			<p>
-				this is an intro paragraph
-			</p>
-			<button type="button" class="btn btn-primary">Explore</button>
-			</div>
-		</div>
-		<div class="col-md-9 section-content">
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
-			<div class="col-md-4 col-sm-4">t</div>
+		<hr>
+		<h1 class='text-center'>Welcome to FamForLife
+		</h1>
+		<hr>
+		<div class="row">
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" >
+				<div class="caption">
+		        <h3>Family Forum</h3>
+		        <p>//desc</p>
+		        <p><a href="Forum" class="btn btn-primary" role="button">Explore</a></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" >
+				<div class="caption">
+		        <h3>ACtivities for families</h3>
+		        <p>//desc</p>
+		        <p><a href="ActList" class="btn btn-primary" role="button">Explore</a></p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="${pageContext.request.contextPath}/img/sample.jpg" alt="sample" >
+				<div class="caption">
+		        <h3>Rewards for redemption</h3>
+		        <p>//desc</p>
+		        <p><a href="RedemptionList" class="btn btn-primary" role="button">Explore</a></p>
+		      </div>
+		    </div>
+		  </div>
 		</div>
 	</div>
 </div>
