@@ -109,8 +109,8 @@
 			<div class="sticky-sidebar">
 				<div class="col-md-12 col-sm-4">
 					<jsp:include page="parts/sidebar-account.jsp">
-						<jsp:param value="ActList"
-							name="url" />
+						<jsp:param value="ActList" name="url" />
+						<jsp:param value="activity" name="type" />
 					</jsp:include>
 				</div>
 				<div class="col-md-12 col-sm-4">

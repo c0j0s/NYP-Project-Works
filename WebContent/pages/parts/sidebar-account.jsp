@@ -6,7 +6,7 @@
 				<h3 class="panel-title text-center">Login</h3>
 			</div>
 			<div class="panel-body">
-				<form action="${pageContext.request.contextPath}/LoginServlet?redirect=${url}"
+				<form action="${pageContext.request.contextPath}/LoginServlet?redirect=${param.url}"
 					method="post" id="login">
 					<div class="form-group">
 					Email:
@@ -29,13 +29,13 @@
 			</div>
 		</c:when>
 		<c:otherwise>
+			<div class="panel-heading ">
+					<img alt="../img/sample.jpg" src="${user.imgUrl }"
+						class="img-circle profile-image-medium">
+					<h3 class="panel-title text-center">${user.givenName}</h3>
+			</div>
 			<c:choose>
 				<c:when test="${param.type eq 'forum' ? true : false}">
-					<div class="panel-heading ">
-						<img alt="../img/sample.jpg" src="${user.imgUrl }"
-							class="img-circle profile-image-medium">
-						<h3 class="panel-title text-center">${user.givenName}</h3>
-					</div>
 					<div class="panel-body">
 						<div>
 							<div class="col-sm-4 text-center no-padding">
@@ -60,7 +60,7 @@
 					</div>
 				</c:when>
 				<c:when test="${param.type eq 'profile' ? true : false}">
-					<div>
+					<div class="panel-body">
 						<div class="col-sm-4 text-center no-padding">
 							<p>
 								${param.points}<br> Points
@@ -76,17 +76,14 @@
 					</div>
 				</c:when>
 				<c:when test="${param.type eq 'admin' ? true : false}">
-					<div class="panel-heading ">
-						<img alt="../img/sample.jpg" src="${user.imgUrl }"
-							class="img-circle profile-image-medium">
-						<h3 class="panel-title text-center">${user.givenName}</h3>
-					</div>
 					<div class="panel-body">
 						<span class="label label-info">Admin</span>
 					</div>
 				</c:when>
-				<c:when test="${false}">
-
+				<c:when test="${param.type eq 'activity' ? true : false}">
+					<div class="panel-body">
+						//for activity
+					</div>
 				</c:when>
 			</c:choose>
 		</c:otherwise>
