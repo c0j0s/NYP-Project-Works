@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import com.sun.mail.util.MailSSLSocketFactory;
-
 import bean.Account;
 import common.Mail;
 import common.UID;

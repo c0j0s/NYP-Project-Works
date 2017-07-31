@@ -44,16 +44,10 @@
 
 </div>
 <div class="col-md-4" >
-	<jsp:include page="parts/sidebar-account.jsp">
-		<jsp:param value="profile" name="type"/>
-		<jsp:param value="${user.points}" name="points"/>
-		<jsp:param value="${user.creditLevel}" name="creditLevel"/>
-=======
 	<jsp:include page="parts/page-header.jsp">
 		<jsp:param value="profile" name="type" />
 		<jsp:param value="My Profile" name="title" />
 		<jsp:param value="5" name="titleWidth" />
->>>>>>> 587cd49ba5bc60424d188e36fe60071e33c2bb82
 	</jsp:include>
 	<div class="col-md-3 col-sm-12">
 		<div class="col-md-12">
