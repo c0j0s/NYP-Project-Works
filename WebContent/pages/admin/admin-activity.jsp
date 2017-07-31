@@ -7,7 +7,7 @@
 	<hr>
 	<table class="table table-hover" >
 	<thead>
-	<tr><th>Type</th><th>Title</th><th>Created On</th><th>Status</th><th>Report Count</th><th>Actions</th></tr>
+	<tr><th>Activity Id</th><th>Title</th><th>Rank Points</th><th>Delete</th><th>Restore</th><th>Status</th></tr>
 	</thead>
 	<tbody id="admin-activity-body">
 	</tbody>

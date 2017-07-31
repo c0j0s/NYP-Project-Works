@@ -74,16 +74,16 @@
 						Timing :
 						<%=act.getActivityTime()%>
 					</p>
-					<p><div id = "actRanklistRefresh"><jsp:include page="parts/likeButtons.jsp">
+					<p><jsp:include page="parts/likeButtons.jsp">
 							<jsp:param value="activity" name="table" />
 							<jsp:param value="<%=act.getActivityId()%>" name="Id" />
 							<jsp:param value="activityId" name="colName" />
 							<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
 							<jsp:param value="<%=act.getDislikeCount()%>"
 								name="dislikeCount" />
-						</jsp:include></div>
+						</jsp:include>
 						<span aria-hidden="true">
-							<button
+							<button class="btn btn-success"
 								onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 								Info</button>
 						</span> <%
@@ -91,7 +91,7 @@
 						
 					%>
 						<span aria-hidden="true">
-							<button
+							<button class="btn btn-success"
 								onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register For Activity</button>
 						</span> <%} %>
 						

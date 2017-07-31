@@ -92,25 +92,25 @@
 					<%=actf.getActivityRegistrationEnd()%></p>
 
 				<div>
-				<div id = "actRanklistRefresh">	<jsp:include page="parts/likeButtons.jsp">
+				<jsp:include page="parts/likeButtons.jsp">
 						<jsp:param value="activity" name="table" />
 						<jsp:param value="activityId" name="colName" />
 						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
 						<jsp:param value="<%=actf.getDislikeCount()%>"
 							name="dislikeCount" />
-					</jsp:include></div>
+					</jsp:include>
 					<%
 						if(session.getAttribute("account")!=null){
 							Account currentUser = (Account) session.getAttribute("account");
 							if (currentUser.getAccountId().equals(actf.getOrganiserId())) {
 					%>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'RegList?activityActivityId=<%=actf.getActivityId()%>&activityId=<%=actf.getActivityId()%>'">Participants List</button>
 					</span>
 					
@@ -121,7 +121,7 @@
 						
 					%>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 							For Activity</button>
 					</span><%} %>

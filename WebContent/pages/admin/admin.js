@@ -100,7 +100,7 @@ $( document ).ready(function() {
 				var json = JSON.parse(adminList);
 				console.log(json)
 				for(var i = 0; i< json.length; i++){
-				var list = '<li class="list-group-item">'+json[i].activityId+json[i].activityTitle+'<span class="badge">'+json[i].rankPoints+'</span></li>'
+				var list = '<tr><td>'+json[i].activityId+'</td><td>'+json[i].activityTitle+'</td><td><span class="badge">'+json[i].rankPoints+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Delete" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Invalid">Delete Activity</button></td><td><button type="submit" value="Restore" name="buttonClickList" class="btn-success btn" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Valid">Restore Activity</button></td><td id="buttonValid-'+json[i].activityId+'">'+json[i].valid+'</td></tr>'
 			$("#admin-activity-body").append(list);
 				console.log(":()()()()()()()()()()(");
 				}}
@@ -145,3 +145,14 @@ $( document ).ready(function() {
 		})
 	}
 })
+function actDelete(e){
+	var id = $(e).data().id
+	var action = $(e).data().action
+	console.log(id)
+	$.ajax({
+		url:ContextPath + "/DeleteActivity?actId="+id+"&action="+action,
+		success:function(results){
+			$("#buttonValid-"+id).html(results);
+		}
+	})
+}

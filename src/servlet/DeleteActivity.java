@@ -33,10 +33,16 @@ public class DeleteActivity extends HttpServlet {
 		HttpSession s = request.getSession(true);
 		ActivityDB actdb = new ActivityDB();
 		
-	
+		String check = request.getParameter("action");
 		String actId =(request.getParameter("actId"));
+		if (check.equalsIgnoreCase("Invalid")) {
 		actdb.deleteActivity(actId);
-		response.sendRedirect("ActList");
+		response.getWriter().append("N");}
+		else {
+			actdb.restoreActivity(actId);
+			response.getWriter().append("Y");
+		}
+		
 	}
 
 	/**
