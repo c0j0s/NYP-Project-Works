@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import bean.Account;
+import bean.FamilyGrp;
 
 public class AccountDB extends DBAO{
 	
@@ -101,6 +102,17 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(2, email);
 			
 			
+		}catch(Exception ex){
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
+	public void createFamGrp(FamilyGrp fg) throws Exception{
+		try{
+			String insertStatement = "Insert into ffl.familygroups (groupName, familyGroupId, imgUrl) + values(?,?,?)";
+			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
+			prepStmt.setString(1, fg.getGroupName());
+			prepStmt.setString(2, fg.getFamilyGroupId());
+			prepStmt.setString(2, fg.getImgUrl());
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}

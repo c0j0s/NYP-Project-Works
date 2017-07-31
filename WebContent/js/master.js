@@ -336,9 +336,8 @@ $( document ).ready(function() {
 				var json = JSON.parse(rankingList);
 				console.log(json)
 				for(var i = 0; i< json.length; i++){
-				var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
-			$("#aMultiPlatformList").append(list);
-				console.log(":()()()()()()()()()()(");
+					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
+					$("#aMultiPlatformList").append(list);
 				}}
 		})
 	});
@@ -349,9 +348,6 @@ $( document ).ready(function() {
 		   var finaltotal = format2(total, "$");
 		$('#total').val(total);
 		$('#total1').val(finaltotal);
-	
-	    console.log(num1);
-	    console.log(num2);
 	});
 	
 	function format2(n, currency) {
@@ -427,6 +423,7 @@ $( document ).ready(function() {
 			});
 		}
 	},10000);
+	
 
 
 	$("#toogle-allnotification").on("click",function(){
@@ -472,13 +469,9 @@ $( document ).ready(function() {
 		})
 	})
 	
-	function popup(id,message){
-		$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-info" role="alert" data-dismiss="alert">'+message+'</div>')
-		setTimeout(function(){
-			$('.alert.alert-info').alert('close');
-		},5000)
-	}
-	
+	$("#addUser").on("click",function(){
+		var item = '';
+	})
 });
 
 function paytype(type){
@@ -494,4 +487,11 @@ function paytype(type){
 
 	}
 	console.log(type);
+}
+
+function popup(id,message){
+	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
+	setTimeout(function(){
+		$('.alert.alert-warning').alert('close');
+	},5000)
 }

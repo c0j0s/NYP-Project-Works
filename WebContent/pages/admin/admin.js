@@ -108,5 +108,40 @@ $( document ).ready(function() {
 	})
 
 
-	
+	$("#admin-others-send-message").on('click',function(){
+		var message = $("#admin-others-input-message").val()
+		var title = $("#admin-others-input-title").val()
+		if(title != "" && message != ""){
+			var json = {
+				'message':message,
+				'title':title
+			}
+			adminOthers("message",json)
+		}else{
+			$("#admin-others-input-message").css("border-color","red")
+			$("#admin-others-input-title").css("border-color","red")
+			popup('body','Please complete the fields.')
+		}
+	})
+	$("#admin-others-add-category").on('click',function(){
+		var value = $("#admin-others-input-category").val()
+		if(value != ""){
+			var json = {
+					'categoryName':value
+				}
+			adminOthers("category",json)
+		}else{
+			 $("#admin-others-input-category").css("border-color","red")
+			popup('body','Please complete the fields.')
+		}
+	})
+	function adminOthers(type,value){
+		$.ajax({
+			url:ContextPath + "/AdminOthers?type=" + type,
+			data:value,
+			success:function(results){
+				popup('body',results)
+			}
+		})
+	}
 })

@@ -2,7 +2,9 @@
 <div class="col-md-3 col-sm-12 forum-sidebar">
 	<div class="sticky-sidebar">
 	<div class="col-md-12 col-sm-4">
-		<jsp:include page="sidebar-account.jsp"></jsp:include>
+		<jsp:include page="sidebar-account.jsp">
+			<jsp:param value="Forum" name="url"/>
+		</jsp:include>
 	</div>
 	<div class="col-md-12 col-sm-4">
 		<div class="panel panel-info">
