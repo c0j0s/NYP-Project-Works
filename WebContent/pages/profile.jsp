@@ -55,7 +55,7 @@
 		<jsp:param value="5" name="titleWidth" />
 >>>>>>> 587cd49ba5bc60424d188e36fe60071e33c2bb82
 	</jsp:include>
-	<div class="col-md-4">
+	<div class="col-md-3 col-sm-12">
 		<div class="col-md-12">
 			<jsp:include page="parts/sidebar-account.jsp">
 				<jsp:param value="profile" name="type" />
@@ -84,7 +84,7 @@
 				Profile</button>
 		</div>
 		</div>
-			<div class="col-md-8 col-sm-12">
+			<div class="col-md-9 col-sm-12">
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#Forum" aria-controls="Forum" role="tab" data-toggle="tab">My Forum Post</a></li>
 			    <li role="presentation" class="${tab eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">My Activities</a></li>
