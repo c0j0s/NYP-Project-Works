@@ -2,10 +2,12 @@
 <div>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Send Site Notifications</h3>
+	    <h3 class="panel-title">Send Site Notifications to all users</h3>
 	  </div>
 	  <div class="panel-body">
 		  <div class="form-group">
+		    <label for="message">Title</label>
+		    <input type="text" class="form-control" id="admin-others-input-title" name="title" placeholder="Title">
 		    <label for="message">Message</label>
 		    <input type="text" class="form-control" id="admin-others-input-message" name="message" placeholder="Message">
 		  </div>
