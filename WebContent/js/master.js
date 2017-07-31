@@ -469,8 +469,9 @@ $( document ).ready(function() {
 		})
 	})
 	
-	$("#addUser").on("click",function(){
-		var item = '';
+	$("#addMember").on("click",function(){
+		var item = '<input type="text" class="form-control" name="users">';
+		$('#adduser').append(item);
 	})
 });
 

@@ -35,6 +35,8 @@
      <p>Address:${user.address}</p>
      <p>Mobile No.:${user.mobileno}</p> 
   </div>
+  <button onclick="location.href='${pageContext.request.contextPath}/CreateFamGroup'">Create Family Group</button>
+  <button onclick="location.href='${pageContext.request.contextPath}/pages/displayFamGrpInfo.jsp'">View Family Group</button>
  	
 </div>
 <button type="submit" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update Profile</button>
