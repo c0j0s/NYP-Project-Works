@@ -27,9 +27,9 @@ public class Mail {
 	
 	public Mail(){
 		properties = System.getProperties();
+		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.port", "587");
 		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.starttls.enable", "true");
 		//this.path = path;
 	}
 	public void sendNotificationMail(String to, String subject, String title, String htmlbody){

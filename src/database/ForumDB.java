@@ -161,6 +161,16 @@ public class ForumDB extends DBAO{
 	}
 
 	/**
+	 * get all post created by the user
+	 * @param accountId
+	 * @return ArrayList<Post>
+	 */
+	public ArrayList<Post> getUserPost(String accountId){
+		String stmt = "Select * from ffl.postlist where accountId = '"+ accountId +"'";
+		return getPost(stmt);
+	}
+	
+	/**
 	 * get max post count for pagination
 	 * @param category
 	 * @return

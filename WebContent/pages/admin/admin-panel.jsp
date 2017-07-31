@@ -47,7 +47,7 @@
 		    	<jsp:include page="admin-activity.jsp"></jsp:include>
 		    </div>
 		    <div role="tabpanel" class="tab-pane ${tab eq 'Account' ? 'active' : '' }" id="Account">
-		    	<jsp:include page="admin-forum.jsp"></jsp:include>
+		    	<jsp:include page="admin-account.jsp"></jsp:include>
 		    </div>
 		    <div role="tabpanel" class="tab-pane ${tab eq 'Others' ? 'active' : '' }" id="Others">
 		    	<jsp:include page="admin-others.jsp"></jsp:include>

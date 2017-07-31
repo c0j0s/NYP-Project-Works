@@ -23,7 +23,7 @@
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 	<img class = "profile-image-large" src = "${familygroups.imgUrl}">
 	<p>Group Name:${familygroups.groupName}</p>
-	<p>Group ID:%{familygroups.familyGroupId}</p>
+	<p>Group Members:${familygroups.familyGroupId}</p>
 
 </div>
 
