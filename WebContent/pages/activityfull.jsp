@@ -40,13 +40,10 @@
 			<jsp:param value="activityfull" name="type" />
 			<jsp:param value="Activities For Family" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<div>
-			<h1 class="text-center"></h1>
-			<br>
 			<div class="col-md-1 pull-left"></div>
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<p>
 				<h3>
 
@@ -94,25 +91,25 @@
 					<%=actf.getActivityRegistrationEnd()%></p>
 
 				<div>
-				<div id = "actRanklistRefresh">	<jsp:include page="parts/likeButtons.jsp">
+				<jsp:include page="parts/likeButtons.jsp">
 						<jsp:param value="activity" name="table" />
 						<jsp:param value="activityId" name="colName" />
 						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
 						<jsp:param value="<%=actf.getDislikeCount()%>"
 							name="dislikeCount" />
-					</jsp:include></div>
+					</jsp:include>
 					<%
 						if(session.getAttribute("account")!=null){
 							Account currentUser = (Account) session.getAttribute("account");
 							if (currentUser.getAccountId().equals(actf.getOrganiserId())) {
 					%>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 							Activity</button>
 					</span>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'RegList?activityActivityId=<%=actf.getActivityId()%>&activityId=<%=actf.getActivityId()%>'">Participants List</button>
 					</span>
 					
@@ -123,7 +120,7 @@
 						
 					%>
 					<span aria-hidden="true">
-						<button
+						<button class="btn btn-success"
 							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 							For Activity</button>
 					</span><%} %>
@@ -131,30 +128,35 @@
 			</div>
 
 		</div>
-
-		<div class="col-md-1"></div>
-		<div class="col-md-3">
-			<ul class="list-group">
-				<h4>Activity Popularity Ranking</h4>
-				<%
-					int z=0;
-						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
-						for (Activity act : actRank) {
-				%>
-				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
-				</li>
-				<%
-					z++;}
-				%>
-			</ul>
+		<div class="col-sm-12 col-md-3">
+			<div class="sticky-sidebar">
+				<div class="col-md-12 col-sm-4">
+					<jsp:include page="parts/sidebar-account.jsp">
+						<jsp:param value="activity" name="type" />
+						<jsp:param value="ActFull?activityId=<%=actf.getActivityId()%>" name="url" />
+					</jsp:include>
+				</div>
+				<div class="col-md-12 col-sm-4">
+					<ul class="list-group">
+						<h4>Activity Popularity Ranking</h4>
+						<%
+							int z = 0;
+							ArrayList<Activity> actRank = (ArrayList<Activity>) request.getAttribute("actRank");
+							for (Activity act : actRank) {
+						%>
+						<li class="list-group-item"><%=z + 1%>. <a
+							href='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle()%>
+						</a><span class="badge"><%=act.getRankPoints()%></span></li>
+						<%
+							z++;
+							}
+						%>
+					</ul>
+				</div>
+			</div>
 		</div>
-
-
-
-		
 	</div>
 	
-
 	<%-- end of main container --%>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<%-- end of footer --%>

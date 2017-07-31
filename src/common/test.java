@@ -1,4 +1,8 @@
-package common;;
+package common;
+
+import database.Point;
+
+;
 
 public class test {
 
@@ -38,8 +42,8 @@ public class test {
 		//sender.run();
 	//	Mail mail = new Mail("");
 		//mail.sendSimpleMail();
-		//Point p = new Point();
-		//p.pointsCalc("ACC0000000",500);
+		Point p = new Point();
+		p.pointsCalc("ACC0000000",30);
 		
 		
 		

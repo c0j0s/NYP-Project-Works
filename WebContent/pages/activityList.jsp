@@ -29,7 +29,6 @@
 			<jsp:param value="activity" name="type" />
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<br>
 
@@ -74,16 +73,16 @@
 						Timing :
 						<%=act.getActivityTime()%>
 					</p>
-					<p><div id = "actRanklistRefresh"><jsp:include page="parts/likeButtons.jsp">
+					<p><jsp:include page="parts/likeButtons.jsp">
 							<jsp:param value="activity" name="table" />
 							<jsp:param value="<%=act.getActivityId()%>" name="Id" />
 							<jsp:param value="activityId" name="colName" />
 							<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
 							<jsp:param value="<%=act.getDislikeCount()%>"
 								name="dislikeCount" />
-						</jsp:include></div>
+						</jsp:include>
 						<span aria-hidden="true">
-							<button
+							<button class="btn btn-success"
 								onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 								Info</button>
 						</span> <%
@@ -91,7 +90,7 @@
 						
 					%>
 						<span aria-hidden="true">
-							<button
+							<button class="btn btn-success"
 								onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register For Activity</button>
 						</span> <%} %>
 						
@@ -105,21 +104,34 @@
 				}
 			%><f:PostListPagination itemPerPage="5" pageCount="${actCount }" currentPage="${page }"  type="activity"/>
 		</div>
-		<div class="col-md-3">
-			<ul class="list-group">
-				<h4>Activity Popularity Ranking</h4><div id ="aMultiPlatformList">
-				<%
-					int z=0;
-						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
-						for (Activity act : actRank) {
-				%>
-				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
-				</li>
-				<%
-					z++;}
-				%></div>
-			</ul>
+		<div class="col-sm-12 col-md-3">
+			<div class="sticky-sidebar">
+				<div class="col-md-12 col-sm-4">
+					<jsp:include page="parts/sidebar-account.jsp">
+						<jsp:param value="ActList" name="url" />
+						<jsp:param value="activity" name="type" />
+					</jsp:include>
+				</div>
+				<div class="col-md-12 col-sm-4">
+					<ul class="list-group">
+						<h4>Activity Popularity Ranking</h4>
+						<%
+							int z = 0;
+							ArrayList<Activity> actRank = (ArrayList<Activity>) request.getAttribute("actRank");
+							for (Activity act : actRank) {
+						%>
+						<li class="list-group-item"><%=z + 1%>. <a
+							href='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle()%>
+						</a><span class="badge"><%=act.getRankPoints()%></span></li>
+						<%
+							z++;
+							}
+						%>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</div>
 	</div>
 
 	<%-- end of main container --%>
