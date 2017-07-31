@@ -40,7 +40,6 @@
 			<jsp:param value="activityfull" name="type" />
 			<jsp:param value="Activities For Family" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<div>
 			<div class="col-md-1 pull-left"></div>

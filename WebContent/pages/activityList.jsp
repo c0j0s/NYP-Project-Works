@@ -29,7 +29,6 @@
 			<jsp:param value="activity" name="type" />
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<br>
 
