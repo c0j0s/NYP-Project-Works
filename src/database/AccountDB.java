@@ -116,7 +116,7 @@ public class AccountDB extends DBAO{
 			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
 			prepStmt.setString(1, fg.getGroupName());
 			prepStmt.setString(2, fg.getFamilyGroupId());
-			prepStmt.setString(2, fg.getImgUrl());
+			prepStmt.setString(3, fg.getImgUrl());System.out.println(fg);
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
