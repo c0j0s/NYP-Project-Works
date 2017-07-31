@@ -105,21 +105,34 @@
 				}
 			%><f:PostListPagination itemPerPage="5" pageCount="${actCount }" currentPage="${page }"  type="activity"/>
 		</div>
-		<div class="col-md-3">
-			<ul class="list-group">
-				<h4>Activity Popularity Ranking</h4><div id ="aMultiPlatformList">
-				<%
-					int z=0;
-						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
-						for (Activity act : actRank) {
-				%>
-				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
-				</li>
-				<%
-					z++;}
-				%></div>
-			</ul>
+		<div class="col-sm-12 col-md-3">
+			<div class="sticky-sidebar">
+				<div class="col-md-12 col-sm-4">
+					<jsp:include page="parts/sidebar-account.jsp">
+						<jsp:param value="ActList"
+							name="url" />
+					</jsp:include>
+				</div>
+				<div class="col-md-12 col-sm-4">
+					<ul class="list-group">
+						<h4>Activity Popularity Ranking</h4>
+						<%
+							int z = 0;
+							ArrayList<Activity> actRank = (ArrayList<Activity>) request.getAttribute("actRank");
+							for (Activity act : actRank) {
+						%>
+						<li class="list-group-item"><%=z + 1%>. <a
+							href='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle()%>
+						</a><span class="badge"><%=act.getRankPoints()%></span></li>
+						<%
+							z++;
+							}
+						%>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</div>
 	</div>
 
 	<%-- end of main container --%>

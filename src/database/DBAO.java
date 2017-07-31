@@ -18,10 +18,12 @@ public class DBAO {
 	 * init connection to database
 	 */
 	public DBAO(){
-		if(con == null) {
-			openConnection();
-		}else {
-			
+		try {
+			if(con == null || con.isClosed()) {
+				openConnection();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
