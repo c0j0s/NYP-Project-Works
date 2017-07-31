@@ -29,7 +29,6 @@
 			<jsp:param value="activity" name="type" />
 			<jsp:param value="Activities for families" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<br>
 
@@ -109,8 +108,8 @@
 			<div class="sticky-sidebar">
 				<div class="col-md-12 col-sm-4">
 					<jsp:include page="parts/sidebar-account.jsp">
-						<jsp:param value="ActList"
-							name="url" />
+						<jsp:param value="ActList" name="url" />
+						<jsp:param value="activity" name="type" />
 					</jsp:include>
 				</div>
 				<div class="col-md-12 col-sm-4">

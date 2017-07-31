@@ -40,7 +40,6 @@
 			<jsp:param value="activityfull" name="type" />
 			<jsp:param value="Activities For Family" name="title" />
 			<jsp:param value="5" name="titleWidth" />
-			<jsp:param value="subTitle" name="subTitle" />
 		</jsp:include>
 		<div>
 			<div class="col-md-1 pull-left"></div>
@@ -133,8 +132,8 @@
 			<div class="sticky-sidebar">
 				<div class="col-md-12 col-sm-4">
 					<jsp:include page="parts/sidebar-account.jsp">
-						<jsp:param value="ActFull?activityId=<%=actf.getActivityId()%>"
-							name="url" />
+						<jsp:param value="activity" name="type" />
+						<jsp:param value="ActFull?activityId=<%=actf.getActivityId()%>" name="url" />
 					</jsp:include>
 				</div>
 				<div class="col-md-12 col-sm-4">

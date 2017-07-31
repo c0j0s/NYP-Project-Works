@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession mySession = request.getSession(true);
 				mySession.setAttribute("account", ac);
 				if(request.getParameter("redirect") == null) {
-					request.getRequestDispatcher("Index").forward(request, response);
+					request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 				}else {
 					request.getRequestDispatcher(request.getParameter("redirect")).forward(request, response);
 				}

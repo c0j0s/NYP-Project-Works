@@ -330,3 +330,9 @@ footer{
 .notification-list-item p{
 	display:none;
 }
+/*=============================================================
+	CSS for login panel
+*/
+.login-main-container{
+	min-height:46vh;
+}
