@@ -11,7 +11,6 @@ $( document ).ready(function() {
 		messagingSenderId: "1088530786881"
 	};
 	firebase.initializeApp(config);
-    console.log( "ready!" );
 
     $(function() {
         $("#main-container").animate(
@@ -154,7 +153,6 @@ $( document ).ready(function() {
 	
 	$('.comment-delete').on('click',function(){
 		var id = $(this).data().id
-		console.log("log .post-comment-" + id)
 		$(".post-comment-" + id).css("display","none");
 		$(".post-comment-" + id).after("<div id='comment-delete-message'><div class='panel panel-warning'><div class='panel-heading auto-overflow' >" +
 				"<h4 class='col-sm-9'>Comment deleting in <span id='comment-delete-countdown'>5</span>s.</h4>" +
@@ -173,7 +171,6 @@ $( document ).ready(function() {
 							popup('body',message)
 							$(".post-comment-" + id).remove()
 							$("#comment-delete-message").remove();
-							console.log('success')
 						}
 					});	
 				span = 0;
@@ -301,7 +298,6 @@ $( document ).ready(function() {
 		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
 		  function(snapshot) {
 		    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-		    console.log('Upload is ' + progress + '% done');
 		    switch (snapshot.state) {
 		      case firebase.storage.TaskState.PAUSED: 
 		        console.log('Upload is paused');
@@ -334,7 +330,6 @@ $( document ).ready(function() {
 			url : "actRankList",
 			success : function(rankingList){
 				var json = JSON.parse(rankingList);
-				console.log(json)
 				for(var i = 0; i< json.length; i++){
 					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
 					$("#aMultiPlatformList").append(list);
@@ -411,7 +406,6 @@ $( document ).ready(function() {
 	}
 	
 	setInterval(function(){
-		console.log(login)
 		if(login){
 			$.ajax({
 				url: ContextPath +'/getNotificationCount',
@@ -461,7 +455,6 @@ $( document ).ready(function() {
 			url: ContextPath + "/ReportItem",
 			data:rdata,
 			success: function(success){
-				console.log(success);
 				popup('body',success)
 				$('#reportUser-'+rdata.itemid).modal('hide')
 				$('#reportItem-'+rdata.itemid).modal('hide')
@@ -487,7 +480,6 @@ function paytype(type){
 		break;
 
 	}
-	console.log(type);
 }
 
 function popup(id,message){

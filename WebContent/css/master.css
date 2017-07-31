@@ -85,6 +85,9 @@ footer{
     font-weight: 600;
     background-color: #428bca;
 }
+.sticky-sidebar{
+	z-index: 10;
+}
 /*===========================================================
 	CSS for setup.
 	

@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import bean.Account;
 import common.Mail;
 import common.UID;
 

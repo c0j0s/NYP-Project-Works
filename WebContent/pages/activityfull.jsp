@@ -89,8 +89,8 @@
 									name="dislikeCount" />
 							</jsp:include>
 							<%if(session.getAttribute("account")!=null){
-					Account currentUser = (Account) session.getAttribute("account");
-					if (currentUser.getAccountId().equals(actf.getOrganiserId())) { %>
+						Account currentUser = (Account) session.getAttribute("account");
+						if (currentUser.getAccountId().equals(actf.getOrganiserId())) { %>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
@@ -102,7 +102,7 @@
 							</span>
 
 							<%}}
-					if(session.getAttribute("account")!=null){%>
+							if(session.getAttribute("account")!=null){%>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register

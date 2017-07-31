@@ -44,7 +44,6 @@ public class PostListPagination extends SimpleTagSupport {
 	
 	public void setPageCount(int postCount) {
 		maxCount = postCount;
-		System.out.println(postCount+"jksahdlnvowkntghxdlkdgnr");
 		double pageCount = Math.ceil(postCount/(double)getItemPerPage());
 		if(pageCount > (base + getItemPerPage())){
 			base = base + getItemPerPage();
@@ -57,7 +56,6 @@ public class PostListPagination extends SimpleTagSupport {
 		JspWriter out = getJspContext().getOut();
 		
 		//pagination
-		System.out.println(pageCount);
 		if(maxCount > getItemPerPage()) {
 			if(!type.equalsIgnoreCase("post")&&!type.equalsIgnoreCase("activity")){
 				out.println("<div class='col-sm-2'></div>");
