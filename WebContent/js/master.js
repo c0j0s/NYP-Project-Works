@@ -467,6 +467,10 @@ $( document ).ready(function() {
 			}
 		})
 	})
+	
+	$("#addUser").on("click",function(){
+		var item = '';
+	})
 });
 
 function paytype(type){
