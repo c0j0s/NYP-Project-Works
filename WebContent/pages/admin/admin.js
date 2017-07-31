@@ -18,6 +18,7 @@ $( document ).ready(function() {
 			}
 	})
 	
+	
 	getReported = function(){
 		console.log('reported')
 		getList('AdminForum?get=reported')
@@ -90,6 +91,22 @@ $( document ).ready(function() {
 			}
 		})
 	}
+	
+	$(".admin-activity").on('click', function(){
+		$("#admin-activity-body").empty();
+		$.ajax({
+			url : "AdminActivity",
+			success : function(adminList){
+				var json = JSON.parse(adminList);
+				console.log(json)
+				for(var i = 0; i< json.length; i++){
+				var list = '<li class="list-group-item">'+json[i].activityId+json[i].activityTitle+'<span class="badge">'+json[i].rankPoints+'</span></li>'
+			$("#admin-activity-body").append(list);
+				console.log(":()()()()()()()()()()(");
+				}}
+		})
+	})
+
 
 	$("#admin-others-send-message").on('click',function(){
 		var message = $("#admin-others-input-message").val()

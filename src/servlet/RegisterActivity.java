@@ -12,6 +12,7 @@ import bean.Account;
 import bean.ActReg;
 import database.ActRegDB;
 import database.DBAO;
+import database.Point;
 
 /**
  * Servlet implementation class RegAct
@@ -36,6 +37,8 @@ public class RegisterActivity extends HttpServlet {
 		ActRegDB ardb = new ActRegDB();
 		ActReg ar = new ActReg();
 		Account ac = (Account)s.getAttribute("account");
+		Point p = new Point();
+		p.pointsCalc(request.getParameter(ac.getAccountId()),10);
 		ar.setRegistrationId(request.getParameter("registerId"));
 		ar.setRegistrationAmtPaid(Double.valueOf(request.getParameter("total")));
 		ar.setParticipantNo(Integer.parseInt(request.getParameter("noOfParticipants")));
