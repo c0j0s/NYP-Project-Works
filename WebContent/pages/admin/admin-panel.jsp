@@ -34,7 +34,7 @@
 	<div class="col-md-8 col-sm-12">
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="${tab eq 'Forum' ? 'active' : '' }"><a href="#Forum" aria-controls="Forum" role="tab" data-toggle="tab">Forum Management</a></li>
-		    <li role="presentation" class="${Activity eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">Activity Management</a></li>
+		    <li role="presentation" class="${Activity eq 'Activity' ? 'active' : '' } admin-activity"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">Activity Management</a></li>
 		    <li role="presentation" class="${Notification eq 'Notification' ? 'active' : '' }"><a href="#Notification" aria-controls="Notification" role="tab" data-toggle="tab">Notification Management</a></li>
 		    <li role="presentation" class="${Account eq 'Account' ? 'active' : '' }"><a href="#Account" aria-controls="Account" role="tab" data-toggle="tab">Account Management</a></li>
 		  </ul>
