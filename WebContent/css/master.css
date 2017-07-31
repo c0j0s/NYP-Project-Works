@@ -159,6 +159,9 @@ footer{
 /*=============================================================
 	CSS for forum
 */
+.forum-side-bar-table tbody tr td{
+	padding: 5px 0px 5px 0px;
+}
 .forum-sidebar-account .panel-heading{
 	text-align:center;
 }

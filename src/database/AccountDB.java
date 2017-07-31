@@ -39,6 +39,10 @@ public class AccountDB extends DBAO{
 				ac.setPoints(rs.getInt("points"));
 				ac.setCreditLevel(rs.getInt("creditLevel"));
 				ac.setImgUrl(rs.getString("imgUrl"));
+				
+				ac.setBestAnswerCount(rs.getInt("bestAnswerCount"));
+				ac.setCommentCounts(rs.getInt("commentCounts"));
+				ac.setPostsCounts(rs.getInt("postCounts"));
 			}
 			
 		}catch(Exception ex){

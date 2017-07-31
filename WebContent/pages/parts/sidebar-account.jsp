@@ -37,23 +37,11 @@
 			<c:choose>
 				<c:when test="${param.type eq 'forum' ? true : false}">
 					<div class="panel-body">
-						<div>
-							<div class="col-sm-4 text-center no-padding">
-								<p>
-									5<br> Questions
-								</p>
-							</div>
-							<div class="col-sm-4 text-center no-padding">
-								<p>
-									5<br> Answered
-								</p>
-							</div>
-							<div class="col-sm-4 text-center no-padding">
-								<p>
-									5<br> Best
-								</p>
-							</div>
-						</div>
+						<ul class="list-group">
+							<a class="list-group-item">Best Answer <span class="badge badge-info">${user.bestAnswerCount }</span></a>
+							<a class="list-group-item">Questions Post <span class="badge badge-info">${user.postsCounts }</span></a>
+							<a class="list-group-item">Questions Answered <span class="badge badge-info">${user.commentCounts }</span></a>
+						</ul>
 						<button type="button" class="btn btn-success btn-block"
 							onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=create'">Ask
 							Something</button>
