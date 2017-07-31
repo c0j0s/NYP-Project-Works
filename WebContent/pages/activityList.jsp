@@ -41,13 +41,16 @@
 				for (Activity act : actList) {
 			%>
 			<div class="clearfix">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3><%=act.getActivityTitle()%></h3></div>
+				<div class ="panel-body">
 				<div class="col-md-4">
 
 					<img id="actpic" src="<%=act.getImgUrl()%>" />
 
 				</div>
 				<div class="col-md-8">
-					<h4><%=act.getActivityTitle()%></h4>
+				
 					<p>
 						Location :
 						<%=act.getActivityLocation()%></p>
@@ -97,6 +100,8 @@
 
 					</p>
 				</div>
+				</div>
+				</div>
 
 			</div>
 			<br></br>
@@ -131,7 +136,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 	</div>
 
 	<%-- end of main container --%>

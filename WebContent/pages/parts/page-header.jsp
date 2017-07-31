@@ -35,9 +35,7 @@
 						class="btn btn-primary col-md-2 ">Create
 						Activity</button>
 						<div class="col-md-1"></div>
-						<button onclick="location.href = 'ActDelete'"
-						class="btn btn-primary col-md-2 pull-right">Delete
-						Activity</button><%} %>
+						<%} %>
 				</h1>
 			</div>
 		</c:when>

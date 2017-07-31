@@ -42,19 +42,21 @@
 			<jsp:param value="5" name="titleWidth" />
 		</jsp:include>
 		<div>
-			<div class="col-md-1 pull-left"></div>
-			<div class="col-md-8">
-				<p>
-				<h3>
+		<div class="col-md-1"></div>
+			<div class="col-md-6 ">
+			<div class="panel panel-default">
+			
+				<div class="panel-heading"><h3>
 
-					<%=actf.getActivityTitle()%></p>
-				</h3>
+					<%=actf.getActivityTitle()%>
+				</h3></div>
+				<div class ="panel-body">
 				<p>
 					Activity Categories :
 					<%=actf.getActivityCategory()%></p>
-				<img src="<%=actf.getImgUrl()%>" id="factpic"><br> <br>
+				<img src="<%=actf.getImgUrl()%>" id="factpic" class="fullactsize"><br> <br>
 				<p>Activity Description :</p>
-				<p style="border-style: solid;"><%=actf.getActivityDescription()%></p>
+				<p><%=actf.getActivityDescription()%></p>
 
 
 
@@ -125,9 +127,11 @@
 							For Activity</button>
 					</span><%} %>
 				</div>
+				</div>
 			</div>
-
+</div>
 		</div>
+		<div class = "col-md-1"></div>
 		<div class="col-sm-12 col-md-3">
 			<div class="sticky-sidebar">
 				<div class="col-md-12 col-sm-4">
