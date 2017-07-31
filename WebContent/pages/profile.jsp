@@ -24,7 +24,8 @@
 		<jsp:param value="My Profile" name="title" />
 		<jsp:param value="5" name="titleWidth" />
 	</jsp:include>
-	<div class="col-md-4">
+<div class="col-md-12" >
+	<div class="col-md-3 col-sm-12">
 		<div class="col-md-12">
 			<jsp:include page="parts/sidebar-account.jsp">
 				<jsp:param value="profile" name="type" />
@@ -51,9 +52,11 @@
 			<button type="submit" class="btn btn-default"
 				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
 				Profile</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/CreateFamGroup'"">Create Family Group</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/DisplayFamGroup'"">View Family Group</button>
 		</div>
 		</div>
-			<div class="col-md-8 col-sm-12">
+			<div class="col-md-9 col-sm-12">
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#Forum" aria-controls="Forum" role="tab" data-toggle="tab">My Forum Post</a></li>
 			    <li role="presentation" class="${tab eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">My Activities</a></li>
@@ -69,7 +72,7 @@
 			  </div>
 		</div>
 </div>
-
+</div>
 <%-- end of main container --%>
 <jsp:include page="footer.jsp"></jsp:include>
 <%-- end of footer --%>

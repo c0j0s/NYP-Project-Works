@@ -22,7 +22,7 @@
 <div class="container">
 	<jsp:include page="parts/page-header.jsp"></jsp:include>
 <h2>Create New Family Group</h2>
-<form>
+<form action="${pageContext.request.contextPath}/CreateFamilyGrp" method="post" >
 	<div class="form-group">Family Name:<input type="text" class="form-control" name="famName"></div>
 	<div class="form-group">
 		<label for="profilepic">Choose your profile picture:</label>
@@ -30,6 +30,8 @@
         <input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
         <img alt="" src="" id="test-img-prev">
 	</div>
+	<div class="form-group" id="adduser">Add users:<input type="text" class="form-control" name="users"></div>
+	<button id="addMember">Add More</button>
 	<button type="submit" class="btn btn-default" value="sendform">Submit</button>
 </form>
 </div>
