@@ -1,4 +1,4 @@
-package servlet.notification;
+package servlet.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,23 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import bean.Account;
 import bean.Notification;
+import database.ForumDB;
 import database.NotificationDB;
 
 /**
- * Servlet implementation class getNotifications
+ * Servlet implementation class AdminOthers
  */
-@WebServlet("/getNotifications")
-public class getNotifications extends HttpServlet {
+@WebServlet("/AdminOthers")
+public class AdminOthers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getNotifications() {
+    public AdminOthers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +34,26 @@ public class getNotifications extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession ss = request.getSession();
-		String type = request.getParameter("type");
+		HttpSession ss = request.getSession(false);
 		if(ss.getAttribute("account") != null) {
-			NotificationDB ndb = new NotificationDB();
 			Account ac = (Account) ss.getAttribute("account");
-			ArrayList<Notification> list = null;
-			if(type.equals("unread")) {
-				list = ndb.getAccountUnNotifications(ac.getAccountId());
-			}else if(type.equals("all")){
-				list = ndb.getAccountNotifications(null,ac.getAccountId());
+			String type = request.getParameter("type");
+			if(type.equals("message")) {
+				NotificationDB ndb = new NotificationDB();
+				Notification no = new Notification();
+				no.setTitle(request.getParameter("title"));
+				no.setMessage(request.getParameter("message"));
+				no.setServiceType("FFL Admin");
+				ArrayList<String> accountIds = ndb.getAllUserAccounts();
+				ndb.sentNotificationToAccounts(accountIds, no);
+				response.getWriter().append("Send message to all users successfully!");
+			}else if(type.equals("category")){
+				ForumDB fdb = new ForumDB();
+				fdb.addCategory(request.getParameter("categoryName"));
+				response.getWriter().append("Add forum category successfully!");
 			}
-			String json = new Gson().toJson(list);
-			response.getWriter().append(json);
+		}else {
+			response.getWriter().append("Fail to connect to server.");
 		}
 	}
 

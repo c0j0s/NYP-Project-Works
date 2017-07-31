@@ -3,7 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -26,8 +26,8 @@
 	
 	<div class="col-md-9 col-sm-12 Forum-main">
 		<div class="panel panel-default forum-main-trending">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Trending Topics</h3>
+		  <div class="trending-panel-heading text-center">
+		    <h3 class="panel-title">- <span class="glyphicon glyphicon-fire"> </span> Trending Topics -</h3>
 		  </div>
 		  <div class="panel-body">
 		  <jsp:include page="parts/forum-trendingPost.jsp"></jsp:include>
@@ -38,13 +38,13 @@
 		
 		<div class="Forum-main-posts">
 		  <ul class="nav nav-tabs" role="tablist">
-		  	<c:forEach items="general,parenting" var="listItem">
+		  	<c:forEach items="${categoryList }" var="listItem">
 		  	<li role="presentation" class="${category eq listItem ? ' active' : ''}"><a class="tab-title" href="Forum?category=${listItem}&page=1" >${listItem}</a></li>
 		  	</c:forEach>
 		  </ul>
 		
 		  <div class="tab-content">
-		  	<c:forEach items="general,parenting" var="postCatTab">
+		  	<c:forEach items="${categoryList }" var="postCatTab">
 		    <div role="tabpanel" class="tab-pane panel-body ${category eq postCatTab ? ' active' : ''}" id="a">
 		    	<c:forEach items="${postList}" var="post" begin="0" end="9" varStatus="loop">
 		    		<c:set var="post" value="${post}" scope="request"/>

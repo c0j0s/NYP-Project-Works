@@ -1,28 +1,29 @@
-package servlet;
+package servlet.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.Result;
-import database.SearchDB;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
+import bean.Account;
+import database.AdminDB;
 
 /**
- * Servlet implementation class Search
+ * Servlet implementation class ReportItem
  */
-@WebServlet("/Search")
-public class Search extends HttpServlet {
+@WebServlet("/ReportItem")
+public class ReportItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Search() {
+    public ReportItem() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +32,19 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyWord = request.getParameter("globalSearch");
-		if (!keyWord.equals("") && keyWord != null) {
-			String searchIn = request.getParameter("searchIn");
-			String servletPath = (searchIn.equals("post")) ? "Post" : "ActFull";
-			SearchDB db = new SearchDB();
-			ArrayList<Result> resultList;
-			if(searchIn.equals("all")) {
-				resultList = db.searchAll(keyWord);
-			}else {
-				resultList = db.searchSpecific(searchIn,keyWord,servletPath);
+		HttpSession ss = request.getSession(true);
+		if (ss.getAttribute("account") != null) {
+			Account ac =(Account) ss.getAttribute("account");
+			String itemId = request.getParameter("itemid");
+			String type = request.getParameter("type");
+			AdminDB adb = new AdminDB();
+			try {
+				response.getWriter().append(adb.reportItem(itemId, ac.getAccountId(),type));
+			} catch (MySQLIntegrityConstraintViolationException e) {
+				response.getWriter().append("You have reported " + type + " before.");
 			}
-		
-			request.setAttribute("searchIn", searchIn);
-			request.setAttribute("keyWord", keyWord);
-			request.setAttribute("resultList", resultList);
 		}
-		request.getRequestDispatcher("pages/search.jsp").forward(request, response);
+		
 	}
 
 	/**

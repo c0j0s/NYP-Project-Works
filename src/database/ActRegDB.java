@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.ActReg;
-import bean.Activity;
 public class ActRegDB extends DBAO{
 	
 	public ActRegDB(){

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../../WEB-INF/ffl.tld" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -34,23 +34,23 @@
 	<div class="col-md-8 col-sm-12">
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="${tab eq 'Forum' ? 'active' : '' }"><a href="#Forum" aria-controls="Forum" role="tab" data-toggle="tab">Forum Management</a></li>
-		    <li role="presentation" class="${Activity eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">Activity Management</a></li>
-		    <li role="presentation" class="${Notification eq 'Notification' ? 'active' : '' }"><a href="#Notification" aria-controls="Notification" role="tab" data-toggle="tab">Notification Management</a></li>
-		    <li role="presentation" class="${Account eq 'Account' ? 'active' : '' }"><a href="#Account" aria-controls="Account" role="tab" data-toggle="tab">Account Management</a></li>
+		    <li role="presentation" class="${tab eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">Activity Management</a></li>
+		    <li role="presentation" class="${tab eq 'Account' ? 'active' : '' }"><a href="#Account" aria-controls="Account" role="tab" data-toggle="tab">Account Management</a></li>
+		    <li role="presentation" class="${tab eq 'Others' ? 'active' : '' }"><a href="#Others" aria-controls="Others" role="tab" data-toggle="tab">Others</a></li>
 		  </ul>
 		
 		  <div class="tab-content">
-		    <div role="tabpanel" class="tab-pane active" id="Forum">
+		    <div role="tabpanel" class="tab-pane ${tab eq 'Forum' ? 'active' : '' }" id="Forum">
 		    	<jsp:include page="admin-forum.jsp"></jsp:include>
 		    </div>
-		    <div role="tabpanel" class="tab-pane" id="Activity">
+		    <div role="tabpanel" class="tab-pane ${tab eq 'Activity' ? 'active' : '' }"" id="Activity">
+		    	<jsp:include page="admin-activity.jsp"></jsp:include>
+		    </div>
+		    <div role="tabpanel" class="tab-pane ${tab eq 'Account' ? 'active' : '' }" id="Account">
 		    	<jsp:include page="admin-forum.jsp"></jsp:include>
 		    </div>
-		    <div role="tabpanel" class="tab-pane" id="Notification">
-		    	<jsp:include page="admin-forum.jsp"></jsp:include>
-		    </div>
-		    <div role="tabpanel" class="tab-pane" id="Account">
-		    	<jsp:include page="admin-forum.jsp"></jsp:include>
+		    <div role="tabpanel" class="tab-pane ${tab eq 'Others' ? 'active' : '' }" id="Others">
+		    	<jsp:include page="admin-others.jsp"></jsp:include>
 		    </div>
 		  </div>
 	</div>

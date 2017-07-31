@@ -1,13 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Arrays;
-
 import bean.Account;
-import bean.Activity;
 import bean.RewardItem;
-import database.ActivityDB;
-import database.DBAO;
 import database.RewardItemDB;
 
 import javax.servlet.ServletException;
@@ -46,7 +41,7 @@ public class CreateReward extends HttpServlet {
 			rew.setRewardTitle(request.getParameter("rewTitle"));
 			rew.setRewardDescription(request.getParameter("rewDesc"));
 		    rew.setPoints(Integer.parseInt(request.getParameter("Points")));
-			rew.setRewardAvailability(request.getParameter("rewAvailability").charAt(0));
+			//rew.setRewardAvailability(request.getParameter("rewAvailability").charAt(0));
 			rew.setRewardQuantity(request.getParameter("rewQuantity").charAt(0));
 			
 			

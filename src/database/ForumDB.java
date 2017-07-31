@@ -9,10 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.gson.JsonElement;
-
+import bean.Account;
 import bean.Post;
-import bean.Result;
 
 /**
  * @author cjuns
@@ -167,10 +165,9 @@ public class ForumDB extends DBAO{
 	 * @param category
 	 * @return
 	 */
-
 	public int getPostCount(String category) {
 		
-		String stmt = "Select count(*) from ffl.postlist where postCategory = ?";
+		String stmt = "Select count(*) from ffl.postlist where postCategory = ? and valid = 'Y'";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, category);
@@ -183,6 +180,28 @@ public class ForumDB extends DBAO{
 		return 0;
 	}
 
+	/**
+	 * get top 5 answerer
+	 * @return ArrayList<Account>
+	 */
+	public ArrayList<Account> getTopAnswerer(){
+		ArrayList<Account> list = new ArrayList<Account>();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT *,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Account ac = new Account();
+				ac.setImgUrl(rs.getString("imgUrl"));
+				ac.setGivenName(rs.getString("givenName"));
+				ac.setPostsCounts(rs.getInt("hitLevel"));
+				list.add(ac);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	/**
 	 * add category [Not tested]
 	 * @param newCat
@@ -285,6 +304,28 @@ public class ForumDB extends DBAO{
 	}
 
 	/**
+	 * valid post
+	 * @param postId
+	 */
+	public void validPost(String postId) {
+		String statement = "update ffl.post set valid = 'Y' where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, postId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ postId +"): (success)" + ps);
+			}
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * select comment as best answer for post
 	 * @param postId
 	 * @param commentId
@@ -296,7 +337,7 @@ public class ForumDB extends DBAO{
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, commentId);
 			ps.setString(2, postId);
-
+			
 			int status = ps.executeUpdate();
 			if (status != 0) {
 				
@@ -307,39 +348,4 @@ public class ForumDB extends DBAO{
 		}
 	}
 	
-	public ArrayList<Result> getSimpleList(String get) {
-		ArrayList<Result> list = new ArrayList<Result>();
-		String stmt = "";
-		if (get.equals("reported")) {
-			stmt = "Select * from ffl.reportlist where valid = 'Y' order by reportCreatedOn DESC";
-		} else if (get.equals("post")) {
-			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'post' order by reportCreatedOn DESC";
-		} else if (get.equals("comment")){
-			stmt = "Select * from ffl.reportlist where valid = 'Y' and type = 'comment' order by reportCreatedOn DESC";
-		}
-		
-		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				Result r = new Result();
-				r.setItemId(rs.getString("itemId"));
-				r.setTitle(rs.getString("title"));
-				r.setImgUrl(rs.getString("itemImgUrl"));
-				r.setCreatedOn(rs.getString("reportCreatedOn"));
-				Map<String,String> m = new HashMap<String,String>();
-				r.setType(rs.getString("type"));
-				m.put("reporterAccountId", rs.getString("reporterAccountId"));
-				m.put("itemCreatedOn", rs.getString("itemCreatedOn"));
-				r.setMetadata(m);
-				list.add(r);
-			}
-			rs.close();
-			ps.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
 }

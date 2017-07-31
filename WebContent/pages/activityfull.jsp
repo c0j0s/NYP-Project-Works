@@ -94,13 +94,13 @@
 					<%=actf.getActivityRegistrationEnd()%></p>
 
 				<div>
-					<jsp:include page="parts/likeButtons.jsp">
+				<div id = "actRanklistRefresh">	<jsp:include page="parts/likeButtons.jsp">
 						<jsp:param value="activity" name="table" />
 						<jsp:param value="activityId" name="colName" />
 						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
 						<jsp:param value="<%=actf.getDislikeCount()%>"
 							name="dislikeCount" />
-					</jsp:include>
+					</jsp:include></div>
 					<%
 						if(session.getAttribute("account")!=null){
 							Account currentUser = (Account) session.getAttribute("account");
@@ -118,12 +118,15 @@
 					
 					<%
 						}}
+					%><%
+						if(session.getAttribute("account")!=null){
+						
 					%>
 					<span aria-hidden="true">
 						<button
 							onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 							For Activity</button>
-					</span>
+					</span><%} %>
 				</div>
 			</div>
 
@@ -131,15 +134,17 @@
 
 		<div class="col-md-1"></div>
 		<div class="col-md-3">
-			<ul class="list-group pull-right">
+			<ul class="list-group">
 				<h4>Activity Popularity Ranking</h4>
 				<%
-					for (int z = 0; z < 20; z++) {
+					int z=0;
+						ArrayList<Activity> actRank = (ArrayList<Activity>)request.getAttribute("actRank");
+						for (Activity act : actRank) {
 				%>
-				<li class="list-group-item"><%=z + 1%>. Java <span
-					class="badge"><%=z%></span></li>
+				<li class="list-group-item"><%=z + 1%>. <a href ='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle() %> </a><span class="badge"><%=act.getRankPoints()%></span>
+				</li>
 				<%
-					}
+					z++;}
 				%>
 			</ul>
 		</div>

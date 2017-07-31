@@ -31,17 +31,11 @@
 						</button>
 					</div>
 					<div class="btn-group dropdown">
-						<button id="post-controls-dropdown" type="button"
-							class="btn btn-default btn-sm btn-no-border dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="glyphicon glyphicon-option-horizontal"
-								aria-hidden="true"></span>
-								<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
-							<li><a href="#">Report post</a></li>
-							<li><a href="#">Report user</a></li>
-						</ul>
+						<jsp:include page="reportList.jsp">
+							<jsp:param value="${post.postId }" name="itemId"/>
+							<jsp:param value="${post.accountId }" name="accountId"/>
+							<jsp:param value="post" name="type"/>
+						</jsp:include>
 					</div>
 				</div>
 			</div>

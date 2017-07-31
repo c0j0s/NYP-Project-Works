@@ -13,6 +13,12 @@
 							<span>${user.givenName}</span>
 							</a>
 						</li>
+						<li>
+							<span class="btn btn-warning btn-xs btn-no-border" onclick='location.href="RedemptionList"'>
+								<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
+								<span><jsp:include page="../getUserPoints"></jsp:include></span>
+							</span>
+						</li>
 						<li  class="notification-li">
 							<a class="white" id="toogle-notification">
 								<span class="glyphicon glyphicon glyphicon-bell" aria-hidden="true"></span>
@@ -27,7 +33,7 @@
 								</div>
 							<div class='panel-body list-group' id="notification-body">
 							</div>
-							<a class="btn btn-info btn-block" href="#" role="button">view all past notifications</a>
+							<a class="btn btn-info btn-block" id="toogle-allnotification" role="button">view all past notifications</a>
 							</div>
 						</li>
 						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
@@ -53,7 +59,10 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/Index">FFL</a>
+			<a class="logo-a" href="${pageContext.request.contextPath}/Index">
+				<img alt="Logo" src="${pageContext.request.contextPath}/img/logo.png" class="logo"/>
+				<p>FamForLife</p>
+			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="ffl-navbar-collapse">
 			<ul class="nav navbar-nav">
@@ -61,7 +70,6 @@
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Forum">Family Forum</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/ActList">Family Activities</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/RedemptionList">Reward Redemption</a></li>
-				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/pages/test.jsp">component testing page</a></li>
 			</ul>
 			<form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/Search?">
 			  <div class="form-group">

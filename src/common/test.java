@@ -1,18 +1,4 @@
-package common;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
-import bean.Notification;
-import database.DBAO;
-import database.ForumDB;
-import database.NotificationDB;
-import database.Point;;
+package common;;
 
 public class test {
 
@@ -52,9 +38,38 @@ public class test {
 		//sender.run();
 	//	Mail mail = new Mail("");
 		//mail.sendSimpleMail();
-		Point p = new Point();
-		p.pointsCalc("ACC0000000",300);
+		//Point p = new Point();
+		//p.pointsCalc("ACC0000000",500);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 
+//	    public void main(String[] args) {
+//	        List<Person> people = Arrays.asList(
+//	                new Person("Joe", 24),
+//	                new Person("Pete", 18),
+//	                new Person("Chris", 21)
+//	        );
+//	        Collections.sort(people, (a, b) -> a.name.compareToIgnoreCase(b.name));
+//	        System.out.println(people);
+//	        Collections.sort(people, (a, b) -> a.age < b.age ? -1 : a.age == b.age ? 0 : 1);
+//	        System.out.println(people);
+//	    }
+	
 }

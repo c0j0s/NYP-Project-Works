@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -46,7 +46,7 @@
 							<c:choose>
 								<c:when test="${fn:length(commentList) gt 0 }">
 									<c:forEach items="${commentList}" var="comment">
-										<div class="post-comment  clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
+										<div class="post-comment post-comment-${comment.commentId } clearfix ${post.bestAnswer eq comment.commentId ? 'post-best-answer' : '' }"
 											id="${comment.commentId}">
 											<div class="col-sm-2" id="comment-best-answer">
 												<c:if test="${user.accountId eq post.accountId}">
@@ -54,13 +54,13 @@
 														<c:if test="${post.bestAnswer == null ? true : false }">
 															<button type="button" class="btn btn-success col-sm-12 post-best-answer-btn" data-postId="${post.postId }" data-commentId="${comment.commentId }">
 															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
-															  <sapn>Best<br>Answer</sapn>
+															  <span>Best<br>Answer</span>
 															</button>
 														</c:if>
 														<c:if test="${comment.commentId eq post.bestAnswer ? true : false }">
 															<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled>
 															  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr>
-															  <sapn>Best<br>Answer</sapn>
+															  <span>Best<br>Answer</span>
 															</button>
 														</c:if>
 													</c:if>

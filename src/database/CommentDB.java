@@ -73,7 +73,7 @@ public class CommentDB extends DBAO{
 		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".commentlist WHERE commentStatus = 'publish' ORDER BY commentDate DESC";
+				statement = "SELECT * FROM "+ schema +".commentlist WHERE commentStatus = 'publish' and valid = 'Y' ORDER BY commentDate DESC";
 			}
 			
 			PreparedStatement ps;
@@ -100,9 +100,8 @@ public class CommentDB extends DBAO{
 				com.setHideId(rs.getString("hideId").charAt(0));
 				
 				MetaValueDB mdb = new MetaValueDB();
-				com.setLikeAccounts(mdb.getMetaAccounts("post","postId",com.getPostId(),"like"));
-				com.setDislikeAccounts(mdb.getMetaAccounts("post","postId",com.getPostId(),"dislike"));
-			
+				com.setLikeAccounts(mdb.getMetaAccounts("comments","commentId",com.getCommentId(),"like"));
+				com.setDislikeAccounts(mdb.getMetaAccounts("comments","commentId",com.getCommentId(),"dislike"));
 				com.setCommentComList(getCommentByCommentId(com.getCommentId(),0,5));
 				
 				commentList.add(com);
@@ -125,13 +124,13 @@ public class CommentDB extends DBAO{
 	 * @return
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
-		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
+		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
 		System.out.println(stmt);
 		return getComment(stmt);
 	}
 	
 	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
-		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
+		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
 		return getComment(stmt);
 	}
 
@@ -153,6 +152,45 @@ public class CommentDB extends DBAO{
 			e.printStackTrace();
 		}
 		return id;
+	}
+
+	public boolean invalidComment(String itemId) {
+		String statement = "update ffl.comments set valid = 'N' where commentId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, itemId);
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ itemId +"): (success)" + ps);
+				return true;
+			}
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+
+	public void validComment(String itemId) {
+		String statement = "update ffl.comments set valid = 'Y' where commentId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, itemId);
+
+			int status = ps.executeUpdate();
+			
+			if(status != 0) {
+				System.out.println("log invalidPost("+ itemId +"): (success)" + ps);
+			}
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

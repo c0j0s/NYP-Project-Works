@@ -44,6 +44,7 @@ public class PostListPagination extends SimpleTagSupport {
 	
 	public void setPageCount(int postCount) {
 		maxCount = postCount;
+		System.out.println(postCount+"jksahdlnvowkntghxdlkdgnr");
 		double pageCount = Math.ceil(postCount/(double)getItemPerPage());
 		if(pageCount > (base + getItemPerPage())){
 			base = base + getItemPerPage();
@@ -56,8 +57,9 @@ public class PostListPagination extends SimpleTagSupport {
 		JspWriter out = getJspContext().getOut();
 		
 		//pagination
+		System.out.println(pageCount);
 		if(maxCount > getItemPerPage()) {
-			if(!type.equalsIgnoreCase("post")) {
+			if(!type.equalsIgnoreCase("post")&&!type.equalsIgnoreCase("activity")){
 				out.println("<div class='col-sm-2'></div>");
 			}
 			out.println("<nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
@@ -84,6 +86,7 @@ public class PostListPagination extends SimpleTagSupport {
 					out.println("<li><a href='?postId="+getPostId()+"&page="+ (currentPage - 1) +"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
 				}
 				
+				
 				for(int i = 1; i<=pageCount; i++){
 			    	String active = "";
 			    	if(currentPage == i) active = "active";
@@ -93,6 +96,24 @@ public class PostListPagination extends SimpleTagSupport {
 				
 				if(currentPage != pageCount){
 					out.println("<li><a href='?postId="+getPostId()+"&page="+ (currentPage + 1) +"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
+				}
+				
+			}else if(type.equalsIgnoreCase("activity")){
+				
+				if(currentPage != 1){
+					out.println("<li><a href='?page="+ (currentPage - 1) +"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+				}
+				
+				
+				for(int i = 1; i<=pageCount; i++){
+			    	String active = "";
+			    	if(currentPage == i) active = "active";
+					out.println("<li class='"+ active +"'><a href='?page="+ (base + i) +"'>"+ (base + i) +"</a></li>");
+			    	 
+			    }
+				
+				if(currentPage != pageCount){
+					out.println("<li><a href='?page="+ (currentPage + 1) +"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
 				}
 				
 			}

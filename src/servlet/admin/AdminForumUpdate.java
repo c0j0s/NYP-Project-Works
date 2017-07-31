@@ -1,32 +1,27 @@
-package servlet.notification;
+package servlet.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
-import bean.Account;
-import bean.Notification;
-import database.NotificationDB;
+import database.AdminDB;
+import database.CommentDB;
+import database.ForumDB;
 
 /**
- * Servlet implementation class getNotifications
+ * Servlet implementation class AdminForumUpdate
  */
-@WebServlet("/getNotifications")
-public class getNotifications extends HttpServlet {
+@WebServlet("/AdminForumUpdate")
+public class AdminForumUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getNotifications() {
+    public AdminForumUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +30,28 @@ public class getNotifications extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession ss = request.getSession();
+		String action = request.getParameter("action");
+		String itemId = request.getParameter("itemid");
 		String type = request.getParameter("type");
-		if(ss.getAttribute("account") != null) {
-			NotificationDB ndb = new NotificationDB();
-			Account ac = (Account) ss.getAttribute("account");
-			ArrayList<Notification> list = null;
-			if(type.equals("unread")) {
-				list = ndb.getAccountUnNotifications(ac.getAccountId());
-			}else if(type.equals("all")){
-				list = ndb.getAccountNotifications(null,ac.getAccountId());
+		System.out.println(type);
+		AdminDB adb = new AdminDB();
+		adb.updateReportStatus(action,itemId);
+		if(action.equals("deleted")) {
+			if(type.equals("post")) {
+				ForumDB fdb = new ForumDB();
+				fdb.invalidPost(itemId);
+			}else if (type.equals("comment")) {
+				CommentDB cdb = new CommentDB();
+				cdb.invalidComment(itemId);
 			}
-			String json = new Gson().toJson(list);
-			response.getWriter().append(json);
+		}else if (action.equals("cancel")){
+			if(type.equals("post")) {
+				ForumDB fdb = new ForumDB();
+				fdb.validPost(itemId);
+			}else if (type.equals("comment")) {
+				CommentDB cdb = new CommentDB();
+				cdb.validComment(itemId);
+			}
 		}
 	}
 

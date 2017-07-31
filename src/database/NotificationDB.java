@@ -13,12 +13,18 @@ public class NotificationDB extends DBAO{
 		super();
 	}
 	
+	/**
+	 * get users notifications
+	 * @param stmt
+	 * @param accountId
+	 * @return
+	 */
 	public ArrayList<Notification> getAccountNotifications(String stmt,String accountId) {
 		//
 		ArrayList<Notification> list = new ArrayList<Notification>();
 		try {
 			if(stmt == null) {
-				stmt = "Select * from ffl.notification where accountId = ? order by createdOn DESC";
+				stmt = "Select * from ffl.notification where accountId = ?  order by createdOn DESC";
 			}
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, accountId);
@@ -43,11 +49,21 @@ public class NotificationDB extends DBAO{
 		return list;
 	}
 	
+	/**
+	 * get users unread notifications
+	 * @param accountId
+	 * @return
+	 */
 	public ArrayList<Notification> getAccountUnNotifications(String accountId) {
 		String stmt = "Select * from ffl.notification where accountId = ? and `read` = 'N' order by createdOn DESC";
 		return getAccountNotifications(stmt,accountId);
 	}
 
+	/**
+	 * get user unread notification count
+	 * @param accountId
+	 * @return
+	 */
 	public int getNotificationCount(String accountId) {
 		
 		int count = 0;
@@ -68,7 +84,16 @@ public class NotificationDB extends DBAO{
 		return count;
 	}
 	
-	public void sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
+	/**
+	 * sent notification to specific users
+	 * @param title
+	 * @param message
+	 * @param serviceType
+	 * @param accountId
+	 * @param actionText
+	 * @param actionUrl
+	 */
+	public boolean sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
 		
 		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId,actionText,actionUrl) values (?,?,?,?,?,?)";
 		try {
@@ -85,18 +110,24 @@ public class NotificationDB extends DBAO{
 				System.out.println("create notification success");
 				ps.close();
 				
-				return;
+				return true;
 			}else {
 				System.out.println("Log notifiaction ps: ("+accountId+")" + ps);
 				ps.close();
 				
-				return;
+				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
+	/**
+	 * sent notification to multiple users
+	 * @param accountIds
+	 * @param no
+	 */
 	public void sentNotificationToAccounts(ArrayList<String> accountIds,Notification no) {
 		for (Iterator<String> iterator = accountIds.iterator(); iterator.hasNext();) {
 			String accountId = (String) iterator.next();
@@ -104,7 +135,12 @@ public class NotificationDB extends DBAO{
 		}
 	}
 
-	public void setRead(String accountId, String id) {
+	/**
+	 * set nitification status to read
+	 * @param accountId
+	 * @param id
+	 */
+	public boolean setRead(String accountId, String id) {
 		
 		String stmt = "Update ffl.notification set `read` = 'Y' where notificationId = ? and accountId = ?";
 		try {
@@ -117,16 +153,32 @@ public class NotificationDB extends DBAO{
 				System.out.println("read notification success");
 				ps.close();
 				
-				return;
+				return true;
 			}else {
 				System.out.println("Log notifiaction ps: " + ps);
 				ps.close();
 				
-				return;
+				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
+	}
+
+	public ArrayList<String> getAllUserAccounts() {
+		ArrayList<String> list = new ArrayList<String>();
+		String stmt = "Select accountId from ffl.userinfo where role != 'admin'";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString("accountId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -1,24 +1,29 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-3 col-sm-12 forum-sidebar">
+	<div class="sticky-sidebar">
 	<div class="col-md-12 col-sm-4">
 		<jsp:include page="sidebar-account.jsp"></jsp:include>
 	</div>
-	<!-- Account panel -->
-<!-- 	<div class="col-md-12 col-sm-4"> -->
-<!-- 		<div class="panel panel-default"> -->
-<!-- 			<div class="panel-heading "> -->
-<!-- 				<h3 class="panel-title">Trending Categories</h3> -->
-<!-- 			</div> -->
-<!-- 			<div class="panel-body">list</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-	<!-- Trending category panel -->
 	<div class="col-md-12 col-sm-4">
-		<div class="panel panel-default">
+		<div class="panel panel-info">
 			<div class="panel-heading ">
-				<h3 class="panel-title">Top Answer</h3>
+				<h3 class="panel-title">Top Answerer</h3>
 			</div>
-			<div class="panel-body">account list</div>
+			<div class="panel-body">
+				<ul class='list-group'>
+				<c:forEach items="${topAnswerer }" var='answerer'>
+					<h4>
+					<img alt="Top Answerer profile image" src="${answerer.imgUrl }" class='img-circle profile-image-xsmall'/>
+					${answerer.givenName }
+					<span class="label label-danger label-sm pull-right">
+					<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+					${answerer.postsCounts }
+					</span>
+					</h4>
+				</c:forEach>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<!-- Trending category panel -->
+	</div>
 </div>

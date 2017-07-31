@@ -1,28 +1,25 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Result;
-import database.SearchDB;
+import database.CommentDB;
 
 /**
- * Servlet implementation class Search
+ * Servlet implementation class InvalidComment
  */
-@WebServlet("/Search")
-public class Search extends HttpServlet {
+@WebServlet("/InvalidComment")
+public class InvalidComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Search() {
+    public InvalidComment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +28,20 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyWord = request.getParameter("globalSearch");
-		if (!keyWord.equals("") && keyWord != null) {
-			String searchIn = request.getParameter("searchIn");
-			String servletPath = (searchIn.equals("post")) ? "Post" : "ActFull";
-			SearchDB db = new SearchDB();
-			ArrayList<Result> resultList;
-			if(searchIn.equals("all")) {
-				resultList = db.searchAll(keyWord);
+		// TODO Auto-generated method stub
+		try {
+			String id = request.getParameter("commentId");
+			System.out.println("id:" + id);
+			CommentDB cdb = new CommentDB();
+			if(cdb.invalidComment(id)) {
+				response.getWriter().append("Comment removed.");
 			}else {
-				resultList = db.searchSpecific(searchIn,keyWord,servletPath);
+				response.getWriter().append("Fail to remove comment.");
 			}
-		
-			request.setAttribute("searchIn", searchIn);
-			request.setAttribute("keyWord", keyWord);
-			request.setAttribute("resultList", resultList);
+		} catch (Exception e) {
+			response.getWriter().append("Server error: fail to remove comment");
+			e.printStackTrace();
 		}
-		request.getRequestDispatcher("pages/search.jsp").forward(request, response);
 	}
 
 	/**

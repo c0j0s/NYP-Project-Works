@@ -15,12 +15,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
- 
-/**
- * @author cjuns
- * 
- */
- 
+
 public class Mail {
  
 	private static Properties properties;
@@ -117,7 +112,7 @@ public class Mail {
 	    return msg;
 	}
 
-	//for testing
+
 	public void sendSimpleMail(String to,String subject,String text) {
 		try {
 			session = Session.getDefaultInstance(properties, null);

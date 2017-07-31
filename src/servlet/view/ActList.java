@@ -8,13 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import bean.Account;
 import bean.Activity;
-import bean.Post;
-import database.AccountDB;
 import database.ActivityDB;
+import database.Point;
 
 /**
  * Servlet implementation class ActList
@@ -36,10 +32,20 @@ public class ActList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityList = adb.getActivity(null);
+		Point p = new Point();
+		 String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
+			int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
+		ArrayList<Activity> actRank = p.getRank();
+	     int totalNo = adb.getTotalActivityCount();
+	     request.setAttribute("page", page);
+	     request.setAttribute("actCount", totalNo);
+		request.setAttribute("actRank", actRank);
+		ArrayList<Activity> activityList = adb.getActivity(null,start);
 		request.setAttribute("activityList", activityList);
 		request.getRequestDispatcher("pages/activityList.jsp").forward(request, response);
-	}
+	
+	    
+	 }
 
 
 

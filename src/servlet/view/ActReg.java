@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
-import common.UID;
-import database.AccountDB;
 import database.ActivityDB;
+import database.Point;
 
 /**
  * Servlet implementation class ActRegLink
@@ -34,6 +33,9 @@ public class ActReg extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
+		Point p = new Point();
+		ArrayList<Activity> actRank = p.getRank();
+		request.setAttribute("actRank", actRank);
 		String RegistrationId = common.UID.genRegistrationId();
 		request.setAttribute("registerId",RegistrationId);
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));

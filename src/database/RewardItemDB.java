@@ -7,7 +7,7 @@ import bean.RewardItem;
 public class RewardItemDB extends DBAO{
 	
 	public RewardItemDB(){
-		super();
+		//super();
 	}
 	public ArrayList<RewardItem> getRewardItem(String statement){
 		ArrayList<RewardItem> rewardList = new ArrayList<RewardItem>();

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
 import database.ActivityDB;
+import database.Point;
 
 /**
  * Servlet implementation class ActDelete
@@ -32,7 +33,10 @@ public class ActDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
-		ArrayList<Activity> activityDelete = adb.getActivity(null);
+		Point p = new Point();
+		ArrayList<Activity> actRank = p.getRank();
+		request.setAttribute("actRank", actRank);
+		ArrayList<Activity> activityDelete = adb.getActivity(null, 0);
 		request.setAttribute("activityDelete", activityDelete);
 		request.getRequestDispatcher("pages/activityDelete.jsp").forward(request, response);
 	}
