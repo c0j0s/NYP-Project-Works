@@ -77,12 +77,11 @@
 						<%=act.getActivityTime()%>
 					</p>
 					<p><jsp:include page="parts/likeButtons.jsp">
-							<jsp:param value="activity" name="table" />
+							<jsp:param value="<%=act.getLikeAccounts()%>" name="likeAccounts"/>
+							<jsp:param value="<%=act.getDislikeAccounts()%>" name="dislikeAccounts"/>
 							<jsp:param value="<%=act.getActivityId()%>" name="Id" />
-							<jsp:param value="activityId" name="colName" />
 							<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
-							<jsp:param value="<%=act.getDislikeCount()%>"
-								name="dislikeCount" />
+							<jsp:param value="<%=act.getDislikeCount()%>" name="dislikeCount" />
 						</jsp:include>
 						<span aria-hidden="true">
 							<button class="btn btn-success"

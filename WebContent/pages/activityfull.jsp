@@ -94,12 +94,12 @@
 
 				<div>
 				<jsp:include page="parts/likeButtons.jsp">
-						<jsp:param value="activity" name="table" />
-						<jsp:param value="activityId" name="colName" />
-						<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
-						<jsp:param value="<%=actf.getDislikeCount()%>"
-							name="dislikeCount" />
-					</jsp:include>
+					<jsp:param value="<%=actf.getLikeAccounts()%>" name="likeAccounts"/>
+					<jsp:param value="<%=actf.getDislikeAccounts()%>" name="dislikeAccounts"/>
+					<jsp:param value="<%=actf.getActivityId()%>" name="Id" />
+					<jsp:param value="<%=actf.getLikeCount()%>" name="likeCount" />
+					<jsp:param value="<%=actf.getDislikeCount()%>" name="dislikeCount" />
+				</jsp:include>
 					<%
 						if(session.getAttribute("account")!=null){
 							Account currentUser = (Account) session.getAttribute("account");
