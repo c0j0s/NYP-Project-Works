@@ -22,11 +22,7 @@ public class Account {
 	private int activityParticipatedCount;
 	private int claimCount;
 	private int familyGroupCount;
-	private String familyGroupId;
-	private String groupName;
-	private Date groupCreationDate;
-	private String imgUrl2;
-
+	
 	public String getGivenName() {
 		return givenName;
 	}
@@ -63,7 +59,6 @@ public class Account {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	public int getMobileno() {
 		return mobileno;
 	}
@@ -143,30 +138,7 @@ public class Account {
 	public void setFamilyGroupCount(int familyGroupCount) {
 		this.familyGroupCount = familyGroupCount;
 	}
-	public String getFamilyGroupId() {
-		return familyGroupId;
-	}
-	public void setFamilyGroupId(String familyGroupId) {
-		this.familyGroupId = familyGroupId;
-	}
-	public String getGroupName() {
-		return groupName;
-	}
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
-	public Date getGroupCreationDate() {
-		return groupCreationDate;
-	}
-	public void setGroupCreationDate(Date groupCreationDate) {
-		this.groupCreationDate = groupCreationDate;
-	}
-	public String getImgUrl2() {
-		return imgUrl2;
-	}
-	public void setImgUrl2(String imgUrl2) {
-		this.imgUrl2 = imgUrl2;
-	}
+	
 	/**
 	 *  resources for account
 	 */

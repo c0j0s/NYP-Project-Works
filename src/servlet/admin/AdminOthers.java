@@ -1,6 +1,8 @@
-package servlet.notification;
+package servlet.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,19 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Account;
+import bean.Notification;
+import database.ForumDB;
 import database.NotificationDB;
 
 /**
- * Servlet implementation class setNotificationRead
+ * Servlet implementation class AdminOthers
  */
-@WebServlet("/setNotificationRead")
-public class setNotificationRead extends HttpServlet {
+@WebServlet("/AdminOthers")
+public class AdminOthers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public setNotificationRead() {
+    public AdminOthers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +34,27 @@ public class setNotificationRead extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession ss = request.getSession();
+		HttpSession ss = request.getSession(false);
 		if(ss.getAttribute("account") != null) {
-			String id = request.getParameter("id");
-			NotificationDB ndb = new NotificationDB();
 			Account ac = (Account) ss.getAttribute("account");
-			ndb.setRead(ac.getAccountId(),id);
+			String type = request.getParameter("type");
+			if(type.equals("message")) {
+				NotificationDB ndb = new NotificationDB();
+				Notification no = new Notification();
+				no.setTitle(request.getParameter("title"));
+				no.setMessage(request.getParameter("message"));
+				no.setServiceType("FFL Admin");
+				ArrayList<String> accountIds = ndb.getAllUserAccounts();
+				ndb.sentNotificationToAccounts(accountIds, no);
+				response.getWriter().append("Send message to all users successfully!");
+			}else if(type.equals("category")){
+				ForumDB fdb = new ForumDB();
+				fdb.addCategory(request.getParameter("categoryName"));
+				response.getWriter().append("Add forum category successfully!");
+			}
+		}else {
+			response.getWriter().append("Fail to connect to server.");
 		}
-		request.getRequestDispatcher("getNotificationCount").forward(request, response);
 	}
 
 	/**

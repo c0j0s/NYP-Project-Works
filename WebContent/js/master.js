@@ -13,6 +13,54 @@ $( document ).ready(function() {
 	firebase.initializeApp(config);
     console.log( "ready!" );
 
+    $(function() {
+        $("#main-container").animate(
+            {
+            	top : "-88vh",
+            	opacity:"1"
+            }, 1000, function() {
+            	
+            }
+        );
+    });
+    
+    jQuery(function($) {
+    	function fixDiv() {
+    		var cache = $('.sticky-sidebar');
+    		if($( window ).width() > 990){
+    			if ($(window).scrollTop() > 300)
+    				if($( window ).width() > 1200){
+    					cache.css({
+        					'position': 'fixed',
+        					'width':'255px',
+        					'top':'10px'
+        				});
+    				}else{
+        				cache.css({
+        					'position': 'fixed',
+        					'width':cache.width(),
+        					'top':'10px'
+        				});
+    				}
+    			else
+    				cache.css({
+    					'position': 'relative',
+    					'width':'auto',
+						'top':'auto'
+    				});
+    		}else{
+    			cache.css({
+    				'position': 'relative',
+					'width':'auto',
+					'top':'auto'
+				});
+    		}
+    	}
+    	$(window).scroll(fixDiv);
+    	$(window).resize(fixDiv);
+    	fixDiv();
+    });
+
 	/**
 	 * 
 	 * method for forum post and comment
@@ -280,6 +328,19 @@ $( document ).ready(function() {
 	/**
 	 * methods for activity
 	 */
+	$(".actRank").on('click',function(){
+		$("#aMultiPlatformList").empty();
+		$.ajax({
+			url : "actRankList",
+			success : function(rankingList){
+				var json = JSON.parse(rankingList);
+				console.log(json)
+				for(var i = 0; i< json.length; i++){
+					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
+					$("#aMultiPlatformList").append(list);
+				}}
+		})
+	});
 	$("#generate1,#generate2").on('change', function () {
 		var num1 = $('#generate1').val();
 		var num2 = $('#generate2').html();
@@ -287,9 +348,6 @@ $( document ).ready(function() {
 		   var finaltotal = format2(total, "$");
 		$('#total').val(total);
 		$('#total1').val(finaltotal);
-	
-	    console.log(num1);
-	    console.log(num2);
 	});
 	
 	function format2(n, currency) {
@@ -365,6 +423,7 @@ $( document ).ready(function() {
 			});
 		}
 	},10000);
+	
 
 
 	$("#toogle-allnotification").on("click",function(){
@@ -410,12 +469,9 @@ $( document ).ready(function() {
 		})
 	})
 	
-	function popup(id,message){
-		$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-info" role="alert" data-dismiss="alert">'+message+'</div>')
-		setTimeout(function(){
-			$('.alert.alert-info').alert('close');
-		},5000)
-	}
+	$("#addUser").on("click",function(){
+		var item = '';
+	})
 });
 
 function paytype(type){
@@ -431,4 +487,11 @@ function paytype(type){
 
 	}
 	console.log(type);
+}
+
+function popup(id,message){
+	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
+	setTimeout(function(){
+		$('.alert.alert-warning').alert('close');
+	},5000)
 }

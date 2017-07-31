@@ -93,7 +93,7 @@ public class NotificationDB extends DBAO{
 	 * @param actionText
 	 * @param actionUrl
 	 */
-	public void sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
+	public boolean sendNotification(String title,String message,String serviceType,String accountId,String actionText,String actionUrl) {
 		
 		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId,actionText,actionUrl) values (?,?,?,?,?,?)";
 		try {
@@ -110,16 +110,17 @@ public class NotificationDB extends DBAO{
 				System.out.println("create notification success");
 				ps.close();
 				
-				return;
+				return true;
 			}else {
 				System.out.println("Log notifiaction ps: ("+accountId+")" + ps);
 				ps.close();
 				
-				return;
+				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	/**
@@ -139,7 +140,7 @@ public class NotificationDB extends DBAO{
 	 * @param accountId
 	 * @param id
 	 */
-	public void setRead(String accountId, String id) {
+	public boolean setRead(String accountId, String id) {
 		
 		String stmt = "Update ffl.notification set `read` = 'Y' where notificationId = ? and accountId = ?";
 		try {
@@ -152,16 +153,32 @@ public class NotificationDB extends DBAO{
 				System.out.println("read notification success");
 				ps.close();
 				
-				return;
+				return true;
 			}else {
 				System.out.println("Log notifiaction ps: " + ps);
 				ps.close();
 				
-				return;
+				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
+	}
+
+	public ArrayList<String> getAllUserAccounts() {
+		ArrayList<String> list = new ArrayList<String>();
+		String stmt = "Select accountId from ffl.userinfo where role != 'admin'";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString("accountId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

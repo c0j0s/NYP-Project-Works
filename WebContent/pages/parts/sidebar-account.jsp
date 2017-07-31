@@ -6,7 +6,26 @@
 				<h3 class="panel-title text-center">Login</h3>
 			</div>
 			<div class="panel-body">
-				<form action="">//login panel here</form>
+				<form action="${pageContext.request.contextPath}/LoginServlet?redirect=${url}"
+					method="post" id="login">
+					<div class="form-group">
+					Email:
+					<input type="text" class="form-control" placeholder="email" name="email">
+					</div>
+					<div class="form-group">
+					Password:
+					<input type="password" class="form-control" placeholder="password" name="userPw">
+					</div>
+					<button type="submit" class="btn btn-default">Login</button>
+					<a href="${pageContext.request.contextPath}/ForgetPw">Forget
+						Password</a>
+					<%
+						if (request.getAttribute("message") != null) {
+					%>
+					<%=request.getAttribute("message")%>
+					<%} %>
+
+				</form>
 			</div>
 		</c:when>
 		<c:otherwise>

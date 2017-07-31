@@ -52,7 +52,7 @@ public class signupServlet extends HttpServlet {
 		ac.setAddress(request.getParameter("address"));
 		ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
 		String imgurl = request.getParameter("imgurl");
-		ac.setImgUrl(imgurl);System.out.println(imgurl);
+		ac.setImgUrl(imgurl);
 		String pw = request.getParameter("pw");
 		String cpw = request.getParameter("cpw");
 		if(!pw.equals(cpw)){

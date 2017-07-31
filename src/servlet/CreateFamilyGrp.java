@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.FamilyGrp;
+import common.UID;
+import database.AccountDB;
 
 /**
  * Servlet implementation class CreateFamilyGrp
@@ -35,7 +40,22 @@ public class CreateFamilyGrp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		FamilyGrp fg = new FamilyGrp();
+		
+		fg.setFamilyGroupId(UID.genFamilyGroupId());
+		fg.setGroupName(request.getParameter("famName"));
+		String imgurl = request.getParameter("imgurl");
+		fg.setImgUrl(imgurl);
+		
+		try{
+			AccountDB ac1 = new AccountDB();
+			ac1.createFamGrp(fg);
+			HttpSession mySession = request.getSession(true);
+			mySession.setAttribute("familyGroup", fg);
+			request.getRequestDispatcher("pages/displayFamGrpInfo.jsp").forward(request, response);
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
 	}
-
+	}
 }

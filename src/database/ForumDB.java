@@ -9,11 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.gson.JsonElement;
-
 import bean.Account;
 import bean.Post;
-import bean.Result;
 
 /**
  * @author cjuns

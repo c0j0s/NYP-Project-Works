@@ -145,11 +145,26 @@ public class ActivityDB extends DBAO{
 		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
 		return getActivity(stmt,0);
 	}
-	public String deleteActivity(Activity act){
+	public String deleteActivity(String activityId){
 		String stmt ="update "+ schema +".activity set valid='N' where activityId=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setString(1, act.getActivityId());
+			ps.setString(1, activityId);
+
+			System.out.println(ps);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
+	public String restoreActivity(String activityId){
+		String stmt ="update "+ schema +".activity set valid='Y' where activityId=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, activityId);
 
 			System.out.println(ps);
 			ps.executeUpdate();

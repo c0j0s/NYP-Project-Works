@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
-import common.UID;
-import database.AccountDB;
 import database.ActivityDB;
 import database.Point;
 

@@ -1,28 +1,27 @@
-package servlet;
+package servlet.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Result;
-import database.SearchDB;
+import com.google.gson.Gson;
+
+import database.Point;
 
 /**
- * Servlet implementation class Search
+ * Servlet implementation class AdminActivity
  */
-@WebServlet("/Search")
-public class Search extends HttpServlet {
+@WebServlet("/AdminActivity")
+public class AdminActivity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Search() {
+    public AdminActivity() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +30,10 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyWord = request.getParameter("globalSearch");
-		if (!keyWord.equals("") && keyWord != null) {
-			String searchIn = request.getParameter("searchIn");
-			String servletPath = (searchIn.equals("post")) ? "Post" : "ActFull";
-			SearchDB db = new SearchDB();
-			ArrayList<Result> resultList;
-			if(searchIn.equals("all")) {
-				resultList = db.searchAll(keyWord);
-			}else {
-				resultList = db.searchSpecific(searchIn,keyWord,servletPath);
-			}
-		
-			request.setAttribute("searchIn", searchIn);
-			request.setAttribute("keyWord", keyWord);
-			request.setAttribute("resultList", resultList);
-		}
-		request.getRequestDispatcher("pages/search.jsp").forward(request, response);
+		Point p = new Point();
+		Gson gsonify = new Gson();
+		String json = gsonify.toJson(p.getRankLow());
+		response.getWriter().append(json);
 	}
 
 	/**

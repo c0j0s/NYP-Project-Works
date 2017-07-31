@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Account;
 import bean.Activity;
 import database.ActivityDB;
 
@@ -33,10 +32,10 @@ public class DeleteActivity extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession s = request.getSession(true);
 		ActivityDB actdb = new ActivityDB();
-		Activity act = new Activity();
+		
 	
-		act.setActivityId(request.getParameter("actId"));
-		actdb.deleteActivity(act);
+		String actId =(request.getParameter("actId"));
+		actdb.deleteActivity(actId);
 		response.sendRedirect("ActList");
 	}
 

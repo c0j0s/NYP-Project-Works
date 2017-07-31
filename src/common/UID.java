@@ -39,4 +39,8 @@ public class UID{
 		String id = "REG" + genId();
 		return id;
 	}
+	public static String genFamilyGroupId() {
+		String id = "FAM" + genId();
+		return id;
+	}
 }

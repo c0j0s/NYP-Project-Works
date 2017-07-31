@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
-
 import bean.Account;
 import bean.Post;
 import database.ForumDB;
@@ -37,7 +35,6 @@ public class ForumEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ForumDB fdb = new ForumDB();
-		String type = request.getParameter("type");
 		String mode = request.getParameter("mode");
 		String postId = request.getParameter("postId");
 		String path = "";
