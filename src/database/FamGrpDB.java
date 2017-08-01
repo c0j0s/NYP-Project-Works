@@ -110,7 +110,7 @@ public class FamGrpDB extends DBAO{
 			ResultSet rs = p.executeQuery();
 			while(rs.next()) {
 				FamilyGrp fg = new FamilyGrp();
-				fg.setFamilyGroupId(rs.getString("familyGroupId"));
+				fg.setFamilyGroupId(rs.getString("f.familyGroupId"));
 				fg.setGroupName(rs.getString("groupName"));
 				fg.setGroupCreationDate(rs.getString("groupCreationDate"));
 				fg.setImgUrl(rs.getString("imgUrl"));
