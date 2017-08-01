@@ -490,9 +490,18 @@ function paytype(type){
 	console.log(type);
 }
 
+
 function popup(id,message){
 	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
 	setTimeout(function(){
 		$('.alert.alert-warning').alert('close');
 	},5000)
 }
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        var activeTab = $(e.target).text(); // Get the name of active tab
+        var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
+        $(".active-tab span").html(activeTab);
+        $(".previous-tab span").html(previousTab);
+    });
+});

@@ -7,6 +7,7 @@
 					<br> <small class="page-header-subtitle">Everything
 						about life</small>
 				</a>
+				
 			</h1>
 			<div class="col-sm-5 col-sm-6 input-group pull-left">
 				<form action="${pageContext.request.contextPath}/Search" method="get">
@@ -64,7 +65,12 @@
 				class="col-sm-${param.titleWidth eq null ? '3' : param.titleWidth } pull-left">
 				<a href="${pageContext.request.contextPath}/ActList">${param.title }<br>
 					<small class="page-header-subtitle">${param.subTitle }</small>
+					
 				</a>
+				<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Create Family Group</button>
+							<button class="btn btn-success"
+							onclick="location.href = 'DisplayFamGroup'">Display Family Group</button>
 			</h1>
 			<button onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 		</c:when>

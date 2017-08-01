@@ -5,8 +5,10 @@ import java.util.Date;
 public class FamilyGrp {
 	private String familyGroupId;
 	private String groupName;
-	private Date groupCreationDate;
+	private String groupCreationDate;
 	private String imgUrl;
+	private String grpOwner;
+	private String password;
 
 	public String getFamilyGroupId() {
 		return familyGroupId;
@@ -20,17 +22,29 @@ public class FamilyGrp {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Date getGroupCreationDate() {
+	public String getGroupCreationDate() {
 		return groupCreationDate;
 	}
-	public void setGroupCreationDate(Date groupCreationDate) {
-		this.groupCreationDate = groupCreationDate;
+	public void setGroupCreationDate(String string) {
+		this.groupCreationDate = string;
 	}
 	public String getImgUrl() {
 		return imgUrl;
 	}
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getGrpOwner() {
+		return grpOwner;
+	}
+	public void setGrpOwner(String grpOwner) {
+		this.grpOwner = grpOwner;
 	}
 
 }

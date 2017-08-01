@@ -110,16 +110,6 @@ public class AccountDB extends DBAO{
 			throw new Exception("Error:"+ex.getMessage());
 		}
 	}
-	public void createFamGrp(FamilyGrp fg) throws Exception{
-		try{
-			String insertStatement = "Insert into ffl.familygroups (groupName, familyGroupId, imgUrl) + values(?,?,?)";
-			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
-			prepStmt.setString(1, fg.getGroupName());
-			prepStmt.setString(2, fg.getFamilyGroupId());
-			prepStmt.setString(3, fg.getImgUrl());System.out.println(fg);
-		}catch(Exception ex){
-			throw new Exception("Error:"+ex.getMessage());
-		}
-	}
+	
 	
 }

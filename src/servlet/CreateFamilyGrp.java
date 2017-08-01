@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import bean.FamilyGrp;
 import common.UID;
 import database.AccountDB;
+import database.DBAO;
+import database.FamGrpDB;
 
 /**
  * Servlet implementation class CreateFamilyGrp
@@ -31,31 +33,31 @@ public class CreateFamilyGrp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		try{
+			HttpSession s = request.getSession(true);
+			FamGrpDB fgdb = new FamGrpDB();
+			FamilyGrp fg = new FamilyGrp();
+		
+		fg.setFamilyGroupId(UID.genFamilyGroupId());
+		fg.setGroupName(request.getParameter("grpName"));
+		fg.setImgUrl(request.getParameter("imgurl"));
+		fg.setGrpOwner(request.getParameter("owner"));
+		fg.setGroupCreationDate(DBAO.getDateTime());
+		fg.setPassword(request.getParameter("password"));
+		fgdb.createFamGrp(fg);
+			
+			
+			request.getRequestDispatcher("pages/displayFamGrpInfo.jsp").forward(request, response);
+		}catch(Exception ex){
+			System.out.println(ex.getMessage());
+	}}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		FamilyGrp fg = new FamilyGrp();
+		doGet(request, response);
 		
-		fg.setFamilyGroupId(UID.genFamilyGroupId());
-		fg.setGroupName(request.getParameter("famName"));
-		String imgurl = request.getParameter("imgurl");
-		fg.setImgUrl(imgurl);
-		
-		try{
-			AccountDB ac1 = new AccountDB();
-			ac1.createFamGrp(fg);
-			HttpSession mySession = request.getSession(true);
-			mySession.setAttribute("familyGroup", fg);
-			request.getRequestDispatcher("pages/displayFamGrpInfo.jsp").forward(request, response);
-		}catch(Exception ex){
-			System.out.println(ex.getMessage());
-	}
 	}
 }
