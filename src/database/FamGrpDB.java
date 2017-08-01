@@ -45,5 +45,30 @@ public class FamGrpDB extends DBAO{
 		}
 		return famGrpList;
 	}
+	public ArrayList<FamilyGrp> getFamGrpAccurate(String username,String password){
+		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
+		try {
+			String stmt ="select * from ffl.familygroups where familyGroupId = ? and password = ?;";
+			PreparedStatement p = con.prepareStatement(stmt);
+			p.setString(1, username);
+			p.setString(2, password);
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				FamilyGrp fg = new FamilyGrp();
+				fg.setFamilyGroupId(rs.getString("familyGroupId"));
+				fg.setGroupName(rs.getString("groupName"));
+				fg.setGroupCreationDate(rs.getString("groupCreationDate"));
+				fg.setImgUrl(rs.getString("imgUrl"));
+				fg.setPassword(rs.getString("password"));
+				fg.setGrpOwner(rs.getString("grpOwner"));
+				famGrpList.add(fg);
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return famGrpList;
+
+	}
 
 }

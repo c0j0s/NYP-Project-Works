@@ -325,6 +325,7 @@ $( document ).ready(function() {
 	 * methods for activity
 	 */
 	$(".actRank").on('click',function(){
+		console.log('click')
 		$("#aMultiPlatformList").empty();
 		$.ajax({
 			url : "actRankList",
@@ -333,6 +334,7 @@ $( document ).ready(function() {
 				for(var i = 0; i< json.length; i++){
 					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
 					$("#aMultiPlatformList").append(list);
+					console.log(json[i])
 				}}
 		})
 	});

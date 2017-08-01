@@ -1,4 +1,4 @@
-package servlet.view;
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import bean.FamilyGrp;
 import database.FamGrpDB;
 
 /**
- * Servlet implementation class FamilyGroup
+ * Servlet implementation class JoinFamilyGroup
  */
-@WebServlet("/DisplayFamGroup")
-public class DisplayFamGroup extends HttpServlet {
+@WebServlet("/JoinFamilyGroup")
+public class JoinFamilyGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayFamGroup() {
+    public JoinFamilyGroup() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +32,17 @@ public class DisplayFamGroup extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ArrayList<FamilyGrp> aFgrp = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
-			request.setAttribute("fGroup", aFgrp);
-			System.out.println("log s:"+ aFgrp.size());
-			request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+			FamGrpDB fgdb = new FamGrpDB();
+			String grpId = request.getParameter("grpId");
+			String grpPassword = request.getParameter("grpPassword");
+			ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpAccurate(grpId,grpPassword);
+			System.out.println("log a:"+ fGrp.size());
+			request.setAttribute("fGroup", fGrp);
+			request.getRequestDispatcher("DisplayFamGroup").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
+
 	}
 
 	/**

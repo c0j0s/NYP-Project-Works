@@ -47,7 +47,7 @@ public class CreateFamilyGrp extends HttpServlet {
 		fgdb.createFamGrp(fg);
 			
 			
-			request.getRequestDispatcher("pages/displayFamGrpInfo.jsp").forward(request, response);
+			request.getRequestDispatcher("CreateFamGroup").forward(request, response);
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
 	}}
