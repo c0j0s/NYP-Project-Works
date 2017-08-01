@@ -49,7 +49,7 @@
 	  			<p>
 	  				//desc
 	  			</p>
-	  			<button onclick='location.href="Signup"' class="btn btn-success">Sign up now!</button>
+	  			<button onclick='location.href="${pageContext.request.contextPath}/Signup"' class="btn btn-success">Sign up now!</button>
 	  		</div>
   		</div>
 </div>
