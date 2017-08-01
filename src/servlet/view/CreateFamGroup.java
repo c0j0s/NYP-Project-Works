@@ -1,11 +1,16 @@
 package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.FamilyGrp;
+import database.FamGrpDB;
 
 /**
  * Servlet implementation class CreateFamGroup
@@ -26,7 +31,10 @@ public class CreateFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		FamGrpDB fgdb= new FamGrpDB();
+		ArrayList<FamilyGrp> fGrp = fgdb.viewFamGrp();
+		request.setAttribute("fGroup", fGrp);
+		
 		request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
 	}
 

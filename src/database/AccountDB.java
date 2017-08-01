@@ -110,16 +110,5 @@ public class AccountDB extends DBAO{
 			ex.printStackTrace();
 		}
 	}
-	public void createFamGrp(FamilyGrp fg){
-		try{
-			String insertStatement = "Insert into ffl.familygroups (groupName, familyGroupId, imgUrl) + values(?,?,?)";
-			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
-			prepStmt.setString(1, fg.getGroupName());
-			prepStmt.setString(2, fg.getFamilyGroupId());
-			prepStmt.setString(3, fg.getImgUrl());System.out.println(fg);
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-	}
 	
 }

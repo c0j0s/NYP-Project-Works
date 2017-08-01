@@ -110,7 +110,7 @@
 				</jsp:include>
 			</div>
 			<div class="col-md-12 col-sm-4">
-				<ul class="list-group">
+				<ul class="list-group" id="aMultiPlatformList">
 					<h4>Activity Popularity Ranking</h4>
 					<%
 						int z = 0;

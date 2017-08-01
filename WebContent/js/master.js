@@ -325,6 +325,7 @@ $( document ).ready(function() {
 	 * methods for activity
 	 */
 	$(".actRank").on('click',function(){
+		console.log('click')
 		$("#aMultiPlatformList").empty();
 		$.ajax({
 			url : "actRankList",
@@ -333,6 +334,7 @@ $( document ).ready(function() {
 				for(var i = 0; i< json.length; i++){
 					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
 					$("#aMultiPlatformList").append(list);
+					console.log(json[i])
 				}}
 		})
 	});
@@ -482,9 +484,18 @@ function paytype(type){
 	}
 }
 
+
 function popup(id,message){
 	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
 	setTimeout(function(){
 		$('.alert.alert-warning').alert('close');
 	},5000)
 }
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        var activeTab = $(e.target).text(); // Get the name of active tab
+        var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
+        $(".active-tab span").html(activeTab);
+        $(".previous-tab span").html(previousTab);
+    });
+});
