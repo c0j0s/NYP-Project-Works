@@ -345,3 +345,6 @@ footer{
 .login-main-container{
 	min-height:46vh;
 }
+.loading{
+	cursor:progress;
+}

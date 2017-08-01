@@ -18,8 +18,6 @@
 				<div class="btn-toolbar" role="toolbar" aria-label="...">
 					<div class="btn-group" role="group" aria-label="...">
 						<jsp:include page="likeButtons.jsp">
-							<jsp:param value="${post.likeAccounts }" name="likeAccounts"/>
-							<jsp:param value="${post.dislikeAccounts }" name="dislikeAccounts"/>
 							<jsp:param value="${post.postId }" name="Id"/>
 							<jsp:param value="${post.likeCount}" name="likeCount"/>
 							<jsp:param value="${post.dislikeCount}" name="dislikeCount"/>
