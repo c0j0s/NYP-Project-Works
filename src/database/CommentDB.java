@@ -118,7 +118,6 @@ public class CommentDB extends DBAO{
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
 		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
-		System.out.println(stmt);
 		return getComment(stmt);
 	}
 	
@@ -152,7 +151,6 @@ public class CommentDB extends DBAO{
 		try {
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, itemId);
-			System.out.println(ps);
 			int status = ps.executeUpdate();
 			
 			if(status != 0) {

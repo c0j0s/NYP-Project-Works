@@ -10,17 +10,14 @@ public class DBAO {
 	protected static Connection con;
 	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
-	final private String lurl = "jdbc:mysql://25.53.148.109:3306/ffl";
+	final private String lurl = "jdbc:log4jdbc:mysql://25.53.148.109:3306/ffl";
 
-	
-	/**
-	 * Default constructor
-	 * init connection to database
-	 */
 	public DBAO(){
 		try {
 			if(con == null || con.isClosed()) {
 				openConnection();
+			}else {
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -36,8 +33,10 @@ public class DBAO {
 
 	public void openConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("net.sf.log4jdbc.DriverSpy");
 			con = DriverManager.getConnection(lurl,"root","password");
+			con = new net.sf.log4jdbc.ConnectionSpy(con); 
 			System.out.println("Open Connection: " + connectionCount);
 			connectionCount++;
 		} catch (Exception e) {

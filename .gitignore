@@ -4,3 +4,4 @@
 src/common/test.java
 *.classpath
 /bin/
+/target/
