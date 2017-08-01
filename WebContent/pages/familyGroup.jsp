@@ -80,7 +80,7 @@
 						<%if (imgUrl.equals(null)){ %><img 
 								src="${pageContext.request.contextPath}/img/def.png"
 								 class="profile-image-largest text-center"><%}else{ %>
-						<img src="<%=fg.getImgUrl()%>" ><%} %>
+						<img class="profile-image-largest text-center" src="<%=fg.getImgUrl()%>" ><%} %>
 							
 						</div>
 						<%
