@@ -27,9 +27,11 @@
 		<jsp:param value="Admin Panel" name="title"/>
 	</jsp:include>
 	<!-- 	header -->
-	<jsp:include page="admin-sidebar.jsp">
-		<jsp:param value="admin" name="type"/>
-	</jsp:include>
+	<div class="col-md-3 col-xs-12">
+		<jsp:include page="admin-sidebar.jsp">
+			<jsp:param value="admin" name="type"/>
+		</jsp:include>
+	</div>
 	<!-- 	sidebar -->
 	<div class="col-md-8 col-sm-12">
 		  <ul class="nav nav-tabs" role="tablist">
@@ -39,7 +41,7 @@
 		    <li role="presentation" class="${tab eq 'Others' ? 'active' : '' }"><a href="#Others" aria-controls="Others" role="tab" data-toggle="tab">Others</a></li>
 		  </ul>
 		
-		  <div class="tab-content">
+		  <div class="tab-content" style="min-height:50vh">
 		    <div role="tabpanel" class="tab-pane ${tab eq 'Forum' ? 'active' : '' }" id="Forum">
 		    	<jsp:include page="admin-forum.jsp"></jsp:include>
 		    </div>
