@@ -95,15 +95,8 @@ public class CommentDB extends DBAO{
 				
 				com.setLikeCount(rs.getInt("likeCount"));
 				com.setDislikeCount(rs.getInt("dislikeCount"));	
-				com.setCommentCount(rs.getInt("commentCount"));
-				
-				com.setHideId(rs.getString("hideId").charAt(0));
-				
-				MetaValueDB mdb = new MetaValueDB();
-				com.setLikeAccounts(mdb.getMetaAccounts("comments","commentId",com.getCommentId(),"like"));
-				com.setDislikeAccounts(mdb.getMetaAccounts("comments","commentId",com.getCommentId(),"dislike"));
-				com.setCommentComList(getCommentByCommentId(com.getCommentId(),0,5));
-				
+				com.setCommentCount(rs.getInt("commentCount"));			
+				com.setHideId(rs.getString("hideId").charAt(0));				
 				commentList.add(com);
 			}
 			rs.close();

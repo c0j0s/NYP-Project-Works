@@ -52,8 +52,6 @@ a.white{
 
 
 footer{
-	padding-top:15px;
-	margin-top:15px;
 	clear:both;
 }
 .footer-info{
@@ -157,7 +155,7 @@ footer{
 	padding-top:5px;
 }
 .card-box:hover .thumbnail{
-	box-shadow: 0 0 30px 0px #353535;
+	box-shadow: 0 0 30px -5px #5f5f5f;
 	transition:box-shadow 0.5s;
 }
 .thumbnail > img, .thumbnail a > img {
@@ -346,4 +344,7 @@ footer{
 */
 .login-main-container{
 	min-height:46vh;
+}
+.loading{
+	cursor:progress;
 }

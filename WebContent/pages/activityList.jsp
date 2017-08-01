@@ -71,10 +71,6 @@
 						</p>
 						<p>
 							<jsp:include page="parts/likeButtons.jsp">
-								<jsp:param value="<%=act.getLikeAccounts()%>"
-									name="likeAccounts" />
-								<jsp:param value="<%=act.getDislikeAccounts()%>"
-									name="dislikeAccounts" />
 								<jsp:param value="<%=act.getActivityId()%>" name="Id" />
 								<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
 								<jsp:param value="<%=act.getDislikeCount()%>"

@@ -192,6 +192,26 @@ $( document ).ready(function() {
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */
+	$(".meta-like-btn").each(function(){
+		var item = $(this);
+		var value = item.data()
+		$.ajax({
+			url: "CheckUserLiked",
+			data:value,
+			success:function(results){
+				if(results === 'like'){
+					item.removeAttr("disabled");
+				}else if(results === 'dislike'){
+					item.next().removeAttr("disabled");
+				}else if(results === 'nil'){
+					item.removeAttr("disabled");
+					item.next().removeAttr("disabled");
+				}
+				item.removeClass("loading");
+				item.next().removeClass("loading");
+			}
+		})
+	})
 	
 	$(".meta-like-btn").on('click',function(){
 		var mdata = $(this).data();
@@ -247,6 +267,24 @@ $( document ).ready(function() {
 
 	})
 	
+	if($("#follow-post").length){
+		$("#follow-post").ready(function(){
+			var item = $("#follow-post")
+			var value = item.data()
+			$.ajax({
+				url: "CheckUserFollowedPost",
+				data:value,
+				success:function(results){
+					if(results === 'true'){
+						item.addClass("hide")
+						item.prev().removeClass("hide")
+					}
+					item.removeAttr("disabled")
+					item.prev().removeAttr("disabled")
+				}
+			})
+		})
+	}
 	$("#follow-post").on("click", function(){
 		var btn = $(this);
 		$.ajax({
@@ -325,18 +363,18 @@ $( document ).ready(function() {
 	 * methods for activity
 	 */
 	$(".actRank").on('click',function(){
-		console.log('click')
-		$("#aMultiPlatformList").empty();
-		$.ajax({
-			url : "actRankList",
-			success : function(rankingList){
-				var json = JSON.parse(rankingList);
-				for(var i = 0; i< json.length; i++){
-					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
-					$("#aMultiPlatformList").append(list);
-					console.log(json[i])
-				}}
-		})
+		if($("#aMultiPlatformList").length){
+			$("#aMultiPlatformList").empty();
+			$.ajax({
+				url : "actRankList",
+				success : function(rankingList){
+					var json = JSON.parse(rankingList);
+					for(var i = 0; i< json.length; i++){
+						var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
+						$("#aMultiPlatformList").append(list);
+					}}
+			})
+		}
 	});
 	$("#generate1,#generate2").on('change', function () {
 		var num1 = $('#generate1').val();

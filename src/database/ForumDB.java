@@ -106,11 +106,7 @@ public class ForumDB extends DBAO{
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
-				MetaValueDB mdb = new MetaValueDB();
-				post.setFollowerAccounts(mdb.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
-				post.setLikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"like"));
-				post.setDislikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
-				
+	
 				post.setBestAnswer(rs.getString("bestAnswer"));
 				
 				ResultSetMetaData rsmd = rs.getMetaData();		

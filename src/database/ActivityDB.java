@@ -47,11 +47,6 @@ public class ActivityDB extends DBAO{
 				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));	
 				act.setOrganiserId(rs.getString("accountId"));
 				
-				//get list of account whom like or dislike the activity
-				MetaValueDB mdb = new MetaValueDB();
-				act.setLikeAccounts(mdb.getMetaAccounts("activity","activityId",act.getActivityId(),"like"));
-				act.setDislikeAccounts(mdb.getMetaAccounts("activity","activityId",act.getActivityId(),"dislike"));
-				
 				activityList.add(act);
 		
 			}

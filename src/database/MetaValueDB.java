@@ -105,4 +105,53 @@ public class MetaValueDB extends DBAO{
 		return list;
 	}
 
+	/**
+	 * check if the user like the item before
+	 * @param itemId
+	 * @param accountId
+	 * @return String action
+	 */
+	public String checkLiked(String itemId, String accountId) {
+		String stmt = "Select * from ffl.metavalue where parentId = ? and accountId = ? and action != 'follow'";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, itemId);
+			ps.setString(2, accountId);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getString("action");
+			}else {
+				return "nil";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "nil";
+	}
+	
+	/**
+	 * check if the user follow post before
+	 * @param itemId
+	 * @param accountId
+	 * @return boolean
+	 */
+	public boolean checkFollowed(String itemId, String accountId) {
+		String stmt = "Select * from ffl.metavalue where parentId = ? and accountId = ? and action = 'follow'";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, itemId);
+			ps.setString(2, accountId);
+			ResultSet rs = ps.executeQuery();
+			System.out.println(ps);
+			if(rs.next()) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

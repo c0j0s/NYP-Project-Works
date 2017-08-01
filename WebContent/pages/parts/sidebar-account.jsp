@@ -65,7 +65,7 @@
 				</c:when>
 				<c:when test="${param.type eq 'admin' ? true : false}">
 					<div class="panel-body">
-						<span class="label label-info">Admin</span>
+						<span class="label label-info">Role: Admin</span>
 					</div>
 				</c:when>
 				<c:when test="${param.type eq 'activity' ? true : false}">
