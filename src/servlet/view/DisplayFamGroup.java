@@ -35,7 +35,7 @@ public class DisplayFamGroup extends HttpServlet {
 			ArrayList<FamilyGrp> aFgrp = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
 			request.setAttribute("fGroup", aFgrp);
 			System.out.println("log s:"+ aFgrp.size());
-			request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+			request.getRequestDispatcher("pages/familyGroup.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

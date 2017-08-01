@@ -35,7 +35,8 @@ public class JoinFamilyGroup extends HttpServlet {
 			FamGrpDB fgdb = new FamGrpDB();
 			String grpId = request.getParameter("grpId");
 			String grpPassword = request.getParameter("grpPassword");
-			ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpAccurate(grpId,grpPassword);
+			String userId = request.getParameter("user");
+			ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpAccurate(grpId,grpPassword,userId);
 			System.out.println("log a:"+ fGrp.size());
 			request.setAttribute("fGroup", fGrp);
 			request.getRequestDispatcher("DisplayFamGroup").forward(request, response);

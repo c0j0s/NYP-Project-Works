@@ -114,7 +114,7 @@
 
 					<h3>Join Family Group</h3>
 					<form action="${pageContext.request.contextPath}/JoinFamilyGroup" method="post">
-					<input type="hidden" value="${user.accountId}" name="owner">
+					<input type="hidden" value="${user.accountId}" name="user">
 					<p>
 						Group Id: <input type="text" name="grpId">
 					</p>
