@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Activity;
 import database.ActivityDB;
 
 /**
  * Servlet implementation class DeleteActivity
  */
+@SuppressWarnings("unused")
 @WebServlet("/DeleteActivity")
 public class DeleteActivity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,15 +30,14 @@ public class DeleteActivity extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession s = request.getSession(true);
 		ActivityDB actdb = new ActivityDB();
-		
 		String check = request.getParameter("action");
 		String actId =(request.getParameter("actId"));
+		
 		if (check.equalsIgnoreCase("Invalid")) {
 		actdb.deleteActivity(actId);
-		response.getWriter().append("N");}
-		else {
+		response.getWriter().append("N");
+		} else {
 			actdb.restoreActivity(actId);
 			response.getWriter().append("Y");
 		}

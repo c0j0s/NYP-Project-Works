@@ -37,11 +37,11 @@
 			<c:choose>
 				<c:when test="${param.type eq 'forum' ? true : false}">
 					<div class="panel-body">
-						<ul class="list-group">
+						<div class="list-group">
 							<a class="list-group-item">Best Answer <span class="badge badge-info">${user.bestAnswerCount }</span></a>
 							<a class="list-group-item">Questions Post <span class="badge badge-info">${user.postsCounts }</span></a>
 							<a class="list-group-item">Questions Answered <span class="badge badge-info">${user.commentCounts }</span></a>
-						</ul>
+						</div>
 						<button type="button" class="btn btn-success btn-block"
 							onclick="location.href='${pageContext.request.contextPath}/ForumEdit?type=post&mode=create'">Ask
 							Something</button>

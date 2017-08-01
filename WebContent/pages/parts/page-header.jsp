@@ -16,8 +16,8 @@
 						<input type="text" class="form-control" name="globalSearch" placeholder="Search"> 
 						<span class="input-group-btn">
 						<button class="btn btn-default" type="button" onclick="form.submit()">Go!</button>
+						</span>
 					</div>
-					</span>
 				</form>
 			</div>
 		</c:when>
@@ -26,38 +26,27 @@
 				<h1>
 					<a href="${pageContext.request.contextPath}/ActList"
 						class="col-md-6">Activities For Families </a>
-					<div class="col-md-1"></div>
-							<%
-						if(session.getAttribute("account")!=null){
-						
-					%>
-					
-					<button onclick="location.href = 'CreateAct'"
-						class="btn btn-primary col-md-2 ">Create
-						Activity</button>
-						<div class="col-md-1"></div>
-						<%} %>
 				</h1>
+				<%if(session.getAttribute("account")!=null){%>
+					<button onclick="location.href = 'CreateAct'"
+					class="btn btn-primary col-md-2 pull-right">Create
+					Activity</button>
+				<%} %>
 			</div>
 		</c:when>
 		<c:when test="${param.type eq 'activityfull' ? true : false}">
 			<div>
-				<h1>
-					<a href="${pageContext.request.contextPath}/ActList"
-						class="col-md-6">Activities For Families </a>
-					<div class="col-md-1"></div>
-					<button
-						onclick="location.href = '${pageContext.request.contextPath}/ActList'"
-						class="btn btn-primary col-md-2">View Activity List</button>
-					<div class="col-md-1"></div>
-					<%
-						if(session.getAttribute("account")!=null){
-						
-					%><button
-						onclick="location.href = '${pageContext.request.contextPath}/CreateAct'"
-						class="btn btn-primary col-md-2 pull-right">Create
-						Activity</button><%} %>
+				<h1 class="col-md-6">
+					<a href="${pageContext.request.contextPath}/ActList" >Activities For Families </a>
 				</h1>
+				<div class="col-md-4 pull-right">
+					<button onclick="location.href = '${pageContext.request.contextPath}/ActList'"
+						class="btn btn-primary">View Activity List</button>
+					<% if(session.getAttribute("account")!=null){%>
+					<button onclick="location.href = '${pageContext.request.contextPath}/CreateAct'"
+						class="btn btn-primary">Create Activity</button>
+					<%} %>
+				</div>
 			</div>
 		</c:when>
 		<c:when test="${param.title == 'Redemption'? true:false}">

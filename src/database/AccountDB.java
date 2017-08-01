@@ -50,7 +50,7 @@ public class AccountDB extends DBAO{
 		}
 		return ac;
 	}
-	public void regMember(Account ac, String pw) throws Exception{
+	public void regMember(Account ac, String pw){
 		try{
 			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
 			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?,?)";
@@ -73,10 +73,10 @@ public class AccountDB extends DBAO{
 			
 		}catch (Exception ex)
 		{
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	public void updateMember(Account ac) throws Exception{
+	public void updateMember(Account ac){
 		try{
 			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
 					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
@@ -92,24 +92,23 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(9, ac.getImgUrl());
 			prepStmt.setString(10, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
-			
+			if(status != 0) {
+				System.out.println("update successful");
+			}
 			
 		}catch(Exception ex){
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	public void resetPw(String pw, String email) throws Exception{
+	public void resetPw(String pw, String email){
 		try{
 			String updateStatement = "update ffl.user set password = ? where email = ?";
 			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
 			prepStmt.setString(1, pw);
 			prepStmt.setString(2, email);
-			
-			
 		}catch(Exception ex){
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	
 	
 }

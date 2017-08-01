@@ -40,25 +40,20 @@ public class ActivityDB extends DBAO{
 				act.setActivityTime(rs.getString("activityTime"));
 				act.setValid(rs.getString("valid").charAt(0));
 				act.setActivityDay(rs.getString("activityDays"));
-
-				act.setAccountId(rs.getString("accountId"));
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
 				act.setCommentCount(rs.getString("postCount"));
-
 				act.setAccountName(rs.getString("givenName"));
-				act.setAccountId(rs.getString("accountId")); 
-				act.setLikeCount(rs.getInt("likeCount"));
-				act.setDislikeCount(rs.getInt("dislikeCount"));
-				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));
-				//act.setCommentCount(rs.getString("commentCount")); you dun have this in your view yet
-
-				System.out.println(rs.getString("imgUrl"));
-				act.setImgUrl(rs.getString("imgUrl"));
+				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));	
 				act.setOrganiserId(rs.getString("accountId"));
-				System.out.println("record retrieve");
+				
+				//get list of account whom like or dislike the activity
+				MetaValueDB mdb = new MetaValueDB();
+				act.setLikeAccounts(mdb.getMetaAccounts("activity","activityId",act.getActivityId(),"like"));
+				act.setDislikeAccounts(mdb.getMetaAccounts("activity","activityId",act.getActivityId(),"dislike"));
+				
 				activityList.add(act);
-				System.out.println(act);		
+		
 			}
 			
 			

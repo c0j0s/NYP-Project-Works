@@ -1,29 +1,4 @@
 <footer>
-<!-- 	<div class="container footer-info"> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			<dl> -->
-<!-- 			  <dt>Quick Links</dt> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			</dl> -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			links -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			social media -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			<address> -->
-<!-- 			  <strong>NYP</strong><br> -->
-<!-- 			  address<br> -->
-<!-- 			  singapore, 000000<br> -->
-<!-- 			  <abbr title="Phone">P:</abbr> (65) 0000-0000<br> -->
-<!-- 			  <abbr title="Email">E:</abbr> mail@mail.com<br> -->
-<!-- 			</address> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 	<div class="container-fluid footer-info">
 		<div class="container">
 			<div class='col-md-8'>
