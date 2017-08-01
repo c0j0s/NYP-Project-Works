@@ -19,6 +19,7 @@ public class FamGrpDB extends DBAO{
 			prepStmt.setString(5, fg.getPassword() );
 			prepStmt.setString(6, fg.getGrpOwner());
 			prepStmt.executeUpdate();
+			addMember(fg.getFamilyGroupId(),fg.getGrpOwner());
 		}catch(Exception ex){
 			throw new Exception("Error:"+ex.getMessage());
 		}
@@ -70,5 +71,67 @@ public class FamGrpDB extends DBAO{
 		return famGrpList;
 
 	}
+	public ArrayList<FamilyGrp> getFamGrpByUserId(String userId){
+		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
+		try {
+			String stmt ="select * from ffl.familygroups f inner join ffl.userfamilygroup u on u.FamilyGroupfamilyGroupId = f.familyGroupId where UseraccountId = ?;";
+			PreparedStatement p = con.prepareStatement(stmt);
+			p.setString(1, userId);
+	
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				FamilyGrp fg = new FamilyGrp();
+				fg.setFamilyGroupId(rs.getString("familyGroupId"));
+				fg.setGroupName(rs.getString("groupName"));
+				fg.setGroupCreationDate(rs.getString("groupCreationDate"));
+				fg.setImgUrl(rs.getString("imgUrl"));
+				fg.setPassword(rs.getString("password"));
+				fg.setGrpOwner(rs.getString("grpOwner"));
+				famGrpList.add(fg);
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return famGrpList;
+
+	}
+	public ArrayList<FamilyGrp> findMembers(String grpId){
+		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
+		try {
+			String stmt ="select * from ffl.familygroups f inner join ffl.userfamilygroup u on u.FamilyGroupfamilyGroupId = f.familyGroupId where f.familyGroupId = ?;";
+			PreparedStatement p = con.prepareStatement(stmt);
+			p.setString(1, grpId);
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				FamilyGrp fg = new FamilyGrp();
+				fg.setFamilyGroupId(rs.getString("familyGroupId"));
+				fg.setGroupName(rs.getString("groupName"));
+				fg.setGroupCreationDate(rs.getString("groupCreationDate"));
+				fg.setImgUrl(rs.getString("imgUrl"));
+				fg.setPassword(rs.getString("password"));
+				fg.setGrpOwner(rs.getString("grpOwner"));
+				fg.setGrpMember(rs.getString("userAccountId"));
+				famGrpList.add(fg);
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return famGrpList;
+
+	}
+	public void addMember(String memberId,String grpId) throws Exception{
+		try{
+			String insertStatement = "Insert into ffl.userFamilygroup (UseraccountId,FamilyGroupfamilyGroupId) values(?,?)";
+			PreparedStatement prepStmt = con.prepareStatement(insertStatement);
+			prepStmt.setString(1, memberId);
+			prepStmt.setString(2, grpId );
+			prepStmt.executeUpdate();
+		}catch(Exception ex){
+			throw new Exception("Error:"+ex.getMessage());
+		}
+	}
+	
 
 }

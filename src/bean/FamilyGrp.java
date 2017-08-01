@@ -9,6 +9,7 @@ public class FamilyGrp {
 	private String imgUrl;
 	private String grpOwner;
 	private String password;
+	private String grpMember;
 
 	public String getFamilyGroupId() {
 		return familyGroupId;
@@ -45,6 +46,12 @@ public class FamilyGrp {
 	}
 	public void setGrpOwner(String grpOwner) {
 		this.grpOwner = grpOwner;
+	}
+	public String getGrpMember() {
+		return grpMember;
+	}
+	public void setGrpMember(String grpMember) {
+		this.grpMember = grpMember;
 	}
 
 }
