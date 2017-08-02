@@ -47,7 +47,7 @@ public class Forum extends HttpServlet {
 		
 		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 10;
 		
-		ArrayList<Post> postList = fdb.getPost(start, category);
+		ArrayList<Post> postList = fdb.getPostSimpleList(start, category);
 		ArrayList<Post> trendingPost = fdb.getTrendingPost();
 		//ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
 		Collection<String> categoryList = fdb.getCategoryList().values();

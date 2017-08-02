@@ -125,6 +125,43 @@ public class ForumDB extends DBAO{
 	}	
 	
 	/**
+	 * To retrieve all post from database for simple list | performance testing
+	 * @param statement
+	 * @return ArrayList<Post>
+	 */
+	public ArrayList<Post> getPostSimpleList(int start,String category){
+		ArrayList<Post> postList = new ArrayList<Post>();
+		try {
+			String statement = "SELECT postId,postTitle,givenName,imgUrl,UseraccountId,postDate,points,likeCount,dislikeCount,commentCount,valid,hideId"
+					+ " FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setFetchSize(1000);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Post post = new Post();
+				post.setPostId(rs.getString("postId"));
+				post.setPostTitle(rs.getString("postTitle"));
+				post.setAccountName(rs.getString("givenName"));
+				post.setAccountImgUrl(rs.getString("imgUrl"));
+				post.setAccountId(rs.getString("UseraccountId"));
+				post.setDate(rs.getString("postDate"));
+				post.setPoints(rs.getInt("points"));
+				post.setLikeCount(rs.getInt("likeCount"));
+				post.setDislikeCount(rs.getInt("dislikeCount"));
+				post.setCommentCount(rs.getInt("commentCount"));
+				post.setValid(rs.getString("valid").charAt(0));
+				post.setHideId(rs.getString("hideId").charAt(0));
+				postList.add(post);
+			}
+			rs.close();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return postList;
+	}
+	
+	/**
 	 * retrieve post by category
 	 * @param start 
 	 * @param limit 
@@ -193,7 +230,7 @@ public class ForumDB extends DBAO{
 	public ArrayList<Account> getTopAnswerer(){
 		ArrayList<Account> list = new ArrayList<Account>();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT *,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
+			PreparedStatement ps = con.prepareStatement("SELECT imgUrl,givenName,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Account ac = new Account();
