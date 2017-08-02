@@ -165,7 +165,7 @@ public class FamGrpDB extends DBAO{
 	public ArrayList<FamilyGrp> findGrpMembers(String grpId){
 		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
 		try {
-			String stmt ="select * from ffl.userfamilygroup ufg inner join ffl.user u on ufg.UserAccountId = u.accountId where FamilyGroupfamilyGroupId = ? and ufg.valid = 'Y';";
+			String stmt ="select * from ffl.userfamilygroup ufg inner join ffl.user u on ufg.UserAccountId = u.accountId inner join ffl.familygroups fg on fg.familyGroupId = ufg.FamilyGroupfamilyGroupId where FamilyGroupfamilyGroupId = ? and ufg.valid = 'Y';";
 			PreparedStatement p = con.prepareStatement(stmt);
 			p.setString(1, grpId);
 			ResultSet rs = p.executeQuery();
@@ -174,6 +174,7 @@ public class FamGrpDB extends DBAO{
 				fg.setFamilyGroupId(rs.getString("ufg.FamilyGroupfamilyGroupId"));
 				fg.setAccountId(rs.getString("ufg.UseraccountId"));
 				fg.setGivenName(rs.getString("givenName"));
+				fg.setGrpOwner(rs.getString("grpOwner"));
 				famGrpList.add(fg);
 			}
 
@@ -210,7 +211,7 @@ public class FamGrpDB extends DBAO{
 	}
 	public void deleteMember(String grpId , String memberId) {
 		try {
-			String stmt ="update ffl.userfamilygroups set valid ='N' where FamilyGroupfamilyGroupId = ? and UseraccountId = ?";
+			String stmt ="update ffl.userfamilygroup set valid ='N' where FamilyGroupfamilyGroupId = ? and UseraccountId = ?";
 			PreparedStatement p = con.prepareStatement(stmt);
 			p.setString(1, grpId);
 			p.setString(2, memberId);

@@ -52,7 +52,7 @@
 						<p>Mobile No.:${user.mobileno}</p>
 					</div>
 
-				</div>
+				</div></div>
 				<button type="submit" class="btn btn-default"
 					onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
 					Profile</button>
@@ -127,8 +127,7 @@
 						<p>
 							Password: <input type="password" name="grpPassword">
 						</p>
-						<button type="submit" class="col-md-5 btn btn-success  pull-right">Create
-							Family Group</button>
+						<button type="submit" class="col-md-5 btn btn-success">Join Group</button>
 					</form>
 
 

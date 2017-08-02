@@ -71,45 +71,78 @@
 					<li><a data-toggle="tab" href="#members">Members</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="groupInfo" class="tab-pane fade in active col-md-6">
+					<div id="groupInfo" class="tab-pane fade in active ">
 						<%
 							ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
 							FamilyGrp fg = fGrpList.get(0);
 
 							System.out.println("log j:" + fGrpList.size());
-						%>
-
-						<p><%=fg.getFamilyGroupId()%></p>
-						<p><%=fg.getGroupCreationDate()%></p>
-						<p><%=fg.getGroupName()%></p>
-						<p><%=fg.getGrpOwner()%></p>
-						<%
-							String imgUrl = fg.getImgUrl();
-						%>
-						<%
-							if (imgUrl.equals(null)) {
-						%><img
-							src="${pageContext.request.contextPath}/img/def.png"
-							class="profile-image-largest text-center">
-						<%
+						%><br>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h2>
+									Group Name :
+									<%=fg.getGroupName() %>[<%=fg.getFamilyGroupId()%>]
+								</h2>
+							</div>
+							<div class="panel-body">
+								<%
+							if (fg.getImgUrl().equals(null)) {
+						%><img src="${pageContext.request.contextPath}/img/def.png"
+									class="profile-image-largest text-center">
+								<%
 							} else {
 						%>
-						<img class="profile-image-largest text-center"
-							src="<%=fg.getImgUrl()%>">
-						<%
-							}
-						%>
-					</div>
-					<div id="members" class="tab-pane fade">
-						<%
-							ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
-							for (FamilyGrp fgp : fMemList) {
-						%>
-						<%=fgp.getAccountId()%><%=fgp.getGivenName()%>
-						<%
+								<img class="profile-image-largest text-center"
+									src="<%=fg.getImgUrl()%>">
+								<%
 							}
 						%>
 
+
+								<p>
+									Group Creation Date :
+									<%=fg.getGroupCreationDate()%></p>
+
+								<p>
+									Group Owner :
+									<%=fg.getGrpOwner()%></p>
+
+							</div>
+						</div>
+					</div>
+					<div id="members" class="tab-pane fade">
+						<h3>Group Members</h3>
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th>No.</th>
+									<th>User Id</th>
+									<th>Group Name</th>
+								</tr>
+								<%
+									ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
+									for (FamilyGrp fgp : fMemList) {
+										int z = 0;
+								%>
+								<tr>
+									<td><%=z + 1%>.</td>
+									<td><%=fgp.getAccountId()%></td>
+									<td><%=fgp.getGivenName()%></td>
+									<%if(request.getAttribute("accountId").equals(fgp.getGrpOwner())){  %>
+									<td><span aria-hidden="true">
+											<button class="btn btn-danger"
+												onclick="location.href = 'MemberDelete?grpId=<%=fgp.getFamilyGroupId()%>&acctId=<%=fgp.getAccountId()%>'">Remove
+												Member</button>
+									</span></td>
+									<%} %>
+								</tr>
+								<%
+									z++;
+									}
+								%>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
