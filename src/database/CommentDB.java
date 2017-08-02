@@ -44,16 +44,13 @@ public class CommentDB extends DBAO{
 			}
 			
 			int status = ps.executeUpdate();
-			ps.close();
 			if(status != 0){
-				ps.close();
-				
 				System.out.println("Log createComment() :" + ps);
+				ps.close();
 				return com.getPostId();
 			}else{
-				ps.close();
-				
 				System.out.println("Log createComment() Fail:" + ps);
+				ps.close();
 				return "fail";
 			}
 		} catch (SQLException e) {
@@ -76,9 +73,8 @@ public class CommentDB extends DBAO{
 				statement = "SELECT * FROM "+ schema +".commentlist WHERE commentStatus = 'publish' and valid = 'Y' ORDER BY commentDate DESC";
 			}
 			
-			PreparedStatement ps;
-			ps = con.prepareStatement(statement);
-			
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setFetchSize(1000);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
@@ -118,19 +114,41 @@ public class CommentDB extends DBAO{
 	 */
 	public ArrayList<Comment> getCommentByPostId(String postId, int start, int limit){
 		String stmt = "SELECT * FROM "+ schema +".commentlist WHERE postId = '"+ postId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY bestAnswerFor Desc,commentDate DESC limit " + start + "," + limit;
-		System.out.println(stmt);
 		return getComment(stmt);
 	}
 	
-	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){
-		String stmt = "select * from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
-		return getComment(stmt);
+	/**
+	 * get replies under comment
+	 * @param commentId
+	 * @param start
+	 * @param limit
+	 * @return ArrayList<Comment>
+	 */
+	public ArrayList<Comment> getCommentByCommentId(String commentId, int start, int limit){		
+		ArrayList<Comment> commentList = new ArrayList<Comment>();
+		try {
+			String stmt = "select commentContent,imgUrl from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setFetchSize(1000);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Comment com = new Comment();
+				com.setCommentContent(rs.getString("commentContent"));
+				com.setAccountImgUrl(rs.getString("imgUrl"));
+				commentList.add(com);
+			}
+			rs.close();
+			ps.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return commentList;
 	}
 
 	public String getCommentOwnerbyId(String id) {
-		//
 		try {
-			String statement = "SELECT * FROM "+ schema +".commentlist WHERE commentId = ?";
+			String statement = "SELECT accountId FROM "+ schema +".commentlist WHERE commentId = ?";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, id);
 			
@@ -152,7 +170,6 @@ public class CommentDB extends DBAO{
 		try {
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, itemId);
-			System.out.println(ps);
 			int status = ps.executeUpdate();
 			
 			if(status != 0) {

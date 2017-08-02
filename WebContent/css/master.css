@@ -265,7 +265,9 @@ footer{
 	padding:5px;
 	margin: 0px;
 }
-
+.forum-sidebar-top-answerer img{
+	max-width: 100%;
+}
 /*=============================================================
 	CSS for activity
 */

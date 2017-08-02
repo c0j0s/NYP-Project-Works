@@ -49,11 +49,11 @@ public class Forum extends HttpServlet {
 		
 		ArrayList<Post> postList = fdb.getPost(start, category);
 		ArrayList<Post> trendingPost = fdb.getTrendingPost();
-		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
+		//ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
 		Collection<String> categoryList = fdb.getCategoryList().values();
 		request.setAttribute("postList", postList);
 		request.setAttribute("trendingPost", trendingPost);
-		request.setAttribute("topAnswerer", topAnswerer);
+		//request.setAttribute("topAnswerer", topAnswerer);
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("postCount", fdb.getPostCount(category));
 		request.setAttribute("category", category);

@@ -35,25 +35,9 @@
 					</button>
 				</div>
 			</div>
-			<c:set var="commentComList" scope="request" value="${comment.commentComList }"/>
-			<c:choose>
-				<c:when test="${fn:length(commentComList) gt 0 }">
-					<hr>
-					<div class="comments-comment">
-						<c:forEach items="${commentComList }" var="commentCom">
-							<div class="row comment-under-comment">
-								<div class="col-md-2 col-sm-3">
-									<img src="${commentCom.accountImgUrl }" class="img-circle profile-image-xsmall">
-									<p>says: </p>
-								</div>
-								<div class="col-md-10 col-sm-9">
-									<p>${commentCom.commentContent }</p>
-								</div>
-							</div>
-						</c:forEach>
-					</div>
-				</c:when>
-			</c:choose>
+			<div class="comments-comment" data-commentid="${comment.commentId }">
+				<img src="${pageContext.request.contextPath}/img/loading.gif" class="profile-image-small">
+			</div>
 			<c:choose>
 				<c:when test="${user eq null ? false : true }">
 					<br>

@@ -48,4 +48,4 @@
 <script src='${pageContext.request.contextPath}/js/master.js'></script>
 <script src='${pageContext.request.contextPath}/js/card-js.min.js'></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
