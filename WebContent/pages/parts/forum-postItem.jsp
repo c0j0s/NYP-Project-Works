@@ -2,6 +2,7 @@
 	<div class="panel-body">
 		<div class="col-sm-2 text-center">
 			<jsp:include page="forum-accountInfo.jsp">
+				<jsp:param value="${post.accountId }" name="accountId"/>
 				<jsp:param value="${post.hideId}" name="hideId"/>
 				<jsp:param value="${post.accountName}" name="name"/>
 				<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>

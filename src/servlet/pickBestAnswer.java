@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import bean.Post;
 import database.CommentDB;
 import database.ForumDB;
+import database.NotificationDB;
 import database.Point;
 
 /**
@@ -43,6 +44,8 @@ public class pickBestAnswer extends HttpServlet {
 			fdb.pickBestAnswer(postId,commentId);
 			Point pt = new Point();
 			pt.pointsCalc(ownerId, p.getPoints());
+			NotificationDB no = new NotificationDB();
+			no.sendNotification("Answer Choosen As Best Answer!", "Congrats! <br> Your reply was chosen by post owner as the best answer. <br> you have earn " + p.getPoints() + " points", "Forum", ownerId, "Check it out", "Post?postId="+postId);
 		}else {
 			response.getWriter().append("Session Expired");
 		}

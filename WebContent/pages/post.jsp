@@ -30,6 +30,7 @@
 						<div class="post post-orginal clearfix" id="post-${post.postId }">
 							<div class="text-center col-sm-2">
 								<jsp:include page="parts/forum-accountInfo.jsp">
+									<jsp:param value="${post.accountId }" name="accountId"/>
 									<jsp:param value="${post.hideId}" name="hideId"/>
 									<jsp:param value="${post.accountName}" name="name"/>
 									<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>
@@ -76,6 +77,7 @@
 											<jsp:include page="parts/forum-comment.jsp"></jsp:include>
 											<div class="text-center col-sm-2">
 												<jsp:include page="parts/forum-accountInfo.jsp">
+													<jsp:param value="${comment.accountId }" name="accountId"/>
 													<jsp:param value="${comment.hideId}" name="hideId"/>
 													<jsp:param value="${comment.accountName}" name="name"/>
 													<jsp:param value="${comment.accountImgUrl }" name="imgUrl"/>
