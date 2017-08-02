@@ -44,7 +44,7 @@ public class RewardItemDB extends DBAO{
 	}
 	public String createRewardItem(RewardItem rew){
 		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`, `rewardAvailability`, `rewardQuantity`, `imgUrl`, `valid`) "
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+				+ "VALUES (?,?,?,?,?,?,?,)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			rew.setRewardId(common.UID.genRewardId());
