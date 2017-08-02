@@ -50,7 +50,7 @@
 							<p>Email:${user.email}</p>
 							<p>Address:${user.address}</p>
 							<p>Mobile No.:${user.mobileno}</p>
-						</div>
+						</div><input type="hidden" name = "userIdFg" value ="${user.accountId}">
 
 					</div>
 					<button type="submit" class="btn btn-default"
@@ -68,8 +68,10 @@
 			<div><%
 					
 						ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
+						FamilyGrp fg = fGrpList.get(0);
+						
 						System.out.println("log j:"+ fGrpList.size());	
-						for (FamilyGrp fg : fGrpList) {
+					
 						%>
 						<div>
 						<p><%=fg.getFamilyGroupId()%></p>
@@ -81,12 +83,12 @@
 								src="${pageContext.request.contextPath}/img/def.png"
 								 class="profile-image-largest text-center"><%}else{ %>
 						<img class="profile-image-largest text-center" src="<%=fg.getImgUrl()%>" ><%} %>
+						<% ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
+						for (FamilyGrp fgp : fMemList) {%>
+						<%=fgp.getAccountId()%><%=fgp.getGivenName()%><%} %>
 							
 						</div>
-						<%
-						}
-					
-				%></div>	
+						</div>	
 			</div>
 		</div>
 	</div>

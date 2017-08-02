@@ -56,8 +56,8 @@
 					<small class="page-header-subtitle">${param.subTitle }</small>
 					
 				</a>
-				<button class="btn btn-success"
-							onclick="location.href = 'CreateFamGroup'">Create Family Group</button>
+				<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}"><button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Create Family Group</button></form>
 							<button class="btn btn-success"
 							onclick="location.href = 'DisplayFamGroup'">Display Family Group</button>
 			</h1>

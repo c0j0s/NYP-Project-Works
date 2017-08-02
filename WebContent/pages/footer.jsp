@@ -38,7 +38,7 @@
 	<!-- end of footer info container -->
 	<div class="container-fluid" id="legal">
 		<span>Copyright &copy 2017 NYP, Singapore. All rights reserved.</span>
-	</div><input type="hidden" name = "userIdFg" value ="${user.accountId}">
+	</div>
 </footer>
 
 <script>var ContextPath = "${pageContext.request.contextPath}"</script>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Activity;
 import bean.FamilyGrp;
 import database.FamGrpDB;
 
@@ -31,10 +32,16 @@ public class DisplayFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			ArrayList<FamilyGrp> aFgrp = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
-			request.setAttribute("fGroup", aFgrp);
+		try {FamGrpDB fgdb = new FamGrpDB();
+		
+			
+				ArrayList<FamilyGrp> aFgrp = fgdb.findMembers(request.getParameter("famGrpId"));
+				
+				request.setAttribute("fGroup", aFgrp);
+				ArrayList<FamilyGrp> member = fgdb.findGrpMembers(request.getParameter("famGrpId"));
+				request.setAttribute("members", member);
 			System.out.println("log s:"+ aFgrp.size());
+			
 			request.getRequestDispatcher("pages/familyGroup.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

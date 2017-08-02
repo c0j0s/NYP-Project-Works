@@ -132,22 +132,18 @@
 			
 				<div id="viewFamily" class="tab-pane fade">
 
-					<%
+					<%int z=0;
 					if(request.getAttribute("fGroup") != null){
 						ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
 						System.out.println("log j:"+ fGrpList.size());	
 						for (FamilyGrp fg : fGrpList) {
 						%>
-						<div>
-							<%=fg.getFamilyGroupId()%>
-							<%=fg.getGroupCreationDate()%>
-							<%=fg.getGroupName()%>
-							<%=fg.getGrpOwner()%>
-							<%=fg.getImgUrl()%>
-							<%=fg.getPassword()%>
-						</div>
+						<div class="table-responsive"><table class="table"><tr><th>No.</th><th>Group Name</th><th>Group Id</th><th>Group Owner</th><th>
+							<tr><td><%=z+1%>.</td><td><a href="DisplayFamGroup?famGrpId=<%=fg.getFamilyGroupId()%>"><img class="profile-image-xsmall" src="<%=fg.getImgUrl() %>"><%=fg.getGroupName() %></a> </td><td><%=fg.getFamilyGroupId()%></td><td><%=fg.getGrpOwner() %></td></tr>
+						
+						</table></div>
 						<%
-						}
+						z++;}
 					}
 				%>
 				</div>

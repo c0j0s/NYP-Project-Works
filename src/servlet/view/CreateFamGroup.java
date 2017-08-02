@@ -33,6 +33,7 @@ public class CreateFamGroup extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FamGrpDB fgdb= new FamGrpDB();
 		String famGroup = request.getParameter("userIdFg");
+		System.out.println("HELP ME LUH"+famGroup);
 		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
 		request.setAttribute("fGroup", fGrp);
 		

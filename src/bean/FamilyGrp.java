@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class FamilyGrp {
+public class FamilyGrp extends Account{
 	private String familyGroupId;
 	private String groupName;
 	private String groupCreationDate;
