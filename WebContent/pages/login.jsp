@@ -47,7 +47,7 @@
 			<div class="col-md-7">
 	  			<h3>No Account?</h3>
 	  			<p>
-	  				//desc
+	  				Clink the link below to create one now!
 	  			</p>
 	  			<button onclick='location.href="${pageContext.request.contextPath}/Signup"' class="btn btn-success">Sign up now!</button>
 	  		</div>

@@ -106,6 +106,10 @@ $( document ).ready(function() {
 				}}
 		})
 	})
+	$(".admin-account").on('click', function(){
+		$("#admin-account-body").empty();
+		
+	})
 
 
 	$("#admin-others-send-message").on('click',function(){
