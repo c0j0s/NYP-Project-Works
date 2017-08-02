@@ -12,6 +12,7 @@
 	<tr><th>Type</th><th>Title</th><th>Created On</th><th>Status</th><th>Report Count</th><th>Actions</th></tr>
 	</thead>
 	<tbody id="admin-forum-body">
+		<tr class="loading"><td><img src="${pageContext.request.contextPath}/img/loading.gif"></td></tr>
 	</tbody>
 	</table>
 </div>

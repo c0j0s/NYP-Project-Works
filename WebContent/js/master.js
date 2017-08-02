@@ -190,6 +190,45 @@ $( document ).ready(function() {
 		$("#comment-delete-message").remove();
 		clearInterval(counter);
 	}
+
+	if($(".forum-sidebar-top-answerer").length){
+		$(".forum-sidebar-top-answerer").ready(function(){
+			console.log("load log");
+			$.ajax({
+				url: ContextPath + "/GetTopAnswerer",
+				success:function(json){
+					$(".forum-sidebar-top-answerer").empty();
+					var item = JSON.parse(json);
+					for(var i = 0; i < item.length; i++){
+						var li = '<h4><img alt="Top Answerer profile image" src="' + item[i].imgUrl + '" class="img-circle profile-image-xsmall"/>'
+						+ item[i].givenName + ' <span class="label label-danger label-sm pull-right">'
+						+ '<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>' 
+						+ item[i].postsCounts + '</span></h4>'
+						$(".forum-sidebar-top-answerer").append(li);
+					}
+				}
+			})
+		})
+	}
+	
+	if($('.comments-comment').length){
+		$('.comments-comment').each(function(){
+			var item = $(this)
+			var value = item.data()
+			$.ajax({
+				url: ContextPath + "/GetCommentsComment",
+				data : value,
+				success:function(json){
+					item.empty()
+					var obj = JSON.parse(json)
+					for(var i = 0; i < obj.length; i++){
+						item.append('<div class="row comment-under-comment"><div class="col-md-2 col-sm-3"><img src="'+obj[i].accountImgUrl+'" class="img-circle profile-image-xsmall">'+
+								'<p>says: </p></div><div class="col-md-10 col-sm-9"><p>'+obj[i].commentContent+'</p></div></div>')
+					}
+				}
+			})
+		})
+	}
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */
@@ -502,11 +541,25 @@ $( document ).ready(function() {
 			}
 		})
 	})
-	
+	/**
+	 * for login/profile/account admin
+	 */
 	$("#addMember").on("click",function(){
 		var item = '<input type="text" class="form-control" name="users">';
 		$('#adduser').append(item);
 	})
+	
+    $('#login').validate({ 
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            userPw: {
+                required: true,
+            }
+        }
+    });
 });
 
 function paytype(type){

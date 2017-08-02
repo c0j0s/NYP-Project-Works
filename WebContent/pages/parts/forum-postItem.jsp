@@ -11,7 +11,14 @@
 		<div class="col-sm-10">
 			<div class="post-link"
 				onclick="location.href='Post?postId=${post.postId}'">
-				<h4>${post.postTitle}</h4>
+				<h4>
+					<span class="label label-warning">
+					<span class="glyphicon glyphicon-piggy-bank"></span>
+					<span>${post.points }</span>
+					</span>
+					&nbsp
+					${post.postTitle}
+				</h4>
 				<small class="">${post.date}</small>&nbsp
 				 ${post.postStatus eq 'closed' ? '<span class="badge"><span class="glyphicon glyphicon-star"></span> Answered</span>':'' }
 			</div>

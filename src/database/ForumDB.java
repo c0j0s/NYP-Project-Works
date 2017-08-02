@@ -80,9 +80,8 @@ public class ForumDB extends DBAO{
 			if(statement == null){
 				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postStatus DESC,postDate DESC";
 			}
-	
 			ps = con.prepareStatement(statement);
-			
+			ps.setFetchSize(1000);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
