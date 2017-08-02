@@ -50,48 +50,72 @@
 							<p>Email:${user.email}</p>
 							<p>Address:${user.address}</p>
 							<p>Mobile No.:${user.mobileno}</p>
-						</div><input type="hidden" name = "userIdFg" value ="${user.accountId}">
+						</div>
+						<input type="hidden" name="userIdFg" value="${user.accountId}">
 
 					</div>
 					<button type="submit" class="btn btn-default"
 						onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
 						Profile</button>
-					<button
-						onclick="location.href='${pageContext.request.contextPath}/CreateFamGroup'"">Create
-						Family Group</button>
-					<button
-						onclick="location.href='${pageContext.request.contextPath}/DisplayFamGroup'"">View
-						Family Group</button>
+					<form action="${pageContext.request.contextPath}/CreateFamGroup">
+						<input type="hidden" name="userIdFg" value="${user.accountId}">
+						<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Family Group</button>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-9 col-sm-12">
-			<div><%
-					
-						ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
-						FamilyGrp fg = fGrpList.get(0);
-						
-						System.out.println("log j:"+ fGrpList.size());	
-					
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#groupInfo">Group
+							Info</a></li>
+					<li><a data-toggle="tab" href="#members">Members</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="groupInfo" class="tab-pane fade in active col-md-6">
+						<%
+							ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
+							FamilyGrp fg = fGrpList.get(0);
+
+							System.out.println("log j:" + fGrpList.size());
 						%>
-						<div>
+
 						<p><%=fg.getFamilyGroupId()%></p>
-							<p><%=fg.getGroupCreationDate()%></p>
-							<p><%=fg.getGroupName()%></p>
+						<p><%=fg.getGroupCreationDate()%></p>
+						<p><%=fg.getGroupName()%></p>
 						<p><%=fg.getGrpOwner()%></p>
-						<% String imgUrl = fg.getImgUrl(); %>
-						<%if (imgUrl.equals(null)){ %><img 
-								src="${pageContext.request.contextPath}/img/def.png"
-								 class="profile-image-largest text-center"><%}else{ %>
-						<img class="profile-image-largest text-center" src="<%=fg.getImgUrl()%>" ><%} %>
-						<% ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
-						for (FamilyGrp fgp : fMemList) {%>
-						<%=fgp.getAccountId()%><%=fgp.getGivenName()%><%} %>
-							
-						</div>
-						</div>	
+						<%
+							String imgUrl = fg.getImgUrl();
+						%>
+						<%
+							if (imgUrl.equals(null)) {
+						%><img
+							src="${pageContext.request.contextPath}/img/def.png"
+							class="profile-image-largest text-center">
+						<%
+							} else {
+						%>
+						<img class="profile-image-largest text-center"
+							src="<%=fg.getImgUrl()%>">
+						<%
+							}
+						%>
+					</div>
+					<div id="members" class="tab-pane fade">
+						<%
+							ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
+							for (FamilyGrp fgp : fMemList) {
+						%>
+						<%=fgp.getAccountId()%><%=fgp.getGivenName()%>
+						<%
+							}
+						%>
+
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 	<%-- end of main container --%>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<%-- end of footer --%>
