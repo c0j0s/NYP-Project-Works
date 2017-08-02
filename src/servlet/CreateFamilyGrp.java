@@ -38,7 +38,7 @@ public class CreateFamilyGrp extends HttpServlet {
 			FamGrpDB fgdb = new FamGrpDB();
 			FamilyGrp fg = new FamilyGrp();
 		
-		fg.setFamilyGroupId(UID.genFamilyGroupId());
+		 fg.setFamilyGroupId(UID.genFamilyGroupId());
 		fg.setGroupName(request.getParameter("grpName"));
 		fg.setImgUrl(request.getParameter("imgurl"));
 		fg.setGrpOwner(request.getParameter("owner"));
@@ -47,7 +47,7 @@ public class CreateFamilyGrp extends HttpServlet {
 		fgdb.createFamGrp(fg);
 			
 			
-			request.getRequestDispatcher("CreateFamGroup").forward(request, response);
+			request.getRequestDispatcher("DisplayFamGroup?famGrpId="+fg.getFamilyGroupId()).forward(request, response);
 		}catch(Exception ex){
 			System.out.println(ex.getMessage());
 	}}

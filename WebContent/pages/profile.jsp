@@ -52,9 +52,8 @@
 			<button type="submit" class="btn btn-default"
 				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
 				Profile</button>
-			<button onclick="location.href='${pageContext.request.contextPath}/CreateFamGroup'"">Create Family Group</button>
-			<button onclick="location.href='${pageContext.request.contextPath}/DisplayFamGroup'"">View Family Group</button>
-		</div>
+						<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Family Group</button></form></div>
 		</div>
 			<div class="col-md-9 col-sm-12">
 			  <ul class="nav nav-tabs" role="tablist">

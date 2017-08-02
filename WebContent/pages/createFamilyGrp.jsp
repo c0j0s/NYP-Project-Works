@@ -24,52 +24,56 @@
 	<%-- end of header --%>
 
 	<div class="container">
-	<jsp:include page="parts/page-header.jsp">
-		<jsp:param value="famGrp" name="type" />
-		<jsp:param value="Family Group" name="title" />
-		<jsp:param value="5" name="titleWidth" />
-	</jsp:include>
-	<div class="col-md-3 col-sm-12">
-		<div class="col-md-12">
-			<jsp:include page="parts/sidebar-account.jsp">
-				<jsp:param value="profile" name="type" />
-				<jsp:param value="${user.points}" name="points" />
-				<jsp:param value="${user.creditLevel}" name="creditLevel" />
-			</jsp:include>
-		</div>
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">My Profile</h3>
-				</div>
-				<div class="panel-body">
-					<p>First Name:${user.givenName}</p>
-					<p>Last Name:${user.surName}</p>
-					<p>Date of Birth:${user.dob}</p>
-					<p>Gender:${user.gender}</p>
-					<p>Email:${user.email}</p>
-					<p>Address:${user.address}</p>
-					<p>Mobile No.:${user.mobileno}</p>
-				</div>
-
+		<jsp:include page="parts/page-header.jsp">
+			<jsp:param value="famGrp" name="type" />
+			<jsp:param value="Family Group" name="title" />
+			<jsp:param value="5" name="titleWidth" />
+		</jsp:include>
+		<div class="col-md-3 col-sm-12">
+			<div class="col-md-12">
+				<jsp:include page="parts/sidebar-account.jsp">
+					<jsp:param value="profile" name="type" />
+					<jsp:param value="${user.points}" name="points" />
+					<jsp:param value="${user.creditLevel}" name="creditLevel" />
+				</jsp:include>
 			</div>
-			<button type="submit" class="btn btn-default"
-				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
-				Profile</button>
-			<button onclick="location.href='${pageContext.request.contextPath}/CreateFamGroup'"">Create Family Group</button>
-			<button onclick="location.href='${pageContext.request.contextPath}/DisplayFamGroup'"">View Family Group</button>
-		</div>
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">My Profile</h3>
+					</div>
+					<div class="panel-body">
+						<p>First Name:${user.givenName}</p>
+						<p>Last Name:${user.surName}</p>
+						<p>Date of Birth:${user.dob}</p>
+						<p>Gender:${user.gender}</p>
+						<p>Email:${user.email}</p>
+						<p>Address:${user.address}</p>
+						<p>Mobile No.:${user.mobileno}</p>
+					</div>
+
+				</div></div>
+				<button type="submit" class="btn btn-default"
+					onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
+					Profile</button>
+					<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Family Group</button></form>
 		</div>
 		<div class="col-md-9">
-		
+
 			<br>
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#createFamily">Create
 						Family Group</a></li>
 				<li><a data-toggle="tab" href="#joinFamily">Join Family
 						Group</a></li>
-				<%if(request.getAttribute("fGroup") !=null) {%><li><a data-toggle="tab" href="#viewFamily">View Family
-						Group</a></li><%} %>
+				<%
+					if (request.getAttribute("fGroup") != null) {
+				%><li><a
+					data-toggle="tab" href="#viewFamily">View Family Group</a></li>
+				<%
+					}
+				%>
 
 			</ul>
 
@@ -114,46 +118,66 @@
 				<div id="joinFamily" class="tab-pane fade">
 
 					<h3>Join Family Group</h3>
-					<form action="${pageContext.request.contextPath}/JoinFamilyGroup" method="post">
-					<input type="hidden" value="${user.accountId}" name="user">
-					<p>
-						Group Id: <input type="text" name="grpId">
-					</p>
-					<p>
-						Password: <input type="password" name="grpPassword">
-					</p>
-					<button type="submit"
-								class="col-md-5 btn btn-success  pull-right">Create
-								Family Group</button>
-				</form>
+					<form action="${pageContext.request.contextPath}/JoinFamilyGroup"
+						method="post">
+						<input type="hidden" value="${user.accountId}" name="user">
+						<p>
+							Group Id: <input type="text" name="grpId">
+						</p>
+						<p>
+							Password: <input type="password" name="grpPassword">
+						</p>
+						<button type="submit" class="col-md-5 btn btn-success">Join Group</button>
+					</form>
 
 
 				</div>
-			
+
 				<div id="viewFamily" class="tab-pane fade">
 
-					<%int z=0;
-					if(request.getAttribute("fGroup") != null){
-						ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
-						System.out.println("log j:"+ fGrpList.size());	
-						for (FamilyGrp fg : fGrpList) {
-						%>
-						<div class="table-responsive"><table class="table"><tr><th>No.</th><th>Group Name</th><th>Group Id</th><th>Group Owner</th><th>
-							<tr><td><%=z+1%>.</td><td><a href="DisplayFamGroup?famGrpId=<%=fg.getFamilyGroupId()%>"><img class="profile-image-xsmall" src="<%=fg.getImgUrl() %>"><%=fg.getGroupName() %></a> </td><td><%=fg.getFamilyGroupId()%></td><td><%=fg.getGrpOwner() %></td></tr>
-						
-						</table></div>
-						<%
+					<%
+						int z = 0;
+						if (request.getAttribute("fGroup") != null) {
+							ArrayList<FamilyGrp> fGrpList = (ArrayList<FamilyGrp>) request.getAttribute("fGroup");
+							System.out.println("log j:" + fGrpList.size());
+					%>
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<th>No.</th>
+								<th>Group Name</th>
+								<th>Group Id</th>
+								<th>Group Owner</th>
+							</tr>
+							<%
+								for (FamilyGrp fg : fGrpList) {
+							%>
+
+							<tr>
+								<td><%=z + 1%>.</td>
+								<td><a
+									href="DisplayFamGroup?famGrpId=<%=fg.getFamilyGroupId()%>"><img
+										class="profile-image-xsmall" src="<%=fg.getImgUrl()%>"><%=fg.getGroupName()%></a>
+								</td>
+								<td><%=fg.getFamilyGroupId()%></td>
+								<td><%=fg.getGrpOwner()%></td>
+							</tr>
+								<%
 						z++;}
 					}
 				%>
+
+						</table>
+					</div>
+				
 				</div>
 
 
 
 
+			</div>
 		</div>
-	</div>
-	
+
 
 	</div>
 
@@ -161,6 +185,7 @@
 
 	<%-- end of main container --%>
 	<jsp:include page="footer.jsp"></jsp:include>
+
 	<%-- end of footer --%>
 
 </body>

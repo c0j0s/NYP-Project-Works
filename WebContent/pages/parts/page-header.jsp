@@ -56,10 +56,9 @@
 					<small class="page-header-subtitle">${param.subTitle }</small>
 					
 				</a>
-				<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}"><button class="btn btn-success"
-							onclick="location.href = 'CreateFamGroup'">Create Family Group</button></form>
-							<button class="btn btn-success"
-							onclick="location.href = 'DisplayFamGroup'">Display Family Group</button>
+				<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Family Group</button></form>
+							
 			</h1>
 			<button onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 		</c:when>
