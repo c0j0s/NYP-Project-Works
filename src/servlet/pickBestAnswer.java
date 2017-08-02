@@ -6,8 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Post;
+import database.CommentDB;
 import database.ForumDB;
+import database.Point;
 
 /**
  * Servlet implementation class pickBestAnswer
@@ -28,10 +32,20 @@ public class pickBestAnswer extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String postId = request.getParameter("postid");
-		String commentId = request.getParameter("commentid");
-		ForumDB fdb = new ForumDB();
-		fdb.pickBestAnswer(postId,commentId);
+		HttpSession session = request.getSession(false);
+		if(session.getAttribute("account") != null) {
+			String postId = request.getParameter("postid");
+			String commentId = request.getParameter("commentid");
+			ForumDB fdb = new ForumDB();
+			Post p = fdb.getPostById(postId).get(0);
+			CommentDB cdb = new CommentDB();
+			String ownerId = cdb.getCommentOwnerbyId(commentId);
+			fdb.pickBestAnswer(postId,commentId);
+			Point pt = new Point();
+			pt.pointsCalc(ownerId, p.getPoints());
+		}else {
+			response.getWriter().append("Session Expired");
+		}
 	}
 
 	/**

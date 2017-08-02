@@ -34,6 +34,12 @@
 									<jsp:param value="${post.accountName}" name="name"/>
 									<jsp:param value="${post.accountImgUrl }" name="imgUrl"/>
 								</jsp:include>
+								<h3>
+									<span class="label label-warning">
+									<span class="glyphicon glyphicon-piggy-bank"></span>
+									<span>${post.points }</span>
+									</span>
+								</h3>
 							</div>
 							<c:set var="post" scope="request" value="${post }" />
 							<jsp:include page="parts/forum-post.jsp"></jsp:include>						

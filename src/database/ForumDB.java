@@ -98,6 +98,7 @@ public class ForumDB extends DBAO{
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
 				post.setPostStatus(rs.getString("postStatus"));
+				post.setPoints(rs.getInt("points"));
 				
 				post.setLikeCount(rs.getInt("likeCount"));
 				post.setDislikeCount(rs.getInt("dislikeCount"));
