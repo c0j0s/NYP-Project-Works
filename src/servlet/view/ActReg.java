@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Activity;
+import bean.FamilyGrp;
 import database.ActivityDB;
+import database.FamGrpDB;
 import database.Point;
 
 /**
@@ -35,6 +37,11 @@ public class ActReg extends HttpServlet {
 		ActivityDB adb = new ActivityDB();
 		Point p = new Point();
 		ArrayList<Activity> actRank = p.getRank();
+		FamGrpDB fgdb = new FamGrpDB();
+		String ac = (String) request.getSession().getAttribute("account");
+		ArrayList<FamilyGrp> famGrp = fgdb.getAllFamMem(ac);
+		request.setAttribute("allFam" , famGrp);
+		System.out.println( ac+"EVERYONE HELP ME");
 		request.setAttribute("actRank", actRank);
 		String RegistrationId = common.UID.genRegistrationId();
 		request.setAttribute("registerId",RegistrationId);

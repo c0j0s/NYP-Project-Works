@@ -97,7 +97,7 @@
 									Activity</button>
 							</span> <span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'RegList?activityActivityId=<%=actf.getActivityId()%>&activityId=<%=actf.getActivityId()%>'">Participants
+									onclick="location.href = 'RegList?&activityId=<%=actf.getActivityId()%>'">Participants
 									List</button>
 							</span>
 
