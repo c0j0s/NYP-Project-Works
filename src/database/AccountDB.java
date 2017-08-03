@@ -22,7 +22,7 @@ public class AccountDB extends DBAO{
 		// TODO Auto-generated method stub
 		Account ac = null;
 		try{
-			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ?";
+			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ? and valid = 'Y'";
 			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
 			prepStmt.setString(1, userId);
 			prepStmt.setString(2, userPw);
@@ -45,14 +45,15 @@ public class AccountDB extends DBAO{
 				ac.setActivityOrganisedCount(rs.getInt("activityOrganisedCount"));
 				ac.setActivityParticipatedCount(rs.getInt("activityParticipatedCount"));
 				ac.setClaimCount(rs.getInt("claimCount"));
-				ac.setFamilyGroupCount(rs.getInt("familyGroup"));;
+				ac.setFamilyGroupCount(rs.getInt("familyGroup"));
 				ac.setBestAnswerCount(rs.getInt("bestAnswerCount"));
 				ac.setCommentCounts(rs.getInt("commentCounts"));
 				ac.setPostsCounts(rs.getInt("postCounts"));
+				
 			}
 			
 		}catch(Exception ex){
-			System.out.println("Error: "+ex.getMessage());
+			ex.printStackTrace();
 		}
 		return ac;
 	}
@@ -126,15 +127,41 @@ public class AccountDB extends DBAO{
 		try{
 			String ss = "select * from ffl.reported where type = 'account';";
 			PreparedStatement prepStmt = con.prepareStatement(ss);
-			ResultSet rs = prepStmt.executeQuery();
+			ResultSet rs = prepStmt.executeQuery(); System.out.println(prepStmt);
 			while(rs.next()){
 				Account ac =  new Account();
-				ac.setAccountId(rs.getString("accountId"));
-				ac.setGivenName(rs.getString("givenName")+" "+rs.getString("surName"));
+				ac.setAccountId(rs.getString("itemId"));
+				//ac.setGivenName(rs.getString("givenName")+" "+rs.getString("surName"));
 				ac.setStatus(rs.getString("status"));
+				reportList.add(ac);
 			}
-		}catch(Exception ex){ex.printStackTrace();}
+		}catch(Exception ex){
+			ex.printStackTrace();
+			}
 		return reportList;
+	}
+	public void invalidateAccount(String accId){
+		try{
+			String updateStatement = "update ffl.user set valid = 'N' where accountId = ?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			
+			prepStmt.setString(1, accId);
+			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+	public void updateReportStatus(String status) {
+		try{
+			String updateStatement = "update ffl.reported set status=?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			prepStmt.setString(1, status);
+			prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
 	}
 	
 }

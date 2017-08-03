@@ -39,11 +39,11 @@ public class EditActivity extends HttpServlet {
 			act.setActivityCategory(request.getParameter("actCategory"));
 
 			String img = request.getParameter("imgurl");
-			if(img.equals("")) {
+			if(!img.equals("")) {
 				act.setImgUrl(img);
 			}
 			adb.editActivity(act);
-			request.getRequestDispatcher("ActFull?activityId="+act.getActivityId()).forward(request, response);
+			response.sendRedirect("ActFull?activityId="+act.getActivityId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
