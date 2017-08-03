@@ -3,19 +3,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ page import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ page
+	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="utf-8">
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='${pageContext.request.contextPath}/css/bootstrap.css' rel='stylesheet'>
-<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css' rel='stylesheet'>
-<link href='${pageContext.request.contextPath}/css/master.css' rel='stylesheet'>
-<link href='${pageContext.request.contextPath}/css/card-js.min.css' rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.css'
+	rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/bootstrap.custom.css'
+	rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/master.css'
+	rel='stylesheet'>
+<link href='${pageContext.request.contextPath}/css/card-js.min.css'
+	rel='stylesheet'>
 <link rel='icon' href='favicon.ico' type='image/x-icon' />
 <title>Register for Activity</title>
 </head>
@@ -59,7 +66,8 @@
 			<p>
 				Activity Location :
 				<%=actf.getActivityLocation()%></p>
-			<form action="${pageContext.request.contextPath}/RegisterActivity?activityId=<%=actf.getActivityId() %>"
+			<form
+				action="${pageContext.request.contextPath}/RegisterActivity?activityId=<%=actf.getActivityId() %>"
 				method="post">
 				<p>
 					Activity Fee Per Participant : $<span id="generate2"> <%=df.format(actf.getActivityFee())%></span>
@@ -70,14 +78,20 @@
 
 				<div class="clearfix">
 					<p class="col-md-6">
-						Number Of Participants : <select name="noOfParticipants" id="generate1"
-							class="select form-control">
+						Number Of Participants : <select name="noOfParticipants"
+							id="generate1" class="select form-control">
+							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
+		for (FamilyGrp fg : fGrp) {%>
 
-							<%
-								for (int z = 0; z < 5; z++) {
-							%>
-								<option value="<%=z + 1%>"><%=z + 1%></option>
-							<%
+
+							<option disabled><%=fg.getGroupName() %></option>
+
+							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
+							for (FamilyGrp fm : fMem){
+								System.out.println(request.getAttribute("acctId")+fm.getAccountId());
+								if(!(request.getAttribute("acctId").equals(fm.getAccountId()))){
+								%><option value="<%= fm.getAccountId()%>"><%= fm.getGivenName()%><%}
+							}
 								}
 							%>
 						</select>

@@ -141,7 +141,8 @@ public class FamGrpDB extends DBAO{
 				fg.setImgUrl(rs.getString("imgUrl"));
 				fg.setPassword(rs.getString("password"));
 				fg.setGrpOwner(rs.getString("grpOwner"));
-				findMembers(rs.getString("f.familyGroupId"));
+				
+				fg.setMembers(findGrpMembers(rs.getString("f.familyGroupId")));				
 				famGrpList.add(fg);
 			}
 
@@ -191,7 +192,7 @@ public class FamGrpDB extends DBAO{
 	public ArrayList<FamilyGrp> findGrpMembers(String grpId){
 		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
 		try {
-			String stmt ="select * from ffl.userfamilygroup ufg inner join ffl.user u on ufg.UserAccountId = u.accountId inner join ffl.familygroups fg on fg.familyGroupId = ufg.FamilyGroupfamilyGroupId where FamilyGroupfamilyGroupId = ? and ufg.valid = 'Y';";
+			String stmt ="select distinct * from ffl.userfamilygroup ufg inner join ffl.user u on ufg.UserAccountId = u.accountId inner join ffl.familygroups fg on fg.familyGroupId = ufg.FamilyGroupfamilyGroupId where FamilyGroupfamilyGroupId = ? and ufg.valid = 'Y';";
 			PreparedStatement p = con.prepareStatement(stmt);
 			p.setString(1, grpId);
 			ResultSet rs = p.executeQuery();
