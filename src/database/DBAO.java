@@ -37,6 +37,7 @@ public class DBAO {
 	public void openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			
 			con = DriverManager.getConnection(lurl,"root","password");
 			System.out.println("Open Connection: " + connectionCount);
 			connectionCount++;

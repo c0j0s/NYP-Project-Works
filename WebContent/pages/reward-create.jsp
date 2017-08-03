@@ -23,9 +23,9 @@
 	</jsp:include>
 	<!-- end of page header -->
 	<div class="col-md-9">
-		<form action="${pageContext.request.contextPath}/CreateReward" method="post" class="col-md-12" id="form-upload">
-			<label for="rewId">Reward Id : </label> 
-			<input type="text" name="rewId" class="form-control"> 
+		<br> 
+			<label for="rewTitle">Reward Title:</label>
+			<input type="text" name="rewTitle" class="form-control" placeholder="Reward Title ">
 			<br>
 			<div class="vert">
 				<div class="col-md-7">
@@ -36,28 +36,20 @@
 						data-imgfolder="reward/${user.accountId }" />
 				</div>
 				<div class="col-md-5">
-					<img alt="" src="../img/def.png" class="fullactpic"
+					<img alt="" src="${pageContext.request.contextPath}/img/def.png" class="fullactpic"
 						id="test-img-prev">
 				</div>
 			</div>
 			<br> 
 			<label for="">Reward Description:</label>
 			<textarea class="form-control" rows="10" cols="50" name="rewDesc"></textarea>
-			<br> 
-			<label for="rewTitle">Reward Title:</label>
-			<input type="text" name="rewTitle" class="form-control" placeholder="Reward Title ">
 			<br>
 			<label for="Points">Points:</label> 
 			<input type="text" name="Points" class="form-control" placeholder="Enter Points : "> 
-			<br> 
-			<label for="rewAvailability">Reward availability: </label> 
-			<input type="text" name="rewAvailability" class="form-control" placeholder="Enter Reward avaliability : ">
-			<br> 
+			<br>  
 			<label for="rewQuantity">Reward Quantity : </label>
 			<br> 
 			<input type="text" name="rewQuantity" class="form-control" placeholder="Enter Reward Quantity : ">
-			<br> 
-			<label for="valid">Valid: </label> <input type="text" name="valid" class="form-control" placeholder="Enter valid : ">
 			<br> 
 			<label for="itemCreatedOn">Item Created On: </label>
 			<input type="date" name="itemCreatedOn" class="form-control">

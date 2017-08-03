@@ -34,32 +34,20 @@
 				<img class="fullactpic" src="<%=rew.getImgUrl()%>" />
 			</div>
 			<div class="col-md-8">
-				<h4>Redemption Title</h4>
-				<p>
-					Reward Title :
-					<%=rew.getRewardTitle()%></p>
+				<h4><%=rew.getRewardTitle()%></h4>
 				<p>
 					Reward Description :<%=rew.getRewardDescription()%></p>
 				<p>
 					Points :
 					<%=rew.getPoints()%></p>
-				<p>
-					Reward Availability :
-					<%=rew.getRewardAvailability()%></p>
+				
 				<p>
 					Reward Quantity :
 					<%=rew.getRewardQuantity()%></p>
-				<p>
-					Valid :
-					<%=rew.getValid()%></p>
-				<p>
-					//TODO implement Like and dislike button
-					<br>
-					<span class="glyphicon glyphicon-thumbs-up"></span> 7 <span
-						class="glyphicon glyphicon-thumbs-down"></span> 27
-				</p>
+				
 			</div>
-		</div>
+		</div><form action="${pageContext.request.contextPath}/claimReward"
+						method="post"><input type="hidden" value="<%=rew.getPoints()%>" name="pointCost"></form>
 		<br></br>
 		<%}  %>
 	</div>

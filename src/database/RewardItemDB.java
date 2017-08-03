@@ -7,7 +7,7 @@ import bean.RewardItem;
 public class RewardItemDB extends DBAO{
 	
 	public RewardItemDB(){
-		//super();
+		super();
 	}
 	public ArrayList<RewardItem> getRewardItem(String statement){
 		ArrayList<RewardItem> rewardList = new ArrayList<RewardItem>();
@@ -75,8 +75,8 @@ public class RewardItemDB extends DBAO{
 		return "fail";
 	}
 	public String createReward(RewardItem rew){
-		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`, `rewardAvailability`, `rewardQuantity`, `imgUrl`, `valid`) "
-		+  "VALUES (?,?,?,?,?,?,?,?)";
+		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`,`rewardQuantity`, `imgUrl`, `valid`) "
+		+  "VALUES (?,?,?,?,?,?,'Y')";
 		try
 		{
 			PreparedStatement ps = con.prepareStatement(stmt);
@@ -86,10 +86,8 @@ public class RewardItemDB extends DBAO{
 			ps.setString(2, rew.getRewardTitle());
 			ps.setString(3, rew.getRewardDescription());
 		    ps.setInt(4, rew.getPoints());
-			ps.setString(5,Character.toString(rew.getRewardAvailability()));
-			ps.setInt(6, rew.getRewardQuantity());
-			ps.setString(7, rew.getImgUrl());
-			ps.setString(8, Character.toString(rew.getValid()));
+			ps.setInt(5, rew.getRewardQuantity());
+			ps.setString(6, rew.getImgUrl());
 			
 			int status = ps.executeUpdate();
 			
@@ -97,6 +95,31 @@ public class RewardItemDB extends DBAO{
 			{
 				System.out.println("Recorded Added");
 				return rew.getRewardId();
+			}
+		}catch (Exception ex)
+		{
+			
+			
+		}
+		return "fail";
+	}
+	
+	public String claimReward(String RewardItemId, String AccountId, String Points){
+		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardItemId`,`AccountId`, `points`) "
+		+  "VALUES (?,?,?)";
+		try
+		{
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, RewardItemId);
+		    ps.setString(2, AccountId);
+			ps.setString(3, Points);
+			
+			int status = ps.executeUpdate();
+			
+			if(status!=0)
+			{
+				System.out.println("Recorded Added");
+				return "";
 			}
 		}catch (Exception ex)
 		{

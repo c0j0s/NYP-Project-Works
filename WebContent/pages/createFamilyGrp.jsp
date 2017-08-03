@@ -79,16 +79,16 @@
 
 
 			<div class="tab-content">
-				<div id="createFamily" class="tab-pane fade in active col-md-6">
+				<div id="createFamily" class="tab-pane fade in active form-group">
 					<form action="${pageContext.request.contextPath}/CreateFamilyGrp"
 						method="post" id="form-upload">
 						<h3>Create Family Group</h3>
 						<input type="hidden" value="${user.accountId}" name="owner">
 						<p>
-							Group Name : <input type="text" name="grpName">
+							Group Name : <input type="text" name="grpName" class="form-control">
 						</p>
 						<p>
-							Group Password : <input type="password" name="password">
+							Group Password : <input type="password" name="password" class="form-control">
 						<p>
 							Group Image: <input type="file" name="file"
 								class="form-control fullactpic" id="form-upload"
@@ -104,7 +104,7 @@
 								class="col-md-5 btn btn-success  pull-right">Create
 								Family Group</button>
 						</div>
-
+						<br><br>
 					</form>
 				</div>
 
@@ -115,21 +115,21 @@
 
 
 
-				<div id="joinFamily" class="tab-pane fade">
+				<div id="joinFamily" class="tab-pane fade form-group" >
 
 					<h3>Join Family Group</h3>
 					<form action="${pageContext.request.contextPath}/JoinFamilyGroup"
 						method="post">
 						<input type="hidden" value="${user.accountId}" name="user">
 						<p>
-							Group Id: <input type="text" name="grpId">
+							Group Id: <input type="text" name="grpId" class="form-control">
 						</p>
 						<p>
-							Password: <input type="password" name="grpPassword">
+							Password: <input type="password" name="grpPassword" class="form-control">
 						</p>
 						<button type="submit" class="col-md-5 btn btn-success">Join Group</button>
 					</form>
-
+						<br><br>
 
 				</div>
 
@@ -169,7 +169,7 @@
 
 						</table>
 					</div>
-				
+				 <br><br>
 				</div>
 
 
