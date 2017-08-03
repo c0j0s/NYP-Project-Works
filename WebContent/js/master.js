@@ -560,6 +560,11 @@ $( document ).ready(function() {
             }
         }
     });
+	/**
+	 * method for multi select plugin
+	 */
+	//$('#generate1').multiselect();
+	$('#generate1').multiselect();
 });
 
 function paytype(type){

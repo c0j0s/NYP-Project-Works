@@ -78,22 +78,22 @@
 
 				<div class="clearfix">
 					<p class="col-md-6">
-						Number Of Participants : <select name="noOfParticipants"
-							id="generate1" class="select form-control">
+						Number Of Participants : 
+						<select name="noOfParticipants" id="generate1" multiple="multiple">
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
-		for (FamilyGrp fg : fGrp) {%>
-
-
-							<option disabled><%=fg.getGroupName() %></option>
-
+							for (FamilyGrp fg : fGrp) {%>
+<%-- 							<option disabled><%=fg.getGroupName() %></option> --%>
 							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
 							for (FamilyGrp fm : fMem){
 								System.out.println(request.getAttribute("acctId")+fm.getAccountId());
 								if(!(request.getAttribute("acctId").equals(fm.getAccountId()))){
-								%><option value="<%= fm.getAccountId()%>"><%= fm.getGivenName()%><%}
-							}
+								%>
+								<option value="<%= fm.getAccountId()%>"><%= fm.getGivenName()%></option>
+								<%
 								}
-							%>
+								}
+								}
+								%>
 						</select>
 					</p>
 					<p>
@@ -162,16 +162,19 @@
 					</jsp:include>
 				</div>
 				<div class="col-md-12 col-sm-4">
-					<ul class="list-group id="aMultiPlatformList"">
+					<ul class="list-group" id="aMultiPlatformList">
 						<h4>Activity Popularity Ranking</h4>
 						<%
 							int z = 0;
 							ArrayList<Activity> actRank = (ArrayList<Activity>) request.getAttribute("actRank");
 							for (Activity act : actRank) {
 						%>
-						<li class="list-group-item"><%=z + 1%>. <a
-							href='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle()%>
-						</a><span class="badge"><%=act.getRankPoints()%></span></li>
+						<li class="list-group-item"><%=z + 1%>. 
+						<a href='ActFull?activityId=<%=act.getActivityId()%>'>
+						<%=act.getActivityTitle()%>
+						<span class="badge"><%=act.getRankPoints()%></span>
+						</a>
+						</li>
 						<%
 							z++;
 							}
@@ -182,5 +185,7 @@
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
+<script type="text/javascript">
+</script>
 </body>
 </html>
