@@ -11,7 +11,6 @@ $( document ).ready(function() {
 		messagingSenderId: "1088530786881"
 	};
 	firebase.initializeApp(config);
-    console.log( "ready!" );
 
     $(function() {
         $("#main-container").animate(
@@ -146,15 +145,15 @@ $( document ).ready(function() {
 			success:function(){
 			}
 		});
-		$(".post-button-action-group").empty();
 		$(".post-button-action-group").append("<button type='button' class='btn btn-success btn-block' disabled>Post Closed</button> ");
 		$(this).parent().append('<button type="button" class="btn btn-warning col-sm-12" id="post-best-answer-badge" disabled><span class="glyphicon glyphicon-ok" aria-hidden="true"></span><br><hr><sapn>Best<br>Answer</sapn></button>');
-		$(this).remove();
+		$(".post-best-answer-btn").each(function(){
+			$(this).remove();
+		});
 	})
 	
 	$('.comment-delete').on('click',function(){
 		var id = $(this).data().id
-		console.log("log .post-comment-" + id)
 		$(".post-comment-" + id).css("display","none");
 		$(".post-comment-" + id).after("<div id='comment-delete-message'><div class='panel panel-warning'><div class='panel-heading auto-overflow' >" +
 				"<h4 class='col-sm-9'>Comment deleting in <span id='comment-delete-countdown'>5</span>s.</h4>" +
@@ -173,7 +172,6 @@ $( document ).ready(function() {
 							popup('body',message)
 							$(".post-comment-" + id).remove()
 							$("#comment-delete-message").remove();
-							console.log('success')
 						}
 					});	
 				span = 0;
@@ -192,9 +190,68 @@ $( document ).ready(function() {
 		$("#comment-delete-message").remove();
 		clearInterval(counter);
 	}
+
+	if($(".forum-sidebar-top-answerer").length){
+		$(".forum-sidebar-top-answerer").ready(function(){
+			console.log("load log");
+			$.ajax({
+				url: ContextPath + "/GetTopAnswerer",
+				success:function(json){
+					$(".forum-sidebar-top-answerer").empty();
+					var item = JSON.parse(json);
+					for(var i = 0; i < item.length; i++){
+						var li = '<h4><img alt="Top Answerer profile image" src="' + item[i].imgUrl + '" class="img-circle profile-image-xsmall"/>'
+						+ item[i].givenName + ' <span class="label label-danger label-sm pull-right">'
+						+ '<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>' 
+						+ item[i].postsCounts + '</span></h4>'
+						$(".forum-sidebar-top-answerer").append(li);
+					}
+				}
+			})
+		})
+	}
+	
+	if($('.comments-comment').length){
+		$('.comments-comment').each(function(){
+			var item = $(this)
+			var value = item.data()
+			$.ajax({
+				url: ContextPath + "/GetCommentsComment",
+				data : value,
+				success:function(json){
+					item.empty()
+					var obj = JSON.parse(json)
+					for(var i = 0; i < obj.length; i++){
+						item.append('<div class="row comment-under-comment"><div class="col-md-2 col-sm-3"><img src="'+obj[i].accountImgUrl+'" class="img-circle profile-image-xsmall">'+
+								'<p>says: </p></div><div class="col-md-10 col-sm-9"><p>'+obj[i].commentContent+'</p></div></div>')
+					}
+				}
+			})
+		})
+	}
 	/**
 	 *  method for meta value TODO update with real time database metavalue
 	 */
+	$(".meta-like-btn").each(function(){
+		var item = $(this);
+		var value = item.data()
+		$.ajax({
+			url: "CheckUserLiked",
+			data:value,
+			success:function(results){
+				if(results === 'like'){
+					item.removeAttr("disabled");
+				}else if(results === 'dislike'){
+					item.next().removeAttr("disabled");
+				}else if(results === 'nil'){
+					item.removeAttr("disabled");
+					item.next().removeAttr("disabled");
+				}
+				item.removeClass("loading");
+				item.next().removeClass("loading");
+			}
+		})
+	})
 	
 	$(".meta-like-btn").on('click',function(){
 		var mdata = $(this).data();
@@ -250,6 +307,24 @@ $( document ).ready(function() {
 
 	})
 	
+	if($("#follow-post").length){
+		$("#follow-post").ready(function(){
+			var item = $("#follow-post")
+			var value = item.data()
+			$.ajax({
+				url: "CheckUserFollowedPost",
+				data:value,
+				success:function(results){
+					if(results === 'true'){
+						item.addClass("hide")
+						item.prev().removeClass("hide")
+					}
+					item.removeAttr("disabled")
+					item.prev().removeAttr("disabled")
+				}
+			})
+		})
+	}
 	$("#follow-post").on("click", function(){
 		var btn = $(this);
 		$.ajax({
@@ -301,7 +376,6 @@ $( document ).ready(function() {
 		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
 		  function(snapshot) {
 		    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-		    console.log('Upload is ' + progress + '% done');
 		    switch (snapshot.state) {
 		      case firebase.storage.TaskState.PAUSED: 
 		        console.log('Upload is paused');
@@ -329,17 +403,18 @@ $( document ).ready(function() {
 	 * methods for activity
 	 */
 	$(".actRank").on('click',function(){
-		$("#aMultiPlatformList").empty();
-		$.ajax({
-			url : "actRankList",
-			success : function(rankingList){
-				var json = JSON.parse(rankingList);
-				console.log(json)
-				for(var i = 0; i< json.length; i++){
-					var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
-					$("#aMultiPlatformList").append(list);
-				}}
-		})
+		if($("#aMultiPlatformList").length){
+			$("#aMultiPlatformList").empty();
+			$.ajax({
+				url : "actRankList",
+				success : function(rankingList){
+					var json = JSON.parse(rankingList);
+					for(var i = 0; i< json.length; i++){
+						var list = '<li class="list-group-item">'+(i+1)+'. <a href ="ActFull?activityId='+json[i].activityId+'">'+json[i].activityTitle+'</a><span class="badge">'+json[i].rankPoints+'</span></li>'
+						$("#aMultiPlatformList").append(list);
+					}}
+			})
+		}
 	});
 	$("#generate1,#generate2").on('change', function () {
 		var num1 = $('#generate1').val();
@@ -411,7 +486,6 @@ $( document ).ready(function() {
 	}
 	
 	setInterval(function(){
-		console.log(login)
 		if(login){
 			$.ajax({
 				url: ContextPath +'/getNotificationCount',
@@ -461,18 +535,31 @@ $( document ).ready(function() {
 			url: ContextPath + "/ReportItem",
 			data:rdata,
 			success: function(success){
-				console.log(success);
 				popup('body',success)
 				$('#reportUser-'+rdata.itemid).modal('hide')
 				$('#reportItem-'+rdata.itemid).modal('hide')
 			}
 		})
 	})
-	
+	/**
+	 * for login/profile/account admin
+	 */
 	$("#addMember").on("click",function(){
 		var item = '<input type="text" class="form-control" name="users">';
 		$('#adduser').append(item);
 	})
+	
+    $('#login').validate({ 
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            userPw: {
+                required: true,
+            }
+        }
+    });
 });
 
 function paytype(type){
@@ -487,8 +574,8 @@ function paytype(type){
 		break;
 
 	}
-	console.log(type);
 }
+
 
 function popup(id,message){
 	$(id).append('<div style="position: fixed;bottom:0;right:0;margin: 0px;" class="alert alert-warning" role="alert" data-dismiss="alert">'+message+'</div>')
@@ -496,3 +583,11 @@ function popup(id,message){
 		$('.alert.alert-warning').alert('close');
 	},5000)
 }
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        var activeTab = $(e.target).text(); // Get the name of active tab
+        var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
+        $(".active-tab span").html(activeTab);
+        $(".previous-tab span").html(previousTab);
+    });
+});

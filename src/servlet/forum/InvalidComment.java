@@ -1,28 +1,25 @@
-package servlet.view;
+package servlet.forum;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.FamilyGrp;
-import database.FamGrpDB;
+import database.CommentDB;
 
 /**
- * Servlet implementation class CreateFamGroup
+ * Servlet implementation class InvalidComment
  */
-@WebServlet("/CreateFamGroup")
-public class CreateFamGroup extends HttpServlet {
+@WebServlet("/InvalidComment")
+public class InvalidComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateFamGroup() {
+    public InvalidComment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +28,20 @@ public class CreateFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FamGrpDB fgdb= new FamGrpDB();
-		String famGroup = request.getParameter("userIdFg");
-		System.out.println("HELP ME LUH"+famGroup);
-		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
-		request.setAttribute("fGroup", fGrp);
-		
-		request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		try {
+			String id = request.getParameter("commentId");
+			System.out.println("id:" + id);
+			CommentDB cdb = new CommentDB();
+			if(cdb.invalidComment(id)) {
+				response.getWriter().append("Comment removed.");
+			}else {
+				response.getWriter().append("Fail to remove comment.");
+			}
+		} catch (Exception e) {
+			response.getWriter().append("Server error: fail to remove comment");
+			e.printStackTrace();
+		}
 	}
 
 	/**

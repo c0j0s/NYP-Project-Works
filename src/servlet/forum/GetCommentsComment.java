@@ -1,4 +1,4 @@
-package servlet.view;
+package servlet.forum;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.FamilyGrp;
-import database.FamGrpDB;
+import com.google.gson.Gson;
+
+import bean.Comment;
+import database.CommentDB;
 
 /**
- * Servlet implementation class CreateFamGroup
+ * Servlet implementation class GetCommentsComment
  */
-@WebServlet("/CreateFamGroup")
-public class CreateFamGroup extends HttpServlet {
+@WebServlet("/GetCommentsComment")
+public class GetCommentsComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateFamGroup() {
+    public GetCommentsComment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +33,11 @@ public class CreateFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FamGrpDB fgdb= new FamGrpDB();
-		String famGroup = request.getParameter("userIdFg");
-		System.out.println("HELP ME LUH"+famGroup);
-		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
-		request.setAttribute("fGroup", fGrp);
-		
-		request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+		String commentId = request.getParameter("commentid");
+		CommentDB cdb = new CommentDB();
+		Gson gson = new Gson();
+		ArrayList<Comment>list = cdb.getCommentByCommentId(commentId, 0, 5);
+		response.getWriter().append(gson.toJson(list));
 	}
 
 	/**

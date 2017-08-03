@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession mySession = request.getSession(true);
 		String userId=request.getParameter("email");
 		String userPw=request.getParameter("userPw");
 		try{
@@ -40,12 +40,12 @@ public class LoginServlet extends HttpServlet {
 			if(ac!=null){
 
 				System.out.println("Log loginservlet: success");
-				HttpSession mySession = request.getSession(true);
+				
 				mySession.setAttribute("account", ac);
 				if(request.getParameter("redirect") == null) {
-					request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+					response.sendRedirect("MyProfile");
 				}else {
-					request.getRequestDispatcher(request.getParameter("redirect")).forward(request, response);
+					response.sendRedirect(request.getParameter("redirect"));
 				}
 				
 			}

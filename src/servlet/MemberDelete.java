@@ -1,28 +1,25 @@
-package servlet.view;
+package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.FamilyGrp;
 import database.FamGrpDB;
 
 /**
- * Servlet implementation class CreateFamGroup
+ * Servlet implementation class MemberDelete
  */
-@WebServlet("/CreateFamGroup")
-public class CreateFamGroup extends HttpServlet {
+@WebServlet("/MemberDelete")
+public class MemberDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateFamGroup() {
+    public MemberDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +28,12 @@ public class CreateFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FamGrpDB fgdb= new FamGrpDB();
-		String famGroup = request.getParameter("userIdFg");
-		System.out.println("HELP ME LUH"+famGroup);
-		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
-		request.setAttribute("fGroup", fGrp);
-		
-		request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+		FamGrpDB fgdb = new FamGrpDB();
+		fgdb.deleteMember(request.getParameter("grpId"),request.getParameter("acctId"));
+		String grpId = request.getParameter("grpId");
+		request.setAttribute("famGrpId", grpId);
+		System.out.println(grpId+" help me"+request.getParameter("acctId"));
+		response.sendRedirect("DisplayFamGroup?famGrpId="+grpId);
 	}
 
 	/**

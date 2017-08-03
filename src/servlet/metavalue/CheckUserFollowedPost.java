@@ -1,4 +1,4 @@
-package servlet;
+package servlet.metavalue;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,20 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import database.CommentDB;
+import bean.Account;
+import database.MetaValueDB;
 
 /**
- * Servlet implementation class InvalidComment
+ * Servlet implementation class CheckUserFollowedPost
  */
-@WebServlet("/InvalidComment")
-public class InvalidComment extends HttpServlet {
+@WebServlet("/CheckUserFollowedPost")
+public class CheckUserFollowedPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InvalidComment() {
+    public CheckUserFollowedPost() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +30,16 @@ public class InvalidComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-			String id = request.getParameter("commentId");
-			System.out.println("id:" + id);
-			CommentDB cdb = new CommentDB();
-			if(cdb.invalidComment(id)) {
-				response.getWriter().append("Comment removed.");
-			}else {
-				response.getWriter().append("Fail to remove comment.");
-			}
-		} catch (Exception e) {
-			response.getWriter().append("Server error: fail to remove comment");
-			e.printStackTrace();
+		HttpSession ss = request.getSession(false);
+		if(ss.getAttribute("account") != null) {
+			Account ac = (Account) ss.getAttribute("account");
+			MetaValueDB mdb = new MetaValueDB();
+			String itemId = request.getParameter("id");
+			boolean result = mdb.checkFollowed(itemId, ac.getAccountId());
+			System.out.println(Boolean.toString(result));
+			response.getWriter().append(Boolean.toString(result));
+		}else {
+			response.getWriter().append("Session Expired");
 		}
 	}
 

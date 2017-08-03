@@ -1,28 +1,27 @@
-package servlet.view;
+package servlet.metavalue;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.FamilyGrp;
-import database.FamGrpDB;
+import bean.Account;
+import database.MetaValueDB;
 
 /**
- * Servlet implementation class CreateFamGroup
+ * Servlet implementation class CheckMetaExisit
  */
-@WebServlet("/CreateFamGroup")
-public class CreateFamGroup extends HttpServlet {
+@WebServlet("/CheckUserLiked")
+public class CheckUserLiked extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateFamGroup() {
+    public CheckUserLiked() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +30,16 @@ public class CreateFamGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FamGrpDB fgdb= new FamGrpDB();
-		String famGroup = request.getParameter("userIdFg");
-		System.out.println("HELP ME LUH"+famGroup);
-		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
-		request.setAttribute("fGroup", fGrp);
-		
-		request.getRequestDispatcher("pages/createFamilyGrp.jsp").forward(request, response);
+		HttpSession ss = request.getSession(false);
+		if(ss.getAttribute("account") != null) {
+			Account ac = (Account) ss.getAttribute("account");
+			MetaValueDB mdb = new MetaValueDB();
+			String itemId = request.getParameter("id");
+			String result = mdb.checkLiked(itemId, ac.getAccountId());
+			response.getWriter().append(result);
+		}else {
+			response.getWriter().append("Session Expired");
+		}
 	}
 
 	/**

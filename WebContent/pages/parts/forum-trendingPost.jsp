@@ -4,6 +4,7 @@
 		<div class="panel panel-default Forum-card forum-trending-card">
 		  <div class="panel-body text-center">
 		    <jsp:include page="forum-accountInfo.jsp">
+		    	<jsp:param value="${tpost.accountId }" name="accountId"/>
 				<jsp:param value="${tPost.hideId}" name="hideId"/>
 				<jsp:param value="${tPost.accountName}" name="name"/>
 				<jsp:param value="${tPost.accountImgUrl }" name="imgUrl"/>

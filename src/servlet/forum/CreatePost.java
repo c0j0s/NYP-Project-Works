@@ -1,4 +1,4 @@
-package servlet;
+package servlet.forum;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

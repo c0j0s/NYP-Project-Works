@@ -10,7 +10,7 @@ public class DBAO {
 	protected static Connection con;
 	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
-	final private String lurl = "jdbc:mysql://25.53.148.109:3306/ffl";
+	final private String lurl = "jdbc:mysql://25.53.148.109/ffl?useCursorFetch=true";
 
 	
 	/**

@@ -55,12 +55,8 @@ public class Post extends HttpServlet {
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
-			
-			if(ac != null) {
-				if(p.getFollowerAccounts().contains(ac.getAccountId())){
-					followed = true;
-				}
-			}
+
+			followed = true;
 		}else {
 			request.setAttribute("message", "Post not found");
 		}

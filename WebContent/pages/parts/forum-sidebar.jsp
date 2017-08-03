@@ -12,17 +12,8 @@
 				<h3 class="panel-title">Top Answerer</h3>
 			</div>
 			<div class="panel-body">
-				<ul class='list-group'>
-				<c:forEach items="${topAnswerer }" var='answerer'>
-					<h4>
-					<img alt="Top Answerer profile image" src="${answerer.imgUrl }" class='img-circle profile-image-xsmall'/>
-					${answerer.givenName }
-					<span class="label label-danger label-sm pull-right">
-					<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-					${answerer.postsCounts }
-					</span>
-					</h4>
-				</c:forEach>
+				<ul class='list-group forum-sidebar-top-answerer'>
+					<img src="${pageContext.request.contextPath}/img/loading.gif">
 				</ul>
 			</div>
 		</div>

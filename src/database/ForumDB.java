@@ -80,9 +80,8 @@ public class ForumDB extends DBAO{
 			if(statement == null){
 				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postStatus DESC,postDate DESC";
 			}
-	
 			ps = con.prepareStatement(statement);
-			
+			ps.setFetchSize(1000);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
@@ -98,6 +97,7 @@ public class ForumDB extends DBAO{
 				post.setActivityId(rs.getString("ActivityactivityId"));
 				post.setDate(rs.getString("postDate"));
 				post.setPostStatus(rs.getString("postStatus"));
+				post.setPoints(rs.getInt("points"));
 				
 				post.setLikeCount(rs.getInt("likeCount"));
 				post.setDislikeCount(rs.getInt("dislikeCount"));
@@ -106,11 +106,7 @@ public class ForumDB extends DBAO{
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
-				MetaValueDB mdb = new MetaValueDB();
-				post.setFollowerAccounts(mdb.getMetaAccounts("metavalue","parentId",post.getPostId(),"follow"));
-				post.setLikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"like"));
-				post.setDislikeAccounts(mdb.getMetaAccounts("post","postId",post.getPostId(),"dislike"));
-				
+	
 				post.setBestAnswer(rs.getString("bestAnswer"));
 				
 				ResultSetMetaData rsmd = rs.getMetaData();		
@@ -127,6 +123,43 @@ public class ForumDB extends DBAO{
 		}
 		return postList;
 	}	
+	
+	/**
+	 * To retrieve all post from database for simple list | performance testing
+	 * @param statement
+	 * @return ArrayList<Post>
+	 */
+	public ArrayList<Post> getPostSimpleList(int start,String category){
+		ArrayList<Post> postList = new ArrayList<Post>();
+		try {
+			String statement = "SELECT postId,postTitle,givenName,imgUrl,UseraccountId,postDate,points,likeCount,dislikeCount,commentCount,valid,hideId"
+					+ " FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setFetchSize(1000);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Post post = new Post();
+				post.setPostId(rs.getString("postId"));
+				post.setPostTitle(rs.getString("postTitle"));
+				post.setAccountName(rs.getString("givenName"));
+				post.setAccountImgUrl(rs.getString("imgUrl"));
+				post.setAccountId(rs.getString("UseraccountId"));
+				post.setDate(rs.getString("postDate"));
+				post.setPoints(rs.getInt("points"));
+				post.setLikeCount(rs.getInt("likeCount"));
+				post.setDislikeCount(rs.getInt("dislikeCount"));
+				post.setCommentCount(rs.getInt("commentCount"));
+				post.setValid(rs.getString("valid").charAt(0));
+				post.setHideId(rs.getString("hideId").charAt(0));
+				postList.add(post);
+			}
+			rs.close();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return postList;
+	}
 	
 	/**
 	 * retrieve post by category
@@ -197,7 +230,7 @@ public class ForumDB extends DBAO{
 	public ArrayList<Account> getTopAnswerer(){
 		ArrayList<Account> list = new ArrayList<Account>();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT *,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
+			PreparedStatement ps = con.prepareStatement("SELECT imgUrl,givenName,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Account ac = new Account();

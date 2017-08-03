@@ -1,29 +1,4 @@
 <footer>
-<!-- 	<div class="container footer-info"> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			<dl> -->
-<!-- 			  <dt>Quick Links</dt> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			  <dd><a class="white">link1</a></dd> -->
-<!-- 			</dl> -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			links -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			social media -->
-<!-- 		</div> -->
-<!-- 		<div class="col-md-3 col-sm-6"> -->
-<!-- 			<address> -->
-<!-- 			  <strong>NYP</strong><br> -->
-<!-- 			  address<br> -->
-<!-- 			  singapore, 000000<br> -->
-<!-- 			  <abbr title="Phone">P:</abbr> (65) 0000-0000<br> -->
-<!-- 			  <abbr title="Email">E:</abbr> mail@mail.com<br> -->
-<!-- 			</address> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 	<div class="container-fluid footer-info">
 		<div class="container">
 			<div class='col-md-8'>
@@ -73,4 +48,4 @@
 <script src='${pageContext.request.contextPath}/js/master.js'></script>
 <script src='${pageContext.request.contextPath}/js/card-js.min.js'></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>

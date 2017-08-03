@@ -2,10 +2,14 @@ var getReported,itemAction;
 $( document ).ready(function() {
 	console.log("admin ready")
 	
+	/**
+	 * forum panel
+	 */
+	
 	$(".admin-subpanel-btn").on('click', function(){
 		$("#admin-forum-body").empty();
+		$("#admin-forum-body").append('<tr class="loading"><td><img src="'+ContextPath+'/img/loading.gif"></td></tr>');
 		var type = $(this).data().type;
-		console.log(type)
 		if(type === 'reported'){
 			$("#tabName").html("Reported Post and Comments");
 			getReported();
@@ -20,19 +24,16 @@ $( document ).ready(function() {
 	
 	
 	getReported = function(){
-		console.log('reported')
 		getList('AdminForum?get=reported')
 		$('#admin-forum-refresh').attr('data-type','reported')
 	}
 	getReported();
 	function getAllPost(){
-		console.log('post')
 		getList('AdminForum?get=post')
 		$('#admin-forum-refresh').attr('data-type','post')
 	}
 	
 	function getAllComment(){
-		console.log('comment')
 		getList('AdminForum?get=comment')
 		$('#admin-forum-refresh').attr('data-type','comment')
 	}
@@ -41,15 +42,14 @@ $( document ).ready(function() {
 		$.ajax({
 			url:ContextPath + "/" +servletUrl,
 			success: function(results){
-				console.log("log results: " + results)
 				updateTabContent(results)
 			}
 		})
 	}
 	
 	function updateTabContent(results){
+		$(".loading").remove()
 		var json = JSON.parse(results);
-		console.log(json)
 		for(var i = 0; i< json.length; i++){
 			var cancel = '';
 			var del = '';
@@ -92,21 +92,35 @@ $( document ).ready(function() {
 		})
 	}
 	
+	/**
+	 * activity panel
+	 */
+	
 	$(".admin-activity").on('click', function(){
 		$("#admin-activity-body").empty();
 		$.ajax({
 			url : "AdminActivity",
 			success : function(adminList){
 				var json = JSON.parse(adminList);
-				console.log(json)
 				for(var i = 0; i< json.length; i++){
 				var list = '<tr><td>'+json[i].activityId+'</td><td>'+json[i].activityTitle+'</td><td><span class="badge">'+json[i].rankPoints+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Delete" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Invalid">Delete Activity</button></td><td><button type="submit" value="Restore" name="buttonClickList" class="btn-success btn" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Valid">Restore Activity</button></td><td id="buttonValid-'+json[i].activityId+'">'+json[i].valid+'</td></tr>'
-			$("#admin-activity-body").append(list);
-				console.log(":()()()()()()()()()()(");
+				$("#admin-activity-body").append(list);
 				}}
 		})
 	})
+	
+	/**
+	 * account panel
+	 */
+	
+	$(".admin-account").on('click', function(){
+		$("#admin-account-body").empty();
+		
+	})
 
+	/**
+	 * others panel
+	 */
 
 	$("#admin-others-send-message").on('click',function(){
 		var message = $("#admin-others-input-message").val()
@@ -148,7 +162,6 @@ $( document ).ready(function() {
 function actDelete(e){
 	var id = $(e).data().id
 	var action = $(e).data().action
-	console.log(id)
 	$.ajax({
 		url:ContextPath + "/DeleteActivity?actId="+id+"&action="+action,
 		success:function(results){

@@ -44,6 +44,7 @@ public class AdminOthers extends HttpServlet {
 				no.setTitle(request.getParameter("title"));
 				no.setMessage(request.getParameter("message"));
 				no.setServiceType("FFL Admin");
+				no.setAccountId(ac.getAccountId());
 				ArrayList<String> accountIds = ndb.getAllUserAccounts();
 				ndb.sentNotificationToAccounts(accountIds, no);
 				response.getWriter().append("Send message to all users successfully!");
