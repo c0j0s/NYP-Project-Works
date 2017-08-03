@@ -45,7 +45,7 @@ public class AccountDB extends DBAO{
 				ac.setActivityOrganisedCount(rs.getInt("activityOrganisedCount"));
 				ac.setActivityParticipatedCount(rs.getInt("activityParticipatedCount"));
 				ac.setClaimCount(rs.getInt("claimCount"));
-				ac.setFamilyGroupCount(rs.getInt("familyGroup"));
+				ac.setFamilyGroupCount(rs.getInt("familyGroupCount"));
 				ac.setBestAnswerCount(rs.getInt("bestAnswerCount"));
 				ac.setCommentCounts(rs.getInt("commentCounts"));
 				ac.setPostsCounts(rs.getInt("postCounts"));
