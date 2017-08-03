@@ -125,6 +125,32 @@ public class FamGrpDB extends DBAO{
 		return famGrpList;
 
 	}
+	public ArrayList<FamilyGrp> getAllFamMem(String userId){
+		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
+		try {
+			String stmt ="select * from ffl.familygroups f inner join ffl.userfamilygroup u on u.FamilyGroupfamilyGroupId = f.familyGroupId where UseraccountId = ? and u.valid = 'Y';";
+			PreparedStatement p = con.prepareStatement(stmt);
+			p.setString(1, userId);
+	
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				FamilyGrp fg = new FamilyGrp();
+				fg.setFamilyGroupId(rs.getString("f.familyGroupId"));
+				fg.setGroupName(rs.getString("groupName"));
+				fg.setGroupCreationDate(rs.getString("groupCreationDate"));
+				fg.setImgUrl(rs.getString("imgUrl"));
+				fg.setPassword(rs.getString("password"));
+				fg.setGrpOwner(rs.getString("grpOwner"));
+				findMembers(rs.getString("f.familyGroupId"));
+				famGrpList.add(fg);
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return famGrpList;
+
+	}
 	public ArrayList<FamilyGrp> findMembers(String grpId){
 		ArrayList<FamilyGrp> famGrpList = new ArrayList<FamilyGrp>();
 		try {
