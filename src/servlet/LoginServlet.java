@@ -37,8 +37,9 @@ public class LoginServlet extends HttpServlet {
 		try{
 			AccountDB myDatabase = new AccountDB();
 			Account ac = myDatabase.isMember(userId, userPw);
+		
 			if(ac!=null){
-
+				
 				System.out.println("Log loginservlet: success");
 				
 				mySession.setAttribute("account", ac);
@@ -48,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect(request.getParameter("redirect"));
 				}
 				
+				
 			}
 			else{
 
@@ -56,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 			}
 		}catch(Exception ex){
-			System.out.println("Error Accessing database: "+ex);
+			ex.printStackTrace();
 		}
 	}
 

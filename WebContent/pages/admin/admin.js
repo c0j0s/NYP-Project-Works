@@ -115,12 +115,14 @@ $( document ).ready(function() {
 	
 	$(".admin-account").on('click', function(){
 		$("#admin-account-body").empty();
+		console.log("click");
 		$.ajax({
 			url : "AdminAccount",
 			success : function(adminList){
+				console.log(adminList);
 				var json = JSON.parse(adminList);
 				for(var i = 0; i< json.length; i++){
-				var list = '<tr><td>'+json[i].accountId+'</td><td>'+json[i].givenName+'</td><td><span class="badge">'+json[i].Status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Delete" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Invalid">Delete Activity</button></td><td><button type="submit" value="Restore" name="buttonClickList" class="btn-success btn" onclick="actDelete(this)" data-id="'+json[i].activityId+'" data-action="Valid">Restore Activity</button></td><td id="buttonValid-'+json[i].activityId+'">'+json[i].valid+'</td></tr>'
+				var list = '<tr><td>'+json[i].accountId+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td>'
 				$("#admin-account-body").append(list);
 				}}
 		})
@@ -174,6 +176,15 @@ function actDelete(e){
 		url:ContextPath + "/DeleteActivity?actId="+id+"&action="+action,
 		success:function(results){
 			$("#buttonValid-"+id).html(results);
+		}
+	})
+}
+function invalidAcc(e){
+	var id = $(e).data().id
+	$.ajax({
+		url:ContextPath + "/InvalidateAccount?accId="+id,
+		success:function(results){
+			popup('body', results);
 		}
 	})
 }

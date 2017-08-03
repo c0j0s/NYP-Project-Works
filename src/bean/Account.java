@@ -24,6 +24,7 @@ public class Account {
 	private int familyGroupCount;
 	private String status;
 	private String role;
+	private char valid;
 	
 	public String getGivenName() {
 		return givenName;
@@ -152,6 +153,12 @@ public class Account {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public char getValid() {
+		return valid;
+	}
+	public void setValid(char valid) {
+		this.valid = valid;
 	}
 	/**
 	 *  resources for account
