@@ -79,10 +79,10 @@
 				<div class="clearfix">
 					<p class="col-md-6">
 						Number Of Participants : 
-						<select name="noOfParticipants" id="generate1" multiple="multiple">
+						<select name="noOfParticipants" name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
 							for (FamilyGrp fg : fGrp) {%>
-<%-- 							<option disabled><%=fg.getGroupName() %></option> --%>
+			<option disabled><%=fg.getGroupName() %></option> 
 							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
 							for (FamilyGrp fm : fMem){
 								System.out.println(request.getAttribute("acctId")+fm.getAccountId());
@@ -95,7 +95,7 @@
 								}
 								%>
 						</select>
-					</p>
+					</p><input type="hidden" id="countpay" name="countpay">
 					<p>
 						<input type="hidden" id="total" name="total"
 							 value="<%=df.format(actf.getActivityFee())%>">

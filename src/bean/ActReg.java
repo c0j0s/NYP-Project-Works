@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.ArrayList;
+
 public class ActReg extends Activity {
 private String registrationId;
 private double registrationAmtPaid;
@@ -9,7 +11,8 @@ private String cashOrBank;
 private String ActivityactivityId;
 private String activityRegistrationDate;
 private String participantName;
-public ActReg(){
+private ArrayList<String> participantId;
+ public ActReg(){
 	
 }
 
@@ -76,6 +79,14 @@ public String getParticipantName() {
 
 public void setParticipantName(String participantName) {
 	this.participantName = participantName;
+}
+
+public ArrayList<String> getParticipantId() {
+	return participantId;
+}
+
+public void setParticipantId(ArrayList<String> arrayList) {
+	this.participantId = arrayList;
 }
 
 

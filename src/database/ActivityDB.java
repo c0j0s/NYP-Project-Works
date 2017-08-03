@@ -97,19 +97,13 @@ public class ActivityDB extends DBAO{
 	}
 	public String editActivity(Activity act){
 		String stmt ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ? ,activityCategory = ?,imgUrl= ? where activityId =? ";
-		String stmt2 ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ?,activityCategory = ? where activityId =? ";
+
 		try {
 			PreparedStatement ps;
-			if(!act.getImgUrl().equals("")) {
+		
 			ps=con.prepareStatement(stmt);
 			ps.setString(5, act.getImgUrl());
 			ps.setString(6, act.getActivityId());
-			} 
-			else {
-				ps=con.prepareStatement(stmt2);
-				ps.setString(5, act.getActivityId());
-			}
-
 			ps.setString(1, act.getActivityTitle());
 			ps.setString(2, act.getActivityDescription());
 			ps.setInt(3, act.getParticipantNo());
@@ -176,6 +170,25 @@ public class ActivityDB extends DBAO{
 		}catch(Exception ex) {ex.printStackTrace();}
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public void editParNo(String activityId, int count) {
+		String stmt = "select participantNo from ffl.activity where activityId = ? and valid='Y'";
+		try {PreparedStatement ps =con.prepareStatement(stmt);
+		ps.setString(1, activityId);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			int i =rs.getInt("participantNo");
+			int v = i-count;
+			String stmt2 ="update "+ schema +".activity set participantNo = ? where activityId=?";
+			PreparedStatement ps2 = con.prepareStatement(stmt2);
+			ps2.setInt(1, v);
+			ps2.setString(2, activityId);
+			ps2.executeUpdate();
+			
+		}
+			
+		}catch(Exception ex) {ex.printStackTrace();}
+		
 	}
 }
 

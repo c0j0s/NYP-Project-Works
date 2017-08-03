@@ -416,14 +416,15 @@ $( document ).ready(function() {
 			})
 		}
 	});
-	$("#generate1,#generate2").on('change', function () {
-		var num1 = $('#generate1').val();
+	 function calculatorzz(count) {
+		var num1 = count;
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
 		   var finaltotal = format2(total, "$");
 		$('#total').val(total);
 		$('#total1').val(finaltotal);
-	});
+		$('#countpay').val(num1);
+	};
 	
 	function format2(n, currency) {
 	    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -564,7 +565,19 @@ $( document ).ready(function() {
 	 * method for multi select plugin
 	 */
 	//$('#generate1').multiselect();
-	$('#generate1').multiselect();
+	var count =0;
+	$('#drpdownlist').multiselect({            
+		onChange: function(option, checked) {
+			  var userId = [];
+			    $('#dropdownlist :selected').each(function(i, selected){ 
+			      userId[i] = $(selected).val(); 
+			    });
+			    alert(userId);count++
+			;
+		
+                calculatorzz(count);
+            }});
+	
 });
 
 function paytype(type){
