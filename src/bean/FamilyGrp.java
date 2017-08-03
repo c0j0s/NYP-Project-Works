@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FamilyGrp extends Account{
@@ -10,6 +11,7 @@ public class FamilyGrp extends Account{
 	private String grpOwner;
 	private String password;
 	private String grpMember;
+	private ArrayList<FamilyGrp> members;
 
 	public String getFamilyGroupId() {
 		return familyGroupId;
@@ -52,6 +54,12 @@ public class FamilyGrp extends Account{
 	}
 	public void setGrpMember(String grpMember) {
 		this.grpMember = grpMember;
+	}
+	public ArrayList<FamilyGrp> getMembers() {
+		return members;
+	}
+	public void setMembers(ArrayList<FamilyGrp> members) {
+		this.members = members;
 	}
 
 }
