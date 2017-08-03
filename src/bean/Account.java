@@ -22,6 +22,8 @@ public class Account {
 	private int activityParticipatedCount;
 	private int claimCount;
 	private int familyGroupCount;
+	private String status;
+	private String role;
 	
 	public String getGivenName() {
 		return givenName;
@@ -139,6 +141,18 @@ public class Account {
 		this.familyGroupCount = familyGroupCount;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	/**
 	 *  resources for account
 	 */

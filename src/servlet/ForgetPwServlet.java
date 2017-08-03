@@ -43,11 +43,12 @@ public class ForgetPwServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		String email = request.getParameter("email");
-		UUID id = UID.genSessionId(); 
+		String id = UID.genSessionId().toString(); 
 		HttpSession session = request.getSession();
 		session.setAttribute("UUID", id);
+		session.setAttribute(id, email);
 		Mail mail = new Mail();
-		mail.sendSimpleMail(email, "Reset Password","Click the link below to reset your password. <a href = 'http://localhost:8080/FFL/ResetPw'>Reset your password here.</a>");
+		mail.sendSimpleMail(email, "Reset Password","Click the link below to reset your password. <a href = 'http://localhost:8080/FFL/ResetPw?uuid="+id+"'>Reset your password here.</a>");
 
 		//MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
 		//sender.run();

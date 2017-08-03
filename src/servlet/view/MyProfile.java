@@ -1,12 +1,17 @@
 package servlet.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import bean.Account;
+import database.ForumDB;
 
 /**
  * Servlet implementation class MyProfile
@@ -29,6 +34,10 @@ public class MyProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession ss = request.getSession(true);
 		if(ss.getAttribute("account") != null) {
+			ForumDB fdb = new ForumDB();
+			Account ac = (Account) ss.getAttribute("account");
+			ArrayList<bean.Post> post = fdb.getUserPost(ac.getAccountId());
+			request.setAttribute("post", post);
 			request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("Index");

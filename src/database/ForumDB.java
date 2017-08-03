@@ -199,7 +199,7 @@ public class ForumDB extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getUserPost(String accountId){
-		String stmt = "Select * from ffl.postlist where accountId = '"+ accountId +"'";
+		String stmt = "Select * from ffl.postlist where UseraccountId = '"+ accountId +"'";
 		return getPost(stmt);
 	}
 	

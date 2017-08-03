@@ -53,6 +53,7 @@ public class signupServlet extends HttpServlet {
 		ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
 		String imgurl = request.getParameter("imgurl");
 		ac.setImgUrl(imgurl);
+		//ac.setPoints(points);
 		String pw = request.getParameter("pw");
 		String cpw = request.getParameter("cpw");
 		if(!pw.equals(cpw)){
@@ -64,7 +65,7 @@ public class signupServlet extends HttpServlet {
 				ac1.regMember(ac, cpw);
 				HttpSession mySession = request.getSession(true);
 				mySession.setAttribute("account", ac);
-				request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
+				request.getRequestDispatcher("MyProfile").forward(request, response);
 			}catch(Exception ex){
 				System.out.println(ex.getMessage());
 			}

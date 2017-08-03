@@ -31,6 +31,7 @@
 				<label for="cpw">Password: </label> 
 				<input type="password" class="form-control" name="cpw" placeholder="Confirm Password">
 			</div>
+			<input type="hidden" value="<%=request.getParameter("uuid") %>" name="id"/>
 			<button type="submit" class="btn btn-default" value="sendform">Submit</button>
 		</form>
 </div>

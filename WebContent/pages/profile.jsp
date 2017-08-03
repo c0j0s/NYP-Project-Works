@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ page import ="bean.*" %>
+<%@ page import ="bean.*,java.util.ArrayList" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +63,16 @@
 			
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane active" id="Forum">
-			    	forum content
+			    <ul class="list-group">
+			    	<%ArrayList<bean.Post> post = (ArrayList<bean.Post>) request.getAttribute("post"); 
+			    	for(int i=0; i < post.size(); i++){
+			    		Post pt = post.get(i);
+			    		%>
+			    		
+  							<li class="list-group-item"><a href="Post?postId=<%=pt.getPostId()%>"><%=pt.getPostTitle() %></a></li>
+			    		
+			    	<%}%>
+				</ul>
 			    </div>
 			    <div role="tabpanel" class="tab-pane ${tab eq 'Activity' ? 'active' : '' }"" id="Activity">
 			    	activity content

@@ -3,6 +3,8 @@ package database;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import bean.Account;
 import bean.FamilyGrp;
 
@@ -39,7 +41,11 @@ public class AccountDB extends DBAO{
 				ac.setPoints(rs.getInt("points"));
 				ac.setCreditLevel(rs.getInt("creditLevel"));
 				ac.setImgUrl(rs.getString("imgUrl"));
-				
+				ac.setRole(rs.getString("role"));
+				ac.setActivityOrganisedCount(rs.getInt("activityOrganisedCount"));
+				ac.setActivityParticipatedCount(rs.getInt("activityParticipatedCount"));
+				ac.setClaimCount(rs.getInt("claimCount"));
+				ac.setFamilyGroupCount(rs.getInt("familyGroup"));;
 				ac.setBestAnswerCount(rs.getInt("bestAnswerCount"));
 				ac.setCommentCounts(rs.getInt("commentCounts"));
 				ac.setPostsCounts(rs.getInt("postCounts"));
@@ -106,9 +112,29 @@ public class AccountDB extends DBAO{
 			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
 			prepStmt.setString(1, pw);
 			prepStmt.setString(2, email);
+			int status = prepStmt.executeUpdate();System.out.println(prepStmt);
+			if(status != 0) {
+				System.out.println("update successful");
+			}
+			
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+	}
+	public ArrayList<Account> getReportedAccount(){
+		ArrayList<Account> reportList = new ArrayList<Account>();
+		try{
+			String ss = "select * from ffl.reported where type = 'account';";
+			PreparedStatement prepStmt = con.prepareStatement(ss);
+			ResultSet rs = prepStmt.executeQuery();
+			while(rs.next()){
+				Account ac =  new Account();
+				ac.setAccountId(rs.getString("accountId"));
+				ac.setGivenName(rs.getString("givenName")+" "+rs.getString("surName"));
+				ac.setStatus(rs.getString("status"));
+			}
+		}catch(Exception ex){ex.printStackTrace();}
+		return reportList;
 	}
 	
 }

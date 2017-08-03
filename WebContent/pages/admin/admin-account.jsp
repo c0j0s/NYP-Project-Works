@@ -7,7 +7,7 @@
 	<hr>
 	<table class="table table-hover" >
 	<thead>
-	<tr><th>Account Id</th><th>Name</th><th>Reason</th><th>Report Count</th><th>Actions</th></tr>
+	<tr><th>Account Id</th><th>Name</th><th>Status</th><th>Actions</th></tr>
 	</thead>
 	<tbody id="admin-account-body">
 	</tbody>

@@ -115,7 +115,7 @@ public class Mail {
 
 	public void sendSimpleMail(String to,String subject,String text) {
 		try {
-			session = Session.getDefaultInstance(properties, null);
+			session = Session.getInstance(properties, null);
 			message = new MimeMessage(session);
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setFrom(new InternetAddress("bt1602gp@gmail.com","FamForLife"));
