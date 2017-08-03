@@ -24,17 +24,53 @@
 		<jsp:param value="Redemption" name="title"/>
 		<jsp:param value="5" name="titleWidth"/>
 	</jsp:include>
+	<div class="col-md-3 col-sm-12">
+		<div class="col-md-12">
+			<jsp:include page="parts/sidebar-account.jsp">
+				<jsp:param value="profile" name="type" />
+				<jsp:param value="${user.points}" name="points" />
+				<jsp:param value="${user.creditLevel}" name="creditLevel" />
+			</jsp:include>
+		</div>
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">My Profile</h3>
+				</div>
+				<div class="panel-body">
+					<p>First Name:${user.givenName}</p>
+					<p>Last Name:${user.surName}</p>
+					<p>Date of Birth:${user.dob}</p>
+					<p>Gender:${user.gender}</p>
+					<p>Email:${user.email}</p>
+					<p>Address:${user.address}</p>
+					<p>Mobile No.:${user.mobileno}</p>
+				</div>
+
+			</div>
+			<button type="submit" class="btn btn-default"
+				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
+				Profile</button>
+						<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
+							onclick="location.href = 'CreateFamGroup'">Family Group</button></form></div>
+			<button type="submit" value="invalid" onclick="location.href='${pageContext.request.contextPath}/InvalidateAccount'">Delete your account</button>
+		</div>
 	<div class="col-md-9">
+	
 		<%
 			ArrayList<RewardItem> rewList = (ArrayList<RewardItem>) request.getAttribute("rewardList");
 			for (RewardItem rew : rewList) {
 		%>
-		<div class="clearfix">
+		
+		<div class="panel panel-default">
+				<div class="panel-heading">
+				<h3><%=rew.getRewardTitle()%></h3></div>
+				<div class="panel-body">
 			<div class="col-md-4">
 				<img class="fullactpic" src="<%=rew.getImgUrl()%>" />
 			</div>
 			<div class="col-md-8">
-				<h4><%=rew.getRewardTitle()%></h4>
+				
 				<p>
 					Reward Description :<%=rew.getRewardDescription()%></p>
 				<p>
@@ -46,8 +82,7 @@
 					<%=rew.getRewardQuantity()%></p>
 				
 			</div>
-		</div><form action="${pageContext.request.contextPath}/claimReward"
-						method="post"><input type="hidden" value="<%=rew.getPoints()%>" name="pointCost"></form>
+		</div></div>
 		<br></br>
 		<%}  %>
 	</div>

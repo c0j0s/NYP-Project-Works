@@ -56,11 +56,10 @@
 					<small class="page-header-subtitle">${param.subTitle }</small>
 					
 				</a>
-				<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
-							onclick="location.href = 'CreateFamGroup'">Family Group</button></form>
+				
 							
 			</h1>
-			<button onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
+			<button class= " btn btn-success " onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 		</c:when>
 		<c:when test="${param.type == 'search'? true:false}">
 			<h1 class="col-md-3 col-sm-5 pull-left">

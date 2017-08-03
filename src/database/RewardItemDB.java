@@ -27,12 +27,10 @@ public class RewardItemDB extends DBAO{
 				rew.setRewardTitle(rs.getString("rewardTitle"));
 				rew.setRewardDescription(rs.getString("rewardDescription"));
 				rew.setPoints(rs.getInt("points"));
-				rew.setRewardAvailability(rs.getString("rewardAvailability").charAt(0));
 				rew.setRewardQuantity(rs.getInt("rewardQuantity"));
 				rew.setValid(rs.getString("valid").charAt(0));
 				rew.setItemCreatedOn(rs.getString("itemCreatedOn"));
 				rew.setImgUrl(rs.getString("imgUrl"));
-				rew.setValid(rs.getString("valid").charAt(0));
 				System.out.println("record retrieve");
 				rewardList.add(rew);
 				System.out.println(rew);		}
@@ -43,8 +41,8 @@ public class RewardItemDB extends DBAO{
 		return rewardList;
 	}
 	public String createRewardItem(RewardItem rew){
-		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`, `rewardAvailability`, `rewardQuantity`, `imgUrl`, `valid`) "
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`,`rewardQuantity`, `imgUrl`, `valid`) "
+				+ "VALUES (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			rew.setRewardId(common.UID.genRewardId());
@@ -53,10 +51,9 @@ public class RewardItemDB extends DBAO{
 			ps.setString(2, rew.getRewardTitle());
 			ps.setString(3, rew.getRewardDescription());
 		    ps.setInt(4, rew.getPoints());
-			ps.setString(5,Character.toString(rew.getRewardAvailability()));
-			ps.setInt(6, rew.getRewardQuantity());
-			ps.setString(7, rew.getImgUrl());
-			ps.setString(8, Character.toString(rew.getValid()));
+			ps.setInt(5, rew.getRewardQuantity());
+			ps.setString(6, rew.getImgUrl());
+			ps.setString(7, Character.toString(rew.getValid()));
 			
 			
 			System.out.println(rew);
