@@ -40,7 +40,7 @@ public class RegList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		ActRegDB ardb = new ActRegDB();
-		ArrayList<ActReg> Registration = ardb.getActivityById(request.getParameter("activityId"));
+		ArrayList<ActReg> Registration = ardb.getRegistrationList(request.getParameter("activityId"));
 		ArrayList<Activity> activityRegistration = adb.getActivityById(request.getParameter("activityId"));
 		request.setAttribute("activityRegistration", activityRegistration);
 		request.setAttribute("Registration", Registration);

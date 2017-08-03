@@ -566,14 +566,14 @@ $( document ).ready(function() {
 	 * method for multi select plugin
 	 */
 	//$('#generate1').multiselect();
-	var count =0;
+	var count =1;
 	$('#drpdownlist').multiselect({            
 		onChange: function(option, checked) {
 			  var userId = [];
 			    $('#dropdownlist :selected').each(function(i, selected){ 
 			      userId[i] = $(selected).val(); 
 			    });
-			    alert(userId);count++
+			   count++
 			;
 		
                 calculatorzz(count);

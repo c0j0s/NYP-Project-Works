@@ -47,7 +47,6 @@ public class RegisterActivity extends HttpServlet {
 		int pay = Integer.parseInt(request.getParameter("countpay"));
 		adb.editParNo(actId, pay);
 		p.pointsCalc(request.getParameter(ac.getAccountId()),10);
-		System.out.println(request.getParameter("noOfParticipants")+"BABABSDBILAJFHLAMLFAFASKF");
 		ar.setRegistrationId(request.getParameter("registerId"));
 		ar.setRegistrationAmtPaid(Double.valueOf(request.getParameter("total")));
 		ar.setParticipantNo(Integer.parseInt(request.getParameter("countpay")));
@@ -58,6 +57,10 @@ public class RegisterActivity extends HttpServlet {
 		ar.setParticipantId(new ArrayList<String>(Arrays.asList(request.getParameterValues("multiselect[]"))));
 		System.out.println(ar.getParticipantId().size());
 		ardb.RegisterActivity(ar);
+		ardb.setRegistrationList(ac.getAccountId(), ar.getRegistrationId());
+		for(String reg: ar.getParticipantId() ) {
+			ardb.setRegistrationList(reg, ar.getRegistrationId());
+		}
 		System.out.println("pls help"+ar);
 		response.sendRedirect("ActList");
 		}catch(Exception ex) {

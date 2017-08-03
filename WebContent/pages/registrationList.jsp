@@ -42,8 +42,6 @@
         <th>Registration Id</th>
         <th>User Id</th>
         <th>Name</th>
-        <th>Participant No.</th>
-        <th>Amount Paid</th>
         <th>Cash Or Online Payment</th>
       </tr>
     </thead><%int i =0; %>
@@ -53,10 +51,8 @@
       <tr>
         <td><%=i %></td>
         <td><%=ar.getRegistrationId() %></td>
-        <td><%=ar.getUserAccountId() %></td>
+        <td><%=ar.getAccountId() %></td>
          <td><%=ar.getParticipantName() %></td>
-        <td><%=ar.getParticipantNo() %></td>
-        <td><%=ar.getRegistrationAmtPaid() %></td>
         <td><%=ar.getCashOrBank() %></td>
        
         

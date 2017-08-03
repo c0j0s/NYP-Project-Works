@@ -67,6 +67,35 @@ public class ActRegDB extends DBAO{
 			}
 		} catch(SQLException ex) {}
 		return null;}
+	public void setRegistrationList(String acctId , String registrationId) {
+		try {
+			String stmt = "insert into ffl.registerationlist (acctid,registerationId) values (?,?);";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, acctId);
+			ps.setString(2, registrationId);
+			ps.executeUpdate();
+		}catch(Exception ex) {ex.printStackTrace();}
+	}
+	
+	public ArrayList<ActReg> getRegistrationList(String actId){
+		ArrayList<ActReg> regList = new ArrayList<ActReg>();
+		try {String stmt = "SELECT r.registerationId,acctid,givenName,bankOrCash FROM ffl.registerationlist r inner join ffl.user u on r.acctid = u.accountId inner join ffl.registration re on re.registrationId = r.registerationId where ActivityactivityId = ?;";
+		PreparedStatement ps = con.prepareStatement(stmt);
+		ps.setString(1, actId);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()){
+			ActReg ar = new ActReg();
+			ar.setRegistrationId(rs.getString("r.registerationId"));
+			ar.setAccountId(rs.getString("acctid"));
+			ar.setParticipantName(rs.getString("givenName"));
+			ar.setCashOrBank(rs.getString("bankOrCash"));
+			regList.add(ar);
+		}
+		} 
+		catch(Exception ex) {}
+		return regList;
+		
+	}
 
 	
 }

@@ -79,7 +79,7 @@
 				<div class="clearfix">
 					<p class="col-md-6">
 						Number Of Participants : 
-						<select name="noOfParticipants" name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
+						<select  name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
 							for (FamilyGrp fg : fGrp) {%>
 			<option disabled><%=fg.getGroupName() %></option> 
