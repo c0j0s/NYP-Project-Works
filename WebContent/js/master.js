@@ -376,6 +376,7 @@ $( document ).ready(function() {
 		uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
 		  function(snapshot) {
 		    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		    console.log(progress)
 		    switch (snapshot.state) {
 		      case firebase.storage.TaskState.PAUSED: 
 		        console.log('Upload is paused');
