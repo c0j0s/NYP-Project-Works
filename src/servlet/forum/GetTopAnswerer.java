@@ -1,28 +1,30 @@
-package servlet;
+package servlet.forum;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import bean.Account;
+import database.ForumDB;
+
 /**
- * Servlet implementation class test
+ * Servlet implementation class GetTopAnswerer
  */
-@WebServlet("/test")
-@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-maxFileSize=1024*1024*10,      // 10MB
-maxRequestSize=1024*1024*50)   // 50MB
-public class test extends HttpServlet {
+@WebServlet("/GetTopAnswerer")
+public class GetTopAnswerer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public test() {
+    public GetTopAnswerer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +32,13 @@ public class test extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    	/**
-    	 * for uploading file to the resource folder [not recommended]
-    	 * follow html tag in test.jsp when using FileUploader
-    	 * String filename = FileManager.upload("user\\ACC0000000", request.getParts());
-    	 */
-    	
-    	/**
-    	 * for uploading file to firebase
-    	 * String imgurl = request.getParameter("imgurl");
-    	 */
-   
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ForumDB fdb = new ForumDB();
+		Gson gson = new Gson();
+		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
+		String json = gson.toJson(topAnswerer);
+		response.getWriter().append(json);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
