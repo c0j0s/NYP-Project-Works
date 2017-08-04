@@ -83,6 +83,10 @@
 				
 			</div>
 		</div></div>
+		<span aria-hidden="true">
+								<button class="btn btn-success"
+									onclick="location.href = 'claimReward?point=<%=rew.getPoints() %>'">Claim Reward</button>
+							</span>
 		<br></br>
 		<%}  %>
 	</div>
