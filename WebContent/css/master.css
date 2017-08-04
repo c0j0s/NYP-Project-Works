@@ -328,6 +328,9 @@ footer{
 .notification-li{
 	position: relative;
 }
+.list-group-item-heading{
+	line-height:1.5em;
+}
 #notification-panel{
     position: absolute;
     left: 0;

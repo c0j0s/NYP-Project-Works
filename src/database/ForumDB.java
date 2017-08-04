@@ -402,7 +402,7 @@ public class ForumDB extends DBAO implements ForumMetaById{
 	
 	@Override
 	public String getItemAccountIdByItemId(String itemId) {
-		String stmt = "select accountId from ffl.post where postId = ?";
+		String stmt = "select UseraccountId from ffl.post where postId = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, itemId);

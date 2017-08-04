@@ -447,7 +447,7 @@ $( document ).ready(function() {
 				success: function(result){
 					if(result != undefined){
 						var item = JSON.parse(result);
-						$("#notification-body").empty();
+						$("#notification-body").empty(); 
 						for(var i = 0; i< item.length; i++){
 							var li = "<a class='list-group-item notification-list-item'>" +
 									"<h4 class='list-group-item-heading'><span class='label label-warning'>"+ item[i].serviceType +"</span>&nbsp" + item[i].title +"<span onclick='openMessage(" + item[i].id + ")' class='glyphicon-" + item[i].id + " glyphicon glyphicon-menu-down pull-right'></span></h4>" +
