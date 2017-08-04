@@ -100,6 +100,11 @@
 								<button class="btn btn-success"
 									onclick="location.href = 'RegList?&activityId=<%=actf.getActivityId()%>'">Participants
 									List</button>
+							</span>
+							<span aria-hidden="true">
+								<button class="btn btn-success"
+									onclick="location.href = 'DeleteActivity?&activityId=<%=actf.getActivityId()%>'">Participants
+									List</button>
 							</span><% if(actf.getStatus().equals("Draft")){%>
 								<span aria-hidden="true">
 								<button class="btn btn-success"

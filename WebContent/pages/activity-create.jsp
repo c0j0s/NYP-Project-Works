@@ -61,20 +61,15 @@
 				</div><br>
 				<br> <label for="">Activity Description:</label>
 				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea><br>
-				<br> <label for="actFee">Activity Fee:</label>
-				<div>
-					<div class="col-md-1">$</div>
-					<div class="col-md-5">
+				<br> <label for="actFee">Activity Fee: $ </label>
+				
+					
+					
 						<input type="number" name="actFeeDollars" class="form-control"
-							placeholder="Dollars " min="0" step="any">
-					</div>
-					<div class="col-md-1">.</div>
-					<div class="col-md-5">
-						<input type="number" name="actFeeCents" class="form-control"
-							placeholder="Cents" min="0" step="any">
-					</div>
+							 min="0" step="any">
+					
 
-				<br><br></div><br>
+				<br>
 
 				<label for="actPart">Participant Number:</label> <input type="number"
 					name="actPart" class="form-control" min="0"

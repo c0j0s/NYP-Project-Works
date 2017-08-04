@@ -48,7 +48,7 @@ public class CreateActivity extends HttpServlet {
 			System.out.println(request.getParameter("actPart"));
 			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 			act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
-			act.setActivityFee(Double.valueOf(request.getParameter("actFeeDollars")+"."+request.getParameter("actFeeCents")));
+			act.setActivityFee(request.getParameter("actFeeDollars"));
 			act.setActivityLocation(request.getParameter("actLocation"));
 			act.setActivityCategory(request.getParameter("actCategory"));
 			

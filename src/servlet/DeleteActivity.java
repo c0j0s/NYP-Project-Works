@@ -41,7 +41,9 @@ public class DeleteActivity extends HttpServlet {
 			actdb.restoreActivity(actId);
 			response.getWriter().append("Y");
 		}
-		
+		if ((!(request.getParameter("activityId").equals(null)))){
+			actdb.deleteActivity(request.getParameter("activityId"));
+		}
 	}
 
 	/**
