@@ -31,7 +31,7 @@ public class claimReward extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	int rewCost = Integer.parseInt(request.getParameter("point"));
 	Account ac = (Account) request.getSession().getAttribute("account");
-	
+	System.out.println(ac.getAccountId());
 	Point p = new Point();
 	p.pointsCalc(ac.getAccountId(),-50);
 	System.out.println(-rewCost);
