@@ -39,30 +39,30 @@ public class ForumEdit extends HttpServlet {
 		String postId = request.getParameter("postId");
 		String path = "";
 		try {
-			Map<String, String> categoryList = fdb.getCategoryList();
-			request.setAttribute("categoryList", categoryList);
-			
 			if(mode.equals("create")) {
+				Map<String, String> categoryList = fdb.getCategoryList();
+				request.setAttribute("categoryList", categoryList);
 				path = "pages/forum-edit.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
 			}else {
 				HttpSession ss = request.getSession(true);
 				Account ac = (Account) ss.getAttribute("account");
-				Post oldP = fdb.getPostById(request.getParameter("postId")).get(0);
+				Post oldP = fdb.getPostById(request.getParameter("postId"));
 				if(!oldP.getAccountId().equals(ac.getAccountId())) {
 					throw new Exception();
 				}else {
 					if(mode.equals("edit")) {
-						ArrayList<bean.Post> p = new ArrayList<bean.Post>(); 
-						p = fdb.getPostById(request.getParameter("postId"));
+						Post p = fdb.getPostById(request.getParameter("postId"));
 						request.setAttribute("postList", p);
 						path = "pages/forum-edit.jsp";
+						request.getRequestDispatcher(path).forward(request, response);
 					}else if (mode.equals("delete")) {
+						System.out.println("deleting");
 						fdb.invalidPost(postId);
-						path = "/Forum";
+						response.getWriter().append("Delete successfully!");
 					}
 				}
 			}
-			request.getRequestDispatcher(path).forward(request, response);
 		} catch (Exception e) {
 			request.getRequestDispatcher("Post?postId=" + postId).forward(request, response);
 		}

@@ -39,7 +39,7 @@ public class EditPost extends HttpServlet {
 		String path = "";
 		
 		try {
-			Post oldP = fdb.getPostById(request.getParameter("postId")).get(0);
+			Post oldP = fdb.getPostById(request.getParameter("postId"));
 			
 			Map<String, String> input = new HashMap<String, String>();
 			

@@ -34,33 +34,23 @@ public class Post extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ForumDB fdb = new ForumDB();
 		CommentDB cdb = new CommentDB();
-		HttpSession ss = request.getSession(true);
-		Account ac = (Account) ss.getAttribute("account");
-		boolean followed = false;
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
 		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
 		bean.Post p = null;
 		ArrayList<bean.Comment> c = null;
-		ArrayList<Account> topAnswerer = fdb.getTopAnswerer();
-		request.setAttribute("topAnswerer", topAnswerer);
-		
-		if(fdb.getPostById(postId).size() > 0) {
-			p = fdb.getPostById(postId).get(0);
+		if(fdb.getPostById(postId) != null) {
+			p = fdb.getPostById(postId);
 			c = cdb.getCommentByPostId(postId, start, 5);
-		
 			if(p.getValid() == 'Y') {
 				request.setAttribute("post", p);
 				request.setAttribute("commentList", c);
 			}else {
 				request.setAttribute("message", "Post deleted by owner");
 			}			
-
-			followed = true;
 		}else {
 			request.setAttribute("message", "Post not found");
 		}
-		request.setAttribute("followed", followed);
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("pages/post.jsp").forward(request, response);
 	}

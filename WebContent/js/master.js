@@ -110,12 +110,15 @@ $( document ).ready(function() {
 		var span = 5;
 		counter = setInterval(function(){
 			$("#post-delete-countdown").html(span)
+			console.log(span)
 			if(span == 0){
 				if($("#post-delete-message").html()){
 					$.ajax({
 						url: ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid, 
 						success: function(result){	
-							location.href= ContextPath + "/Forum";
+							console.log(result + " deelted")
+							clearInterval(counter)
+							location.assign(ContextPath + "/Forum")
 						}
 					});	
 				span = 0;

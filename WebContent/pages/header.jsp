@@ -37,7 +37,7 @@
 							</div>
 						</li>
 						<li><a class="white" href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></li>
-						<c:if test="${true }">
+						<c:if test="${user.role eq 'admin' }">
 							<li><a class="white" href="${pageContext.request.contextPath}/AdminPanel">Admin Panel</a></li>
 						</c:if>
 					</c:when>

@@ -21,6 +21,8 @@ public class DBAO {
 		try {
 			if(con == null || con.isClosed()) {
 				openConnection();
+			}else {
+				System.out.println(con);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

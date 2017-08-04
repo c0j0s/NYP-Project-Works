@@ -107,6 +107,8 @@ public class ForumDB extends DBAO{
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 	
+				MetaValueDB mdb = new MetaValueDB();
+				post.setFollowerAccounts(mdb.getMetaAccounts("post", "postId", post.getPostId(), "follow"));
 				post.setBestAnswer(rs.getString("bestAnswer"));
 				
 				ResultSetMetaData rsmd = rs.getMetaData();		
@@ -132,8 +134,8 @@ public class ForumDB extends DBAO{
 	public ArrayList<Post> getPostSimpleList(int start,String category){
 		ArrayList<Post> postList = new ArrayList<Post>();
 		try {
-			String statement = "SELECT postId,postTitle,givenName,imgUrl,UseraccountId,postDate,points,likeCount,dislikeCount,commentCount,valid,hideId"
-					+ " FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
+			String statement = "SELECT postId,postTitle,givenName,imgUrl,UseraccountId,postDate,points,likeCount,dislikeCount,commentCount,valid,hideId,postStatus"
+					+ " FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 10";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setFetchSize(1000);
 			ResultSet rs = ps.executeQuery();
@@ -151,6 +153,7 @@ public class ForumDB extends DBAO{
 				post.setCommentCount(rs.getInt("commentCount"));
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
+				post.setPostStatus(rs.getString("postStatus"));
 				postList.add(post);
 			}
 			rs.close();
@@ -169,7 +172,7 @@ public class ForumDB extends DBAO{
 	 * @return ArrayList<Post>
 	 */
 	public ArrayList<Post> getPost(int start,String category){
-		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 100";
+		String stmt = "SELECT * FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 10";
 		return getPost(stmt);
 	}
 		
@@ -178,9 +181,10 @@ public class ForumDB extends DBAO{
 	 * @param postId
 	 * @return ArrayList<Post>
 	 */
-	public ArrayList<Post> getPostById(String postId){
+	public Post getPostById(String postId){
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
-		return getPost(stmt);
+		Post p = getPost(stmt).get(0);
+		return p;
 	}
 	
 	/**

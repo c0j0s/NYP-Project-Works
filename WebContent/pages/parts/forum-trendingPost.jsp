@@ -1,5 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
- <c:forEach items="${trendingPost }" var="tPost">
+<c:forEach items="${trendingPost }" var="tPost">
    	<div class="col-sm-4 ">
 		<div class="panel panel-default Forum-card forum-trending-card">
 		  <div class="panel-body text-center">

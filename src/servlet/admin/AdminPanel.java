@@ -33,7 +33,7 @@ public class AdminPanel extends HttpServlet {
 		HttpSession ss = request.getSession(false);
 		Account ac = (Account) ss.getAttribute("account");
 		String tab = (request.getParameter("tab") == null) ? "Forum" : request.getParameter("tab");
-		if(true) {//check if role equals to admin
+		if(ac.getRole().equals("admin")) {//check if role equals to admin
 			request.setAttribute("tab", tab);
 			request.getRequestDispatcher("/pages/admin/admin-panel.jsp").forward(request, response);
 		}else {

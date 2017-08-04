@@ -40,12 +40,10 @@
 		<span>Copyright &copy 2017 NYP, Singapore. All rights reserved.</span>
 	</div>
 </footer>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-multiselect.css" type="text/css"/>
 <script>var ContextPath = "${pageContext.request.contextPath}"</script>
 <script>var login = ${user ne null ? true:false}</script>
 <script src='${pageContext.request.contextPath}/js/jquery-3.2.1.js'></script>
-<script src='${pageContext.request.contextPath}/js/bootstrap.js'></script>
 <script src='${pageContext.request.contextPath}/js/bootstrap.min.js'></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-multiselect.js"></script>
 <script src='${pageContext.request.contextPath}/js/master.js'></script>

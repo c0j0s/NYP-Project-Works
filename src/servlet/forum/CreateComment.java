@@ -54,7 +54,7 @@ public class CreateComment extends HttpServlet {
 				com.setPostId(postId);
 				
 				ForumDB fdb = new ForumDB();
-				Post p = fdb.getPostById(postId).get(0);
+				Post p = fdb.getPostById(postId);
 				
 				String to = p.getAccountId();
 				if(request.getParameter("commentId") != null){
@@ -126,7 +126,7 @@ public class CreateComment extends HttpServlet {
 						+ "</form>"
 						+ "</div></div></div>"
 						+ "<div class='text-center col-sm-2'>"
-						+ "<img alt='' src='../img/sample.jpg' class='img-circle profile-image-small'>"
+						+ "<img alt='' src='"+ac.getImgUrl()+"' class='img-circle profile-image-small'>"
 						+ "<p>"+ ac.getGivenName() +"</p>" //TODO replace with user name
 						+ "</div><br><br></div>");
 
