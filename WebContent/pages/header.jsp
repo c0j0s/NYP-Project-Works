@@ -1,7 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <c:set var = "user" scope = "session" value = "${sessionScope.account}"></c:set>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" id='no-margin'>
 	<div class="container-fluid navbar-topbar">
 		<div class="container">
 			<ul class="topbar-nav">
