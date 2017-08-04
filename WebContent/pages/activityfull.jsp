@@ -77,6 +77,7 @@
 						<p>
 							Registration Closes On :
 							<%=actf.getActivityRegistrationEnd()%></p>
+							<% if(actf.getStatus().equals("Draft")){%><p>Activity Status : <%=actf.getStatus() %><%} %>
 						<div>
 							<jsp:include page="parts/likeButtons.jsp">
 								<jsp:param value="<%=actf.getLikeAccounts()%>"
@@ -99,7 +100,12 @@
 								<button class="btn btn-success"
 									onclick="location.href = 'RegList?&activityId=<%=actf.getActivityId()%>'">Participants
 									List</button>
-							</span>
+							</span><% if(actf.getStatus().equals("Draft")){%>
+								<span aria-hidden="true">
+								<button class="btn btn-success"
+									onclick="location.href = 'ActUpload?activityId=<%=actf.getActivityId()%>'">Upload Activity</button>
+								
+							<% } %>
 
 							<%}}
 							if(session.getAttribute("account")!=null){%>

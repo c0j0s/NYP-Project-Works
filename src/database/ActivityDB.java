@@ -15,7 +15,7 @@ public class ActivityDB extends DBAO{
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM ffl.activitylist where valid='Y' ORDER BY activityPostDate desc limit "+start+",5;";
+				statement = "SELECT * FROM ffl.activitylist where valid='Y' and status = 'Uploaded' ORDER BY activityPostDate desc limit "+start+",5;";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
@@ -46,6 +46,55 @@ public class ActivityDB extends DBAO{
 				act.setAccountName(rs.getString("givenName"));
 				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));	
 				act.setOrganiserId(rs.getString("accountId"));
+				act.setStatus(rs.getString("status"));
+				
+				activityList.add(act);
+		
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return activityList;
+	}
+	public ArrayList<Activity> getActivityDraft(String statement, int start,String userId){
+		ArrayList<Activity> activityList = new ArrayList<Activity>();
+		try {
+			if(statement == null){
+				statement = "SELECT * FROM ffl.activitylist where valid='Y' and status= 'Draft' and accountId = ? ORDER BY activityPostDate desc limit "+start+",5;";
+			}
+			PreparedStatement ps;
+			ps = con.prepareStatement(statement);
+			ps.setString(1, userId);
+
+			System.out.println("log Activity.java :" + ps);
+
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Activity act = new Activity();
+				act.setActivityId(rs.getString("activityId"));
+				act.setActivityTitle(rs.getString("activityTitle"));
+				act.setActivityDescription(rs.getString("activityDescription"));
+				act.setParticipantNo(rs.getInt("participantNo"));
+				act.setActivityPostDate(rs.getString("activityPostDate"));
+				act.setActivityStartDate(rs.getString("activityStartDate"));
+				act.setActivityEndDate(rs.getString("activityEndDate"));
+				act.setActivityRegistrationEnd(rs.getString("activityRegistrationEnd"));
+				act.setActivityFee(rs.getDouble("activityFee"));
+				act.setActivityCategory(rs.getString("activityCategory"));
+				act.setActivityLocation(rs.getString("activityLocation"));
+				act.setImgUrl(rs.getString("imgurl"));
+				act.setActivityTime(rs.getString("activityTime"));
+				act.setValid(rs.getString("valid").charAt(0));
+				act.setActivityDay(rs.getString("activityDays"));
+				act.setLikeCount(rs.getInt("likeCount"));
+				act.setDislikeCount(rs.getInt("dislikeCount"));
+				act.setCommentCount(rs.getString("postCount"));
+				act.setAccountName(rs.getString("givenName"));
+				act.setRankPoints(rs.getInt("likeCount")*rs.getInt("likeCount")-rs.getInt("dislikeCount"));	
+				act.setOrganiserId(rs.getString("accountId"));
+				act.setStatus(rs.getString("status"));
 				
 				activityList.add(act);
 		
@@ -58,8 +107,8 @@ public class ActivityDB extends DBAO{
 		return activityList;
 	}
 	public String createActivity(Activity act){
-		String stmt = "INSERT INTO "+ schema +".activity (`activityId`, `activityTitle`, `activityDescription`, `participantNo`, `activityPostDate`, `activityStartDate`, `activityEndDate`, `activityDays`,`activityTime`, `activityRegistrationEnd`, `activityFee`, `activityCategory`,`imgUrl`,`activityLocation`,`accountId`) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String stmt = "INSERT INTO "+ schema +".activity (`activityId`, `activityTitle`, `activityDescription`, `participantNo`, `activityPostDate`, `activityStartDate`, `activityEndDate`, `activityDays`,`activityTime`, `activityRegistrationEnd`, `activityFee`, `activityCategory`,`imgUrl`,`activityLocation`,`accountId`,'status') "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'Draft')";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			act.setActivityId(common.UID.genActivityId());
@@ -95,6 +144,7 @@ public class ActivityDB extends DBAO{
 		}
 		return "fail";
 	}
+	
 	public String editActivity(Activity act){
 		String stmt ="update "+ schema +".activity set activityTitle =?,activityDescription = ?,participantNo = ? ,activityCategory = ?,imgUrl= ? where activityId =? ";
 
@@ -126,11 +176,26 @@ public class ActivityDB extends DBAO{
 		return "fail";
 	}
 	public ArrayList<Activity> getActivityById(String activityId){
-		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE activityId = '"+ activityId +"'";
+		String stmt = "SELECT * FROM "+ schema +".activitylist WHERE status = 'Uploaded' and activityId = '"+ activityId +"'";
 		return getActivity(stmt,0);
 	}
 	public String deleteActivity(String activityId){
 		String stmt ="update "+ schema +".activity set valid='N' where activityId=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, activityId);
+
+			System.out.println(ps);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
+	public String uploadActivity(String activityId){
+		String stmt ="update "+ schema +".activity set status = 'Uploaded' where activityId=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, activityId);
