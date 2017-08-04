@@ -114,14 +114,12 @@ $( document ).ready(function() {
 			if(span == 0){
 				if($("#post-delete-message").html()){
 					$.ajax({
-						url: ContextPath + "/ForumEdit?type=post&mode=delete&postId=" + data.postid, 
+						url: ContextPath + "/InvalidPost?postId=" + data.postid, 
 						success: function(result){	
-							console.log(result + " deelted")
-							clearInterval(counter)
 							location.assign(ContextPath + "/Forum")
 						}
 					});	
-				span = 0;
+				span = ".....";
 				}else{
 					clearInterval(counter)
 				}

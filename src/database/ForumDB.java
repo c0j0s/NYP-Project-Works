@@ -183,8 +183,13 @@ public class ForumDB extends DBAO{
 	 */
 	public Post getPostById(String postId){
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
-		Post p = getPost(stmt).get(0);
-		return p;
+		ArrayList<bean.Post> pl = getPost(stmt);
+		if(pl.size() > 0) {
+			Post p = pl.get(0);
+			return p;
+		}else {
+			return null;
+		}
 	}
 	
 	/**

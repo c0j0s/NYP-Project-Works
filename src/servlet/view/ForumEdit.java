@@ -51,20 +51,15 @@ public class ForumEdit extends HttpServlet {
 				if(!oldP.getAccountId().equals(ac.getAccountId())) {
 					throw new Exception();
 				}else {
-					if(mode.equals("edit")) {
-						Post p = fdb.getPostById(request.getParameter("postId"));
-						request.setAttribute("postList", p);
-						path = "pages/forum-edit.jsp";
-						request.getRequestDispatcher(path).forward(request, response);
-					}else if (mode.equals("delete")) {
-						System.out.println("deleting");
-						fdb.invalidPost(postId);
-						response.getWriter().append("Delete successfully!");
-					}
+					Post p = fdb.getPostById(request.getParameter("postId"));
+					request.setAttribute("postList", p);
+					path = "pages/forum-edit.jsp";
+					request.getRequestDispatcher(path).forward(request, response);
 				}
 			}
+			
 		} catch (Exception e) {
-			request.getRequestDispatcher("Post?postId=" + postId).forward(request, response);
+			e.printStackTrace();
 		}
 		
 
