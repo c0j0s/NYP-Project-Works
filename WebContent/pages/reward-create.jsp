@@ -23,6 +23,7 @@
 	</jsp:include>
 	<!-- end of page header -->
 	<div class="col-md-9">
+		<form action="CreateReward" id="file-upload">
 		<br> 
 			<label for="rewTitle">Reward Title:</label>
 			<input type="text" name="rewTitle" class="form-control" placeholder="Reward Title ">
