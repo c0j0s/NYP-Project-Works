@@ -536,8 +536,13 @@ $( document ).ready(function() {
 	 */
 	$(".report-item").click(function(){
 		var rdata = $(this).data();
+
+		var text = $("#report-post-reason-" + rdata.itemid).val()
+		if(rdata.type === 'account'){
+			text = $("#report-user-reason-" + rdata.itemid).val()
+		}
 		$.ajax({
-			url: ContextPath + "/ReportItem",
+			url: ContextPath + "/ReportItem?reasons=" + text,
 			data:rdata,
 			success: function(success){
 				popup('body',success)

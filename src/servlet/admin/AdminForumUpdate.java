@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import database.AdminDB;
 import database.CommentDB;
 import database.ForumDB;
+import database.NotificationDB;
 
 /**
  * Servlet implementation class AdminForumUpdate
@@ -37,12 +38,17 @@ public class AdminForumUpdate extends HttpServlet {
 		AdminDB adb = new AdminDB();
 		adb.updateReportStatus(action,itemId);
 		if(action.equals("deleted")) {
+			NotificationDB ndb = new NotificationDB();
 			if(type.equals("post")) {
 				ForumDB fdb = new ForumDB();
 				fdb.invalidPost(itemId);
+				String accountId = fdb.getItemAccountIdByItemId(itemId);
+				ndb.sendNotification("Post Deleted by Admin", "Your post ("+ itemId +") has been deleted due to violation of forum rules", "FFL Admin", accountId);
 			}else if (type.equals("comment")) {
 				CommentDB cdb = new CommentDB();
 				cdb.invalidComment(itemId);
+				String accountId = cdb.getItemAccountIdByItemId(itemId);
+				ndb.sendNotification("Comment Deleted by Admin", "Your post ("+ itemId +") has been deleted due to violation of forum rules", "FFL Admin", accountId);
 			}
 		}else if (action.equals("cancel")){
 			if(type.equals("post")) {

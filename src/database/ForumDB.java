@@ -16,7 +16,7 @@ import bean.Post;
  * @author cjuns
  *
  */
-public class ForumDB extends DBAO{
+public class ForumDB extends DBAO implements ForumMetaById{
 	
 	public ForumDB(){
 		super();
@@ -400,4 +400,20 @@ public class ForumDB extends DBAO{
 		}
 	}
 	
+	@Override
+	public String getItemAccountIdByItemId(String itemId) {
+		String stmt = "select accountId from ffl.post where postId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, itemId);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

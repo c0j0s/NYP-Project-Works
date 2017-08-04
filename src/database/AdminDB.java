@@ -16,13 +16,14 @@ public class AdminDB extends DBAO {
 		super();
 	}
 	
-	public String reportItem(String itemId,String accountId, String type) throws MySQLIntegrityConstraintViolationException {
-		String stmt = "Insert into ffl.reported (itemId,accountId,type) values(?,?,?)";
+	public String reportItem(String itemId,String accountId, String type, String reasons) throws MySQLIntegrityConstraintViolationException {
+		String stmt = "Insert into ffl.reported (itemId,accountId,type,reasons) values(?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(stmt);
 			ps.setString(1, itemId);
 			ps.setString(2, accountId);
 			ps.setString(3, type);
+			ps.setString(4, reasons);
 			int status = ps.executeUpdate();
 			System.out.println(ps);
 			if(status != 0) {
@@ -60,6 +61,7 @@ public class AdminDB extends DBAO {
 				m.put("status", rs.getString("status"));
 				m.put("reportCount", rs.getString("reportCount"));
 				m.put("itemCreatedOn", rs.getString("itemCreatedOn"));
+				m.put("reasons", rs.getString("reasons"));
 				r.setMetadata(m);
 				list.add(r);
 			}

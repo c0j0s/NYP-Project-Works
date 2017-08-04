@@ -37,9 +37,10 @@ public class ReportItem extends HttpServlet {
 			Account ac =(Account) ss.getAttribute("account");
 			String itemId = request.getParameter("itemid");
 			String type = request.getParameter("type");
+			String reasons = request.getParameter("reasons");
 			AdminDB adb = new AdminDB();
 			try {
-				response.getWriter().append(adb.reportItem(itemId, ac.getAccountId(),type));
+				response.getWriter().append(adb.reportItem(itemId, ac.getAccountId(),type,reasons));
 			} catch (MySQLIntegrityConstraintViolationException e) {
 				response.getWriter().append("You have reported " + type + " before.");
 			}

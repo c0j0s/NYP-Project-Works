@@ -62,6 +62,7 @@ $( document ).ready(function() {
 			var tr = "<tr id='item-"+json[i].itemId+"'>" +
 					"<td><img class='profile-image-xsmall' src='"+json[i].imgUrl+"'/> " + json[i].type +
 					"</td><td>"+ json[i].title +"</td>" +
+					"<td>"+ json[i].metadata.reasons +"</td>" +
 					"<td>"+ json[i].metadata.itemCreatedOn.substr(0,10) +"</td>" +
 					"<td class='tStatus'>"+ json[i].metadata.status +"</td>" +
 					"<td>"+ json[i].metadata.reportCount +"</td>" +

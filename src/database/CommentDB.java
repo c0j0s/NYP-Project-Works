@@ -11,7 +11,7 @@ import bean.Comment;
  * @author cjuns
  *
  */
-public class CommentDB extends DBAO{
+public class CommentDB extends DBAO implements ForumMetaById{
 	
 	public CommentDB(){
 		super();
@@ -201,6 +201,23 @@ public class CommentDB extends DBAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getItemAccountIdByItemId(String itemId) {
+		String stmt = "select accountId from ffl.comments where commentId = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, itemId);
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

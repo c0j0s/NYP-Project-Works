@@ -123,6 +123,31 @@ public class NotificationDB extends DBAO{
 		return false;
 	}
 	
+	public boolean sendNotification(String title, String message, String serviceType, String accountId) {
+		String stmt = "Insert into ffl.notification (title,message,serviceType,accountId) values (?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, title);
+			ps.setString(2, message);
+			ps.setString(3, serviceType);
+			ps.setString(4, accountId);
+			
+			int status = ps.executeUpdate();
+			if (status != 0) {
+				System.out.println("create notification success");
+				ps.close();
+				return true;
+			}else {
+				System.out.println("Log notifiaction ps: ("+accountId+")" + ps);
+				ps.close();
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	/**
 	 * sent notification to multiple users
 	 * @param accountIds
