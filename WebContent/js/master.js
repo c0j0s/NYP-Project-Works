@@ -363,9 +363,11 @@ $( document ).ready(function() {
 		    event.preventDefault();
 		    uploadFile(function(){
 		    	form.submit();
+		    	console.log("have")
 		    })	
 		}else{
 			form.submit();
+			console.log("no")
 		}
 	}); 
 	

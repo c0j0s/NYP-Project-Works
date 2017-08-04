@@ -25,7 +25,7 @@
 			<jsp:param value="Welcome to FamForLife" name="subTitle" />
 		</jsp:include>
 		<div class="col-md-12 login-main-container"> 
-		<form action="${pageContext.request.contextPath}/signupServlet" method="post" >
+		<form action="${pageContext.request.contextPath}/signupServlet" method="post" id="form-upload">
 			<div class="col-md-6 ">
 				<h3>User Details</h3>
 				<hr>
@@ -74,7 +74,7 @@
 				<div class="form-group">
 					<label for="profilepic">Choose your profile picture:</label>
 					<input type="file" name="file" size="60"/>
-	        		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
+	        		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/${user.accountId }"/>
 	        		<img alt="" src="" id="test-img-prev">
 				</div>
 			</div>
