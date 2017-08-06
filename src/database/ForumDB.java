@@ -19,7 +19,7 @@ import bean.Post;
 public class ForumDB extends DBAO implements ForumMetaById{
 	
 	public ForumDB(){
-		super();
+		
 	}
 	
 	/**

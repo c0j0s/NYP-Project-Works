@@ -49,14 +49,9 @@
 				</div>
 
 			</div>
-			<button type="submit" class="btn btn-default"
-				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
-				Profile</button>
-						<form action="${pageContext.request.contextPath}/CreateFamGroup" >	<button class="btn btn-success"
-							onclick="location.href = 'CreateFamGroup'">Family Group</button></form></div>
-			<button type="submit" value="invalid" onclick="location.href='${pageContext.request.contextPath}/InvalidateAccount'">Delete your account</button>
 		</div>
-			<div class="col-md-9 col-sm-12">
+	</div>
+		<div class="col-md-9 col-sm-12">
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#Forum" aria-controls="Forum" role="tab" data-toggle="tab">My Forum Post</a></li>
 			    <li role="presentation" class="${tab eq 'Activity' ? 'active' : '' }"><a href="#Activity" aria-controls="Activity" role="tab" data-toggle="tab">My Activities</a></li>

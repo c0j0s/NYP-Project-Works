@@ -49,18 +49,23 @@
 				</c:when>
 				<c:when test="${param.type eq 'profile' ? true : false}">
 					<div class="panel-body">
-						<div class="col-sm-4 text-center no-padding">
+						<div class="col-sm-12 text-center no-padding">
 							<p>
 								${param.points}<br> Points
 							</p>
 						</div>
-						<div class="col-sm-4 text-center no-padding">
-							<p>
-								${param.creditLevel}<br> Credit Level
-							</p>
-						</div>
-						<button type="button" class="btn btn-success btn-block"
-							onclick="location.href=''">Rewards Page</button>
+						<button type="button" class="btn btn-default btn-block"
+							onclick="location.href='RedemptionList'">Rewards Page</button>
+						<br>
+						<button type="submit" class="btn btn-default btn-block"
+							onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
+							Profile</button>
+						<br>
+						<form action="${pageContext.request.contextPath}/CreateFamGroup" >	
+							<button class="btn btn-default btn-block" onclick="location.href = 'CreateFamGroup'">Family Group</button>
+						</form>
+						<br>
+						<button type="submit" class="btn btn-danger btn-block" onclick="location.href='${pageContext.request.contextPath}/InvalidateAccount'">Delete your account</button>
 					</div>
 				</c:when>
 				<c:when test="${param.type eq 'admin' ? true : false}">
