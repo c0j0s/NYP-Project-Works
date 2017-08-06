@@ -47,12 +47,11 @@ public class ForumEdit extends HttpServlet {
 			}else {
 				HttpSession ss = request.getSession(true);
 				Account ac = (Account) ss.getAttribute("account");
-				Post oldP = fdb.getPostById(request.getParameter("postId"));
+				Post oldP = fdb.getPostById(request.getParameter("postId")).get(0);
 				if(!oldP.getAccountId().equals(ac.getAccountId())) {
 					throw new Exception();
 				}else {
-					Post p = fdb.getPostById(request.getParameter("postId"));
-					request.setAttribute("postList", p);
+					request.setAttribute("postList", oldP);
 					path = "pages/forum-edit.jsp";
 					request.getRequestDispatcher(path).forward(request, response);
 				}

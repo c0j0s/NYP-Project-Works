@@ -38,7 +38,7 @@ public class pickBestAnswer extends HttpServlet {
 			String postId = request.getParameter("postid");
 			String commentId = request.getParameter("commentid");
 			ForumDB fdb = new ForumDB();
-			Post p = fdb.getPostById(postId);
+			Post p = fdb.getPostById(postId).get(0);
 			CommentDB cdb = new CommentDB();
 			String ownerId = cdb.getCommentOwnerbyId(commentId);
 			fdb.pickBestAnswer(postId,commentId);

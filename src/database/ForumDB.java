@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -107,8 +108,6 @@ public class ForumDB extends DBAO implements ForumMetaById{
 				post.setValid(rs.getString("valid").charAt(0));
 				post.setHideId(rs.getString("hideId").charAt(0));
 	
-				MetaValueDB mdb = new MetaValueDB();
-				post.setFollowerAccounts(mdb.getMetaAccounts("post", "postId", post.getPostId(), "follow"));
 				post.setBestAnswer(rs.getString("bestAnswer"));
 				
 				ResultSetMetaData rsmd = rs.getMetaData();		
@@ -181,15 +180,10 @@ public class ForumDB extends DBAO implements ForumMetaById{
 	 * @param postId
 	 * @return ArrayList<Post>
 	 */
-	public Post getPostById(String postId){
+	public ArrayList<bean.Post> getPostById(String postId){
 		String stmt = "SELECT * FROM "+ schema +".postlist WHERE postId = '"+ postId +"'";
 		ArrayList<bean.Post> pl = getPost(stmt);
-		if(pl.size() > 0) {
-			Post p = pl.get(0);
-			return p;
-		}else {
-			return null;
-		}
+		return pl;
 	}
 	
 	/**
@@ -415,5 +409,10 @@ public class ForumDB extends DBAO implements ForumMetaById{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public ArrayList<String> getPostFollowerAccounts(String postId) {
+		MetaValueDB mdb = new MetaValueDB();
+		return mdb.getMetaAccounts("post", "postId", postId, "follow");
 	}
 }
