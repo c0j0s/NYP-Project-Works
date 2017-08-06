@@ -163,5 +163,29 @@ public class AccountDB extends DBAO{
 		}
 		
 	}
-	
+	public boolean checkEmail(String email){
+		try{
+			String selectStatement = "select email from ffl.user where email = ?";
+			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
+			prepStmt.setString(1, email);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()){
+				return true;
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}return false;
+	}
+	public void RestoreAccount(String accId){
+		try{
+			String updateStatement = "update ffl.user set valid = 'Y' where accountId = ?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			
+			prepStmt.setString(1, accId);
+			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
 }
