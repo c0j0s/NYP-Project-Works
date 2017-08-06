@@ -11,7 +11,6 @@ import org.apache.commons.dbcp2.BasicDataSource;
 public class DBAO extends Thread{
 	private static BasicDataSource dataSource;
 	protected static Connection con;
-	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
 	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl";
 	
@@ -23,8 +22,6 @@ public class DBAO extends Thread{
 		try {
 			if(con == null || con.isClosed()) {
 				openConnection();
-			}else {
-				System.out.println(con);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,8 +40,6 @@ public class DBAO extends Thread{
 			Class.forName("com.mysql.jdbc.Driver");
 			BasicDataSource dataSource = getDataSource();
 			con = dataSource.getConnection();
-			System.out.println("Open Connection: " + connectionCount);
-			connectionCount++;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
