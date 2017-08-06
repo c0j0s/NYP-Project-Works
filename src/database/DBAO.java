@@ -55,6 +55,10 @@ public class DBAO extends Thread{
 		}
 	}
 	
+	/**
+	 * performance testing
+	 * @return
+	 */
 	private static BasicDataSource getDataSource()
 	    {
 	        if (dataSource == null)
