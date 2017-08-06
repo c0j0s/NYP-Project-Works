@@ -3,6 +3,8 @@ package servlet.view;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,8 +52,15 @@ public class Forum extends HttpServlet {
 		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 10;
 		ArrayList<Post> postList = fdb.getPostSimpleList(start, category);
 		request.setAttribute("postList", postList);
-		Collection<String> categoryList = fdb.getCategoryList().values();
-		request.setAttribute("categoryList", categoryList);
+		
+		if(ss.getAttribute("categoryList") != null) {
+			Map<String, String> categoryList = (Map<String, String>) ss.getAttribute("categoryList");
+			request.setAttribute("categoryList", categoryList.values());
+		}else {
+			Map<String, String> categoryList = fdb.getCategoryList();
+			request.setAttribute("categoryList", categoryList.values());
+			ss.setAttribute("categoryList", categoryList);
+		}
 		
 		if(ss.getAttribute("trendingPost") != null) {
 			request.setAttribute("trendingPost", ss.getAttribute("trendingPost"));
@@ -61,14 +70,8 @@ public class Forum extends HttpServlet {
 			ss.setAttribute("trendingPost", trendingPost);
 		}
 		
-		
-		if(ss.getAttribute("MaxCount") != null) {
-			request.setAttribute("postCount", ss.getAttribute("MaxCount"));
-		}else {
-			int maxCount = fdb.getPostCount(category);
-			ss.setAttribute("MaxCount", maxCount);
-			request.setAttribute("postCount", maxCount);
-		}
+		int maxCount = fdb.getPostCount(category);
+		request.setAttribute("postCount", maxCount);
 		request.setAttribute("category", category);
 		request.setAttribute("page", page);
 		

@@ -2,6 +2,7 @@ package servlet.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -34,33 +35,44 @@ public class ForumEdit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ForumDB fdb = new ForumDB();
-		String mode = request.getParameter("mode");
-		String postId = request.getParameter("postId");
-		String path = "";
-		try {
-			if(mode.equals("create")) {
+		HttpSession ss = request.getSession(true);
+		if(ss.getAttribute("account") != null) {
+			Account ac = (Account) ss.getAttribute("account");
+			ForumDB fdb = new ForumDB();
+			String mode = request.getParameter("mode");
+			String postId = request.getParameter("postId");
+			String path = "";
+			
+			if(ss.getAttribute("categoryList") != null) {
+				Map<String, String> categoryList = ((Map<String, String>) ss.getAttribute("categoryList"));
+				request.setAttribute("categoryList", categoryList);
+			}else {
 				Map<String, String> categoryList = fdb.getCategoryList();
 				request.setAttribute("categoryList", categoryList);
-				path = "pages/forum-edit.jsp";
-				request.getRequestDispatcher(path).forward(request, response);
-			}else {
-				HttpSession ss = request.getSession(true);
-				Account ac = (Account) ss.getAttribute("account");
-				Post oldP = fdb.getPostById(request.getParameter("postId")).get(0);
-				if(!oldP.getAccountId().equals(ac.getAccountId())) {
-					throw new Exception();
-				}else {
-					request.setAttribute("postList", oldP);
+				ss.setAttribute("categoryList", categoryList);
+			}
+			try {
+				if(mode.equals("create")) {
 					path = "pages/forum-edit.jsp";
 					request.getRequestDispatcher(path).forward(request, response);
+				}else {
+					ArrayList<Post> oldP = fdb.getPostById(request.getParameter("postId"));
+					Post p = oldP.get(0);
+					if(!p.getAccountId().equals(ac.getAccountId())) {
+						throw new Exception();
+					}else {
+						request.setAttribute("postList", oldP);
+						path = "pages/forum-edit.jsp";
+						request.getRequestDispatcher(path).forward(request, response);
+					}
 				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}else {
+			request.getRequestDispatcher("Index").forward(request, response);
 		}
-		
 
 	}
 

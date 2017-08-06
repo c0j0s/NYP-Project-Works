@@ -233,7 +233,7 @@ public class ForumDB extends DBAO implements ForumMetaById{
 	public ArrayList<Account> getTopAnswerer(){
 		ArrayList<Account> list = new ArrayList<Account>();
 		try {
-			PreparedStatement ps = con.prepareStatement("SELECT imgUrl,givenName,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo limit 0,5;");
+			PreparedStatement ps = con.prepareStatement("SELECT imgUrl,givenName,(postCounts + commentCounts +(bestAnswerCount * 2)) hitLevel FROM ffl.userinfo order by hitLevel DESC limit 0,5;");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Account ac = new Account();
@@ -278,6 +278,7 @@ public class ForumDB extends DBAO implements ForumMetaById{
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM "+ schema +".category");
 			ResultSet rs = ps.executeQuery();
+			System.out.println(ps);
 			while(rs.next()){
 				categoryList.put(rs.getString("categoryId"), rs.getString("categoryName"));
 			}
