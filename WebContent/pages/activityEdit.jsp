@@ -102,21 +102,77 @@
 				</div><label
 					for="activityDay">Activity Days : </label><br>
 				<div class="text-center">
-					<input type="checkbox" name="actDay" value="Monday "
-						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Tuesday "
-						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Wednesday "
-						class="activitycheckbox"">&nbspWednesday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Thursday "
-						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Friday "
-						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Saturday "
-						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Sunday "
-						class="activitycheckbox">&nbsp Sunday &nbsp&nbsp&nbsp
-						value="<%=actf.getActivityDay()%>"
+					<%
+						String [] days = actf.getActivityDay().split(" ");
+						for(int i=0; i < days.length; i++){
+							%>
+							
+							<input type="checkbox" name="actDay" value="Monday"
+								class="activitycheckbox" 
+								<% 
+								if(days[i].equals("Monday")){
+									out.print("checked");
+								}
+								%>
+								>&nbsp Monday &nbsp&nbsp&nbsp
+							<input
+								type="checkbox" name="actDay" value="Tuesday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Tuesday")){
+									out.print("checked");
+								}
+								%>
+								>&nbspTuesday &nbsp&nbsp&nbsp
+							<input
+								type="checkbox" name="actDay" value="Wednesday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Wednesday")){
+									out.print("checked");
+								}
+								%>
+								>&nbspWednesday &nbsp&nbsp&nbsp 
+							<input
+								type="checkbox" name="actDay" value="Thursday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Thursday")){
+									out.print("checked");
+								}
+								%>
+								>&nbspThursday &nbsp&nbsp&nbsp 
+							<input
+								type="checkbox" name="actDay" value="Friday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Friday")){
+									out.print("checked");
+								}
+								%>
+								>&nbspFriday &nbsp&nbsp&nbsp 
+							<input
+								type="checkbox" name="actDay" value="Saturday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Saturday")){
+									out.print("checked");
+								}
+								%>
+								> &nbspSaturday &nbsp&nbsp&nbsp
+							<input
+								type="checkbox" name="actDay" value="Sunday"
+								class="activitycheckbox"
+								<% 
+								if(days[i].equals("Sunday")){
+									out.print("checked");
+								}
+								%>
+								>&nbsp Sunday &nbsp&nbsp&nbsp
+							<% 
+						}
+					%>
+
 				</div>
 				<input type="text" value="<%=actf.getActivityDay()%>"
 					name="activityDay"> <br> <br> <br> <label
