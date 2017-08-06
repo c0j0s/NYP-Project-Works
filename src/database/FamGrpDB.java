@@ -218,6 +218,7 @@ public class FamGrpDB extends DBAO{
 			PreparedStatement p = con.prepareStatement(stmt);
 			p.setString(1, grpId);
 			p.executeUpdate();
+			deleteAllMember(grpId);
 		
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -249,7 +250,18 @@ public class FamGrpDB extends DBAO{
 		}
 		
 	}
-	
+	public void deleteAllMember(String grpId){
+		try {
+			String stmt ="update ffl.userfamilygroup set valid ='N' where FamilyGroupfamilyGroupId = ?;";
+			PreparedStatement p = con.prepareStatement(stmt);
+			p.setString(1, grpId);
+			p.executeUpdate();
+		
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		
+	}
+	}
 	
 
 }
