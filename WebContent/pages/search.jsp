@@ -42,8 +42,9 @@
 						<div class="list-group">
 							<c:forEach items="${resultList}" var="result">
 								  <a href="${pageContext.request.contextPath}/${result.url}" class="list-group-item  auto-overflow">
-								    <div class="col-md-1 col-sm-2">
+								    <div class="col-md-1 col-sm-2 text-center">
 								    	<span class="glyphicon glyphicon-${result.type eq 'post' ? 'comment' : 'certificate' } btn-lg" aria-hidden="true"></span>
+								    	<h3><span class="label label-warning">${result.type}</span></h3>
 								    </div>
 								    <div class="col-md-8 col-sm-10">
 								    	<div class="list-group-item-heading">
@@ -75,12 +76,20 @@
 						    	</c:if>
 						    </h4>
 						  </a>
+						    <div style="min-height:60vh" class="text-center">
+						    </div>
 						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
 			<c:otherwise>
-			
+				<a class="list-group-item">
+				    <h4 class="list-group-item-heading">
+				    	Enter Keyword to search in FamForLife
+				    </h4>
+				  </a>
+				<div style="min-height:80vh" class="text-center">
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>

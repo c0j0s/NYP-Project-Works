@@ -75,7 +75,23 @@
 				</c:when>
 				<c:when test="${param.type eq 'activity' ? true : false}">
 					<div class="panel-body">
-						//for activity
+						<button onclick="location.href = '${pageContext.request.contextPath}/ActList'"
+						class="btn btn-default btn-block">View Activity List</button>
+						<%if(session.getAttribute("account")!=null){%>
+							<hr>
+							<button onclick="location.href = 'CreateAct'"
+							class="btn btn-success col-md-2 btn-block">Create
+							Activity</button>
+							<br>
+							<br>
+							<button onclick="location.href = '${pageContext.request.contextPath}/ActDraft'"
+								class="btn btn-default  btn-block">View Drafts</button>
+						<%} %>
+					</div>
+				</c:when>
+				<c:when test="${param.type eq 'Redemption' ? true : false}">
+					<div class="panel-body">
+						<button class= " btn btn-success btn-block" onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 					</div>
 				</c:when>
 			</c:choose>

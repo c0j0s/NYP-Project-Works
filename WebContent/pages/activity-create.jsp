@@ -24,10 +24,13 @@
 
 	<div class="container">
 		<%
-			DecimalFormat df = new DecimalFormat("00");
 			DecimalFormat dt = new DecimalFormat("00");
 		%>
-		<h1>Activity Creation Page</h1>
+		<jsp:include page="parts/page-header.jsp">
+			<jsp:param value="ActCreate" name="type"/>
+			<jsp:param value="Activity Creation Page" name="title"/>
+			<jsp:param value="6" name="titleWidth"/>
+		</jsp:include>
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<form action="${pageContext.request.contextPath}/CreateActivity"
@@ -176,7 +179,7 @@
 									String s = dt.format(i);
 							%>
 							<option value="<%=s%>">
-							<%=df.format(i)%></option>
+							<%=dt.format(i)%></option>
 							<%
 								}
 							%>
@@ -196,11 +199,6 @@
 				
 				<br><br>
 
-
-
-
-
-
 				<div class="col-md-12">
 					<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
 					<p class="col-md-2"></p>
@@ -211,7 +209,8 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-
+	<br>
+	<br>
 
 
 	<%-- end of main container --%>

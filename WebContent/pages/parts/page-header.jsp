@@ -27,13 +27,6 @@
 					<a href="${pageContext.request.contextPath}/ActList"
 						class="col-md-6">Activities For Families </a>
 				</h1>
-				<%if(session.getAttribute("account")!=null){%>
-					<button onclick="location.href = 'CreateAct'"
-					class="btn btn-primary col-md-2 pull-right">Create
-					Activity</button>
-					<button onclick="location.href = '${pageContext.request.contextPath}/ActDraft'"
-						class="btn btn-primary">View Drafts</button>
-				<%} %>
 			</div>
 		</c:when>
 		<c:when test="${param.type eq 'activityDraft' ? true : false}">
@@ -42,13 +35,6 @@
 					<a href="${pageContext.request.contextPath}/ActDraft"
 						class="col-md-6">Activity Draft </a>
 				</h1>
-				<%if(session.getAttribute("account")!=null){%>
-					<button onclick="location.href = 'CreateAct'"
-					class="btn btn-primary col-md-2 pull-right">Create
-					Activity</button>
-					<button onclick="location.href = '${pageContext.request.contextPath}/ActList'"
-						class="btn btn-primary">View Activity List</button>
-				<%} %>
 			</div>
 		</c:when>
 		<c:when test="${param.type eq 'activityfull' ? true : false}">
@@ -56,16 +42,6 @@
 				<h1 class="col-md-6">
 					<a href="${pageContext.request.contextPath}/ActList" >Activities For Families </a>
 				</h1>
-				<div class="col-md-4 pull-right">
-					<button onclick="location.href = '${pageContext.request.contextPath}/ActList'"
-						class="btn btn-primary">View Activity List</button>
-					<% if(session.getAttribute("account")!=null){%>
-					<button onclick="location.href = '${pageContext.request.contextPath}/CreateAct'"
-						class="btn btn-primary">Create Activity</button>
-						<button onclick="location.href = '${pageContext.request.contextPath}/ActDraft'"
-						class="btn btn-primary">View Drafts</button>
-					<%} %>
-				</div>
 			</div>
 		</c:when>
 		<c:when test="${param.title == 'Redemption'? true:false}">
@@ -73,12 +49,8 @@
 				class="col-sm-${param.titleWidth eq null ? '3' : param.titleWidth } pull-left">
 				<a href="${pageContext.request.contextPath}/ActList">${param.title }<br>
 					<small class="page-header-subtitle">${param.subTitle }</small>
-					
 				</a>
-				
-							
 			</h1>
-			<button class= " btn btn-success " onclick="location.href='${pageContext.request.contextPath}/CreateRewardItem'">Create Reward Item</button>
 		</c:when>
 		<c:when test="${param.type == 'search'? true:false}">
 			<h1 class="col-md-3 col-sm-5 pull-left">
