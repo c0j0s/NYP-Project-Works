@@ -60,7 +60,7 @@
 			      <img src="${pageContext.request.contextPath}/img/card1.jpg" alt="sample" >
 					<div class="caption">
 			        <h3>Family Forum</h3>
-			        <p>//desc</p>
+			        <p>An open community for everyone to share and discuss about problems</p>
 			        <p><a href="Forum" class="btn btn-primary" role="button">Explore</a></p>
 			      </div>
 			    </div>
@@ -70,7 +70,7 @@
 			      <img src="${pageContext.request.contextPath}/img/card2.jpg" alt="sample" >
 					<div class="caption">
 			        <h3>Activities for families</h3>
-			        <p>//desc</p>
+			        <p>Fill with activities design and plan for families, making planning family bonding activity a breeze</p>
 			        <p><a href="ActList" class="btn btn-primary" role="button">Explore</a></p>
 			      </div>
 			    </div>
@@ -80,7 +80,7 @@
 			      <img src="${pageContext.request.contextPath}/img/card3.jpg" alt="sample" >
 					<div class="caption">
 			        <h3>Rewards for redemption</h3>
-			        <p>//desc</p>
+			        <p>Attractive rewards such as vouchers, gadgets and more for redemption</p>
 			        <p><a href="RedemptionList" class="btn btn-primary" role="button">Explore</a></p>
 			      </div>
 			    </div>
