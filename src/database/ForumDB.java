@@ -81,7 +81,7 @@ public class ForumDB extends DBAO implements ForumMetaById{
 				statement = "SELECT * FROM "+ schema +".postlist ORDER BY postStatus DESC,postDate DESC";
 			}
 			ps = con.prepareStatement(statement);
-			ps.setFetchSize(1000);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
@@ -137,7 +137,7 @@ public class ForumDB extends DBAO implements ForumMetaById{
 			String statement = "SELECT postId,postTitle,givenName,imgUrl,UseraccountId,postDate,points,likeCount,dislikeCount,commentCount,valid,hideId,postStatus"
 					+ " FROM "+ schema +".postlist WHERE valid = 'Y' AND postCategory = '"+ category +"' ORDER BY postStatus DESC,postDate DESC limit " + start + ", 10";
 			PreparedStatement ps = con.prepareStatement(statement);
-			ps.setFetchSize(1000);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Post post = new Post();
