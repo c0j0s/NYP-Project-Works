@@ -79,7 +79,7 @@ public class ActRegDB extends DBAO{
 	
 	public ArrayList<ActReg> getRegistrationList(String actId){
 		ArrayList<ActReg> regList = new ArrayList<ActReg>();
-		try {String stmt = "SELECT r.registerationId,acctid,givenName,bankOrCash FROM ffl.registerationlist r inner join ffl.user u on r.acctid = u.accountId inner join ffl.registration re on re.registrationId = r.registerationId where ActivityactivityId = ?;";
+		try {String stmt = "SELECT r.registerationId,acctid,givenName,bankOrCash,r.valid FROM ffl.registerationlist r inner join ffl.user u on r.acctid = u.accountId inner join ffl.registration re on re.registrationId = r.registerationId where ActivityactivityId = ? and r.valid = 'Y';";
 		PreparedStatement ps = con.prepareStatement(stmt);
 		ps.setString(1, actId);
 		ResultSet rs = ps.executeQuery();
@@ -95,6 +95,34 @@ public class ActRegDB extends DBAO{
 		catch(Exception ex) {}
 		return regList;
 		
+	}
+	public ArrayList<ActReg> getRegistrationById(String userId){
+		ArrayList<ActReg> regList = new ArrayList<ActReg>();
+		try{String stmt = "SELECT registrationId,UseraccountId,ActivityactivityId,activityTitle FROM ffl.registration r inner join ffl.registerationlist rl on r.registrationId=rl.registerationId inner join ffl.activity a on a.activityId = r.ActivityactivityId where status='Uploaded' and rl.valid = 'Y' and UseraccountId = ? ;";
+		PreparedStatement ps = con.prepareStatement(stmt);
+		ps.setString(1, userId);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()){
+			ActReg ar = new ActReg();
+			ar.setRegistrationId(rs.getString("registrationId"));
+			ar.setUserAccountId(rs.getString("UseraccountId"));
+			ar.setActivityactivityId(rs.getString("ActivityactivityId"));
+			ar.setActivityTitle(rs.getString("activityTitle"));
+			regList.add(ar);
+		}
+		}catch(Exception ex){ex.printStackTrace();}
+		return null;
+		
+	}
+	
+	public void deleteRegistration(String userId, String regId){
+		try{
+			String stmt = "update ffl.registerationlist set valid = 'N' where acctid = ? and registerationId = ? ;";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, userId);
+			ps.setString(2, regId);
+			ps.executeUpdate();
+		}catch(Exception ex){ex.printStackTrace();}
 	}
 
 	

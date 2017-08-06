@@ -129,13 +129,13 @@
 									<td><%=z + 1%>.</td>
 									<td><%=fgp.getAccountId()%></td>
 									<td><%=fgp.getGivenName()%></td>
-									<%if(request.getAttribute("accountId").equals(fgp.getGrpOwner())){  %>
+									<%if(request.getAttribute("accountId").equals(fgp.getGrpOwner())){  if(!(fgp.getAccountId().equals(fgp.getGrpOwner()))){  %>
 									<td><span aria-hidden="true">
 											<button class="btn btn-danger"
 												onclick="location.href = 'MemberDelete?grpId=<%=fgp.getFamilyGroupId()%>&acctId=<%=fgp.getAccountId()%>'">Remove
 												Member</button>
 									</span></td>
-									<%} %>
+									<%}} %>
 								</tr>
 								<%
 									z++;

@@ -34,6 +34,7 @@ public class DeleteActivity extends HttpServlet {
 		String check = request.getParameter("action");
 		String actId =(request.getParameter("actId"));
 		
+		
 		if (check.equalsIgnoreCase("Invalid")) {
 		actdb.deleteActivity(actId);
 		response.getWriter().append("N");
@@ -41,9 +42,7 @@ public class DeleteActivity extends HttpServlet {
 			actdb.restoreActivity(actId);
 			response.getWriter().append("Y");
 		}
-		if ((!(request.getParameter("activityId").equals(null)))){
-			actdb.deleteActivity(request.getParameter("activityId"));
-		}
+		
 	}
 
 	/**

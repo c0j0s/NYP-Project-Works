@@ -25,8 +25,8 @@
 
 <div class="container">
 	<jsp:include page="parts/page-header.jsp">
-		<jsp:param value="activity" name="type" />
-		<jsp:param value="Activities for families" name="title" />
+		<jsp:param value="activityDraft" name="type" />
+		<jsp:param value="Activity Draft" name="title" />
 		<jsp:param value="5" name="titleWidth" />
 	</jsp:include>
 	<div class="col-md-9">
@@ -70,24 +70,18 @@
 							<%=act.getActivityTime()%>
 						</p>
 						<p>
-							<jsp:include page="parts/likeButtons.jsp">
-								<jsp:param value="<%=act.getActivityId()%>" name="Id" />
-								<jsp:param value="<%=act.getLikeCount()%>" name="likeCount" />
-								<jsp:param value="<%=act.getDislikeCount()%>"
-									name="dislikeCount" />
-							</jsp:include>
+							
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 									Info</button>
 							</span>
-							<% if(session.getAttribute("account")!=null){ %>
-							<span aria-hidden="true">
+							<% if(act.getStatus().equals("Draft")){%>
+								<span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register
-									For Activity</button>
-							</span>
-							<%} %>
+									onclick="location.href = 'UploadActivity?activityId=<%=act.getActivityId()%>'">Upload Activity</button>
+								
+							<% } %>
 						</p>
 					</div>
 				</div>
@@ -106,21 +100,7 @@
 				</jsp:include>
 			</div>
 			<div class="col-md-12 col-sm-4">
-				<ul class="list-group" id="aMultiPlatformList">
-					<h4>Activity Popularity Ranking</h4>
-					<%
-						int z = 0;
-						ArrayList<Activity> actRank = (ArrayList<Activity>) request.getAttribute("actRank");
-						for (Activity act : actRank) {
-					%>
-					<li class="list-group-item"><%=z + 1%>. <a
-						href='ActFull?activityId=<%=act.getActivityId()%>'><%=act.getActivityTitle()%>
-					</a><span class="badge"><%=act.getRankPoints()%></span></li>
-					<%
-						z++;
-						}
-					%>
-				</ul>
+				
 			</div>
 		</div>
 	</div>

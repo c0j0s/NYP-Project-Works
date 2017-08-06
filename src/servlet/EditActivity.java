@@ -31,19 +31,35 @@ public class EditActivity extends HttpServlet {
 		try{
 			ActivityDB adb = new ActivityDB();
 			Activity act = adb.getActivityById(request.getParameter("activityId")).get(0);
+			if(request.getParameter("status").equals("Draft")){
 
 
+				act.setActivityTitle(request.getParameter("actName"));
+				act.setActivityDescription(request.getParameter("actDesc"));
+				act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
+				act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
+				act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
+				act.setActivityDay(request.getParameter("activityDay"));
+				act.setActivityLocation(request.getParameter("actLocation"));
+				act.setActivityEndDate(request.getParameter("actEnd"));
+				act.setActivityStartDate(request.getParameter("actStart"));
+				act.setActivityCategory(request.getParameter("actCategory"));
+
+				String img = request.getParameter("imgurl");
+				if(!img.equals("")) {
+					act.setImgUrl(img);
+				}adb.editActivityDraft(act) ;}else {
 			act.setActivityTitle(request.getParameter("actName"));
-			act.setActivityDescription(request.getParameter("actDesc"));
-			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
-			act.setActivityCategory(request.getParameter("actCategory"));
+				act.setActivityDescription(request.getParameter("actDesc"));
+				act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
+				act.setActivityCategory(request.getParameter("actCategory"));
 
-			String img = request.getParameter("imgurl");
-			if(!img.equals("")) {
-				act.setImgUrl(img);
-			}
-			adb.editActivity(act);
-			response.sendRedirect("ActFull?activityId="+act.getActivityId());
+				String img = request.getParameter("imgurl");
+				if(!img.equals("")) {
+					act.setImgUrl(img);
+				}
+				adb.editActivity(act);}
+				response.sendRedirect("ActFull?activityId="+act.getActivityId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

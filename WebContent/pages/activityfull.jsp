@@ -32,8 +32,8 @@
 		<jsp:param value="5" name="titleWidth" />
 	</jsp:include>
 	<div>
-		<div class="col-md-1"></div>
-			<div class="col-md-6 ">
+	
+			<div class="col-md-7 ">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3><%=actf.getActivityTitle()%></h3>
@@ -96,30 +96,29 @@
 								<button class="btn btn-success"
 									onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
 									Activity</button>
-							</span> <span aria-hidden="true">
+							</span><%if (!(actf.getStatus().equals("Draft"))){ %><span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'RegList?&activityId=<%=actf.getActivityId()%>'">Participants
+									onclick="location.href = 'RegList?activityId=<%=actf.getActivityId()%>'">Participants
 									List</button>
-							</span>
+							</span><%} %>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'DeleteActivity?&activityId=<%=actf.getActivityId()%>'">Participants
-									List</button>
+									onclick="location.href = 'SelfDeleteActivity?activityId=<%=actf.getActivityId()%>'">Delete Activity</button>
 							</span><% if(actf.getStatus().equals("Draft")){%>
 								<span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'ActUpload?activityId=<%=actf.getActivityId()%>'">Upload Activity</button>
+									onclick="location.href = 'UploadActivity?activityId=<%=actf.getActivityId()%>'">Upload Activity</button>
 								
 							<% } %>
 
-							<%}}
-							if(session.getAttribute("account")!=null){%>
+							<%}} if (!(request.getAttribute("acctId").equals(actf.getOrganiserId()))) { 
+							if(session.getAttribute("account")!=null){if (!(actf.getStatus().equals("Draft"))){ %>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 									For Activity</button>
 							</span>
-							<%} %>
+							<%} }}%>
 						</div>
 					</div>
 				</div>

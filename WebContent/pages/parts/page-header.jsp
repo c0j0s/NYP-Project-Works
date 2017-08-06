@@ -31,6 +31,23 @@
 					<button onclick="location.href = 'CreateAct'"
 					class="btn btn-primary col-md-2 pull-right">Create
 					Activity</button>
+					<button onclick="location.href = '${pageContext.request.contextPath}/ActDraft'"
+						class="btn btn-primary">View Drafts</button>
+				<%} %>
+			</div>
+		</c:when>
+		<c:when test="${param.type eq 'activityDraft' ? true : false}">
+			<div>
+				<h1>
+					<a href="${pageContext.request.contextPath}/ActDraft"
+						class="col-md-6">Activity Draft </a>
+				</h1>
+				<%if(session.getAttribute("account")!=null){%>
+					<button onclick="location.href = 'CreateAct'"
+					class="btn btn-primary col-md-2 pull-right">Create
+					Activity</button>
+					<button onclick="location.href = '${pageContext.request.contextPath}/ActList'"
+						class="btn btn-primary">View Activity List</button>
 				<%} %>
 			</div>
 		</c:when>
@@ -45,6 +62,8 @@
 					<% if(session.getAttribute("account")!=null){%>
 					<button onclick="location.href = '${pageContext.request.contextPath}/CreateAct'"
 						class="btn btn-primary">Create Activity</button>
+						<button onclick="location.href = '${pageContext.request.contextPath}/ActDraft'"
+						class="btn btn-primary">View Drafts</button>
 					<%} %>
 				</div>
 			</div>

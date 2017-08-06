@@ -1,30 +1,25 @@
-package servlet.view;
+package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bean.Account;
-import bean.Activity;
 import database.ActivityDB;
-import database.Point;
 
 /**
- * Servlet implementation class Actfull
+ * Servlet implementation class SelfDeleteActivity
  */
-@WebServlet("/ActFull")
-public class ActFull extends HttpServlet {
+@WebServlet("/SelfDeleteActivity")
+public class SelfDeleteActivity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActFull() {
+    public SelfDeleteActivity() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +28,12 @@ public class ActFull extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ActivityDB adb = new ActivityDB();
-		Account ac = (Account) request.getSession().getAttribute("account");
-		request.setAttribute("acctId", ac.getAccountId());
-		Point p = new Point();
-		ArrayList<Activity> actRank = p.getRank();
-		request.setAttribute("actRank", actRank);
-		ArrayList<Activity> activityFull = adb.getActivityById(request.getParameter("activityId"));
-		request.setAttribute("activityFull", activityFull);
-		request.getRequestDispatcher("pages/activityfull.jsp").forward(request, response);
+	ActivityDB actdb = new ActivityDB();
+	String activityId = request.getParameter("activityId");
+	actdb.deleteActivity(activityId);
+	response.sendRedirect("ActList");
+			
+		
 	}
 
 	/**

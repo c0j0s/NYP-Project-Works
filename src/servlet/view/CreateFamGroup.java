@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Account;
 import bean.FamilyGrp;
 import database.FamGrpDB;
 
@@ -32,7 +33,8 @@ public class CreateFamGroup extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FamGrpDB fgdb= new FamGrpDB();
-		String famGroup = request.getParameter("userIdFg");
+		Account ac = (Account) request.getSession().getAttribute("account");
+		String famGroup = ac.getAccountId();
 		System.out.println("HELP ME LUH"+famGroup);
 		ArrayList<FamilyGrp> fGrp = fgdb.getFamGrpByUserId(famGroup);
 		request.setAttribute("fGroup", fGrp);

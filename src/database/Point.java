@@ -51,7 +51,7 @@ public class Point extends DBAO{
 	public ArrayList<Activity> getRank() {
 		ArrayList<Activity> rankList = new ArrayList<Activity>();
 		try {
-			String ss = "SELECT * FROM ffl.ranklist where valid ='Y' order by actRank desc;"; 
+			String ss = "SELECT * FROM ffl.ranklist where valid ='Y' and status = 'Uploaded' order by actRank desc;"; 
 			PreparedStatement ps =con.prepareStatement(ss);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
