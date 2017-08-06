@@ -74,7 +74,7 @@ public class CommentDB extends DBAO implements ForumMetaById{
 			}
 			
 			PreparedStatement ps = con.prepareStatement(statement);
-			ps.setFetchSize(1000);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
@@ -129,7 +129,7 @@ public class CommentDB extends DBAO implements ForumMetaById{
 		try {
 			String stmt = "select commentContent,imgUrl from (SELECT * FROM "+ schema +".commentlist WHERE commentsCommentId = '"+ commentId +"' AND commentStatus = 'publish' AND valid = 'Y' ORDER BY commentDate DESC limit " + start + "," + limit +") m order by m.commentDate asc";
 			PreparedStatement ps = con.prepareStatement(stmt);
-			ps.setFetchSize(1000);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				Comment com = new Comment();
