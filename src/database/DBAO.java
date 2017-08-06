@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class DBAO {
+public class DBAO extends Thread{
 	protected static Connection con;
 	public static int connectionCount = 0;
 	final protected static String schema = "ffl";

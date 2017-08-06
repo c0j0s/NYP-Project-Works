@@ -70,6 +70,9 @@
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/forum.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/Forum">Family Forum</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/activityList.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/ActList">Family Activities</a></li>
 				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/RedemptionList">Reward Redemption</a></li>
+				<c:if test="${user ne null }">
+				<li class="${pageContext.request.requestURI eq '/FFL/pages/redeem.jsp' ? ' active' : ''}"><a href="${pageContext.request.contextPath}/CreateFamGroup">Family Group</a></li>
+				</c:if>
 			</ul>
 			<form class="navbar-form navbar-right" role="search" action="${pageContext.request.contextPath}/Search?">
 			  <div class="form-group">
