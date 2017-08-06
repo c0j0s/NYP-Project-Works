@@ -107,8 +107,9 @@
 								<p>
 									Group Owner :
 									<%=fg.getGrpOwner()%></p>
-
-							</div>
+						<%if(request.getAttribute("accountId").equals(fg.getGrpOwner())){%> <button type="submit" class="btn btn-danger"
+						onclick="location.href='${pageContext.request.contextPath}/DeleteGroup?famGrpId=<%=fg.getFamilyGroupId() %>'">Delete Group</button>
+						<%} %>	</div>
 						</div>
 					</div>
 					<div id="members" class="tab-pane fade">
@@ -120,10 +121,10 @@
 									<th>User Id</th>
 									<th>Group Name</th>
 								</tr>
-								<%
+								<%int z = 0;
 									ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
 									for (FamilyGrp fgp : fMemList) {
-										int z = 0;
+										
 								%>
 								<tr>
 									<td><%=z + 1%>.</td>
