@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ page
-	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
+<%@ page import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -26,15 +25,15 @@
 
 	<div class="container">
 		<%
-		DecimalFormat df = new DecimalFormat("##.00");
-		if (request.getParameter("activityId") == null) {
-			%>
-			<script language="javascript">
-				window.location.href = "activitypageerror.jsp"
-			</script>
+			DecimalFormat df = new DecimalFormat("##.00");
+			if (request.getParameter("activityId") == null) {
+		%>
+		<script language="javascript">
+			window.location.href = "activitypageerror.jsp"
+		</script>
 		<%
 			} else {
-				actfl = (ArrayList<Activity>)request.getAttribute("activityEdit");
+				actfl = (ArrayList<Activity>) request.getAttribute("activityEdit");
 				actf = actfl.get(0);
 		%>
 		<jsp:include page="parts/page-header.jsp">
@@ -42,74 +41,132 @@
 			<jsp:param value="Edit Activity" name="title" />
 			<jsp:param value="5" name="titleWidth" />
 		</jsp:include>
-		
+
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<form action="${pageContext.request.contextPath}/EditActivity" method="post" class="col-md-12" id="form-upload">
-			<input type="hidden" value="<%=actf.getActivityId() %>" name="activityId">
-			<label for="actName">Activity Name : </label> <input type="text"
-				name="actName" class="form-control"
-				value="<%=actf.getActivityTitle()%>"><br>
-				 <label for="actCategory">Activity Category : </label><br>
-			<select name="actCategory" 
-				class="select form-control" >
-				<option value="Leisure">Leisure</option>
-				<option value="Exercise">Exercise</option>
-				<option value="Sports">Sports</option>
-				<option value="Educational">Educational</option>
+			<form
+				action="${pageContext.request.contextPath}/EditActivity?status=<%=actf.getStatus()%>"
+				method="post" class="col-md-12" id="form-upload">
+				<input type="hidden" value="<%=actf.getActivityId()%>"
+					name="activityId"> <label for="actName">Activity
+					Name : </label> <input type="text" name="actName" class="form-control"
+					value="<%=actf.getActivityTitle()%>"><br> <label
+					for="actCategory">Activity Category : </label><br> <select
+					name="actCategory" class="select form-control">
+					<option value="Leisure">Leisure</option>
+					<option value="Exercise">Exercise</option>
+					<option value="Sports">Sports</option>
+					<option value="Educational">Educational</option>
 
-			</select>
+				</select>
 				<div class="vert">
 					<div class="col-md-7">
-						<br> <br> <br><label for="imgurl">Activity
-							Image: </label><input type="file" name="file" 
-							 size="60" ><br> <input
-							type="hidden" name="imgurl" id="imgurl"
+						<br> <br> <br> <label for="imgurl">Activity
+							Image: </label><input type="file" name="file" size="60"><br>
+						<input type="hidden" name="imgurl" id="imgurl"
 							data-imgfolder="activity/${user.accountId }" />
 					</div>
 					<div class="col-md-5">
-						<img alt="" src="<%=actf.getImgUrl()%>" id="test-img-prev" class = "fullactpic">
+						<img alt="" src="<%=actf.getImgUrl()%>" id="test-img-prev"
+							class="fullactpic">
 					</div>
-				</div><br>
-				<br> <label for="">Activity Description:</label>
-				<textarea class="form-control" rows="10" cols="50" name="actDesc" ><%=actf.getActivityDescription()%></textarea><br>
-				<br> Activity Fee: <input type="text" value="$<%=df.format(actf.getActivityFee())%>" disabled><br>
-
-				<label for="actPart">Participant Number:</label> <input type="number"
-					name="actPart" class="form-control" min="<%=actf.getParticipantNo()%>"
+				</div>
+				<br> <br> <label for="">Activity Description:</label>
+				<textarea class="form-control" rows="10" cols="50" name="actDesc"><%=actf.getActivityDescription()%></textarea>
+				<br>
+				<%
+					if (actf.getStatus().equals("Draft")) {
+				%><br> Activity Fee: <input type="text"
+					value="$<%=df.format(actf.getActivityFee())%>" name="actFee"><br>
+				<label for="actPart">Participant Number:</label> <input
+					type="number" name="actPart" class="form-control"
 					value="<%=actf.getParticipantNo()%>"> <br> <label
 					for="actLocation">Location: </label> <input type="text"
 					name="actLocation" class="form-control"
-					value="<%=actf.getActivityLocation()%>" disabled><br>
-					<div>
+					value="<%=actf.getActivityLocation()%>"><br>
+				<div>
 					<div class="col-md-5">
 						<label for="actStart">Activity Start Date : </label> <input
-							type="date" name="actStart" class="form-control" value="<%=actf.getActivityStartDate()%>" disabled>
+							type="date" name="actStart" class="form-control"
+							value="<%=actf.getActivityStartDate()%>">
 					</div>
 					<div class="col-md-2 text-center">
 						<br>-
 					</div>
 					<div class="col-md-5">
 						<label for="actEnd">Activity End Date : </label><br> <input
-							type="date" name="actEnd" class="form-control" value="<%=actf.getActivityEndDate() %>" disabled><br>
+							type="date" name="actEnd" class="form-control"
+							value="<%=actf.getActivityEndDate()%>"><br>
 					</div>
-				<br></div>Activity Days : 
-				
-					<input type="text" value="<%=actf.getActivityDay()%>" disabled>
+					<br>
+				</div><label
+					for="activityDay">Activity Days : </label><br>
+				<div class="text-center">
+					<input type="checkbox" name="actDay" value="Monday "
+						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
+						type="checkbox" name="actDay" value="Tuesday "
+						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
+						type="checkbox" name="actDay" value="Wednesday "
+						class="activitycheckbox"">&nbspWednesday &nbsp&nbsp&nbsp <input
+						type="checkbox" name="actDay" value="Thursday "
+						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
+						type="checkbox" name="actDay" value="Friday "
+						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
+						type="checkbox" name="actDay" value="Saturday "
+						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
+						type="checkbox" name="actDay" value="Sunday "
+						class="activitycheckbox">&nbsp Sunday &nbsp&nbsp&nbsp
+						value="<%=actf.getActivityDay()%>"
+				</div>
+				<input type="text" value="<%=actf.getActivityDay()%>"
+					name="activityDay"> <br> <br> <br> <label
+					for="actRegEnd">Registration End : </label> <br> <input
+					type="text" name="actRegEnd" class="form-control"
+					value="<%=actf.getActivityRegistrationEnd()%>" name="regEnd"><br>
 				<br> <br>
-				<br> <label for="actRegEnd">Registration End : </label> <br><input
-					type="text" name="actRegEnd" class="form-control" value="<%=actf.getActivityRegistrationEnd()%>" disabled><br>
-				<br><br>
+				<%
+					} else {
+				%><br> Activity Fee: <input type="text"
+					value="$<%=df.format(actf.getActivityFee())%>" disabled><br>
+
+				<label for="actPart">Participant Number:</label> <input
+					type="number" name="actPart" class="form-control"
+					value="<%=actf.getParticipantNo()%>"> <br> <label
+					for="actLocation">Location: </label> <input type="text"
+					name="actLocation" class="form-control"
+					value="<%=actf.getActivityLocation()%>"><br>
+				<div class="col-md-5">
+					<label for="actStart">Activity Start Date : </label> <input
+						type="date" name="actStart" class="form-control"
+						value="<%=actf.getActivityStartDate()%>" disabled>
+				</div>
+				<div class="col-md-2 text-center">
+					<br>-
+				</div>
+				<div class="col-md-5">
+					<label for="actEnd">Activity End Date : </label><br> <input
+						type="date" name="actEnd" class="form-control"
+						value="<%=actf.getActivityEndDate()%>" disabled><br>
+				</div>
+				Activity Days : <input type="text"
+					value="<%=actf.getActivityDay()%>" disabled> <br> <br>
+				<br> <label for="actRegEnd">Registration End : </label> <br>
+				<input type="text" name="actRegEnd" class="form-control"
+					value="<%=actf.getActivityRegistrationEnd()%>" disabled><br>
+				<br> <br>
+				<%
+					}
+				%>
 				<div class="col-md-12">
 					<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
 					<p class="col-md-2"></p>
 					<button type="submit" class="col-md-5 btn btn-success  pull-right">Edit</button>
 				</div>
 				<br>
-			<%
-				}
-			%>
-		</form>
+				<%
+					}
+				%>
+			</form>
 		</div>
 		<div class="col-md-2"></div>
 	</div>

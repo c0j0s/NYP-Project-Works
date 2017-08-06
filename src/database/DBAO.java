@@ -10,7 +10,7 @@ public class DBAO {
 	protected static Connection con;
 	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
-	final private String lurl = "jdbc:mysql://25.53.148.109/ffl?useCursorFetch=true";
+	final private String lurl = "jdbc:mysql://25.8.184.20/ffl?useCursorFetch=true";
 
 	
 	/**
@@ -40,7 +40,7 @@ public class DBAO {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			con = DriverManager.getConnection(lurl,"root","password");
+			con = DriverManager.getConnection(lurl,"root","mysql");
 			System.out.println("Open Connection: " + connectionCount);
 			connectionCount++;
 		} catch (Exception e) {

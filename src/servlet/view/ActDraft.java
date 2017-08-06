@@ -17,7 +17,7 @@ import database.Point;
 /**
  * Servlet implementation class ActList
  */
-@WebServlet("/ActList")
+@WebServlet("/ActDraft")
 public class ActDraft extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

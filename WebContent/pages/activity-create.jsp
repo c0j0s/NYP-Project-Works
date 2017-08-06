@@ -59,7 +59,7 @@
 							>
 					</div>
 				</div><br>
-				<br> <label for="">Activity Description:</label>
+				<br> Activity Description:
 				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea><br>
 				<br> <label for="actFee">Activity Fee: $ </label>
 				
@@ -71,7 +71,7 @@
 
 				<br>
 
-				<label for="actPart">Participant Number:</label> <input type="number"
+				Participant Number: <input type="number"
 					name="actPart" class="form-control" min="0"
 					placeholder="Enter Participant Number : "> <br> <label
 					for="actLocation">Location: </label> <input type="text"
@@ -79,14 +79,14 @@
 					placeholder="Enter Location : "><br>
 					<div>
 					<div class="col-md-5">
-						<label for="actStart">Activity Start Date : </label> <input
+						Activity Start Date :  <input
 							type="date" name="actStart" class="form-control" >
 					</div>
 					<div class="col-md-2 text-center">
 						<br>-
 					</div>
 					<div class="col-md-5">
-						<label for="actEnd">Activity End Date : </label><br> <input
+						Activity End Date :<br> <input
 							type="date" name="actEnd" class="form-control"><br>
 					</div>
 				<br></div> <label
