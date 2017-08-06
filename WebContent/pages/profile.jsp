@@ -52,7 +52,7 @@
 			<button type="submit" class="btn btn-default"
 				onclick="location.href='${pageContext.request.contextPath}/UpdateProfile'">Update
 				Profile</button>
-						<form action="${pageContext.request.contextPath}/CreateFamGroup" ><input type="hidden" name = "userIdFg" value ="${user.accountId}">	<button class="btn btn-success"
+						<form action="${pageContext.request.contextPath}/CreateFamGroup" >	<button class="btn btn-success"
 							onclick="location.href = 'CreateFamGroup'">Family Group</button></form></div>
 			<button type="submit" value="invalid" onclick="location.href='${pageContext.request.contextPath}/InvalidateAccount'">Delete your account</button>
 		</div>

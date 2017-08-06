@@ -103,11 +103,26 @@ public class ActRegDB extends DBAO{
 		ps.setString(1, userId);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()){
-			
+			ActReg ar = new ActReg();
+			ar.setRegistrationId(rs.getString("registrationId"));
+			ar.setUserAccountId(rs.getString("UseraccountId"));
+			ar.setActivityactivityId(rs.getString("ActivityactivityId"));
+			ar.setActivityTitle(rs.getString("activityTitle"));
+			regList.add(ar);
 		}
 		}catch(Exception ex){ex.printStackTrace();}
 		return null;
 		
+	}
+	
+	public void deleteRegistration(String userId, String regId){
+		try{
+			String stmt = "update ffl.registerationlist set valid = 'N' where acctid = ? and registerationId = ? ;";
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, userId);
+			ps.setString(2, regId);
+			ps.executeUpdate();
+		}catch(Exception ex){ex.printStackTrace();}
 	}
 
 	
