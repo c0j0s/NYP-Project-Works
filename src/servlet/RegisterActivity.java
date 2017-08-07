@@ -44,12 +44,15 @@ public class RegisterActivity extends HttpServlet {
 		Account ac = (Account)s.getAttribute("account");
 		Point p = new Point();
 		String actId = request.getParameter("activityId");
-		int pay = Integer.parseInt(request.getParameter("countpay"));
+		int pay = 0;
+		if (request.getParameter("countpay").equals("")){pay =1;}else{
+		pay =Integer.parseInt(request.getParameter("countpay"));}
+		
 		adb.editParNo(actId, pay);
 		p.pointsCalc(request.getParameter(ac.getAccountId()),10);
 		ar.setRegistrationId(request.getParameter("registerId"));
 		ar.setRegistrationAmtPaid(Double.valueOf(request.getParameter("total")));
-		ar.setParticipantNo(Integer.parseInt(request.getParameter("countpay")));
+		ar.setParticipantNo(pay);
 		ar.setUserAccountId(ac.getAccountId());
 		ar.setActivityRegistrationDate(DBAO.getDateTime());
 		ar.setCashOrBank(request.getParameter("type"));
@@ -59,7 +62,6 @@ public class RegisterActivity extends HttpServlet {
 		for(String id : ar.getParticipantId()){
 		p.pointsCalc(id , 30);}
 		ardb.RegisterActivity(ar);
-		ardb.setRegistrationList(ac.getAccountId(), ar.getRegistrationId());
 		for(String reg: ar.getParticipantId() ) {
 			ardb.setRegistrationList(reg, ar.getRegistrationId());
 		}

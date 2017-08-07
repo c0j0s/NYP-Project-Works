@@ -34,7 +34,7 @@ public class claimReward extends HttpServlet {
 	int currPoint = ac.getPoints();
 	System.out.println(ac.getAccountId());
 	Point p = new Point();
-	if(ac.getPoints()<rewCost){response.sendRedirect("RedemptionList");}else{
+	if(currPoint<rewCost){response.sendRedirect("RedemptionList");}else{
 	p.pointsCalc(ac.getAccountId(),-rewCost);
 	System.out.println(-rewCost);
 	response.sendRedirect("RedemptionList");}

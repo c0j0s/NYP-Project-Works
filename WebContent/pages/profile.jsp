@@ -74,8 +74,11 @@
 			    	<%ArrayList<bean.ActReg> act = (ArrayList<bean.ActReg>)request.getAttribute("ar");
 			    	for (ActReg a : act){%>
 			    		
-			    		<li class="list-group-item"><a href="ActFull?activityId=<%=a.getActivityactivityId() %>"><%=a.getActivityTitle() %></a></li>
+			    		<li class="list-group-item"><a href="ActFull?activityId=<%=a.getActivityactivityId() %>"><%=a.getActivityTitle() %></a>&nbsp&nbsp<button class="btn btn-danger"
+									onclick="location.href = 'DeleteRegistration?registrationId=<%=a.getRegistrationId() %>&activityId=<%=a.getActivityactivityId() %>'" class="pull-right">Delete Registration</button></li>
+			    		
 			    	<%} %>
+			    	
 			    </div>
 			  </div>
 		</div>

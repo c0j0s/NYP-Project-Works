@@ -76,10 +76,12 @@
 					<p class="col-md-6">
 						Number Of Participants : 
 						<select  name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
+						<option value="${user.accountId}" selected>Myself</option>
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
-							for (FamilyGrp fg : fGrp) {%>
+							for (FamilyGrp fg : fGrp) {%><%ArrayList<FamilyGrp> fMem = fg.getMembers();%>
+							
 							<optgroup label="<%=fg.getGroupName() %>">
-							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
+							<% 
 							for (FamilyGrp fm : fMem){
 								System.out.println(request.getAttribute("acctId")+fm.getAccountId());
 								if(!(request.getAttribute("acctId").equals(fm.getAccountId()))){

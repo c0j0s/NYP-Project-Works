@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Account;
 import database.ActRegDB;
+import database.ActivityDB;
 
 /**
  * Servlet implementation class DeleteRegistration
@@ -30,10 +31,14 @@ public class DeleteRegistration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActRegDB ardb = new ActRegDB();
+		ActivityDB adb = new ActivityDB();
 		Account ac = (Account) request.getSession().getAttribute("account");
 		 String userId = ac.getAccountId();
 		 String registrationId = request.getParameter("registrationId");
 		 ardb.deleteRegistration(userId, registrationId);
+String actId = request.getParameter("activityId");
+			adb.editParNo(actId, -1);
+		 response.sendRedirect("MyProfile");
 		 
 	}
 
