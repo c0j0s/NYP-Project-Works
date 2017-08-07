@@ -55,6 +55,9 @@ public class RegisterActivity extends HttpServlet {
 		ar.setCashOrBank(request.getParameter("type"));
 		ar.setActivityactivityId(request.getParameter("activityId"));
 		ar.setParticipantId(new ArrayList<String>(Arrays.asList(request.getParameterValues("multiselect[]"))));
+
+		for(String id : ar.getParticipantId()){
+		p.pointsCalc(id , 30);}
 		ardb.RegisterActivity(ar);
 		ardb.setRegistrationList(ac.getAccountId(), ar.getRegistrationId());
 		for(String reg: ar.getParticipantId() ) {

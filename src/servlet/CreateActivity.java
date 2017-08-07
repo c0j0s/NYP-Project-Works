@@ -58,7 +58,12 @@ public class CreateActivity extends HttpServlet {
 			StringBuilder builder = new StringBuilder();
 			String day[] =request.getParameterValues("actDay");
 			Point p = new Point();
-			p.pointsCalc(ac.getAccountId(),30);
+
+			p.pointsCalc(ac.getAccountId(),200);
+			for (String value : day) {
+			    builder.append(value);
+			}
+			String days = builder.toString();
 		
 			
 			act.setActivityDay(new ArrayList<String>(Arrays.asList(request.getParameterValues("actDay"))));
