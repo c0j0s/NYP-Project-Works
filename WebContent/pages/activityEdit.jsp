@@ -176,7 +176,7 @@
 				</div>
 				 <br> <br> <br> <label
 					for="actRegEnd">Registration End : </label> <br> <input
-					type="text" name="actRegEnd" class="form-control"
+					type="date" name="actRegEnd" class="form-control"
 					value="<%=actf.getActivityRegistrationEnd()%>" name="regEnd"><br>
 				<br> <br>
 				<%

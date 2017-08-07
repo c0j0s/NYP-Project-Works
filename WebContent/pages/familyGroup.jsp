@@ -119,7 +119,7 @@
 								<tr>
 									<th>No.</th>
 									<th>User Id</th>
-									<th>Group Name</th>
+									<th>Member Name</th>
 								</tr>
 								<%int z = 0;
 									ArrayList<FamilyGrp> fMemList = (ArrayList<FamilyGrp>) request.getAttribute("members");
