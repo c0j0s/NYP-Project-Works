@@ -421,9 +421,7 @@ $( document ).ready(function() {
 		}
 	}); 
 	 function calculatorzz(count) {
-		 var num1 =0;
-		 if (count = ""){num1= 1;}else{
-		 num1 = count;}
+		 var num1 = count;
 		var num2 = $('#generate2').html();
 		var total = num1 *num2;
 		   var finaltotal = format2(total, "$");
