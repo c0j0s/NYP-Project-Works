@@ -36,9 +36,10 @@
 			<div class="col-md-7 ">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3><%=actf.getActivityTitle()%></h3>
+						<h3><%=actf.getActivityTitle()%> <% if(actf.getStatus().equals("Draft")){%><%=actf.getStatus() %><%} %></h3>
 					</div>
 					<div class="panel-body">
+					
 						<p>
 							Activity Categories :
 							<%=actf.getActivityCategory()%>
