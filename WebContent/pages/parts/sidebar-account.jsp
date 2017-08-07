@@ -62,13 +62,27 @@
 							Profile</button>
 						<br>
 						<button type="submit" class="btn btn-default btn-block"
-							onclick="location.href='${pageContext.request.contextPath}/ResetPw2'">Reset Password</button>
+							onclick="location.href='${pageContext.request.contextPath}/ResetPw'">Reset Password</button>
 						<br>
 						<form action="${pageContext.request.contextPath}/CreateFamGroup" >	
 							<button class="btn btn-default btn-block" onclick="location.href = 'CreateFamGroup'">Family Group</button>
 						</form>
 						<br>
-						<button type="submit" class="btn btn-danger btn-block" onclick="location.href='${pageContext.request.contextPath}/InvalidateAccount'">Delete your account</button>
+						<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target=".bs-example-modal-sm">Delete Your Account</button>
+
+								<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+								  <div class="modal-dialog modal-sm" role="document">
+								    <div class="modal-content">
+								      Are you sure you want to delete your account?
+								      <div class="modal-footer">
+        								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								      <form action="${pageContext.request.contextPath}/InvalidateAccount">
+								      	<button class="btn btn-danger btn-block" onClick="location.href" = 'InvalidateAccount'>Yes</button>
+								      </form>
+								   	   </div>
+								    </div>
+								  </div>
+								</div>
 					</div>
 				</c:when>
 				<c:when test="${param.type eq 'admin' ? true : false}">
