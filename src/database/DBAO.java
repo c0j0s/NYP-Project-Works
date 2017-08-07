@@ -11,7 +11,7 @@ public class DBAO extends Thread{
 	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
 
-	final private String lurl = "jdbc:mysql://25.8.184.20/ffl";
+	final private String lurl = "jdbc:mysql://25.53.148.109/ffl";
 
 
 	
@@ -42,7 +42,7 @@ public class DBAO extends Thread{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			con = DriverManager.getConnection(lurl,"root","mysql");
+			con = DriverManager.getConnection(lurl,"root","password");
 
 			System.out.println("Open Connection: " + connectionCount);
 			connectionCount++;

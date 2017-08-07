@@ -77,7 +77,7 @@
 				<%
 					if (actf.getStatus().equals("Draft")) {
 				%><br> Activity Fee: <input type="text"
-					value="$<%=df.format(actf.getActivityFee())%>" name="actFee"><br>
+					value="<%=df.format(actf.getActivityFee())%>" name="actFee"><br>
 				<label for="actPart">Participant Number:</label> <input
 					type="number" name="actPart" class="form-control"
 					value="<%=actf.getParticipantNo()%>"> <br> <label
@@ -174,8 +174,7 @@
 					%>
 
 				</div>
-				<input type="text" value="<%=actf.getActivityDay()%>"
-					name="activityDay"> <br> <br> <br> <label
+				 <br> <br> <br> <label
 					for="actRegEnd">Registration End : </label> <br> <input
 					type="text" name="actRegEnd" class="form-control"
 					value="<%=actf.getActivityRegistrationEnd()%>" name="regEnd"><br>
