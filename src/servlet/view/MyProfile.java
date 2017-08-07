@@ -40,7 +40,7 @@ public class MyProfile extends HttpServlet {
 			Account ac = (Account) ss.getAttribute("account");
 			ArrayList<bean.Post> post = fdb.getUserPost(ac.getAccountId());
 			request.setAttribute("post", post);
-			ArrayList<bean.Activity> act = adb.getActivityById(ac.getAccountId());
+			ArrayList<bean.Activity> act = adb.getRegistrationById(ac.getAccountId());
 			request.setAttribute("act", act);
 			request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 		}else {
