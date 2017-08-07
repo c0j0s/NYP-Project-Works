@@ -10,7 +10,10 @@ import java.text.SimpleDateFormat;
 public class DBAO extends Thread{
 	protected static Connection con;
 	final protected static String schema = "ffl";
-	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl";
+
+
+
+	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl?autoReconnect=true";
 	
 	/**
 	 * Default constructor
@@ -38,7 +41,12 @@ public class DBAO extends Thread{
 	public void openConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+
+
 			con = DriverManager.getConnection(lurl,"root","password");
+
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

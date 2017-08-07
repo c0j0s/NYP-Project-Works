@@ -39,7 +39,16 @@ public class EditActivity extends HttpServlet {
 				act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 				act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
 				act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
-				act.setActivityDay(request.getParameter("activityDay"));
+				StringBuilder builder = new StringBuilder();
+				String day[] =request.getParameterValues("actDay");
+				
+				for (String value : day) {
+				    builder.append(value);
+				}
+				String days = builder.toString();
+			
+				
+				act.setActivityDay(days);
 				act.setActivityLocation(request.getParameter("actLocation"));
 				act.setActivityEndDate(request.getParameter("actEnd"));
 				act.setActivityStartDate(request.getParameter("actStart"));

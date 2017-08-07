@@ -1,4 +1,5 @@
 <div class="panel panel-default Forum-card ${post.postStatus eq 'closed' ? 'post-closed':'' }">
+	${post}
 	<div class="panel-body">
 		<div class="col-sm-2 text-center">
 			<jsp:include page="forum-accountInfo.jsp">
