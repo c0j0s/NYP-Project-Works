@@ -42,7 +42,7 @@ public class CreateReward extends HttpServlet {
 			rew.setRewardId(uid.genRewardId());
 			rew.setRewardTitle(request.getParameter("rewTitle"));
 			rew.setRewardDescription(request.getParameter("rewDesc"));
-		    rew.setPoints(Integer.parseInt(request.getParameter("points")));
+		    rew.setPoints(Integer.parseInt(request.getParameter("Points")));
 			rew.setRewardQuantity(request.getParameter("rewQuantity").charAt(0));
 			
 			
