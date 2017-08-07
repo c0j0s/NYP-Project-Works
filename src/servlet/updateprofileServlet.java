@@ -47,7 +47,6 @@ public class updateprofileServlet extends HttpServlet {
 			ac.setGivenName(request.getParameter("firstName"));
 			ac.setSurName(request.getParameter("lastName"));
 			ac.setDob(java.sql.Date.valueOf(request.getParameter("dob")));
-			//System.out.println(request.getParameter("gender"));
 			ac.setGender(request.getParameter("gender").charAt(0));
 			ac.setEmail(request.getParameter("email"));
 			ac.setAddress(request.getParameter("address"));
@@ -66,7 +65,7 @@ public class updateprofileServlet extends HttpServlet {
 					ac1.updateMember(ac);
 					
 					mySession.setAttribute("account", ac);
-					request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
+					request.getRequestDispatcher("MyProfile").forward(request, response);
 				}catch(Exception ex){
 					System.out.println(ex.getMessage());
 				}

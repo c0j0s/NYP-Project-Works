@@ -3,6 +3,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.json.Json;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import bean.Activity;
 
 
@@ -39,7 +46,12 @@ public class ActivityDB extends DBAO{
 				act.setImgUrl(rs.getString("imgurl"));
 				act.setActivityTime(rs.getString("activityTime"));
 				act.setValid(rs.getString("valid").charAt(0));
-				act.setActivityDay(rs.getString("activityDays"));
+				
+				String days = rs.getString("activityDays");
+				TypeToken<ArrayList<String>> token = new TypeToken<ArrayList<String>>() {};
+				ArrayList<String> actDays = new Gson().fromJson(days, token.getType());
+				act.setActivityDay(actDays);
+				
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
 				act.setCommentCount(rs.getString("postCount"));
@@ -87,7 +99,11 @@ public class ActivityDB extends DBAO{
 				act.setImgUrl(rs.getString("imgurl"));
 				act.setActivityTime(rs.getString("activityTime"));
 				act.setValid(rs.getString("valid").charAt(0));
-				act.setActivityDay(rs.getString("activityDays"));
+				String days = rs.getString("activityDays");
+				
+				TypeToken<ArrayList<String>> token = new TypeToken<ArrayList<String>>() {};
+				ArrayList<String> actDays = new Gson().fromJson(days, token.getType());
+				act.setActivityDay(actDays);
 				act.setLikeCount(rs.getInt("likeCount"));
 				act.setDislikeCount(rs.getInt("dislikeCount"));
 				act.setCommentCount(rs.getString("postCount"));
@@ -120,7 +136,8 @@ public class ActivityDB extends DBAO{
 			ps.setString(5, act.getActivityPostDate());
 			ps.setString(6, act.getActivityStartDate());
 			ps.setString(7, act.getActivityEndDate());
-			ps.setString(8, act.getActivityDay());
+			String days = new Gson().toJson(act.getActivityDay());
+			ps.setString(8, days);
 			ps.setString(9, act.getActivityTime());
 			ps.setString(10, act.getActivityRegistrationEnd());
 			ps.setDouble(11, act.getActivityFee());
@@ -190,7 +207,8 @@ public class ActivityDB extends DBAO{
 			ps.setString(4, act.getActivityCategory());
 			ps.setString(6, act.getActivityStartDate());
 			ps.setString(7, act.getActivityEndDate());
-			ps.setString(8, act.getActivityDay());
+			String days = new Gson().toJson(act.getActivityDay());
+			ps.setString(8, days);
 			ps.setString(9, act.getActivityTime());
 			ps.setString(10, act.getActivityRegistrationEnd());
 			ps.setDouble(11, act.getActivityFee());

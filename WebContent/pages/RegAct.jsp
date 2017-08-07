@@ -82,7 +82,7 @@
 						<select  name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
 							for (FamilyGrp fg : fGrp) {%>
-			<option disabled><%=fg.getGroupName() %></option> 
+							<option disabled><%=fg.getGroupName() %></option> 
 							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
 							for (FamilyGrp fm : fMem){
 								System.out.println(request.getAttribute("acctId")+fm.getAccountId());

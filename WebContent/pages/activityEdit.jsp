@@ -102,77 +102,43 @@
 				</div><label
 					for="activityDay">Activity Days : </label><br>
 				<div class="text-center">
-					<%
-						String [] days = actf.getActivityDay().split(" ");
-						for(int i=0; i < days.length; i++){
-							%>
-							
-							<input type="checkbox" name="actDay" value="Monday"
-								class="activitycheckbox" 
-								<% 
-								if(days[i].equals("Monday")){
-									out.print("checked");
-								}
-								%>
-								>&nbsp Monday &nbsp&nbsp&nbsp
-							<input
-								type="checkbox" name="actDay" value="Tuesday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Tuesday")){
-									out.print("checked");
-								}
-								%>
-								>&nbspTuesday &nbsp&nbsp&nbsp
-							<input
-								type="checkbox" name="actDay" value="Wednesday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Wednesday")){
-									out.print("checked");
-								}
-								%>
-								>&nbspWednesday &nbsp&nbsp&nbsp 
-							<input
-								type="checkbox" name="actDay" value="Thursday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Thursday")){
-									out.print("checked");
-								}
-								%>
-								>&nbspThursday &nbsp&nbsp&nbsp 
-							<input
-								type="checkbox" name="actDay" value="Friday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Friday")){
-									out.print("checked");
-								}
-								%>
-								>&nbspFriday &nbsp&nbsp&nbsp 
-							<input
-								type="checkbox" name="actDay" value="Saturday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Saturday")){
-									out.print("checked");
-								}
-								%>
-								> &nbspSaturday &nbsp&nbsp&nbsp
-							<input
-								type="checkbox" name="actDay" value="Sunday"
-								class="activitycheckbox"
-								<% 
-								if(days[i].equals("Sunday")){
-									out.print("checked");
-								}
-								%>
-								>&nbsp Sunday &nbsp&nbsp&nbsp
-							<% 
-						}
-					%>
-
+					<select  name="actDay" multiple="multiple" id="drpdownlist">
+						<option value="Monday" 
+						<% if(actf.getActivityDay().contains("Monday")){
+							out.print("selected");
+						} %>
+						>Monday</option>
+						<option value="Tuesday"
+						<% if(actf.getActivityDay().contains("Tuesday")){
+							out.print("selected");
+						} %>
+						>Tuesday</option>
+						<option value="Wednesday"
+						<% if(actf.getActivityDay().contains("Wednesday")){
+							out.print("selected");
+						} %>
+						>Wednesday</option>
+						<option value="Thursday"
+						<% if(actf.getActivityDay().contains("Thursday")){
+							out.print("selected");
+						} %>
+						>Thursday</option>
+						<option value="Friday"
+						<% if(actf.getActivityDay().contains("Friday")){
+							out.print("selected");
+						} %>
+						>Friday</option>
+						<option value="Saturday"
+						<% if(actf.getActivityDay().contains("Saturday")){
+							out.print("selected");
+						} %>
+						>Saturday</option>
+						<option value="Sunday"
+						<% if(actf.getActivityDay().contains("Sunday")){
+							out.print("selected");
+						} %>
+						>Saturday</option>
+					</select>	
 				</div>
 				 <br> <br> <br> <label
 					for="actRegEnd">Registration End : </label> <br> <input
@@ -225,7 +191,8 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-
+	<br>
+	<br>
 
 
 	<%-- end of main container --%>

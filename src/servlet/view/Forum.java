@@ -51,7 +51,6 @@ public class Forum extends HttpServlet {
 		
 		start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 10) - 10;
 		ArrayList<Post> postList = fdb.getPostSimpleList(start, category);
-		System.out.println(postList.size());
 		request.setAttribute("postList", postList);
 		
 		if(ss.getAttribute("categoryList") != null) {

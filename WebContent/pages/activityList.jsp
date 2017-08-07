@@ -69,7 +69,9 @@
 							<%=act.getActivityEndDate()%></p>
 						<P>
 							Day :
-							<%=act.getActivityDay()%>
+							<% for(String day:act.getActivityDay()){
+								out.print(day + " ");
+							}%>
 						<p>
 							Timing :
 							<%=act.getActivityTime()%>
