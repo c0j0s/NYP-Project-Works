@@ -111,7 +111,7 @@ public class ActRegDB extends DBAO{
 			regList.add(ar);
 		}
 		}catch(Exception ex){ex.printStackTrace();}
-		return null;
+		return regList;
 		
 	}
 	

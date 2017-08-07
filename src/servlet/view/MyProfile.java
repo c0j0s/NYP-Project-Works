@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Account;
+import bean.ActReg;
 import database.ActRegDB;
 import database.ActivityDB;
 import database.ForumDB;
@@ -43,8 +44,8 @@ public class MyProfile extends HttpServlet {
 			Account ac = (Account) ss.getAttribute("account");
 			ArrayList<bean.Post> post = fdb.getUserPost(ac.getAccountId());
 			request.setAttribute("post", post);
-		ArrayList<bean.ActReg>ar = ardb.getRegistrationById(ac.getAccountId());
-			request.setAttribute("act", ar);
+			ArrayList<bean.ActReg> ar = ardb.getRegistrationById(ac.getAccountId());
+			request.setAttribute("ar", ar);
 			request.getRequestDispatcher("pages/profile.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("Index");
