@@ -73,14 +73,7 @@
 					<input type="text" class="form-control" name="email" value="${user.email}" placeholder="Email">
 				</div>
 				
-				<div class="form-group">
-					<label for="pw">Password: </label> 
-					<input type="password" class="form-control" name="pw" placeholder="Password">
-				</div>
-				<div class="form-group">
-					<label for="cpw">Password: </label> 
-					<input type="password" class="form-control" name="cpw" placeholder="Confirm Password">
-				</div>
+				
 				<div class="form-group">
 					<label for="profilepic">Choose your profile picture:</label>
 					<input type="file" name="file" size="60"/>

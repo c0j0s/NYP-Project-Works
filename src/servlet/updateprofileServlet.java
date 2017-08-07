@@ -53,13 +53,13 @@ public class updateprofileServlet extends HttpServlet {
 			ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
 			String imgurl = request.getParameter("imgurl");
 			ac.setImgUrl(imgurl);//System.out.println(imgurl);
-			ac.setPassword(request.getParameter("pw"));
-			String pw = request.getParameter("pw");
-			String cpw = request.getParameter("cpw");
-			if(!pw.equals(cpw)){
-				request.getRequestDispatcher("pages/signup.jsp").forward(request, response);
-			}
-			else{
+			//ac.setPassword(request.getParameter("pw"));
+			//String pw = request.getParameter("pw");
+			//String cpw = request.getParameter("cpw");
+			//if(!pw.equals(cpw)){
+				//request.getRequestDispatcher("pages/signup.jsp").forward(request, response);
+			//}
+			//else{
 				try{ 
 					AccountDB ac1 = new AccountDB();
 					ac1.updateMember(ac);
@@ -70,7 +70,7 @@ public class updateprofileServlet extends HttpServlet {
 					System.out.println(ex.getMessage());
 				}
 			}
-		}else {
+		else {
 			response.sendRedirect("Index");
 		}
 	}
