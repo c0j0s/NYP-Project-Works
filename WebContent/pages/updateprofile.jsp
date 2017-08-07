@@ -78,7 +78,7 @@
 					<label for="profilepic">Choose your profile picture:</label>
 					<input type="file" name="file" size="60"/>
 	        		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
-	        		<img alt="" src="${user.imgUrl}" id="test-img-prev">
+	        		<img alt="" src="${user.imgUrl}" id="test-img-prev" class="profile-image-large">
 				</div>
 			</div>
 			</form>
