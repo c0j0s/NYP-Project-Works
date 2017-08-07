@@ -123,7 +123,7 @@ $( document ).ready(function() {
 				console.log(adminList);
 				var json = JSON.parse(adminList);
 				for(var i = 0; i< json.length; i++){
-				var list = '<tr><td>'+json[i].accountId+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="RestoreAcc" onclick="restoreAcc(this)" data-id="'+json[i].accountId+'">Restore Account</button></td>'
+				var list = '<tr><td>'+json[i].accountId+'</td><td><span id="account-'+json[i].accountId+'" class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td><td><button type="submit" class="btn-success btn" name="buttonClickList" value="RestoreAcc" onclick="restoreAcc(this)" data-id="'+json[i].accountId+'">Restore Account</button></td>'
 				$("#admin-account-body").append(list);
 				}}
 		})
@@ -185,6 +185,8 @@ function invalidAcc(e){
 	$.ajax({
 		url:ContextPath + "/InvalidateAccount?accId="+id,
 		success:function(results){
+			console.log('#account-'+id)
+			$('#account-'+id).html('deleted');
 			popup('body', results);
 		}
 	})
@@ -194,6 +196,7 @@ function restoreAcc(e){
 	$.ajax({
 		url:ContextPath + "/RestoreAccount?accId="+id,
 		success:function(results){
+			$('#account-'+id).html('valid');
 			popup('body', results);
 		}
 	})

@@ -40,7 +40,7 @@
         <div>
         	<div class="form-group">
 			    <label>Reasons for reporting</label>
-			    <input type="text" class="form-control report-reason" id="report-user-reason-${param.itemId }" required>
+			    <input type="text" class="form-control report-reason" id="report-user-reason-${param.accountId }" required>
 			</div>
         </div>
       </div>
