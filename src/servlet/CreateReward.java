@@ -55,11 +55,11 @@ public class CreateReward extends HttpServlet {
 			
   		// rew.setAccountId(ac.getAccountId());
 			rew.setAccountId("ACC0000000");
-			rew.setRewardId(rewdb.createRewardItem(rew));
+			rew.setRewardId(rewdb.createReward(rew));
 			
 		
 			
-			if(!rew.getRewardId().equals("fail") || rew.getRewardId() == null){
+			if(!rew.getRewardId().equals("fail") || rew.getRewardId() != null){
 				request.getRequestDispatcher("RedemptionList").forward(request, response);
 			
 			}else{

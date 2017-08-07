@@ -58,7 +58,7 @@
 							</span>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
-									onclick="location.href = 'deleteReward?point=<%=rew.getPoints() %>'">Delete Reward</button>
+									onclick="location.href = 'deleteReward?id=<%=rew.getRewardId() %>'">Delete Reward</button>
 							</span>
 							
 		<br></br>
