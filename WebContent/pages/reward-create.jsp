@@ -23,7 +23,7 @@
 	</jsp:include>
 	<!-- end of page header -->
 	<div class="col-md-9">
-		<form action="CreateReward" id="file-upload">
+		<form action="CreateReward" id="form-upload">
 		<br> 
 			<label for="rewTitle">Reward Title:</label>
 			<input type="text" name="rewTitle" class="form-control" placeholder="Reward Title ">
@@ -32,7 +32,7 @@
 				<div class="col-md-7">
 					<br> <label for="imgurl">Reward
 						Image: </label><input type="file" name="file" class="form-control"
-						id="form-upload" accept="image/*" size="60"><br> <input
+						 accept="image/*" size="60"><br> <input
 						type="hidden" name="imgurl" id="imgurl"
 						data-imgfolder="reward/${user.accountId }" />
 				</div>

@@ -42,7 +42,7 @@ public class CreateReward extends HttpServlet {
 			rew.setRewardId(uid.genRewardId());
 			rew.setRewardTitle(request.getParameter("rewTitle"));
 			rew.setRewardDescription(request.getParameter("rewDesc"));
-		    rew.setPoints(Integer.parseInt(request.getParameter("Points")));
+		    rew.setPoints(Integer.parseInt(request.getParameter("points")));
 			rew.setRewardQuantity(request.getParameter("rewQuantity").charAt(0));
 			
 			
@@ -53,8 +53,8 @@ public class CreateReward extends HttpServlet {
 		
 			
 			
-  		// rew.setAccountId(ac.getAccountId());
-			rew.setAccountId("ACC0000000");
+  		 rew.setAccountId(ac.getAccountId());
+			
 			rew.setRewardId(rewdb.createReward(rew));
 			
 		

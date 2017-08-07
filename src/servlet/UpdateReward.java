@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Account;
-import database.Point;
+import database.RewardItemDB;
 
 /**
- * Servlet implementation class claimReward
+ * Servlet implementation class UpdateReward
  */
-@WebServlet("/claimReward")
-public class claimReward extends HttpServlet {
+@WebServlet("/UpdateReward")
+public class UpdateReward extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public claimReward() {
+    public UpdateReward() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +28,8 @@ public class claimReward extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	int rewCost = Integer.parseInt(request.getParameter("point"));
-	Account ac = (Account) request.getSession().getAttribute("account");
-	int currPoint = ac.getPoints();
-	System.out.println(ac.getAccountId());
-	Point p = new Point();
-	if(ac.getPoints()<rewCost){response.sendRedirect("RedemptionList");}else{
-	p.pointsCalc(ac.getAccountId(),-rewCost);
-	System.out.println(-rewCost);
-	response.sendRedirect("RedemptionList");}
+		RewardItemDB rewdb = new RewardItemDB();
+		String rewId =(request.getParameter("rewId"));
 	}
 
 	/**
