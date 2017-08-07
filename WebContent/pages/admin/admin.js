@@ -123,7 +123,7 @@ $( document ).ready(function() {
 				console.log(adminList);
 				var json = JSON.parse(adminList);
 				for(var i = 0; i< json.length; i++){
-				var list = '<tr><td>'+json[i].accountId+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="RestoreAcc" onclick="restoreAcc(this)" data-id="'+json[i].accountId+'">Restore Account</button></td>'
+				var list = '<tr><td>'+json[i].accountId+'</td><td>'+json[i].reason+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="RestoreAcc" onclick="restoreAcc(this)" data-id="'+json[i].accountId+'">Restore Account</button></td>'
 				$("#admin-account-body").append(list);
 				}}
 		})
