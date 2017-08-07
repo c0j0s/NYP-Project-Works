@@ -44,8 +44,16 @@
 				</div>
 				<div class="form-group">
 					<label for="gender">Gender:</label><br>
-					<input type="radio" name="gender" value="male"> Male
-	 				<input type="radio" name="gender" value="female"> Female<br>
+					<c:choose>
+						<c:when test="${user.gender eq 'm'.charAt(0)}">
+							<input type="radio" name="gender" value="male" checked> Male
+	 						<input type="radio" name="gender" value="female"> Female<br>
+						</c:when>
+						<c:otherwise>
+							<input type="radio" name="gender" value="male"> Male
+	 						<input type="radio" name="gender" value="female" checked> Female<br>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="form-group">
 					<label for="address">Address: </label> 
