@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,17 +41,8 @@ public class EditActivity extends HttpServlet {
 				act.setActivityDescription(request.getParameter("actDesc"));
 				act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 				act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
-				act.setActivityFee(Double.valueOf(request.getParameter("actFee")));
-				StringBuilder builder = new StringBuilder();
-				String day[] =request.getParameterValues("actDay");
-				
-				for (String value : day) {
-				    builder.append(value);
-				}
-				String days = builder.toString();
-			
-				
-				act.setActivityDay(days);
+				act.setActivityFee(Double.valueOf(request.getParameter("actFee")));				
+				act.setActivityDay(new ArrayList<String>(Arrays.asList(request.getParameterValues("actDay"))));
 				act.setActivityLocation(request.getParameter("actLocation"));
 				act.setActivityEndDate(request.getParameter("actEnd"));
 				act.setActivityStartDate(request.getParameter("actStart"));

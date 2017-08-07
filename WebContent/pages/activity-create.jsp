@@ -95,20 +95,15 @@
 				<br></div> <label
 					for="actDay">Activity Days : </label><br>
 				<div class="text-center">
-					<input type="checkbox" name="actDay" value="Monday "
-						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Tuesday "
-						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Wednesday "
-						class="activitycheckbox"">&nbspWednesday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Thursday "
-						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Friday "
-						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Saturday "
-						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Sunday "
-						class="activitycheckbox">&nbsp Sunday &nbsp&nbsp&nbsp
+					<select  name="actDay" id="drpdownlist" multiple="multiple">
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+						<option value="Saturday">Saturday</option>
+						<option value="Sunday">Saturday</option>
+					</select>	
 				</div>
 				<br> <br>
 				<div>

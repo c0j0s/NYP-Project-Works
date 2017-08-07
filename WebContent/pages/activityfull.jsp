@@ -61,7 +61,9 @@
 							<%=actf.getActivityTime()%></p>
 						<p>
 							Days Of Activity :
-							<%=actf.getActivityDay()%></p>
+							<% for(String day:actf.getActivityDay()){
+								out.print(day + " ");
+							}%></p>
 						<p>
 							Activity Location :
 							<%=actf.getActivityLocation()%></p>

@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import bean.Account;
 import bean.Activity;
 import database.ActivityDB;
@@ -45,29 +48,21 @@ public class CreateActivity extends HttpServlet {
 			act.setActivityStartDate(request.getParameter("actStart"));
 			act.setActivityDescription(request.getParameter("actDesc"));
 			
-			System.out.println(request.getParameter("actPart"));
 			act.setParticipantNo(Integer.parseInt(request.getParameter("actPart")));
 			act.setActivityRegistrationEnd(request.getParameter("RegEnd"));
 			act.setActivityFee(Double.valueOf( request.getParameter("actFeeDollars")));
 			act.setActivityLocation(request.getParameter("actLocation"));
 			act.setActivityCategory(request.getParameter("actCategory"));
 			
-			System.out.println(request.getParameter("imgurl"));
 			act.setImgUrl(request.getParameter("imgurl"));
 			StringBuilder builder = new StringBuilder();
 			String day[] =request.getParameterValues("actDay");
 			Point p = new Point();
 			p.pointsCalc(ac.getAccountId(),30);
-			for (String value : day) {
-			    builder.append(value);
-			}
-			String days = builder.toString();
 		
 			
-			act.setActivityDay(days);
-  		act.setAccountId(ac.getAccountId());
-//			act.setAccountId("ACC0000000");
-			System.out.println(act.getAccountId());
+			act.setActivityDay(new ArrayList<String>(Arrays.asList(request.getParameterValues("actDay"))));
+			act.setAccountId(ac.getAccountId());
 		
 			act.setActivityTime(request.getParameter("actTimeHourA")+":"+request.getParameter("actTimeMinA")+" "+request.getParameter("actTimeMA")+"-"+request.getParameter("actTimeHourB")+":"+request.getParameter("actTimeMinB")+" "+request.getParameter("actTimeMB"));
 			act.setActivityRegistrationEnd(request.getParameter("actRegEnd"));
