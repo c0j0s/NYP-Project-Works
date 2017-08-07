@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 public class DBAO extends Thread{
 	protected static Connection con;
 	final protected static String schema = "ffl";
-	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl";
+	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl?autoReconnect=true";
 	
 	/**
 	 * Default constructor
