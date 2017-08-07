@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <%@ page import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta charset="utf-8">
@@ -39,6 +40,13 @@
 						<h3><%=actf.getActivityTitle()%> <% if(actf.getStatus().equals("Draft")){%><%=actf.getStatus() %><%} %></h3>
 					</div>
 					<div class="panel-body">
+					<div class="panel-info">
+				<c:set value="<%= actf.getOrganiserId() %>" var="oid"></c:set>
+				<c:if test="${user.accountId eq oid }">
+				 <div class="folded">
+		            <h2 style="background-color: #DB874A;">Your Activity</h2>
+		          </div>
+		          </c:if>
 					
 						<p>
 							Activity Categories :
@@ -92,38 +100,42 @@
 								<jsp:param value="<%=actf.getDislikeCount()%>"
 									name="dislikeCount" />
 							</jsp:include>
-							<%if(session.getAttribute("account")!=null){
-						Account currentUser = (Account) session.getAttribute("account");
-						if (currentUser.getAccountId().equals(actf.getOrganiserId())) { %>
-							<span aria-hidden="true">
-								<button class="btn btn-success"
-									onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
-									Activity</button>
-							</span><%if (!(actf.getStatus().equals("Draft"))){ %><span aria-hidden="true">
-								<button class="btn btn-success"
-									onclick="location.href = 'RegList?activityId=<%=actf.getActivityId()%>'">Participants
-									List</button>
-							</span><%} %>
-							<span aria-hidden="true">
-								<button class="btn btn-success"
-									onclick="location.href = 'SelfDeleteActivity?activityId=<%=actf.getActivityId()%>'">Delete Activity</button>
-							</span><% if(actf.getStatus().equals("Draft")){%>
+							<c:if test="${user.accountId eq oid }">
+									<span aria-hidden="true">
+										<button class="btn btn-success"
+											onclick="location.href = 'ActEdit?activityId=<%=actf.getActivityId()%>'">Edit
+											Activity</button>
+									</span>
+								<%if (!actf.getStatus().equals("Draft")){ %>
+									<span aria-hidden="true">
+										<button class="btn btn-success"
+										onclick="location.href = 'RegList?activityId=<%=actf.getActivityId()%>'">Participants
+										List</button>
+									</span>
+								<%} %>
 								<span aria-hidden="true">
-								<button class="btn btn-success"
-									onclick="location.href = 'UploadActivity?activityId=<%=actf.getActivityId()%>'">Upload Activity</button>
-								
-							<% } %>
-
-							<%}} if (!(request.getAttribute("acctId").equals(actf.getOrganiserId()))) { 
-							if(session.getAttribute("account")!=null){if (!(actf.getStatus().equals("Draft"))){ %>
+									<button class="btn btn-success"
+										onclick="location.href = 'SelfDeleteActivity?activityId=<%=actf.getActivityId()%>'">Delete Activity</button>
+								</span>
+								<% if(actf.getStatus().equals("Draft")){%>
+									<span aria-hidden="true">
+									<button class="btn btn-success"
+										onclick="location.href = 'UploadActivity?activityId=<%=actf.getActivityId()%>'">Upload Activity</button>
+									</span>
+								<%} %>
+							</c:if>
+							<c:if test="${user.accountId eq oid }">
+							<% 
+							if (!actf.getStatus().equals("Draft")){ %>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActReg?activityId=<%=actf.getActivityId()%>'">Register
 									For Activity</button>
 							</span>
-							<%} }}%>
+							<%}%>
+							</c:if>
 						</div>
-					</div>
+					</div></div>
 				</div>
 			</div>
 		</div>

@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import bean.Activity;
 import bean.RewardItem;
 public class RewardItemDB extends DBAO{
 	
@@ -13,7 +15,7 @@ public class RewardItemDB extends DBAO{
 		ArrayList<RewardItem> rewardList = new ArrayList<RewardItem>();
 		try {
 			if(statement == null){
-				statement = "SELECT * FROM "+ schema +".rewarditem ORDER BY rewardId ";
+				statement = "SELECT * FROM "+ schema +".rewarditem where valid='Y' ORDER BY rewardId";
 			}
 			PreparedStatement ps;
 			ps = con.prepareStatement(statement);
@@ -40,37 +42,7 @@ public class RewardItemDB extends DBAO{
 		}
 		return rewardList;
 	}
-	public String createRewardItem(RewardItem rew){
-		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`,`rewardQuantity`, `imgUrl`, `valid`) "
-				+ "VALUES (?,?,?,?,?,?,?)";
-		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			rew.setRewardId(common.UID.genRewardId());
-			System.out.println(rew.getRewardId());
-			ps.setString(1, rew.getRewardId());
-			ps.setString(2, rew.getRewardTitle());
-			ps.setString(3, rew.getRewardDescription());
-		    ps.setInt(4, rew.getPoints());
-			ps.setInt(5, rew.getRewardQuantity());
-			ps.setString(6, rew.getImgUrl());
-			ps.setString(7, Character.toString(rew.getValid()));
-			
-			
-			System.out.println(rew);
-			int status = ps.executeUpdate();
-			
-			if(status != 0){
-				System.out.println("Log CreateReward() :" + rew);
-				return rew.getRewardId();
-			}else{
-				return "fail";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "fail";
-	}
+
 	public String createReward(RewardItem rew){
 		String stmt = "INSERT INTO "+ schema +".rewarditem (`rewardId`,`rewardTitle`, `rewardDescription`, `points`,`rewardQuantity`, `imgUrl`, `valid`) "
 		+  "VALUES (?,?,?,?,?,?,'Y')";
@@ -122,6 +94,51 @@ public class RewardItemDB extends DBAO{
 		{
 			
 			
+		}
+		return "fail";
+	}
+	public String updateReward(RewardItem rew){
+		String stmt ="update "+ schema +".rewardItem set rewardTitle =?,rewardDescription = ?,points = ? ,rewardAvailability = ?,imgUrl= ? where rewardId =? ";
+
+		try {
+			PreparedStatement ps;
+		
+			ps=con.prepareStatement(stmt);
+			ps.setString(5, rew.getImgUrl());
+			ps.setString(6, rew.getRewardId());
+			ps.setString(1, rew.getRewardTitle());
+			ps.setString(2, rew.getRewardDescription());
+			ps.setInt(3, rew.getPoints());
+			ps.setInt(4, rew.getRewardAvailability());
+			
+
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			
+			if(status != 0){
+				System.out.println("Log createReward() :" + ps);
+				return rew.getRewardId();
+			}else{
+				return "fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
+	public String deleteReward(String rewardId){
+		String stmt ="update "+ schema +".rewardItem set valid='N' where rewardId=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, rewardId);
+
+			System.out.println(ps);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return "fail";
 	}

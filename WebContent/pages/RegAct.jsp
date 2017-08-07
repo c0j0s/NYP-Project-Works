@@ -5,17 +5,13 @@
 <head>
 <%@ page
 	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat,common.*"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="utf-8">
 <%!Activity actf;%>
 <%!ArrayList<Activity> actfl;%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='${pageContext.request.contextPath}/css/bootstrap.css'
+<link href='${pageContext.request.contextPath}/css/bootstrap.min.css'
 	rel='stylesheet'>
 <link href='${pageContext.request.contextPath}/css/bootstrap.custom.css'
 	rel='stylesheet'>
@@ -82,7 +78,7 @@
 						<select  name="multiselect[]" id="drpdownlist" class= "generate1" multiple="multiple">
 							<% ArrayList<FamilyGrp> fGrp = (ArrayList<FamilyGrp>)request.getAttribute("allFam");
 							for (FamilyGrp fg : fGrp) {%>
-							<option disabled><%=fg.getGroupName() %></option> 
+							<optgroup label="<%=fg.getGroupName() %>">
 							<%ArrayList<FamilyGrp> fMem = fg.getMembers();
 							for (FamilyGrp fm : fMem){
 								System.out.println(request.getAttribute("acctId")+fm.getAccountId());
@@ -92,6 +88,9 @@
 								<%
 								}
 								}
+							%>
+							</optgroup> 
+							<% 
 								}
 								%>
 						</select>

@@ -34,8 +34,6 @@ public class ActFull extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
-		Account ac = (Account) request.getSession().getAttribute("account");
-		request.setAttribute("acctId", ac.getAccountId());
 		Point p = new Point();
 		ArrayList<Activity> actRank = p.getRank();
 		request.setAttribute("actRank", actRank);
