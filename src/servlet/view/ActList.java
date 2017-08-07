@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.Account;
 import bean.Activity;
 import database.ActivityDB;
 import database.Point;
@@ -33,6 +35,8 @@ public class ActList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ActivityDB adb = new ActivityDB();
 		Point p = new Point();
+		Account ac = (Account) request.getSession().getAttribute("account");
+		request.setAttribute("acctId", ac.getAccountId());
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
 		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
 		ArrayList<Activity> actRank = p.getRank();

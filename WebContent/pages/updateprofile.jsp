@@ -26,7 +26,7 @@
 		<jsp:param value="5" name="titleWidth" />
 	</jsp:include>
 	<div class="col-md-12 login-main-container"> 
-		<form action="updateprofileServlet" method="post">
+		<form action="updateprofileServlet" method="post" id="form-upload">
 			<div class="col-md-6 ">
 				<h3>User Details</h3>
 				<hr>
@@ -44,8 +44,16 @@
 				</div>
 				<div class="form-group">
 					<label for="gender">Gender:</label><br>
-					<input type="radio" name="gender" value="male"> Male
-	 				<input type="radio" name="gender" value="female"> Female<br>
+					<c:choose>
+						<c:when test="${user.gender eq 'm'.charAt(0)}">
+							<input type="radio" name="gender" value="male" checked> Male
+	 						<input type="radio" name="gender" value="female"> Female<br>
+						</c:when>
+						<c:otherwise>
+							<input type="radio" name="gender" value="male"> Male
+	 						<input type="radio" name="gender" value="female" checked> Female<br>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="form-group">
 					<label for="address">Address: </label> 
@@ -65,19 +73,12 @@
 					<input type="text" class="form-control" name="email" value="${user.email}" placeholder="Email">
 				</div>
 				
-				<div class="form-group">
-					<label for="pw">Password: </label> 
-					<input type="password" class="form-control" name="pw" placeholder="Password">
-				</div>
-				<div class="form-group">
-					<label for="cpw">Password: </label> 
-					<input type="password" class="form-control" name="cpw" placeholder="Confirm Password">
-				</div>
+				
 				<div class="form-group">
 					<label for="profilepic">Choose your profile picture:</label>
 					<input type="file" name="file" size="60"/>
 	        		<input type="hidden" name="imgurl" id="imgurl" data-imgfolder="user/ac.getAccountId"/>
-	        		<img alt="" src="${user.imgUrl}" id="test-img-prev">
+	        		<img alt="" src="${user.imgUrl}" id="test-img-prev" class="profile-image-large">
 				</div>
 			</div>
 			</form>

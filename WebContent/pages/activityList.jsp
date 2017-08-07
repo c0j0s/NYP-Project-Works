@@ -40,6 +40,11 @@
 					<h3><%=act.getActivityTitle()%></h3>
 				</div>
 				<div class="panel-body">
+				<div class="panel-info">
+				<%if (request.getAttribute("acctId").equals(act.getOrganiserId())){  %>
+				 <div class="folded">
+            <h2 style="background-color: #DB874A;">Your Activity</h2>
+          </div><%} %>
 					<div class="col-md-4">
 						<img id="actpic" src="<%=act.getImgUrl()%>" />
 					</div>
@@ -83,17 +88,18 @@
 									onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 									Info</button>
 							</span>
-							<% if(session.getAttribute("account")!=null){ %>
+							<% if(session.getAttribute("account")!=null){ if (!(request.getAttribute("acctId").equals(act.getOrganiserId()))) { %>
 							<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register
 									For Activity</button>
-							</span>
-							<%} %>
-						</p>
-					</div>
-				</div>
-			</div>
+							</span><% }%></div>	</p>
+						
+					</div></div></div>
+				
+							<% }%>
+					
+			
 			<%}%>
 		<!-- Pagination using custom Tag -->
 		<f:PostListPagination itemPerPage="5" pageCount="${actCount }" currentPage="${page }"  type="activity"/>
