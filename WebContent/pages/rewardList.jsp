@@ -51,18 +51,18 @@
 					<%=rew.getRewardQuantity()%></p>
 				
 			</div>
-		</div></div>
+		
 		<span aria-hidden="true">
 								<button class="btn btn-success"
 									onclick="location.href = 'claimReward?point=<%=rew.getPoints() %>'">Claim Reward</button>
 							</span>
 							<span aria-hidden="true">
-								<button class="btn btn-success"
+								<button class="btn btn-danger"
 									onclick="location.href = 'deleteReward?id=<%=rew.getRewardId() %>'">Delete Reward</button>
 							</span>
 							
 		<br></br>
-		<%}  %>
+		</div></div><%}  %>
 	</div>
 	<!-- end of list -->
 	<div class="col-sm-12 col-md-3">

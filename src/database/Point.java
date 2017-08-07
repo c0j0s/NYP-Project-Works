@@ -43,10 +43,15 @@ public class Point extends DBAO{
 
 		int currPoint = getPoints(userId);
 		int value2 = pointAdded;
-		int total=currPoint+value2;
+		int total = 0;
+	if(currPoint<value2){
+		
+	}else{
+		total=currPoint+value2;
 		SetPoints(total,userId);
-		return total;
-
+		
+	}
+	return total;
 	}
 	public ArrayList<Activity> getRank() {
 		ArrayList<Activity> rankList = new ArrayList<Activity>();

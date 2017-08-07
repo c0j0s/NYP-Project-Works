@@ -142,10 +142,7 @@ public class RewardItemDB extends DBAO{
 		}
 		return "fail";
 	}
-	public ArrayList<RewardItem> getRewardItemById(String rewardId){
-		String stmt = "SELECT * FROM "+ schema +".rewarditem WHERE rewardId = '"+ rewardId +"'";
-		return getRewardItem(stmt);
-	}
+	
 	
 }
 

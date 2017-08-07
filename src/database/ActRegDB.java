@@ -98,14 +98,14 @@ public class ActRegDB extends DBAO{
 	}
 	public ArrayList<ActReg> getRegistrationById(String userId){
 		ArrayList<ActReg> regList = new ArrayList<ActReg>();
-		try{String stmt = "SELECT registrationId,UseraccountId,ActivityactivityId,activityTitle FROM ffl.registration r inner join ffl.registerationlist rl on r.registrationId=rl.registerationId inner join ffl.activity a on a.activityId = r.ActivityactivityId where status='Uploaded' and rl.valid = 'Y' and UseraccountId = ? ;";
+		try{String stmt = "SELECT registrationId,rl.acctid,ActivityactivityId,activityTitle FROM ffl.registration r inner join ffl.registerationlist rl on r.registrationId=rl.registerationId inner join ffl.activity a on a.activityId = r.ActivityactivityId where status='Uploaded' and rl.valid = 'Y' and acctid = ? ;";
 		PreparedStatement ps = con.prepareStatement(stmt);
 		ps.setString(1, userId);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()){
 			ActReg ar = new ActReg();
 			ar.setRegistrationId(rs.getString("registrationId"));
-			ar.setUserAccountId(rs.getString("UseraccountId"));
+			ar.setUserAccountId(rs.getString("rl.acctid"));
 			ar.setActivityactivityId(rs.getString("ActivityactivityId"));
 			ar.setActivityTitle(rs.getString("activityTitle"));
 			regList.add(ar);

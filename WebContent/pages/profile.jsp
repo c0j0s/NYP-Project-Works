@@ -74,7 +74,7 @@
 			    	<%ArrayList<bean.ActReg> act = (ArrayList<bean.ActReg>)request.getAttribute("ar");
 			    	for (ActReg a : act){%>
 			    		
-			    		<li class="list-group-item"><a href="ActFull?ActivityId=<%=a.getActivityId()%>"><%=a.getActivityTitle() %></a></li>
+			    		<li class="list-group-item"><a href="ActFull?activityId=<%=a.getActivityactivityId() %>"><%=a.getActivityTitle() %></a></li>
 			    	<%} %>
 			    </div>
 			  </div>
