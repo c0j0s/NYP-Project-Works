@@ -86,7 +86,7 @@ public class AccountDB extends DBAO{
 	public void updateMember(Account ac){
 		try{
 			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
-					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
+					+ "address = ?, mobileno = ?, imgUrl = ? where accountId = ?";
 			PreparedStatement prepStmt=con.prepareStatement(updateStatement);
 			prepStmt.setString(1, ac.getGivenName());
 			prepStmt.setString(2, ac.getSurName());
@@ -95,9 +95,8 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(5, ac.getEmail());
 			prepStmt.setString(6, ac.getAddress());;
 			prepStmt.setInt(7, ac.getMobileno());
-			prepStmt.setString(8, ac.getPassword());
-			prepStmt.setString(9, ac.getImgUrl());
-			prepStmt.setString(10, ac.getAccountId());
+			prepStmt.setString(8, ac.getImgUrl());
+			prepStmt.setString(9, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
 			if(status != 0) {
 				System.out.println("update successful");

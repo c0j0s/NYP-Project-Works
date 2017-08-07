@@ -26,7 +26,7 @@
 		<jsp:param value="5" name="titleWidth" />
 	</jsp:include>
 	<div class="col-md-12 login-main-container"> 
-		<form action="updateprofileServlet" method="post" id="form-upload">
+		<form action="${pageContext.request.contextPath}/updateprofileServlet" method="post" id="form-upload">
 			<div class="col-md-6 ">
 				<h3>User Details</h3>
 				<hr>
