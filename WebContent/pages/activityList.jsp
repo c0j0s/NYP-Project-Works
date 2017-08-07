@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +42,12 @@
 				</div>
 				<div class="panel-body">
 				<div class="panel-info">
-				<%if (request.getAttribute("acctId").equals(act.getOrganiserId())){  %>
+				<c:set value="<%= act.getOrganiserId() %>" var="oid"></c:set>
+				<c:if test="${user.accountId eq oid }">
 				 <div class="folded">
-            <h2 style="background-color: #DB874A;">Your Activity</h2>
-          </div><%} %>
+		            <h2 style="background-color: #DB874A;">Your Activity</h2>
+		          </div>
+		          </c:if>
 					<div class="col-md-4">
 						<img id="actpic" src="<%=act.getImgUrl()%>" />
 					</div>
@@ -88,16 +91,19 @@
 									onclick="location.href = 'ActFull?activityId=<%=act.getActivityId()%>'">More
 									Info</button>
 							</span>
-							<% if(session.getAttribute("account")!=null){ if (!(request.getAttribute("acctId").equals(act.getOrganiserId()))) { %>
-							<span aria-hidden="true">
-								<button class="btn btn-success"
-									onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register
-									For Activity</button>
-							</span><% }%></div>	</p>
+							
+							<c:if test="${user ne null && user.accountId ne oid }">
+								<span aria-hidden="true">
+									<button class="btn btn-success"
+										onclick="location.href = 'ActReg?activityId=<%=act.getActivityId()%>'">Register
+										For Activity</button>
+								</span>
+							</c:if>
+							</div>	</p>
 						
 					</div></div></div>
 				
-							<% }%>
+						
 					
 			
 			<%}%>
