@@ -62,7 +62,7 @@
 							Profile</button>
 						<br>
 						<button type="submit" class="btn btn-default btn-block"
-							onclick="location.href='${pageContext.request.contextPath}/ResetPw'">Reset Password</button>
+							onclick="location.href='${pageContext.request.contextPath}/ResetPw2'">Reset Password</button>
 						<br>
 						<form action="${pageContext.request.contextPath}/CreateFamGroup" >	
 							<button class="btn btn-default btn-block" onclick="location.href = 'CreateFamGroup'">Family Group</button>

@@ -44,12 +44,12 @@ public class ResetPwServlet2 extends HttpServlet {
 		
 		if(mySession.getAttribute("account") != null){
 			Account ac = (Account)mySession.getAttribute("account");
-			String email = request.getParameter("email");
+			ac.getEmail();
 			String pw = request.getParameter("pw");
 			String cpw = request.getParameter("cpw");
 			if(pw.equals(cpw)){
 				AccountDB ac1 = new AccountDB();
-				ac1.resetPw(pw, email);
+				ac1.resetPw(pw, ac.getEmail());System.out.println(ac.getEmail());
 				request.getRequestDispatcher("MyProfile").forward(request, response);
 			}else{
 				System.out.println("Password not matched.");
