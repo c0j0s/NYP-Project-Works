@@ -52,7 +52,10 @@ public class updateprofileServlet extends HttpServlet {
 			ac.setAddress(request.getParameter("address"));
 			ac.setMobileno(Integer.parseInt(request.getParameter("mobileno")));
 			String imgurl = request.getParameter("imgurl");
-			ac.setImgUrl(imgurl);//System.out.println(imgurl);
+			if(!imgurl.equals("")) {
+				ac.setImgUrl(imgurl);
+			}
+			//System.out.println(imgurl);
 			//ac.setPassword(request.getParameter("pw"));
 			//String pw = request.getParameter("pw");
 			//String cpw = request.getParameter("cpw");
