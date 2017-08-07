@@ -71,7 +71,7 @@
 				</ul>
 			    </div>
 			    <div role="tabpanel" class="tab-pane ${tab eq 'Activity' ? 'active' : '' }"" id="Activity">
-			    	<%ArrayList<ActReg> act = (ArrayList<ActReg>)request.getAttribute("ar");
+			    	<%ArrayList<bean.ActReg> act = (ArrayList<bean.ActReg>)request.getAttribute("ar");
 			    	for (ActReg a : act){%>
 			    		
 			    		<li class="list-group-item"><a href="ActFull?ActivityId=<%=a.getActivityId()%>"><%=a.getActivityTitle() %></a></li>
