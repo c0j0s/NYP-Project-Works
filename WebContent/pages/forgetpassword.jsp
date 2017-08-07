@@ -29,6 +29,9 @@
 				<input type="text" class="form-control" name="email" placeholder="Email">
 			</div>
 		<button type="submit" class="btn btn-default" value="sendform">Submit</button>
+		<%if(request.getAttribute("message")!=null){%>
+			   					<%=request.getAttribute("message") %>
+			   			<%} %>
 	</form>
 
 </div>

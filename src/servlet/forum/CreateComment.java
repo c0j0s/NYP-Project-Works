@@ -54,7 +54,7 @@ public class CreateComment extends HttpServlet {
 				com.setPostId(postId);
 				
 				ForumDB fdb = new ForumDB();
-				Post p = fdb.getPostById(postId);
+				Post p = fdb.getPostById(postId).get(0);
 				
 				String to = p.getAccountId();
 				if(request.getParameter("commentId") != null){
@@ -83,7 +83,7 @@ public class CreateComment extends HttpServlet {
 				if(!ac.getAccountId().equals(to)) {
 					NotificationDB ndb = new NotificationDB();
 					ArrayList<String> accountIds = new ArrayList<String>();
-					accountIds.addAll(p.getFollowerAccounts());
+					accountIds.addAll(fdb.getPostFollowerAccounts(p.getPostId()));
 					accountIds.add(to);
 					accountIds.remove(ac.getAccountId());
 					String message =  name + " answered for post (" + p.getPostTitle() + ")";

@@ -48,7 +48,7 @@
 							 	<div class="row">
 								  	<div class="form-group col-md-2">
 									    <label for="postPoints">Points</label>
-									    <input type="number" class="form-control" name="postPoints" id="postPoints" value="0" min="0" max="100">
+									    <input type="number" class="form-control" name="postPoints" id="postPoints" value="0" min="0" >
 								 	 </div>
 								 	 <div class="form-group col-md-4">
 									    <label for="postCategory">Category</label>
@@ -95,7 +95,7 @@
 							 	<div class="row">
 								  	<div class="form-group col-md-2">
 									    <label for="postPoints">Points</label>
-									    <input type="number" class="form-control" name="postPoints" id="postPoints" value="${post.points }" min="0" max="100">
+									    <input type="number" class="form-control" name="postPoints" id="postPoints" value="${post.points }" min="0">
 								 	 </div>
 								 	 <div class="form-group col-md-4">
 									    <label for="postCategory">Category</label>

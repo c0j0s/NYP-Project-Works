@@ -123,7 +123,7 @@ $( document ).ready(function() {
 				console.log(adminList);
 				var json = JSON.parse(adminList);
 				for(var i = 0; i< json.length; i++){
-				var list = '<tr><td>'+json[i].accountId+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td>'
+				var list = '<tr><td>'+json[i].accountId+'</td><td><span class="badge">'+json[i].status+'</span></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="Invalidate" onclick="invalidAcc(this)" data-id="'+json[i].accountId+'">Invalidate Account</button></td><td><button type="submit" class="btn-danger btn" name="buttonClickList" value="RestoreAcc" onclick="restoreAcc(this)" data-id="'+json[i].accountId+'">Restore Account</button></td>'
 				$("#admin-account-body").append(list);
 				}}
 		})
@@ -184,6 +184,15 @@ function invalidAcc(e){
 	var id = $(e).data().id
 	$.ajax({
 		url:ContextPath + "/InvalidateAccount?accId="+id,
+		success:function(results){
+			popup('body', results);
+		}
+	})
+}
+function restoreAcc(e){
+	var id = $(e).data().id
+	$.ajax({
+		url:ContextPath + "/RestoreAccount?accId="+id,
 		success:function(results){
 			popup('body', results);
 		}

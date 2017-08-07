@@ -37,10 +37,10 @@ public class Post extends HttpServlet {
 		String postId = (request.getParameter("postId") != null )?request.getParameter("postId"):"";
 		String page = (request.getParameter("page") != null )?request.getParameter("page"):"1";
 		int start = (Integer.parseInt(page) == 1) ? 0 : (Integer.parseInt(page) * 5) - 5;
-		bean.Post p = null;
+		ArrayList<bean.Post> pl = fdb.getPostById(postId);
 		ArrayList<bean.Comment> c = null;
-		if(fdb.getPostById(postId) != null) {
-			p = fdb.getPostById(postId);
+		if(pl.size() > 0) {
+			bean.Post p = pl.get(0);
 			c = cdb.getCommentByPostId(postId, start, 5);
 			if(p.getValid() == 'Y') {
 				request.setAttribute("post", p);

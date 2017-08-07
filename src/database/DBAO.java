@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+
 public class DBAO extends Thread{
 	protected static Connection con;
-	public static int connectionCount = 0;
 	final protected static String schema = "ffl";
 
-	final private String lurl = "jdbc:mysql://25.53.148.109/ffl";
 
 
+	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl?autoReconnect=true";
 	
 	/**
 	 * Default constructor
@@ -42,10 +42,11 @@ public class DBAO extends Thread{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
+
 			con = DriverManager.getConnection(lurl,"root","password");
 
-			System.out.println("Open Connection: " + connectionCount);
-			connectionCount++;
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,4 +61,5 @@ public class DBAO extends Thread{
 			}
 		}
 	}
+	
 }
