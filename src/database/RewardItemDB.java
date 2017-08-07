@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import bean.Activity;
 import bean.RewardItem;
 public class RewardItemDB extends DBAO{
 	
@@ -122,6 +124,51 @@ public class RewardItemDB extends DBAO{
 		{
 			
 			
+		}
+		return "fail";
+	}
+	public String updateReward(RewardItem rew){
+		String stmt ="update "+ schema +".rewardItem set rewardTitle =?,rewardDescription = ?,points = ? ,rewardAvailability = ?,imgUrl= ? where rewardId =? ";
+
+		try {
+			PreparedStatement ps;
+		
+			ps=con.prepareStatement(stmt);
+			ps.setString(5, rew.getImgUrl());
+			ps.setString(6, rew.getRewardId());
+			ps.setString(1, rew.getRewardTitle());
+			ps.setString(2, rew.getRewardDescription());
+			ps.setInt(3, rew.getPoints());
+			ps.setInt(4, rew.getRewardAvailability());
+			
+
+			System.out.println(ps);
+			int status = ps.executeUpdate();
+			
+			if(status != 0){
+				System.out.println("Log createReward() :" + ps);
+				return rew.getRewardId();
+			}else{
+				return "fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "fail";
+	}
+	public String deleteReward(String rewardId){
+		String stmt ="update "+ schema +".rewardItem set valid='N' where rewardId=?";
+		try {
+			PreparedStatement ps = con.prepareStatement(stmt);
+			ps.setString(1, rewardId);
+
+			System.out.println(ps);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return "fail";
 	}

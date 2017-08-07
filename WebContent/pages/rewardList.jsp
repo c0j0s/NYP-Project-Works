@@ -56,6 +56,11 @@
 								<button class="btn btn-success"
 									onclick="location.href = 'claimReward?point=<%=rew.getPoints() %>'">Claim Reward</button>
 							</span>
+							<span aria-hidden="true">
+								<button class="btn btn-success"
+									onclick="location.href = 'deleteReward?point=<%=rew.getPoints() %>'">Delete Reward</button>
+							</span>
+							
 		<br></br>
 		<%}  %>
 	</div>
