@@ -145,7 +145,7 @@
 									</span>
 								<%} %>
 							</c:if>
-							<c:if test="${user.accountId eq oid }">
+							<c:if test="${user.accountId ne oid }">
 							<% 
 							if (!actf.getStatus().equals("Draft")){ %>
 							<span aria-hidden="true">

@@ -41,8 +41,8 @@ public class JoinFamilyGroup extends HttpServlet {
 			request.setAttribute("famGrpId", grpId);
 			
 			
-
-			request.getRequestDispatcher("DisplayFamGroup?famGrpId="+grpId).forward(request, response);
+response.sendRedirect("DisplayFamGroup?famGrpId="+grpId);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
