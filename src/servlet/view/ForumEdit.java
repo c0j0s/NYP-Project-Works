@@ -40,17 +40,12 @@ public class ForumEdit extends HttpServlet {
 			Account ac = (Account) ss.getAttribute("account");
 			ForumDB fdb = new ForumDB();
 			String mode = request.getParameter("mode");
-			String postId = request.getParameter("postId");
 			String path = "";
+	
+			Map<String, String> categoryList = fdb.getCategoryList();
+			request.setAttribute("categoryList", categoryList);
+		
 			
-			if(ss.getAttribute("categoryList") != null) {
-				Map<String, String> categoryList = ((Map<String, String>) ss.getAttribute("categoryList"));
-				request.setAttribute("categoryList", categoryList);
-			}else {
-				Map<String, String> categoryList = fdb.getCategoryList();
-				request.setAttribute("categoryList", categoryList);
-				ss.setAttribute("categoryList", categoryList);
-			}
 			try {
 				if(mode.equals("create")) {
 					path = "pages/forum-edit.jsp";

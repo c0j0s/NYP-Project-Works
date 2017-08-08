@@ -14,7 +14,7 @@
 				<span class="label label-primary">Anonymous</span>
 			</c:when>
 			<c:otherwise>
-				<img alt="profile image" src="https://firebasestorage.googleapis.com/v0/b/famforlife-accc8.appspot.com/o/%252Fuser%252Fdefault%252F%2Fanonymous.png?alt=media&token=41c7c380-029e-4f20-86cd-ade552ad50c4"
+				<img alt="profile image" src="https://firebasestorage.googleapis.com/v0/b/famforlife-accc8.appspot.com/o/user%2Fimages.jpg?alt=media&token=299b1cd6-a8db-4652-870a-9d14e97ad10b"
 					class="img-circle profile-image-${param.size eq null ? 'small' : param.size }">
 				<p>Anonymous</p>
 			</c:otherwise>
