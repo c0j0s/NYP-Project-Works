@@ -130,7 +130,7 @@ public class AccountDB extends DBAO{
 			while(rs.next()){
 				Account ac =  new Account();
 				ac.setAccountId(rs.getString("itemId"));
-				//ac.setGivenName(rs.getString("givenName")+" "+rs.getString("surName"));
+				ac.setEmail(rs.getString("reasons"));
 				ac.setStatus(rs.getString("status"));
 				reportList.add(ac);
 			}
