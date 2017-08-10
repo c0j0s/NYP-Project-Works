@@ -15,7 +15,7 @@
 						<div class="col-sm-3">	
 						<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
 						<span class="tab-title">${post.tagList }</span>	
-					</div>
+						</div>
 					</c:if>
 				</div>
 				<hr>
@@ -25,58 +25,37 @@
 			<div class="post-button-group btn-toolbar clearfix" role="toolbar" aria-label="...">
 				<div class="btn-group" role="group" aria-label="...">
 					<jsp:include page="likeButtons.jsp">
-						<jsp:param value="${post.likeAccounts }" name="likeAccounts"/>
-						<jsp:param value="${post.dislikeAccounts }" name="dislikeAccounts"/>
 						<jsp:param value="${post.postId }" name="Id"/>
 						<jsp:param value="${post.likeCount }" name="likeCount"/>
 						<jsp:param value="${post.dislikeCount }" name="dislikeCount"/>
 					</jsp:include>
 					<c:choose>
-						<c:when test="${followed}">
-							<button type="button" class="btn btn-danger btn-sm btn-no-border post-followed" id='unfollow-post' data-id="${post.postId }">
-								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-								Followed
-							</button>
-							<button type="button" class="btn btn-default btn-sm btn-no-border hide" id='follow-post' data-id="${post.postId }"> 
-								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-								Follow Post
-							</button>
+						<c:when test="${user ne null }">
+							<c:if test="${user.accountId ne post.accountId }">
+								<button type="button" class="btn btn-danger btn-sm btn-no-border post-followed hide" id='unfollow-post' data-id="${post.postId }" disabled>
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									Followed
+								</button>
+								<button type="button" class="btn btn-default btn-sm btn-no-border" id='follow-post' data-id="${post.postId } " disabled> 
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									Follow Post
+								</button>
+							</c:if>
 						</c:when>
 						<c:otherwise>
-							<c:choose>
-								<c:when test="${user ne null }">
-									<c:if test="${user.accountId ne post.accountId }">
-										<button type="button" class="btn btn-danger btn-sm btn-no-border post-followed hide" id='unfollow-post' data-id="${post.postId }">
-											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-											Followed
-										</button>
-										<button type="button" class="btn btn-default btn-sm btn-no-border" id='follow-post' data-id="${post.postId }"> 
-											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-											Follow Post
-										</button>
-									</c:if>
-								</c:when>
-								<c:otherwise>
-										<button type="button" class="btn btn-default btn-sm btn-no-border" disabled> 
-											<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-											Login to follow post
-										</button>
-								</c:otherwise>
-							</c:choose>
+								<button type="button" class="btn btn-default btn-sm btn-no-border" disabled> 
+									<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+									Login to follow post
+								</button>
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="btn-group pull-right dropdown">
-					<button id="post-controls-dropdown" type="button"
-						class="btn btn-default btn-sm btn-no-border dropdown-toggle pull-right"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-option-horizontal"
-							aria-hidden="true"></span>&nbsp <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="post-controls-dropdown">
-						<li><a href="#">Report post</a></li>
-						<li><a href="#">Report user</a></li>
-					</ul>
+					<jsp:include page="reportList.jsp">
+						<jsp:param value="${post.postId }" name="itemId"/>
+						<jsp:param value="${post.accountId }" name="accountId"/>
+						<jsp:param value="post" name="type"/>
+					</jsp:include>
 					<button type="button" class="btn btn-default btn-sm btn-no-border">
 						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 						<span class="meta-value-count" data-count="${post.commentCount}">${post.commentCount}</span>

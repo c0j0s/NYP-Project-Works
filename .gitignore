@@ -4,3 +4,14 @@
 src/common/test.java
 *.classpath
 /bin/
+/target/
+*.prefs
+.settings/org.eclipse.core.resources.prefs
+*.prefs
+.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.core.resources.prefs
+.classpath
+.classpath

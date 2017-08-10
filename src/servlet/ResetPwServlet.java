@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.UUID;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import common.UID;
+import database.AccountDB;
 
 /**
  * Servlet implementation class ResetPwServlet
@@ -43,11 +41,16 @@ public class ResetPwServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession mySession = request.getSession(true);
-		String email = request.getParameter("email");
+		String id = request.getParameter("id");
+		String email = (String) mySession.getAttribute(id);
 		String pw = request.getParameter("pw");
-		String cpw = request.getParameter("cpw");
-		if(!pw.equals(cpw)){
-			request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+		String cpw = request.getParameter("cpw");System.out.println(pw);System.out.println(cpw);
+		if(pw.equals(cpw)){
+			AccountDB ac = new AccountDB();
+			ac.resetPw(pw, email);
+			request.getRequestDispatcher("pages/login.jsp").forward(request, response);
+		}else{
+			System.out.println("Password not matched.");
 		}
 	}
 

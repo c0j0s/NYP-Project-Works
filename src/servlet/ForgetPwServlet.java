@@ -10,13 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import com.sun.mail.util.MailSSLSocketFactory;
-
-import bean.Account;
-import common.MailSSL;
+import common.Mail;
 import common.UID;
+import database.AccountDB;
 
 /**
  * Servlet implementation class ForgetPwServlet
@@ -48,21 +44,25 @@ public class ForgetPwServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		String email = request.getParameter("email");
-		UUID id = UID.genSessionId(); 
-		HttpSession session = request.getSession();
-		session.setAttribute("UUID", id);
-		ArrayList<InternetAddress> to = new ArrayList<InternetAddress>();
-		
-		try {
-			to.add(new InternetAddress(email));
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		AccountDB acdb = new AccountDB();
+		if(acdb.checkEmail(email)){
+			String id = UID.genSessionId().toString(); 
+			HttpSession session = request.getSession();
+			session.setAttribute("UUID", id);
+			session.setAttribute(id, email);
+			Mail mail = new Mail();
+			mail.sendSimpleMail(email, "Reset Password","Click the link below to reset your password. <a href = 'http://localhost:8080/FFL/ResetPw?uuid="+id+"'>Reset your password here.</a>");
+			request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 		}
+		else{
+			request.setAttribute("message", "Invalid email.");
+			request.getRequestDispatcher("pages/forgetpassword.jsp").forward(request, response);
+		}
+		
 
-		MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
-		sender.run();
-		request.getRequestDispatcher("pages/login.jsp").forward(request, response);
+		//MailSSL sender = new MailSSL(to,"Reset Password","Click the link below to reset your password.");
+		//sender.run();
+		
 	}
 
 }

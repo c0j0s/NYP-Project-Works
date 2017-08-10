@@ -9,21 +9,40 @@ import bean.Result;
 
 public class SearchDB extends DBAO {
 
+	
+	public SearchDB() {
+		super();
+	}
+
+	/**
+	 * for searching specific table
+	 * @param table
+	 * @param keyWord
+	 * @param servletPath
+	 * @return list of result objects
+	 */
 	public ArrayList<Result> searchSpecific(String table, String keyWord, String servletPath) {
+		
+		ResultSet rs = null;
+		PreparedStatement ps  = null;
+		
 		ArrayList<Result> list = new ArrayList<Result>();
 		ArrayList<String> colList = getTableColumns(table);
 		String stmt = "select * FROM ffl." + table + " where "+ table +"Title like ? or ";
 		if(table.equals("activity")) {
 			stmt = stmt + ""+ table +"Description like ?";
 		}else {
-			stmt = stmt + ""+ table +"Content like ?";
+			stmt = stmt + ""+ table +"Content like ? or taglist like ?";
 		}
 		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
+			ps = con.prepareStatement(stmt);
 			ps.setString(1, "%"+keyWord+"%");
 			ps.setString(2, "%"+keyWord+"%");
+			if(table.equals("post")) { 
+				ps.setString(3, "%"+keyWord+"%");
+			}
 			System.out.println("Log searchSpecific(): " + ps);
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 			while(rs.next()) {
 				Result r = new Result();
 				String paramName = null;
@@ -50,6 +69,12 @@ public class SearchDB extends DBAO {
 					}else if (colName.toLowerCase().contains("postdate")) {
 						r.setCreatedOn(rs.getString(colName));
 						System.out.println("Log searchSpecific(): r.setCreatedOn() = " + rs.getString(colName));
+					}else if (colName.toLowerCase().contains("category")) {
+						r.addMetadata(colName,rs.getString(colName));
+						System.out.println("Log searchSpecific(): r.addMetadata() = "+ colName + rs.getString(colName));
+					}else if (colName.toLowerCase().contains("tag")) {
+						r.addMetadata(colName,rs.getString(colName));
+						System.out.println("Log searchSpecific(): r.addMetadata() = "+ colName + rs.getString(colName));
 					}
 				}
 				
@@ -59,15 +84,18 @@ public class SearchDB extends DBAO {
 				System.out.println("=================================================================================");
 				list.add(r);
 			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		System.out.println("Log searchSpecific(): list.size() " + list.size());
 		return list;
 	}
 
+	/**
+	 * for searching all tables
+	 * @param keyWord
+	 * @return list of result objects
+	 */
 	public ArrayList<Result> searchAll(String keyWord) {
 		ArrayList<Result> combineList = new ArrayList<Result>();
 		String tables[] = {"post","activity"};
@@ -79,16 +107,25 @@ public class SearchDB extends DBAO {
 		return combineList;
 	}
 
+	/**
+	 * get column names from table
+	 * @param table
+	 * @return list of column names
+	 */
 	public ArrayList<String> getTableColumns(String table){
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		String stmt = "SHOW COLUMNS FROM "+table;
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			PreparedStatement ps = con.prepareStatement(stmt);
-			ResultSet rs = ps.executeQuery();
+			ps = con.prepareStatement(stmt);
+			rs = ps.executeQuery();
 			while(rs.next()) {
 				list.add(rs.getString(1));
 				System.out.println("log getTableColumns(): colName = " + rs.getString(1));
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

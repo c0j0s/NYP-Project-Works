@@ -44,9 +44,9 @@ public class PostListPagination extends SimpleTagSupport {
 	
 	public void setPageCount(int postCount) {
 		maxCount = postCount;
-		double pageCount = Math.ceil(postCount/10.0);
-		if(pageCount > (base + itemPerPage)){
-			base = base + itemPerPage;
+		double pageCount = Math.ceil(postCount/(double)getItemPerPage());
+		if(pageCount > (base + getItemPerPage())){
+			base = base + getItemPerPage();
 		}else{
 			this.pageCount = (int)pageCount;
 		}
@@ -54,9 +54,12 @@ public class PostListPagination extends SimpleTagSupport {
 
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
-
+		
 		//pagination
-		if(maxCount > itemPerPage) {
+		if(maxCount > getItemPerPage()) {
+			if(!type.equalsIgnoreCase("post")&&!type.equalsIgnoreCase("activity")){
+				out.println("<div class='col-sm-2'></div>");
+			}
 			out.println("<nav aria-label='Page navigation'><ul class='pagination pagination-lg'>");
 			if(type.equalsIgnoreCase("post")) {
 			
@@ -77,10 +80,10 @@ public class PostListPagination extends SimpleTagSupport {
 			
 			}else if(type.equalsIgnoreCase("comment")){
 				
-				out.println("<div class='col-md-2'></div>");
 				if(currentPage != 1){
 					out.println("<li><a href='?postId="+getPostId()+"&page="+ (currentPage - 1) +"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
 				}
+				
 				
 				for(int i = 1; i<=pageCount; i++){
 			    	String active = "";
@@ -91,6 +94,24 @@ public class PostListPagination extends SimpleTagSupport {
 				
 				if(currentPage != pageCount){
 					out.println("<li><a href='?postId="+getPostId()+"&page="+ (currentPage + 1) +"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
+				}
+				
+			}else if(type.equalsIgnoreCase("activity")){
+				
+				if(currentPage != 1){
+					out.println("<li><a href='?page="+ (currentPage - 1) +"' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+				}
+				
+				
+				for(int i = 1; i<=pageCount; i++){
+			    	String active = "";
+			    	if(currentPage == i) active = "active";
+					out.println("<li class='"+ active +"'><a href='?page="+ (base + i) +"'>"+ (base + i) +"</a></li>");
+			    	 
+			    }
+				
+				if(currentPage != pageCount){
+					out.println("<li><a href='?page="+ (currentPage + 1) +"' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
 				}
 				
 			}

@@ -1,13 +1,18 @@
 package bean;
 
-public class ActReg extends BankDetails {
+import java.util.ArrayList;
+
+public class ActReg extends Activity {
 private String registrationId;
-private java.sql.Timestamp registrationDate;
 private double registrationAmtPaid;
 private int participantNo;
 private String userAccountId;
+private String cashOrBank;
 private String ActivityactivityId;
-public ActReg(){
+private String activityRegistrationDate;
+private String participantName;
+private ArrayList<String> participantId;
+ public ActReg(){
 	
 }
 
@@ -19,13 +24,6 @@ public void setRegistrationId(String registrationId) {
 	this.registrationId = registrationId;
 }
 
-public java.sql.Timestamp getRegistrationDate() {
-	return registrationDate;
-}
-
-public void setRegistrationDate(java.sql.Timestamp registrationDate) {
-	this.registrationDate = registrationDate;
-}
 
 public double getRegistrationAmtPaid() {
 	return registrationAmtPaid;
@@ -57,6 +55,38 @@ public String getActivityactivityId() {
 
 public void setActivityactivityId(String activityactivityId) {
 	ActivityactivityId = activityactivityId;
+}
+
+public String getCashOrBank() {
+	return cashOrBank;
+}
+
+public void setCashOrBank(String cashOrBank) {
+	this.cashOrBank = cashOrBank;
+}
+
+public String getActivityRegistrationDate() {
+	return activityRegistrationDate;
+}
+
+public void setActivityRegistrationDate(String activityRegistrationDate) {
+	this.activityRegistrationDate = activityRegistrationDate;
+}
+
+public String getParticipantName() {
+	return participantName;
+}
+
+public void setParticipantName(String participantName) {
+	this.participantName = participantName;
+}
+
+public ArrayList<String> getParticipantId() {
+	return participantId;
+}
+
+public void setParticipantId(ArrayList<String> arrayList) {
+	this.participantId = arrayList;
 }
 
 

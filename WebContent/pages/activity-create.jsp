@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <%@ page
-	import="java.util.ArrayList,bean.*,database.*,java.text.DecimalFormat"%>
+	import="java.util.ArrayList,bean.*,java.text.DecimalFormat"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,10 +24,13 @@
 
 	<div class="container">
 		<%
-			DecimalFormat df = new DecimalFormat("00");
 			DecimalFormat dt = new DecimalFormat("00");
 		%>
-		<h1>Activity Creation Page</h1>
+		<jsp:include page="parts/page-header.jsp">
+			<jsp:param value="ActCreate" name="type"/>
+			<jsp:param value="Activity Creation Page" name="title"/>
+			<jsp:param value="6" name="titleWidth"/>
+		</jsp:include>
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<form action="${pageContext.request.contextPath}/CreateActivity"
@@ -59,58 +62,48 @@
 							>
 					</div>
 				</div><br>
-				<br> <label for="">Activity Description:</label>
+				<br> Activity Description:
 				<textarea class="form-control" rows="10" cols="50" name="actDesc"></textarea><br>
-				<br> <label for="actFee">Activity Fee:</label>
-				<div>
-					<div class="col-md-1">$</div>
-					<div class="col-md-5">
+				<br> <label for="actFee">Activity Fee: $ </label>
+				
+					
+					
 						<input type="number" name="actFeeDollars" class="form-control"
-							placeholder="Dollars " min="1" step="any">
-					</div>
-					<div class="col-md-1">.</div>
-					<div class="col-md-5">
-						<input type="number" name="actFeeCents" class="form-control"
-							placeholder="Cents" min="1" step="any">
-					</div>
+							 min="0" step="any">
+					
 
-				<br><br></div><br>
+				<br>
 
-				<label for="actPart">Participant Number:</label> <input type="text"
-					name="actPart" class="form-control"
+				Participant Number: <input type="number"
+					name="actPart" class="form-control" min="0"
 					placeholder="Enter Participant Number : "> <br> <label
 					for="actLocation">Location: </label> <input type="text"
 					name="actLocation" class="form-control"
 					placeholder="Enter Location : "><br>
 					<div>
 					<div class="col-md-5">
-						<label for="actStart">Activity Start Date : </label> <input
-							type="date" name="actStart" class="form-control">
+						Activity Start Date :  <input
+							type="date" name="actStart" class="form-control" >
 					</div>
 					<div class="col-md-2 text-center">
 						<br>-
 					</div>
 					<div class="col-md-5">
-						<label for="actEnd">Activity End Date : </label><br> <input
+						Activity End Date :<br> <input
 							type="date" name="actEnd" class="form-control"><br>
 					</div>
 				<br></div> <label
 					for="actDay">Activity Days : </label><br>
 				<div class="text-center">
-					<input type="checkbox" name="actDay" value="Monday "
-						class="activitycheckbox">&nbsp Monday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Tuesday "
-						class="activitycheckbox">&nbspTuesday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Wednesday "
-						class="activitycheckbox"">&nbspWednesday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Thursday "
-						class="activitycheckbox">&nbspThursday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Friday "
-						class="activitycheckbox">&nbspFriday &nbsp&nbsp&nbsp <input
-						type="checkbox" name="actDay" value="Saturday "
-						class="activitycheckbox"> &nbspSaturday &nbsp&nbsp&nbsp<input
-						type="checkbox" name="actDay" value="Sunday "
-						class="activitycheckbox">&nbsp Sunday &nbsp&nbsp&nbsp
+					<select  name="actDay" id="drpdownlist" multiple="multiple">
+						<option value="Monday">Monday</option>
+						<option value="Tuesday">Tuesday</option>
+						<option value="Wednesday">Wednesday</option>
+						<option value="Thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+						<option value="Saturday">Saturday</option>
+						<option value="Sunday">Saturday</option>
+					</select>	
 				</div>
 				<br> <br>
 				<div>
@@ -181,7 +174,7 @@
 									String s = dt.format(i);
 							%>
 							<option value="<%=s%>">
-							<%=df.format(i)%></option>
+							<%=dt.format(i)%></option>
 							<%
 								}
 							%>
@@ -201,11 +194,6 @@
 				
 				<br><br>
 
-
-
-
-
-
 				<div class="col-md-12">
 					<button type="reset" class="col-md-5 btn btn-danger pull-left">Reset</button>
 					<p class="col-md-2"></p>
@@ -216,7 +204,8 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
-
+	<br>
+	<br>
 
 
 	<%-- end of main container --%>

@@ -33,8 +33,8 @@ public class RewardItem {
 		this.rewardDescription = rewardDescription;
 	}
 
-	public int getPoints() {
-		return points;
+    public int getPoints() {
+	    return points;
 	}
 
 	public void setPoints(int points) {
@@ -89,6 +89,7 @@ public class RewardItem {
 	public String getAccountId() {
 		return accountId;
 	}
+	
 	
 }
 	

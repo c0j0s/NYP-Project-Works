@@ -1,46 +1,93 @@
 /*=========================================================
 	CSS for layout
 */
+.logo-a{
+	height:50px;
+	font-size: 1.4em;
+	color:black;
+	display: inline-flex;
+}
+.logo-a:hover{
+	text-decoration:none;
+}
+.logo-a p{
+	height:100%;
+	margin:0px;
+	padding:15px;
+}
+.logo{
+    height: 40px;
+    margin: 5px;
+    margin-right: 0px;
+}
 .navbar{
     margin-bottom: 0px;
 }
 .navbar-topbar{
 	background-color:#428bca;
 }
+#no-margin{
+	 margin-bottom: 0px;
+}
 .topbar-nav{
 	float: right;
 	margin-bottom:0px;
+    height: 30px;
 }
 .topbar-nav > li {
 	display: inline-block;
 	vertical-align:middle;
-	padding: 5px;
+	padding:5px 0px 5px 0px;
 }
 a.white{
-	cursor:pointer;
+    padding: 7px;
+    padding-bottom: 4px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
     color: white;
 }
 .topbar-nav > li > a:hover {
-	color:blue;
-	text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-bottom: 3px solid #abd8ff;
+    text-decoration: none;
 }
-#legal{
-	text-align:center;
-	padding:5px;
-}
-.left{
-	float:left;
-}
-.right{
-	float:right;
-}
+
+
 footer{
-	padding-top:15px;
-	margin-top:15px;
-	background-color:#428bca;
+	clear:both;
 }
 .footer-info{
-	min-height:300px;
+	background-color: #d6e7f7;
+}
+.footer-info div h4{
+    border-bottom: 2px solid #428bca;
+    padding: 10px;
+    padding-left: 0px;
+}
+.footer-info ul{
+	padding-left:0px;
+}
+.footer-info ul li{
+	list-style-type: none;
+    padding-bottom: 5px;
+}
+.footer-info ul li a{
+	color:black;
+}
+.footer-info ul li a:hover{
+	text-decoration:none;
+	color:#428bca;
+}
+#legal{
+    text-align: center;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background-color: #428bca;
+}
+.sticky-sidebar{
+	z-index: 10;
 }
 /*===========================================================
 	CSS for setup.
@@ -73,6 +120,11 @@ footer{
 	width:120px;
 	height:120px;
 }
+.profile-image-largest{
+	margin:20px;
+	width:240px;
+	height:240px;
+}
 .relative{
 	position:relative;
 }
@@ -86,36 +138,39 @@ footer{
 /*===========================================================
 	CSS for index
 */
-.header-image{
-	
+#header-carousel{
+    height: 92vh;
+    overflow:hidden;
+}
+#main-container{
+    position: relative;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 21px;
+    padding-top: 0px;
+    opacity: 0;
+    transition:opacity 0.5s;
+}
+.header-img{
+	min-height:100vh;
 }
 .section{
-	padding: 95px 0px 15px 0px;
-    clear: both;
+	padding-top:5px;
 }
-.section-intro{
-	text-align:center;
-	box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.09);
-	padding:15px;
+.card-box:hover .thumbnail{
+	box-shadow: 0 0 30px -5px #5f5f5f;
+	transition:box-shadow 0.5s;
 }
-.section-intro img{
-	height: 140px;
-    width: 140px;
-    position: relative;
-    top: -80px;
-    border: 5px solid white;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.thumbnail > img, .thumbnail a > img {
+    min-height: 260px;
 }
-.section-intro-content{
-    position: relative;
-    top: -80px;
-}
-.no-padding{
-	padding:0px;
-}
+
 /*=============================================================
 	CSS for forum
 */
+.forum-side-bar-table tbody tr td{
+	padding: 5px 0px 5px 0px;
+}
 .forum-sidebar-account .panel-heading{
 	text-align:center;
 }
@@ -128,6 +183,12 @@ footer{
 	padding:0px;
 	padding-top:20px;
 	padding-bottom:20px;
+}
+.trending-panel-heading{
+	padding-top:25px;
+}
+.trending-panel-heading span{
+	color:red;
 }
 .Forum-card{
     margin-bottom: 10px;
@@ -207,7 +268,9 @@ footer{
 	padding:5px;
 	margin: 0px;
 }
-
+.forum-sidebar-top-answerer img{
+	max-width: 100%;
+}
 /*=============================================================
 	CSS for activity
 */
@@ -224,8 +287,8 @@ footer{
 	height:auto;
 }
 #factpic{
-	width:100%;
-	height:auto;
+	width:437px;
+	height:480px;
 	padding:10px;
 }
 .select select{
@@ -257,4 +320,83 @@ footer{
 }
 #searchForm .input-group:first-child{
 	width:100%;
+}
+
+/*=============================================================
+	CSS for notification panel
+*/
+.notification-li{
+	position: relative;
+}
+.list-group-item-heading{
+	line-height:1.5em;
+}
+#notification-panel{
+    position: absolute;
+    left: 0;
+    margin: 10px;
+    margin-left:0px;
+    min-width: 300px;
+    display:none;
+    z-index: 1000;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.12);
+}
+.close-notification{
+	cursor:pointer;
+}
+.notification-list-item p{
+	display:none;
+}
+/*=============================================================
+	CSS for login panel
+*/
+.login-main-container{
+	min-height:46vh;
+}
+.loading{
+	cursor:progress;
+}
+.folded h2 {
+    background: #08b;
+    background-image: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.2));
+    border: 0 solid rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.2);
+}
+
+.folded:before, div.folded:after {
+    bottom: 26px;
+    content: "";
+    height: 28px;
+    position: absolute;
+    width: 48%;
+    z-index: -1;
+}
+.folded:before {
+    left: 2%;
+    transform: rotate(-3deg);
+}
+.folded:after {
+    right: 2%;
+    transform: rotate(3deg);
+}
+.folded h2 {
+    border-width: 1px 1px 2px;
+    margin: 0;
+    padding: 4px 40px;
+    position: absolute;
+    right: 2px;
+    margin-top: -16px;
+}
+.folded h2:after {
+    border-width: 7px;
+    border-style: solid;
+    border-color: #134 transparent transparent #134;
+    bottom: -15px;
+    content: "";
+    position: absolute;
+    right: -1px;
 }

@@ -1,13 +1,9 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Arrays;
-
 import bean.Account;
-import bean.Activity;
 import bean.RewardItem;
-import database.ActivityDB;
-import database.DBAO;
+import common.UID;
 import database.RewardItemDB;
 
 import javax.servlet.ServletException;
@@ -41,12 +37,12 @@ public class CreateReward extends HttpServlet {
 			RewardItemDB rewdb = new RewardItemDB();
 			RewardItem rew = new RewardItem();
 			Account ac = (Account)s.getAttribute("account");
+			UID uid = new UID();
 		
-			rew.setRewardId(request.getParameter("rewId"));
+			rew.setRewardId(uid.genRewardId());
 			rew.setRewardTitle(request.getParameter("rewTitle"));
 			rew.setRewardDescription(request.getParameter("rewDesc"));
-			rew.setPoints(Integer.parseInt(request.getParameter("Points")));
-			rew.setRewardAvailability(request.getParameter("rewAvailability").charAt(0));
+		    rew.setPoints(Integer.parseInt(request.getParameter("Points")));
 			rew.setRewardQuantity(request.getParameter("rewQuantity").charAt(0));
 			
 			
@@ -57,18 +53,18 @@ public class CreateReward extends HttpServlet {
 		
 			
 			
-  		// rew.setAccountId(ac.getAccountId());
-			rew.setAccountId("ACC0000000");
-			rewdb.createRewardItem(rew);
+  		 rew.setAccountId(ac.getAccountId());
+			
+			rew.setRewardId(rewdb.createReward(rew));
 			
 		
 			
-			if(!rew.getRewardId().equals("fail") || rew.getRewardId() == null){
-				request.getRequestDispatcher("RedemptionList?").forward(request, response);
+			if(!rew.getRewardId().equals("fail") || rew.getRewardId() != null){
+				request.getRequestDispatcher("RedemptionList").forward(request, response);
 			
 			}else{
 			
-				request.getRequestDispatcher("RedemptionList?").forward(request, response);
+				request.getRequestDispatcher("RedemptionList").forward(request, response);
 				System.out.println("Log createActivity.java: fail to create activity");
 			}
 		} catch (Exception e) {

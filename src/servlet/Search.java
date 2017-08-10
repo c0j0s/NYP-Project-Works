@@ -32,7 +32,7 @@ public class Search extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keyWord = request.getParameter("globalSearch");
-		if (!keyWord.equals("")) {
+		if (!keyWord.equals("") && keyWord != null) {
 			String searchIn = request.getParameter("searchIn");
 			String servletPath = (searchIn.equals("post")) ? "Post" : "ActFull";
 			SearchDB db = new SearchDB();

@@ -31,18 +31,25 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession mySession = request.getSession(true);
 		String userId=request.getParameter("email");
 		String userPw=request.getParameter("userPw");
 		try{
 			AccountDB myDatabase = new AccountDB();
 			Account ac = myDatabase.isMember(userId, userPw);
+		
 			if(ac!=null){
-
+				
 				System.out.println("Log loginservlet: success");
-				HttpSession mySession = request.getSession(true);
+				
 				mySession.setAttribute("account", ac);
-				request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+				if(request.getParameter("redirect") == null) {
+					response.sendRedirect("MyProfile");
+				}else {
+					response.sendRedirect(request.getParameter("redirect"));
+				}
+				
+				
 			}
 			else{
 
@@ -51,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 			}
 		}catch(Exception ex){
-			System.out.println("Error Accessing database: "+ex);
+			ex.printStackTrace();
 		}
 	}
 

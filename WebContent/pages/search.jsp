@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "../WEB-INF/ffl.tld" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -42,11 +42,22 @@
 						<div class="list-group">
 							<c:forEach items="${resultList}" var="result">
 								  <a href="${pageContext.request.contextPath}/${result.url}" class="list-group-item  auto-overflow">
-								    <div class="col-md-1 col-sm-2">
+								    <div class="col-md-1 col-sm-2 text-center">
 								    	<span class="glyphicon glyphicon-${result.type eq 'post' ? 'comment' : 'certificate' } btn-lg" aria-hidden="true"></span>
+								    	<h3><span class="label label-warning">${result.type}</span></h3>
 								    </div>
-								    <div class="col-md-8 col-sm-6">
-								   		<h4 class="list-group-item-heading">${result.title }</h4>
+								    <div class="col-md-8 col-sm-10">
+								    	<div class="list-group-item-heading">
+								   		<h4>${result.title }</h4>
+								   		<h6>
+									   		<c:if test="${result.metadata['tagList'] ne '' ? true:false }">
+												<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>	
+												<span class="tab-title"> &nbsp
+												${result.metadata['tagList'] } 
+												</span>	
+											</c:if>
+										</h6>
+										</div>
 								    	<p class="list-group-item-text">${result.content }</p>
 								    </div>
 								  </a>
@@ -56,7 +67,8 @@
 					<c:otherwise>
 						<div class="list-group">
 						  <a class="list-group-item">
-						    <h4 class="list-group-item-heading">No Results for keyword 
+						    <h4 class="list-group-item-heading">
+						    	No Results for keyword 
 						    	<span class="alert-warning">" ${keyWord} "</span>
 						    	<c:if test="${searchIn ne null ? true : false }">
 						    		in
@@ -64,12 +76,20 @@
 						    	</c:if>
 						    </h4>
 						  </a>
+						    <div style="min-height:60vh" class="text-center">
+						    </div>
 						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
 			<c:otherwise>
-			
+				<a class="list-group-item">
+				    <h4 class="list-group-item-heading">
+				    	Enter Keyword to search in FamForLife
+				    </h4>
+				  </a>
+				<div style="min-height:80vh" class="text-center">
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>

@@ -3,9 +3,10 @@ package database;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 import bean.Account;
+import bean.FamilyGrp;
 
 public class AccountDB extends DBAO{
 	
@@ -21,7 +22,7 @@ public class AccountDB extends DBAO{
 		// TODO Auto-generated method stub
 		Account ac = null;
 		try{
-			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ?";
+			String selectStatement = "SELECT * FROM ffl.userinfo where email = ? and password = ? and valid = 'Y'";
 			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
 			prepStmt.setString(1, userId);
 			prepStmt.setString(2, userPw);
@@ -40,13 +41,23 @@ public class AccountDB extends DBAO{
 				ac.setPoints(rs.getInt("points"));
 				ac.setCreditLevel(rs.getInt("creditLevel"));
 				ac.setImgUrl(rs.getString("imgUrl"));
+				ac.setRole(rs.getString("role"));
+				ac.setActivityOrganisedCount(rs.getInt("activityOrganisedCount"));
+				ac.setActivityParticipatedCount(rs.getInt("activityParticipatedCount"));
+				ac.setClaimCount(rs.getInt("claimCount"));
+				ac.setFamilyGroupCount(rs.getInt("familyGroupCount"));
+				ac.setBestAnswerCount(rs.getInt("bestAnswerCount"));
+				ac.setCommentCounts(rs.getInt("commentCounts"));
+				ac.setPostsCounts(rs.getInt("postCounts"));
+				
 			}
+			
 		}catch(Exception ex){
-			System.out.println("Error: "+ex.getMessage());
+			ex.printStackTrace();
 		}
 		return ac;
 	}
-	public void regMember(Account ac, String pw) throws Exception{
+	public void regMember(Account ac, String pw){
 		try{
 			String insertStatement = "Insert into ffl.user (givenName, surName, dob, gender, email, address, mobileno, password, accountId, imgUrl)";
 			insertStatement = insertStatement+ " values (?,?,?,?,?,?,?,?,?,?)";
@@ -66,15 +77,16 @@ public class AccountDB extends DBAO{
 			if(status!=0){
 				System.out.println("Recorded Added");
 			}
+			
 		}catch (Exception ex)
 		{
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	public void updateMember(Account ac) throws Exception{
+	public void updateMember(Account ac){
 		try{
 			String updateStatement = "update ffl.user set givenName = ?, surName = ?, dob = ?, gender = ?, email = ?,"
-					+ "address = ?, mobileno = ?, password = ?, imgUrl = ? where accountId = ?";
+					+ "address = ?, mobileno = ?, imgUrl = ? where accountId = ?";
 			PreparedStatement prepStmt=con.prepareStatement(updateStatement);
 			prepStmt.setString(1, ac.getGivenName());
 			prepStmt.setString(2, ac.getSurName());
@@ -83,23 +95,96 @@ public class AccountDB extends DBAO{
 			prepStmt.setString(5, ac.getEmail());
 			prepStmt.setString(6, ac.getAddress());;
 			prepStmt.setInt(7, ac.getMobileno());
-			prepStmt.setString(8, ac.getPassword());
-			prepStmt.setString(9, ac.getImgUrl());
-			prepStmt.setString(10, ac.getAccountId());
+			prepStmt.setString(8, ac.getImgUrl());
+			prepStmt.setString(9, ac.getAccountId());
 			int status = prepStmt.executeUpdate();
+			if(status != 0) {
+				System.out.println("update successful");
+			}
+			
 		}catch(Exception ex){
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	public void resetPw(String pw, String email) throws Exception{
+	public void resetPw(String pw, String email){
 		try{
 			String updateStatement = "update ffl.user set password = ? where email = ?";
 			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
 			prepStmt.setString(1, pw);
 			prepStmt.setString(2, email);
+			int status = prepStmt.executeUpdate();System.out.println(prepStmt);
+			if(status != 0) {
+				System.out.println("update successful");
+			}
+			
 		}catch(Exception ex){
-			throw new Exception("Error:"+ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
-	
+	public ArrayList<Account> getReportedAccount(){
+		ArrayList<Account> reportList = new ArrayList<Account>();
+		try{
+			String ss = "select * from ffl.reported where type = 'account';";
+			PreparedStatement prepStmt = con.prepareStatement(ss);
+			ResultSet rs = prepStmt.executeQuery(); System.out.println(prepStmt);
+			while(rs.next()){
+				Account ac =  new Account();
+				ac.setAccountId(rs.getString("itemId"));
+				ac.setEmail(rs.getString("reasons"));
+				ac.setStatus(rs.getString("status"));
+				reportList.add(ac);
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+			}
+		return reportList;
+	}
+	public void invalidateAccount(String accId){
+		try{
+			String updateStatement = "update ffl.user set valid = 'N' where accountId = ?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			
+			prepStmt.setString(1, accId);
+			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+	public void updateReportStatus(String status) {
+		try{
+			String updateStatement = "update ffl.reported set status=?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			prepStmt.setString(1, status);
+			prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+	}
+	public boolean checkEmail(String email){
+		try{
+			String selectStatement = "select email from ffl.user where email = ?";
+			PreparedStatement prepStmt = con.prepareStatement(selectStatement);
+			prepStmt.setString(1, email);
+			ResultSet rs = prepStmt.executeQuery();
+			if (rs.next()){
+				return true;
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}return false;
+	}
+	public void RestoreAccount(String accId){
+		try{
+			String updateStatement = "update ffl.user set valid = 'Y' where accountId = ?;";
+			PreparedStatement prepStmt = con.prepareStatement(updateStatement);
+			
+			prepStmt.setString(1, accId);
+			int status = prepStmt.executeUpdate();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
 }

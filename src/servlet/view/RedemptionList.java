@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Activity;
 import bean.RewardItem;
-import database.ActivityDB;
 import database.RewardItemDB;
 
 /**
@@ -35,8 +33,10 @@ public class RedemptionList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RewardItemDB adb = new RewardItemDB();
 		ArrayList<RewardItem> rewardList = adb.getRewardItem(null);
+		System.out.print(rewardList.size());
 		request.setAttribute("rewardList", rewardList);
 		request.getRequestDispatcher("pages/rewardList.jsp").forward(request, response);
+		
 	}
 
 

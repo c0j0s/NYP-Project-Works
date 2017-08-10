@@ -15,7 +15,17 @@ public class Account {
 	private int creditLevel;
 	private String password;
 	private String imgUrl;
-
+	private int postsCounts;
+	private int commentCounts;
+	private int bestAnswerCount;
+	private int activityOrganisedCount;
+	private int activityParticipatedCount;
+	private int claimCount;
+	private int familyGroupCount;
+	private String status;
+	private String role;
+	private char valid;
+	
 	public String getGivenName() {
 		return givenName;
 	}
@@ -52,7 +62,6 @@ public class Account {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	public int getMobileno() {
 		return mobileno;
 	}
@@ -90,6 +99,67 @@ public class Account {
 		this.imgUrl = imgUrl;
 	}
 	
+	public int getPostsCounts() {
+		return postsCounts;
+	}
+	public void setPostsCounts(int postsCounts) {
+		this.postsCounts = postsCounts;
+	}
+	public int getCommentCounts() {
+		return commentCounts;
+	}
+	public void setCommentCounts(int commentCounts) {
+		this.commentCounts = commentCounts;
+	}
+	public int getBestAnswerCount() {
+		return bestAnswerCount;
+	}
+	public void setBestAnswerCount(int bestAnswerCount) {
+		this.bestAnswerCount = bestAnswerCount;
+	}
+	public int getActivityOrganisedCount() {
+		return activityOrganisedCount;
+	}
+	public void setActivityOrganisedCount(int activityOrganisedCount) {
+		this.activityOrganisedCount = activityOrganisedCount;
+	}
+	public int getActivityParticipatedCount() {
+		return activityParticipatedCount;
+	}
+	public void setActivityParticipatedCount(int activityParticipatedCount) {
+		this.activityParticipatedCount = activityParticipatedCount;
+	}
+	public int getClaimCount() {
+		return claimCount;
+	}
+	public void setClaimCount(int claimCount) {
+		this.claimCount = claimCount;
+	}
+	public int getFamilyGroupCount() {
+		return familyGroupCount;
+	}
+	public void setFamilyGroupCount(int familyGroupCount) {
+		this.familyGroupCount = familyGroupCount;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public char getValid() {
+		return valid;
+	}
+	public void setValid(char valid) {
+		this.valid = valid;
+	}
 	/**
 	 *  resources for account
 	 */

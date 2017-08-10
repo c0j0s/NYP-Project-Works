@@ -21,11 +21,6 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>pageCount</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
 			<name>itemPerPage</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -40,43 +35,10 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>pageCount</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 	</tag>
-
-	<function>
-		<name>getPostById</name>
-		<function-class>database.ForumDB</function-class>
-		<function-signature>java.lang.String getPostById(java.lang.String)
-		</function-signature>
-	</function>
-
-	<function>
-		<name>getPostList</name>
-		<function-class>database.ForumDB</function-class>
-		<function-signature>java.util.ArrayList getPost(int,java.lang.String)
-		</function-signature>
-	</function>
-	
-	<function>
-		<name>getMaxCount</name>
-		<function-class>database.ForumDB</function-class>
-		<function-signature>int getMaxCount(int)</function-signature>
-	</function>
-
-	<function>
-		<name>getCategoryList</name>
-		<function-class>database.ForumDB</function-class>
-		<function-signature>java.util.Map getCategoryList()</function-signature>
-	</function>
-	
-	<function>
-		<name>getCommentByCommentId</name>
-		<function-class>database.CommentDB</function-class>
-		<function-signature>java.util.ArrayList getCommentByCommentId(java.lang.String,int,int)</function-signature>
-	</function>
-	
-	<function>
-		<name>getMetaAccounts</name>
-		<function-class>database.MetaValueDB</function-class>
-		<function-signature>java.util.ArrayList getMetaAccounts(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
-	</function>
 </taglib>

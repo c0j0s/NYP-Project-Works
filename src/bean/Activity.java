@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.ArrayList;
+
 /**
  * try extend MetaValue Class
  * 
@@ -22,12 +24,15 @@ public class Activity extends MetaValue{
 	private String activityCategory;
 	private String imgurl;
 	private char valid;
-	private String activityDay;
+	private ArrayList<String> activityDay;
 	private int activityRank;
 	private String organiserId;
 	private String activityTime;
 	private int activityPostCount;
 	private String accountId;
+	private int points;
+	private int rankPoints;
+	private String status;
 
 	
 	public Activity(){
@@ -112,11 +117,11 @@ public class Activity extends MetaValue{
 	public void setValid(char valid) {
 		this.valid = valid;
 	}
-	public String getActivityDay() {
+	public ArrayList<String> getActivityDay() {
 		return activityDay;
 	}
-	public void setActivityDay(String activityDay) {
-		this.activityDay = activityDay;
+	public void setActivityDay(ArrayList<String> arrayList) {
+		this.activityDay = arrayList;
 	}
 	public int getActivityRank() {
 		return activityRank;
@@ -153,6 +158,24 @@ public class Activity extends MetaValue{
 	}
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int i) {
+		this.points =i;
+	}
+	public int getRankPoints() {
+		return rankPoints;
+	}
+	public void setRankPoints(int rankPoints) {
+		this.rankPoints = rankPoints;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	
