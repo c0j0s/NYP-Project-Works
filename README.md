@@ -1,2 +1,2 @@
 # FFL
-This is an EWP project
+This is an Enterprise Web Project
