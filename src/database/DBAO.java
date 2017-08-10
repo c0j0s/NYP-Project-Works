@@ -13,7 +13,7 @@ public class DBAO extends Thread{
 
 
 
-	final private static String lurl = "jdbc:mysql://25.53.148.109/ffl?autoReconnect=true";
+	final private static String lurl = "jdbc:mysql://localhost/ffl?autoReconnect=true";
 	
 	/**
 	 * Default constructor
@@ -43,7 +43,7 @@ public class DBAO extends Thread{
 			Class.forName("com.mysql.jdbc.Driver");
 
 
-			con = DriverManager.getConnection(lurl,"root","password");
+			con = DriverManager.getConnection(lurl,"root","mysql");
 
 
 

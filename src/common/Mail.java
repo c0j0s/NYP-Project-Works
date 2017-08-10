@@ -22,7 +22,7 @@ public class Mail {
 	private static Session session;
 	private static MimeMessage message;
 	final private static String sender = "bt1602gp@gmail.com";
-	final private static String password = "admin@gmail";
+	final private static String password = "********";
 	private String path;
 	
 	public Mail(){
@@ -134,7 +134,7 @@ public class Mail {
  
 		try {
 			Transport transport = session.getTransport("smtps");
-			transport.connect("smtp.gmail.com", "bt1602gp@gmail.com", "admin@gmail");
+			transport.connect("smtp.gmail.com", "bt1602gp@gmail.com", "********");
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			System.out.println("mail sent to:" + to);
