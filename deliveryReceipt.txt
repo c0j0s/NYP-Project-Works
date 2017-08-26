@@ -1,0 +1,6 @@
+student@nyp.sg;blk 123 jurong street 30 #07-75;98765432;2 Bento Box      |3 Chicken Chop   |4 Chicken Rice   |5 Fried Noodles  |6 Chicken Noodles|;68.50
+student@nyp.sg;blk 343 toa payoh street 47 #06-69;97654321;3 Bento Box      |4 Chicken Chop   |5 Chicken Rice   |6 Fried Noodles  |7 Chicken Noodles|;86.00
+student@nyp.sg;blk 75 bedok street 23 #15-160;98765432;2 Bento Box      |;6.00
+student@nyp.sg;blk 123 bedok street 23 #15-160;91251234;10 Bento Box      |;30.00
+admin@nyp.sg;blk 210 toa payoh street 65 #10-2345;91243765;10 Chicken Noodles|;30.00
+admin@nyp.sg;blk 560 bedok street 55 #09-1980;83546738;10 Chicken Noodles|;30.00

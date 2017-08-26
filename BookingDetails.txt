@@ -1,0 +1,4 @@
+2;student;student@nyp.sg;91282345;South Canteen;15;8/8/2016;10AM;group gathering;admin;admin@nyp.sg
+3;student;student@nyp.sg;91282345;Foodgle Hub;5;30/8/2016;10AM;end of exam celebration;admin;admin@nyp.sg
+4;student;student@nyp.sg;91282345;FoodCentral;15;12/9/2016;10AM;birthday party;admin;admin@nyp.sg
+5;student;student@nyp.sg;91282345;North Canteen;7;17/10/2016;10AM;birthday party;admin;admin@nyp.sg
