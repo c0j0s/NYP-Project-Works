@@ -1,0 +1,114 @@
+.redemption-listitem{
+  position: relative;
+  overflow: hidden;
+  vertical-align: top;
+  display: inline-block;
+  margin: 10px;
+  width: 450px;
+  height: 500px;
+  margin-right: 1.5%;
+  margin-left: 1.5%;  
+}
+.redemption-listitem img {
+  width: 450px;
+}
+.redemption-listitem div p{
+  word-wrap:normal;
+  margin-bottom: 50px;
+}
+#pointdisplay{
+  padding: 10px;
+  font-size: 280%;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 4px solid #56a77e;;
+}
+.left{
+  float: left;
+
+}
+.right {
+  float:right;
+}
+#claim{padding:10px;font-size:25px;}
+
+.prize{
+  margin: 20px;
+  right: 0px;
+  width: 440px;
+}
+.center{ text-align:center;
+margin:auto;}
+
+#luckydraw{
+  overflow: auto;
+}
+#luckydraw div:nth-child(2){
+  width: 60%;
+  float: left;
+  overflow: hidden;
+}
+#luckydraw div:nth-child(2) li {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: top;
+  width: 300px;
+  overflow: auto;
+}
+#luckydraw div:nth-child(2) li div{
+  width: 100%;
+  overflow: hidden;
+  height: 700px;
+}
+#luckydraw div:nth-child(2) li div img{
+  height: 250px;
+
+}
+#luckydraw div:nth-child(3){
+  float: left;
+  overflow: auto;
+}
+#checkhistory{
+  overflow: auto;
+  width: 15%;
+  float: right;
+  border: none;
+  background: none;
+  transition: width 1s;
+}
+#checkhistory i{
+  padding: 15px;
+}
+#checkhistory:hover i{
+  vertical-align: middle;
+  color: black;
+}
+#checkhistory:hover{
+  background-color: lightgray;
+  width: 20%;
+}
+#checkhistory:hover::after{
+  content: "View History";
+  font-size:1.2em;
+  vertical-align: middle;
+}
+td{
+  padding: 10px;
+  padding-left: 0px;
+  font-size: 1.5em;
+}
+#alerttext{
+  color: red;
+  padding: 10px;
+  padding-left: 0px;
+}
+button.card-button-flat{
+  width: 100%;
+  color: black;
+  font-size: 2em;
+  color: #56a77e;;
+}
+button.card-button-flat:hover{
+  background-color: #56a77e;;
+  font-size: 2em;
+  color: white;
+}

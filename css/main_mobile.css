@@ -1,0 +1,79 @@
+@media screen and (max-width: 1864px) {
+    body {
+      width: 90%;
+    }
+    .nav-content{
+      width: 90%;
+    }
+}
+@media screen and (max-width: 1660px) {
+    nav div ul li p{
+      display: none;
+    }
+    nav div ul li i{
+      padding-right: 10px;
+    }
+}
+@media screen and (max-width: 960px) {
+    body {
+        width: 90%;
+    }
+    #navImg{
+      clear:both
+    }
+    nav div ul{
+      float: left;
+    }
+    nav div ul li p{
+      display: none;
+    }
+}
+@media screen and (max-width: 720px) {
+    /*nav*/
+    body {
+        width: 100%;
+        margin-top: 51px;
+    }
+    #fadebg{
+      display: none;
+    }
+    nav{
+      height: 112px;
+    }
+    nav ul:nth-child(2){
+      position: fixed;
+      top:56px;
+      left: 5%;
+    }
+    #afterloginpane{
+      right: 0;
+    }
+    #profileicon{
+      position: fixed;
+      top:56px;
+      right: 0px;
+    }
+    #searchForm{
+      position: fixed;
+      top:0px;
+      right: 5%;
+    }
+    /*main*/
+    .card-tab button{
+      font-size: 1.5em;
+    }
+    /*font*/
+    h1	{	font-size: 1.5em;	}
+    h2	{	font-size: 1.4em;	}
+    h3	{	font-size: 1.3em;	}
+    h4	{	font-size: 1.2em;	}
+    h5	{	font-size: 1.1em;	}
+    h6	{	font-size: 1em;	}
+    p,button		{	font-size: 1em;}
+
+    /*homepage*/
+    #product div{
+      left:0;
+      width: 82%;
+    }
+}

@@ -1,0 +1,122 @@
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/components.css" />
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<script src = "javascript/common.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Subscription Complete</title>
+</head>
+<body onload="common(0)">
+	<nav>
+
+	</nav>
+  <script>
+    var passData =JSON.parse(localStorage.getItem("MagazineSubscriptionDetails"));
+  </script>
+
+  <div class="card" id="invoice">
+    <div class="card-tab">
+      <h1>Thank You for Choosing Our Magazine</h1>
+    </div>
+    <div class="left card-innerContent">
+      <div>
+        <img src="image/magazine/wk16/1.png"/>
+      </div>
+      <div>
+        <h3>Take Note</h3>
+        <p>
+          The first copy of your magazine will be delivered to your House upon the next new release of E-Mag.
+        </p>
+        <br />
+        <p>
+          Call 60000000 if you have any enquires.
+        </p>
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <div class="left card-innerContent">
+      <h1>E-Mag Subscription</h1>
+
+      <div>
+        <p class="left">Subscribe on: <script>document.write(passData.ProductInformation.SubscriptionDate)</script></p>
+        <p class="left">Invoice: <script>document.write(passData.AccountInformation.InvoiceId)</script></p>
+      </div>
+
+
+      <div id="invoice-productinfo">
+        <h2>Subscription Plan Selected</h2>
+        <h1 class="left"><span id="cost">$<script>document.write(passData.ProductInformation.SubscriptionMonthlyPayment)</script></span>/per month for <script>document.write(passData.ProductInformation.SubscriptionPeriod)</script> </h1>
+      </div>
+
+      <div id="invoice-contactinfo">
+				<h2>
+					Contact Informations
+				</h2>
+				<table>
+					<tr>
+						<th>
+							Name:
+						</th>
+						<td>
+							<script>document.write(passData.AccountInformation.Name)</script>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							Mobile Number:
+						</th>
+						<td>
+							<script>document.write(passData.AccountInformation.MobileNumber)</script>
+		        </p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							Email:
+						</th>
+						<td>
+							<script>document.write(passData.AccountInformation.Email)</script>
+		        </p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							Delivery Method:
+						</th>
+						<td>
+							<script>document.write(passData.ProductInformation.DeliveryMethod)</script>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							Delivery Address:
+						</th>
+						<td>
+							<script>document.write(passData.AccountInformation.Address)</script>
+						</td>
+					</tr>
+				</table>
+
+      </div>
+
+      <div style="clear:both">
+        <button class="card-button-float" onClick="window.print()">Print</button>
+        <button class="card-button-float" onclick="location.href='index.html'">Home</button>
+      </div>
+
+    </div>
+  </div>
+
+	<footer>
+
+	</footer>
+</body>

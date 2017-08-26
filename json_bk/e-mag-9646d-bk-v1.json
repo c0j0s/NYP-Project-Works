@@ -1,0 +1,26 @@
+{
+  "user" : {  
+    "s0000000g" : {
+      "AccountInfo":{
+		  	"UserName" : "Test",
+		  	"Profile_Picture" : "test"
+	  	},
+      "CourseRegistration" : {
+        "-K_cu0_3g-E-P0fF1Ykx" : {
+          "CourseName" : "Basic Computer Course",
+          "CourseSchedule" : "1/2/2017",
+          "CourseVenue" : "Bishan CC"
+        },
+    		"test2" : {
+    		  "courseName" : "Basic Dancing Class",
+    		  "courseSchedule" : "1/2/2017",
+    		  "courseVenue" : "Yishun CC"
+    		}
+      },
+      "MagazineSubscription" : {
+        "test": "1"
+      }
+	  
+    }
+  }
+}

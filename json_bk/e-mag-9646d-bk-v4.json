@@ -1,0 +1,222 @@
+{
+  "CourseList" : {
+    "BasicComputerClass" : {
+      "ContactNumber" : "65564312",
+      "Coursename" : "Basic Computer Course",
+      "Date" : "7/3/2017",
+      "Description" : "Basic Computer Course to upgrade their computer skills",
+      "Fee" : "$60.00",
+      "Location" : "Ban Sword CC",
+      "Vacancies" : "22",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fcomputercourse.jpg?alt=media&token=8d8e4eab-60c2-44d7-bed3-80554a5160be"
+    },
+    "Chess" : {
+      "ContactNumber" : "62884477",
+      "Coursename" : "Chinese Chess",
+      "Date" : "2017-09-03",
+      "Description" : "Basic Chinese Chess",
+      "Fee" : "50.00",
+      "Location" : "Ban Gun CC",
+      "Vacancies" : "32",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fchess.jpg?alt=media&token=f224c0f2-e265-4694-94c2-614bf17ea899"
+    },
+    "Dance" : {
+      "ContactNumber" : "67893643",
+      "Coursename" : "Basic Dancing School",
+      "Date" : "9/3/2017",
+      "Description" : "Basic Dancing Course to upgrade their Dancing skills",
+      "Fee" : "$80.00",
+      "Location" : "Ban Shield CC",
+      "Vacancies" : "13",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fdance.jpg?alt=media&token=0b0b5490-e3c4-45f1-9b6e-b3d830a05bcf"
+    },
+    "Taichi" : {
+      "ContactNumber" : "62414455",
+      "Coursename" : "Taichi",
+      "Date" : "9/3/2017",
+      "Description" : "Basic Taichi Class",
+      "Fee" : "$30.00",
+      "Location" : "Ban Cannon CC",
+      "Vacancies" : "32",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fhealthylifestyle.jpg?alt=media&token=cabf1f2e-d053-4207-8d6f-c1560fde3fbe"
+    }
+  },
+  "EnquiryMessage" : {
+    "Adbullah" : {
+      "Email" : "jldsj@NM",
+      "Message" : "nml;dfg",
+      "Name" : "Adbullah"
+    },
+    "Test" : "test",
+    "v" : {
+      "Email" : "vds@k",
+      "Message" : "vdsv",
+      "Name" : "v"
+    }
+  },
+  "LuckyDrawPrize" : {
+    "week16" : [ {
+      "Description" : "test",
+      "Name" : "Philips HD9220/20 Airfryer",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2Fairfryer.jpg?alt=media&token=97a49b4f-3fdc-463c-9c40-881136167aa4",
+      "Worth" : 500
+    }, {
+      "Description" : 1,
+      "Name" : "JML Ceracraft Ceramic Pan 24cm",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2Fceremic%20pan.jpg?alt=media&token=2fc710ab-76ea-4220-bd54-889ac8ff0d20",
+      "Worth" : 200
+    }, {
+      "Description" : "test",
+      "Name" : "600 E-Mag Points",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2F600Points.jpg?alt=media&token=48a6144c-c79b-440c-ab0f-bdf81214a243",
+      "Worth" : 60
+    } ]
+  },
+  "MagazineReleases" : {
+    "week16" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F1.png?alt=media&token=6dde7c87-b20d-4fb8-b45b-78294253c25e",
+      "page10" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F10.png?alt=media&token=348dece3-f47b-4cfc-b8ac-76c5d5894537",
+      "page2" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F2.png?alt=media&token=8a9416b1-0ef3-4447-8720-6bcd31e466a2",
+      "page3" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F3.png?alt=media&token=9d138754-4d5c-4b61-87d9-37345d88f39b",
+      "page4" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F4.png?alt=media&token=820adf2b-9170-4a59-b9c4-ebb1814ec1af",
+      "page5" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F5.png?alt=media&token=15606dcb-7e7c-4de1-8daf-3d09edc0d9f6",
+      "page6" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F6.png?alt=media&token=5ba33f04-e628-4f85-ad9f-7cd5f5103e8b",
+      "page7" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F7.png?alt=media&token=efb2bc02-1786-4dd1-bfa8-d9662d6498b0",
+      "page8" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F8.png?alt=media&token=4046a6f7-4612-4efe-9ac8-b0c584122cda",
+      "page9" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2FWeek_16%2F9.png?alt=media&token=e2ab5333-e7a6-41da-8539-16318057632a",
+      "subTitle" : "Top 10 tips to stay healthy",
+      "title" : "Stay Active",
+      "week" : "Week16"
+    }
+  },
+  "RedemptionList" : {
+    "EZ-Link" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$5 EZ-Link",
+        "Points" : 500,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F5dollarsezlink.jpg?alt=media&token=469196af-3062-4767-86a7-6f14e15eec11"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $10 EZ-Link Voucher",
+        "Name" : "$10 EZ-Link",
+        "Points" : 1000,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F10%20dollars%20ezlink.jpg?alt=media&token=477a885a-d94d-4c89-9ffd-a380ae8b2787"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 EZ-Link Voucher?",
+        "Name" : "$20 EZ-Link",
+        "Points" : 2000,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F20%20dollars%20ezlink.jpg?alt=media&token=9ecaf29f-7dbb-4592-a975-416ae2eab074"
+      }
+    },
+    "NTUC" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$5 NTUC",
+        "Points" : 500,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F5%20DOLLARS%20ntuc.jpg?alt=media&token=4965c3c4-223d-48e9-877b-d116bb782828"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$10 NTUC",
+        "Points" : 1000,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F10%20dollar%20ntuc.jpg?alt=media&token=6c6e5d0f-9fb9-47fa-b3a2-049960042e24"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 EZ-Link Voucher?",
+        "Name" : "$20 NTUC",
+        "Points" : 2000,
+		"Description" : "test",
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F20%20DOLLARS%20NTUC.jpg?alt=media&token=fcd9d2d0-db15-4e37-af97-fa5eed730df8"
+      }
+    }
+  },
+  "user" : {
+    "s0000000g" : {
+      "AccountInfo" : {
+        "Profile_Picture" : "test",
+        "UserName" : "Test"
+      },
+      "CourseRegistration" : {
+        "-K_cu0_3g-E-P0fF1Ykx" : {
+          "CourseFee:" : "$60.00",
+          "CourseName" : "Basic Computer Course",
+          "CourseSchedule" : "1/2/2017",
+          "CourseVenue" : "Ban Sword CC"
+        },
+        "test2" : {
+          "courseName" : "Basic Dancing Class",
+          "courseSchedule" : "1/2/2017",
+          "courseVenue" : "Yishun CC"
+        }
+      },
+      "MagazineSubscription" : {
+        "-KaD6UBfSdFpmVIxIyNH" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Cash",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "PaymentComplete" : "false"
+          }
+        },
+        "-KaLdgQblfM40y70WcoU" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Credit Card",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "CreditCardCVV" : "",
+            "CreditCardExpires" : "2017-01",
+            "CreditCardHolder" : "1",
+            "CreditCardNumber" : "1",
+            "PaymentComplete" : "true"
+          }
+        },
+        "-KaLdhsx9Xl9hD_015fj" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Credit Card",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "CreditCardCVV" : "1",
+            "CreditCardExpires" : "2017-01",
+            "CreditCardHolder" : "1",
+            "CreditCardNumber" : "1",
+            "PaymentComplete" : "true"
+          }
+        }
+      },
+      "Redemption" : {
+        "Points" : 100,
+        "TransactionRecord" : {
+          "test" : {
+            "PointsUsed" : 5000,
+            "RedemptionData" : "05/12/2017",
+            "RedemptionId" : "000000",
+            "RedemptionItem" : "Rice Cooker",
+            "RedemptionTime" : "15:30"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="css/admin_user_about.css"/>
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<script src = "javascript/admin.js"></script>
+	<script src = "javascript/hide_show.js"></script>
+	<script src = "javascript/message.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+
+	<link rel = "stylesheet" type = "text/css" href = "css/table.css" />
+	<script src="javascript/datables.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/datables.css"/>
+	<title>My Profile</title>
+</head>
+<body onload = "common(0),RetrieveData('RedemptionRecord'),readSub();">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+
+					<img id = "profileimg" src="" alt="Profile Picture" width="100%"/>
+					<!-- js to change to diff profile img -->
+
+				<img  src="image/banner/others/profile.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>Welcome <em id="pName"></em> </h1>
+			</div>
+	</div>
+
+
+	<div id="contentblock">
+		<div id="leftSideBar" class="card">
+			<div class="card-tab">
+				<h1>Profile</h1>
+				<i onclick="editProfile();" class="material-icons md-36">mode_edit</i>
+			</div>
+			<div style="display: block;" id="sProfile" class="card-innerContent">
+				<ul>
+					<li>
+						<i class="material-icons md-40">&#xE911;</i>
+						<p id="pIc"></p>
+					</li>
+
+					<li>
+						<i class="material-icons md-40">&#xE7E9;</i>
+						<p id="pDob"></p>
+					</li>
+
+					<li>
+						<i class="material-icons md-40">&#xE7FB;</i>
+						<p id="pGender"></p>
+					</li>
+
+					<li>
+						<i class="material-icons md-40">&#xE325;</i>
+						<p id="pContact"></p>
+					</li>
+
+					<li>
+						<i class="material-icons md-40">&#xE0BE;</i>
+						<p id="pEmail"></p>
+					</li>
+
+					<li>
+						<i class="material-icons md-40">&#xE0C8;</i>
+						<p id="pAddress"></p>
+					</li>
+				</ul>
+			</div>
+
+			<div style="display: none;" id="hProfile" class="card-innerContent">
+			<form action="#" method="post" onsubmit="saveProfile(); return false;">
+				<label>Name :</label></br>
+				<input type="text" id="name" name="name" required/></br></br>
+
+				<label>Date of Birth :</label></br>
+				<input type="date" id="dob" name="dob" required/></br></br>
+
+				<label>Gender :</label></br>
+				<input style="width: 10%;" type="radio" name="gender" value="male" required/>Male &nbsp
+				<input style="width: 10%;" type="radio" name="gender" value="female" />Female</br></br>
+
+				<label>Email :</label></br>
+				<input type="email" id="email" name="email" required/></br></br>
+
+				<label>Contact Number :</label></br>
+				<input type="number" id="number" name="number" required/></br></br>
+
+				<label>Address :</label></br>
+				<textarea rows="4" cols="30" id="address" name="address" required/></textarea></br></br>
+
+				<input class="button" type="submit" value="Update" onclick="saveProfile();"/>
+			</form>
+			</div>
+		</div>
+
+
+		<div id="rightcontent" class="card">
+			<ul class="tab ">
+				<li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'ts')">Transaction History</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'bk')">Magazine Subcription(s)</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="location.href='registeredCourse.html'">Courses Registered(s)</a></li>
+			</ul>
+
+			<div>
+				<div class="tabcontent show card-innerContent" id="ts" >
+					<div id="t1">
+						<table data-order='[[2,"desc"]]' id="Predemption" class="display" width="100%">
+						<thead>
+
+							<tr>
+							<br></br>
+								<th class = "head">Item Redeemed</th>
+								<th>Cost</th>
+								<th>Date</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						<br></br>
+
+
+
+						</table>
+
+					</div>
+				</div>
+
+				<div class="tabcontent card-innerContent" id="bk">
+
+					<h3 id="noMag" style="text-align:center;">No Magazine Subscription</h3>
+					<div id="mDiv" style="display:none;">
+						<ul id="subMag">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<footer></footer>
+
+<script>
+
+	var pImage = localStorage.getItem("profileImage");
+	$("#profileimg").attr('src',pImage);
+
+	var pName = localStorage.getItem("name");
+	$("#pName").text(pName);
+	$("#name").val(pName);
+
+	var pIc = localStorage.getItem("e-mag-9646d-ic");
+	$("#pIc").text(pIc);
+
+	var pDob = localStorage.getItem("dob");
+	$("#pDob").text(pDob);
+	$("#dob").val(pDob);
+
+	var pGender = localStorage.getItem("gender");
+	$("#pGender").text(pGender);
+	$("input[name=gender][value=" + pGender + "]").prop('checked', true);
+
+	var pContact = localStorage.getItem("number");
+	$("#pContact").text(pContact);
+	$("#number").val(pContact);
+
+	var pEmail = localStorage.getItem("email");
+	$("#pEmail").text(pEmail);
+	$("#email").val(pEmail);
+
+	var pAddress = localStorage.getItem("address");
+	$("#pAddress").text(pAddress);
+	$("#address").val(pAddress);
+
+	function editProfile(){
+
+		var s = document.getElementById('sProfile');
+		if(s.style.display == "block")
+          s.style.display = "none";
+       else
+          s.style.display = "block";
+
+		var h = document.getElementById('hProfile');
+		if(h.style.display == "block")
+          h.style.display = "none";
+       else
+          h.style.display = "block";
+	}
+
+	function saveProfile() {
+		var database = firebase.database();
+
+		var radios = document.getElementsByName('gender');
+		var gender = "";
+		for (var i = 0, length = radios.length; i < length; i++) {
+			if (radios[i].checked) {
+				gender = radios[i].value;
+				break;
+			}
+		}
+
+		var name = document.getElementById('name').value;
+		var dob = document.getElementById('dob').value;
+		var email = document.getElementById('email').value;
+		var number = document.getElementById('number').value;
+		var address = document.getElementById('address').value;
+
+		console.log( gender, pIc, name, dob, email, number, address);
+
+	if((pIc != "") && (name != "") && (dob != "") && (email != "") && (number != "") && (address != "") && (gender != "")) {
+		firebase.database().ref('user/' + pIc + '/AccountInfo').update({
+
+				name: name,
+				dob: dob,
+				email: email,
+				number: number,
+				address: address,
+				gender: gender,
+		});
+
+	}
+
+		localStorage.setItem("name", name);
+		localStorage.setItem("email", email);
+		localStorage.setItem("dob", dob);
+		localStorage.setItem("address", address);
+		localStorage.setItem("number", number);
+		localStorage.setItem("gender", gender);
+
+		location.reload();
+		window.scrollTo(0);
+	}
+
+
+function readSub() {
+	var counter = 0;
+	var sp = [];
+	var msp = [];
+	var dm = [];
+	var sd = [];
+	var ad = [];
+	return firebase.database().ref('user/' + localStorage.getItem("e-mag-9646d-ic") + '/MagazineSubscription/').once('value').then(function(snapshot) {
+	snapshot.forEach(function(childSnapshot) {
+
+			sp[counter] = childSnapshot.val().ProductInformation.SubscriptionPeriod;
+			msp[counter] = childSnapshot.val().ProductInformation.SubscriptionMonthlyPayment;
+			dm[counter] = childSnapshot.val().ProductInformation.DeliveryMethod;
+			sd[counter] = childSnapshot.val().ProductInformation.SubscriptionDate;
+			ad[counter] = childSnapshot.val().AccountInformation.Address;
+			counter++;
+
+		});
+
+		for(i = 0; i < counter; i++)
+		{
+			document.getElementById("mDiv").style.display = "block";
+			document.getElementById("noMag").style.display = "none";
+			// $( "#subMag" ).append( "<h5>Subcription "+(i+1)+"</h5><br><li><p>Delivery Method:</p><p style='float:right;'>"+dm[i]+"</p></li><li><p>Subscription Period:</p><p style='float:right;'>"+sp[i]+"</p></li><li><p>Subscription Date:</p><p style='float:right;'>"+sd[i]+"</p></li><li><p>Subscription Monthly Payment:</p><p style='float:right;'>S$"+msp[i]+"</p></li><br><br>" );
+
+			$( "#subMag" ).append( "<li><div class='card-listItem'><h5>Subcription "+(i+1)+"</h5><div class='left'><p>Address:</p><br /><p>Delivery Method:</p><br /><p>Subscription Period:</p><br /><p>Subscription Date:</p><br /><p>Subscription Monthly Payment:</p><br /></div><div class='left'><p>"+ad[i]+"</p><br /><p>"+dm[i]+"</p><br /><p>"+sp[i]+"</p><br /><p>"+sd[i]+"</p><br /><p>$"+msp[i]+"/per mth</p><br /></div></div></li>" );
+		}
+
+	});
+}
+
+
+
+
+
+function Row(ItemRedeemed,cost,date)
+	{
+		this.ItemRedeemed=ItemRedeemed;
+		this.cost=cost;
+		this.date=date;
+	}
+
+
+	function RetrieveData(root){
+		var json;
+
+
+		var dbRef=firebase.database().ref().child('user/'+getIc()+'/Redemption/'+root);
+		var arrayList=[];
+		dbRef.once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+
+
+				var newrow =new Row(childData.ItemRedeemed,
+				childData.cost,childData.date)
+				arrayList.push(newrow);
+
+
+
+				});  //end of forEach;
+
+		json=JSON.stringify(arrayList);  //convert the array of objects into JSON string
+		var obj=JSON.parse(json); //convert from JSON string to an JSON object
+		//specify the JSON obj to the data source
+		$('#Predemption').dataTable({
+			"aaData": obj,
+
+			"aoColumns": [{
+				"mDataProp": "ItemRedeemed"
+				}, {
+				"mDataProp": "cost"
+				}, {
+				"mDataProp": "date"
+				}]
+		});
+		});   //end of dbRef.once
+
+	} //end of function
+
+
+
+</script>
+</body>
+</html>

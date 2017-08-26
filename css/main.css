@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+	font-family: 'Roboto', sans-serif;
+	color: rgba(0,0,0, 0.87);
+}
+body{
+	width: 80%;
+	margin: auto;
+	min-width: 480px;
+	padding-top: 56px;
+	background-color: rgba(226, 235, 236, 0.39);
+}
+.card {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 0px 2px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.card-listItem{
+	border-radius: 2px;
+	box-shadow: 4px 4px 20px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	margin: 0px;
+}
+.card-innerContent {
+	padding: 10px;
+}
+.card-tab {
+	overflow: auto;
+	width: 100%;
+	background:linear-gradient(to right, rgba(125,185,232,0) 60%,rgb(63, 193, 126) 120%);
+
+}
+.card-tab h1 {
+	padding: 10px;
+  float: left;
+}
+.card-tab button {
+	background-color: rgba(63, 193, 126,0.0);
+	font-weight: bold;
+	margin: 0px;
+	height: 100%;
+	font-size: 2em;
+	width: auto;
+	border: none;
+	padding: 10px;
+	cursor:pointer;
+}
+
+.card-sectionbar{
+	background-color: lightgrey;
+	border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	margin-bottom: 10px;
+	margin-top: 10px;
+	overflow: auto;
+	position: relative;
+
+}
+.card-sectionbar-topbar{
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+}
+.card-sectionbar-topbar img{
+		height: 100%;
+}
+.card-sectionbar-contentbar{
+	width: 100%;
+	overflow: auto;
+	background-color: #56a77e;
+}
+.card-sectionbar-contentbar h1:first-child{
+	float: left;
+	font-size: 300%;
+	padding: 10px;
+	color: white;
+}
+.card-sectionbar-contentbar-button {
+  float: right;
+  padding: 10px;
+  font-size: 3em;
+  background-color: rgb(255, 255, 255);
+  color: black;
+	border: none;
+	cursor: pointer;
+}
+.card-sectionbar-contentbar-button i{
+	font-size: 58px;
+	vertical-align: top;
+}
+.card-sectionbar-contentbar-button:hover{
+	background-color: rgb(152, 171, 161);
+	color: white;
+}
+.card-sectionbar-contentbar-button:hover i{
+	color: white;
+}
+.footerNote{
+	color: grey;
+}
+.card-button-float{
+	border: none;
+	padding: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	cursor:pointer;
+	 font-size: 200%;
+	 background-color: #3ec17d;
+   color: white;
+}
+.card-button-float:hover{
+	box-shadow: 0 5px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	cursor:pointer;
+}
+.card-button-flat{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	border: none;
+	background-color: white;
+	color:#56a77e;;
+	font-size: 150%;
+	padding: 10px;
+	cursor:pointer;
+	border-bottom: 5px solid #56a77e;;
+}
+.card-button-flat:hover{
+	background-color: #56a77e;;
+	color: white;
+	cursor:pointer;
+}
+/*default font size*/
+h1	{	font-size: 2em;	}
+h2	{	font-size: 1.9em;	}
+h3	{	font-size: 1.8em;	}
+h4	{	font-size: 1.7em;	}
+h5	{	font-size: 1.6em;	}
+h6	{	font-size: 1.5em;	}
+p,button		{	font-size: 1.4em;}
+span{ color: black;}
+a{
+	cursor:pointer;
+}
+/*
+primary css attribute
+*/
+.left {	float: left;	}
+.right {	float: right;	}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+.onhover-show{
+	display: block;
+}
+.onhover-show:hover{
+  display: block;
+}
+/*
+Default CSS for form inputs
+*/
+label{
+	font-size: 2em;
+}
+progress{
+	width: 400px;
+	height: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+textarea{
+	width: 400px;
+}
+input {
+	width: 400px;
+	height: 50px;
+	font-size: 120%;
+}
+
+input[type=checkbox]{
+	border-radius:0px;
+	width: 30px;
+	height: 30px;
+}
+input[type=file]{
+	width: 210px;
+	overflow: hidden;
+	z-index: -1;
+}
+
+select {
+	height: 50px;
+	width: 200px;
+	font-size: 100%;
+}
+
+/*
+Material Icon
+*/
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 {
+	font-size: 36px;
+}
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgb(86, 167, 126); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/*Popup Css*/
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+		background-color: rgba(0, 0, 0, 0.62);
+    z-index: 100;
+}
+.modal-panel{
+  position: relative;
+  margin: auto;
+  top: 100px;
+}
+.modal-tab {
+	width: 100%;
+	height: 56px;
+	background-color: #56a77e;
+}
+.modal-tab i.error{
+	float: left;
+	padding: 10px;
+}
+.modal-tab h1{
+  float: left;
+	padding: 10px;
+	color: white;
+}
+
+.modal-content {
+  padding: 10px;
+}
+.modal-content button{
+	margin-bottom: 10px;
+	margin-top: 50px;
+  font-size: 1.5em;
+  width: 50%;
+	cursor:pointer;
+}
+.modal-content button:hover{
+	color: white;
+	cursor:pointer;
+	background-color: #ff6969;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 36px;
+    font-weight: bold;
+		padding: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+/*
+Scroll bar styling
+*/
+::-webkit-scrollbar
+{
+	height: 10px;
+	background-color: #f9f9f9;
+}
+::-webkit-scrollbar:hover{
+	height: 20px;
+	transition: height 2s;
+}
+::-webkit-scrollbar-thumb
+{
+	background-color: rgba(98, 222, 125, 0.69);
+}
+::-webkit-scrollbar-button
+{
+	width: 15px;
+	background-color: rgb(235, 235, 235);
+}

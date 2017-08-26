@@ -1,0 +1,153 @@
+li {
+  list-style-type: none;
+}
+
+.card-tab button{
+}
+.card-tab i:first-child{
+	float: left;
+  padding: 10px;
+  font-size: 36px;
+}
+.card-tab div i{
+	float: right;
+  padding: 10px;
+  font-size: 36px;
+}
+
+#fadebg{
+  background-size: cover;
+  position: absolute;
+  top: 56px;
+  right:0px;
+  width: 100%;
+  height: 600px;
+  z-index: -1;
+}
+#product {
+  background-size: cover;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 600px;
+  margin: auto;
+  background-repeat: no-repeat;
+  margin-top: 10px;
+}
+#product div{
+  position: absolute;
+  float: right;
+  margin: 10px;
+  bottom: 0px;
+  right: 0px;
+  width: 30%;
+}
+#magazing-releases{
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 480px;
+}
+#magazing-releases li{
+  padding: 10px 0px 10px 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+  transition: width 1s;
+  padding: 0px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+#redemption-prizes li,#course-list li{
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+#magazing-releases li:hover{
+  width: 600px;
+}
+#magazing-releases li div:hover{
+  width: 600px;
+}
+#magazing-releases li div,#redemption-prizes li div,#course-list li div{
+  position:relative;
+  overflow: auto;
+  float: left;
+  transition: width 1s ;
+}
+#magazing-releases li div img{
+  float: left;
+  width: 300px;
+}
+/*mtext*/
+#magazing-releases li div div{
+  overflow: auto;
+  word-wrap: normal;
+  float: left;
+  width: 0px;
+  display: none;
+  transition: width 1s;
+}
+#magazing-releases li div h2:first-child{
+  background-color: #80d6aa;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  white-space: normal;
+  font-size: 4.5em;
+}#magazing-releases li div h2:nth-child(2){
+  padding: 10px;
+  white-space: normal;
+  font-size: 2.5em;
+}#magazing-releases li div h2:nth-child(3){
+  padding: 10px;
+  white-space: normal;
+  font-style: italic;
+  font-size: 1.5em;
+  color: gray;
+}
+
+#redemption-prizes{
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 310px;
+}
+#redemption-prizes li div{
+  overflow: auto;
+  white-space: normal;
+}
+#redemption-prizes li div img{
+  float: left;
+  padding: 10px;
+  height: 250px;
+}
+#redemption-prizes li div div{
+  overflow: auto;
+  float: left;
+  width: 550px;
+  height: 250px;
+}
+#course-list {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 360px;
+}
+#course-list li div div {
+  float: left;
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+}
+#course-list li div img {
+  float: left;
+  height: 100%;
+}
+#course-list li div div:nth-child(2) {
+  float: left;
+  white-space: normal;
+}

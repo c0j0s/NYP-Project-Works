@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src = "../javascript/common.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<title>template</title>
+</head>
+<body onload = "initFirebase();">
+	<form>
+		<h1>Check your Reservation</h1>
+		<p>
+			<label>Reservation by:<input type="text" id="sname"/></label>
+		</p>
+		
+		<input type="button" value="Retrieve" onClick="retrieveFromDB(path);"/>
+		<h3>Reservation Details</h3>
+		<label>Date:<input type="text" id="rDate" /></label><br>
+		<label>Time:<input type="text" id="rTime" /></label><br>
+		<label>Email:<input type="text" id="rEmail" /></label><br>
+	
+	</form>
+	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+	<script>
+	var path = "Account" + "/" + getIc() + "/" + "CourseRegistration";
+	
+	function retrieved(childData){
+		document.getElementById('rTime').value = childData.CourseName;
+		document.getElementById('rEmail').value = childData.CourseVenue;
+	
+	}
+	
+	</script>
+
+</body>
+
+</html>

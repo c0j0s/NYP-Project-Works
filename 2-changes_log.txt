@@ -1,0 +1,180 @@
+V2.45(End of development release)(hosted: e-mag-9646d.firebaseapp.com)
+  signup
+    -a popup will be created after signup successful
+  user interface
+	-minor changes
+V2.4
+  aesthetics
+    -minor changes
+  redemptionPage
+    -Redemption success change to popup
+    -minor UI improvements
+  Invoice
+    -added print function, not perfect
+  accessability
+    -nav contrast added
+    -high contrast setting carry over to next page
+  magazineSubscription
+    -default load user info for contact form
+  myprofile
+    -link to my course page
+    -print list of past magazine subscription
+  forget password
+    -ul improvement
+V2.3
+  aesthetics
+    -minor changes
+    -standardise button css
+  login
+    -forget password complete
+    -added background
+    -improve signup user interface
+
+V2.2
+  admin
+    -popup created to prompt admin before deleting content
+    -week number validation
+  e-magazine
+    -remove background for consistancy
+  contact us
+    -created to replace about us
+  login
+    -direct to my profile after login
+    -css fixed
+  redemption
+    -luckydraw item write record to database
+  course
+    -link with registered course
+  profile page
+    -side panel complete
+    -edit profile complete
+    -link with transation record
+V2.1
+  login
+    -account s0000000g direct to admin page
+    -other account to my profile page
+    -logout complete
+  nav
+    -change login btn after login
+  Magazine
+    -retrieve coverpages from database
+    -fix img retrieving issue using download from storage method to retrieve img
+  admin
+    -upload magazine ready
+    -upload LuckyDrawPrize ready
+    -upload courses ready
+    -manage content ready
+  footer
+    -contact us move to contact us page
+  login
+    -write to localStorage after login
+V2.0 (hosted: e-mag-9646d.firebaseapp.com)
+  login
+    -login function included
+    -islogin() ready, redirect if aleady login
+  homepage/nav
+    -improve aesthetics of webcomponents
+    -horizontal scrolling ready
+  accessability
+    -contrast and textsize function ready
+    -require fine tuning in mainInvert.css
+  footer
+    -send-Us-A-Message form redesign, default hidden
+  admin
+    -upload and update magazine coverpage ready
+    -update current latest releast week number for homepage and Redemption page
+  404
+    -modified layout
+V1.7
+  Homepage
+    -slideshow ready
+  redemption
+    -fix popup string overwrite issue
+  courselist
+    -direct to courst registration complete
+  magazine
+    -next and previous button ready
+V1.65.1 (hosted: e-mag-9646d.firebaseapp.com)
+  redemption
+    -fix points database overwritting issue
+    -TransactionRecord completed
+    -luckydraw code validation complete
+	-after redeem complete page done
+  login
+    -login complete
+  components/invoice
+    -data link with payment.html
+  components/courseRegistration
+    -working on the layout
+  Product.html
+    -content layout ready
+V1.6
+  component/payment
+    -validation added
+    -directed to invoice if payment completed
+    -fixed payment cant write to db bug
+  component/invoice
+    -created
+  magazine
+    -iframe completed
+  Redemption
+    -points calculation validation completed
+    -writing record to database completed
+    -localStorage for succes html
+    -update database points
+    -created success.html
+  Main.css
+    -added image for card-sectionbar img, refer to product.html
+  product
+    -added content layout
+  nav
+    -fix partial sizing issue
+
+V1.5
+  nav/footer
+    -using common(index) to create nav and footer onload
+    -.active css fixed
+  popup
+    -fixed redemptionPage
+V1.4
+  footer
+    -footer for every page
+  admin,courselist,courseregistered,redemptionpage
+    -standardised css
+  hompage
+    -button href complete
+  magazine
+    -testing on database interaction
+    -fix compilation error
+  common.js
+    -testing on db script
+    -added tab switching function
+    popup
+      -added popup function to standardise popup
+
+V1.3
+  nav
+    -new icon
+    -new nav height of 56px
+    -icon css included in main.css
+  template
+    -new page header created with standard css completed
+  homepage
+    -database script done
+    -image size container would be better for size control
+V1.2 
+  nav
+    -static nav bar for all pages
+    -clean up nav css to layou.css
+    -take note of nav bar version
+    -latest 1.2
+  index.html
+    -changes made to content
+  template
+    -new template with nav bar included
+
+V1.1 (hosted: e-mag-9646d.firebaseapp.com)
+full compilation
+
+V1
+first semi compilation

@@ -1,0 +1,297 @@
+#contentblock {
+	height: 1050px;
+}
+#leftSideBar div.card-innerContent ul li p{
+	font-size: 100%;
+	clear:both;
+	float: right;
+	max-width: 300px;
+}
+#leftSideBar div.card-innerContent h4{
+	padding: 10px;
+	background-color: rgba(110, 180, 228, 0.71);
+	width: 100%;
+}
+#leftSideBar ul.adminpanel{
+	list-style-type: none;
+	width: 100%;
+	overflow-y: auto;
+	height: 250px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+#leftSideBar ul.adminpanel li{
+	background-color: #f3f3f3;
+	margin-bottom: 5px;
+}
+#leftSideBar ul.adminpanel li i{
+	float: right;
+}
+#profileimg {
+	position: absolute;
+	border-radius: 50%;
+	margin: 3%;
+	height: 200px;
+	width: 200px;
+	box-shadow: 0px 0px 15px 0px black;
+}
+#weeklabel{
+	display: inline-block;
+	float: right;
+	margin: 5px;
+}
+#week{
+	width: 230px;
+	border-color: red;
+}
+#week:focus{
+	outline-color: red;
+}
+.previewimg{
+	height: 100%;
+	width: 50%;
+	padding: 0px;
+	padding-right: 10px;
+	overflow: hidden;
+}
+.previewimg img{
+	width: 100%;
+}
+div.card {
+	overflow: auto;
+}
+.imgcontainer{
+	width:50%;
+	height: 400px;
+	float: left;
+}
+div.card-innerContent {
+
+}
+input.card-button-float,button.card-button-float{
+	margin: 10px;
+	margin-left: 0px;
+	width: auto;
+	background-color: #3ec17d;
+    color: white;
+}
+.admin{
+	width: 50%;
+	float: right;
+}
+#aboutH1 {
+	color: white;
+	text-align: center;
+	padding-top: 10%;
+}
+#leftSideBar {
+	height: 100%;
+	float: left;
+	width: 30%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#leftSideBar div.card-tab i{
+	cursor: pointer;
+	float: right;
+	padding: 10px;
+}
+#leftSideBar div.card-innerContent ul li{
+	padding: 10px;
+	font-size: 1.5em;
+}
+#rightcontent{
+	height: 100%;
+	float: right;
+	width: 69%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+}
+#contentNav {
+	margin: 0 10% 2% 30%;
+	width: 70%;
+	height: auto;
+}
+
+#contentNav .button {
+	background-color: #4CAF50;
+    border: none;
+	border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+	min-width: 20%;
+	width: auto;
+    cursor: pointer;
+}
+
+.header {
+	width: 100%;
+	height: 60px;
+	background-color: blue;
+	padding : 8px 16px;
+}
+
+.about {
+	width: 100%;
+	margin: 2% 0;
+	clear:both;
+	background-color: pink;
+	height: auto;
+	padding-bottom: 1%;
+}
+
+.about img {
+	float:left;
+	margin: 3% 2% 2% 0;
+	height: auto;
+	width: 450px;
+}
+
+.about div p {
+	margin: 8% 2%;
+}
+
+.content {
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px #888888;
+	display: none;
+	margin: 0 10% 2% 30%;
+	width: 70%;
+	height: auto;
+	padding: 5%;
+	background-color: white;
+}
+
+#locate {
+	display: inline-block;
+	width: 100%;
+}
+
+.loginContent {
+	width: auto;
+	margin: auto;
+	text-align: left;
+	padding: 15px;
+  z-index: 1;
+
+}
+.loginContent ul.tab{
+	width: 30%;
+	margin: auto;
+	transition: width 0.5s;
+	min-width: 450px;
+}
+#loginbg{
+  position: absolute;
+  overflow: auto;
+  width: inherit;
+  height: 1050px;
+  background-image: url(../image/websrc/loginbg.jpg);
+  background-size: cover;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+
+#divLogin {
+	width: 450px;
+  margin: auto;
+  padding: 20px;
+}
+#divLogin a{
+	padding: 10px;
+  color: red;
+  float: left;
+  padding-left: 0px;
+  font-size: 1.3em;
+}
+#divLogin button {
+	float: right;
+}
+
+#divSignup input[type=radio] {
+  border: 0px;
+  width: 10%;
+  height: 2em;
+	font-size: 90%;
+  vertical-align: middle;
+
+}
+
+#divSignup {
+	width: 100%;
+	margin: auto;
+	height: 940px;
+	overflow: hidden;
+}
+#divSignup form{
+	height: 100%;
+}
+#divSignup .button {
+	margin-right: 20px;
+	float: right;
+}
+#sLogin {
+  float: left;
+	width: 45%;
+	padding: 20px;
+}
+
+#sDetails {
+  float: left;
+	width: 45%;
+	padding: 20px;
+}
+
+#divSignup fieldset {
+	border: none;
+	margin: 20px;
+	height: 100%;
+	margin-top: 0px;
+	position: relative;
+}
+
+#divSignup fieldset legend{
+	width: 100%;
+	font-size: 2em;
+	background-color: #bfead4;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 10px;
+}
+
+#sProfile li {
+	height: 80px;
+
+}
+
+.material-icons.md-40 {
+    font-size: 40px;
+}
+
+textarea {
+	font-size: 120%;
+}
+
+div.card-listItem{
+	overflow: auto;
+	padding: 10px;
+	margin: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+div.card-listItem h5{
+	padding: 10px;
+	padding-left: 0px;
+}
+div.card-listItem div.left:nth-child(2){
+	padding-right: 10%;
+
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/admin_user_about.css"/>
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<script src = "javascript/admin.js"></script>
+	<script src = "javascript/hide_show.js"></script>
+	<script src = "javascript/message.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>My Profile</title>
+</head>
+<body onload = "common(0),RetrieveData()">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+
+					<img id = "profileimg"src="image/websrc/male.jpg" alt="Profile Picture" width="100%"/>
+					<!-- js to change to diff profile img -->
+
+				<img  src="image/banner/others/profile.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>Welcome Admin</h1>
+				<!-- js to change to diff name -->
+			</div>
+	</div>
+
+
+	<div id="contentblock">
+		<div id="leftSideBar" class="card">
+			<div class="card-tab">
+				<h1>Manage Content</h1>
+			</div>
+			<div class="card-innerContent">
+				<h4>Magazine</h4>
+				<ul id="manage-magazine" class="adminpanel">
+
+				</ul>
+				<h4>Redemption [<script>document.write(localStorage.getItem('currentWeek'))</script>]</h4>
+				<ul id="manage-redemption" class="adminpanel">
+
+				</ul>
+				<h4>Courses</h4>
+				<ul id="manage-courses" class="adminpanel">
+
+				</ul>
+			</div>
+		</div>
+
+
+		<div id="rightcontent" class="card">
+			<ul class="tab ">
+				<li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'updateMagazine')">Update Magazine</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'updateRedemption')">Update Redemption</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'updateCourses')">Update Courses</a></li>
+				<label id="weeklabel">Week:
+				<input id="week" type="number" name="sStitle" ></label>
+			</ul>
+
+			<div>
+				<div class="tabcontent show card-innerContent" id="updateMagazine">
+					<div class="left previewimg">
+						<img src="image/websrc/default.jpg" id="previewimg0"/>
+					</div>
+					<form class="admin" class="right" onsubmit="return false">
+						<label>Magazine image:
+							<br />
+							<progress id="progress0" value = "0" max = "100"></progress>
+							<br />
+						<input onchange="preview(0)" id="file0" type="file" name="pic" accept="image/*" ></label>
+						<br />
+						<label>Magazine title:</br>
+						<input id="title" type="text" name="stitle" ></label>
+						<label>Magazine sub-title:</br>
+						<input id="subTitle" type="text" name="stitle" ></label>
+
+						<br />
+						<br />
+						<button class="left card-button-float" onclick="uploadmaga()">Upload</button>
+					</form>
+				</div>
+
+				<div class="tabcontent card-innerContent" id="updateRedemption">
+					<div class="left previewimg">
+						<img src="image/websrc/default.jpg" id="previewimg1"/>
+					</div>
+					<form class="admin" onsubmit="return false">
+						<label>Prizes type:
+						<select id="prize-type" name="type">
+							<option value="0">First Prize</option>
+							<option value="1">Second Prize</option>
+							<option value="2">Third Prize</option>
+						</select></label>
+						<br />
+						<br />
+						<label>Item image:
+							<br />
+							<progress id="progress1" value = "0" max = "100"></progress>
+							<br />
+						<input onchange="preview(1)" id="file1" type="file" name="pic" accept="image/*" ></label>
+						<br />
+						<br />
+						<label>Item name:</br>
+						<input id="iname" type="text" ></label><br />
+						<label>Item description:</br>
+						<input id="idescription" type="text" ></label><br />
+						<label>Item value:</br>
+						<input id="ivalue" type="number" ></label><br />
+						<label>Item code:</br>
+						<input id="icode" type="text"  maxlength="6"></label><br />
+						<br />
+						<br />
+						<button class="left card-button-float" onclick="uploadprizeitem()">Upload</button>
+
+					</form>
+
+				</div>
+
+				<div class="tabcontent card-innerContent" id="updateCourses">
+					<div class="left previewimg">
+						<img src="image/websrc/default.jpg" id="previewimg2"/>
+					</div>
+					<form class="admin" onsubmit="return false">
+						<label>Course image:
+							<br />
+							<progress id="progress2" value = "0" max = "100"></progress>
+							<br />
+						<input onchange="preview(2)" id="file2" type="file" name="pic" accept="image/*" ></label>
+						<br />
+						<label>Course name :</br>
+						<input type="text" id="cName" name="name"/></label></br>
+
+						<label>Description :</br>
+						<textarea rows="10px" cols="50px" id="cDescription" name="description" style='height: 160px;'></textarea></label></br>
+
+						<label>Date :</br>
+						<input type="date" id="cDate" name="date"/></label></br>
+
+						<label>Location :</br>
+						<input type="text" id="cLocation" name="location"/></label></br>
+
+						<label>Fee ($):</br>
+						<input type="number" step="0.01" id="cFee" name="fee"/></label></br>
+
+						<label>Class size :</br>
+						<input type="number" id="cVacancies" name="vacancies"/></label></br>
+
+						<label>Contact number :</br>
+						<input type="number" id="cContact" name="contact"/></label></br>
+
+						<input class="card-button-float" type="submit" value="Submit" onclick="addCourse()"/>
+						<input class="card-button-float" type="reset" value="Reset"/>
+					</form>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+<footer></footer>
+
+<script>
+	var string = localStorage.getItem('currentWeek');
+	var num = string.charAt(4) + string.charAt(5);
+
+	var currentWk = parseInt(num);
+	document.getElementById("week").min = parseInt(num)+1;
+	document.getElementById("week").placeholder = "Current: " + parseInt(num);
+
+	function preview(i){
+		$('#previewimg'+i).attr('src',URL.createObjectURL(document.getElementById('file'+i).files[0]));
+		$('input[type=file]').css('width','400px');
+	}
+</script>
+</body>
+</html>

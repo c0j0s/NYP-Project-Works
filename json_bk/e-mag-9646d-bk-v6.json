@@ -1,0 +1,393 @@
+{
+  "CourseList" : {
+    "BasicComputerClass" : {
+      "ContactNumber" : "65564312",
+      "Coursename" : "Basic Computer Course",
+      "Date" : "7/3/2017",
+      "Description" : "Basic Computer Course to upgrade their computer skills",
+      "Fee" : "$60.00",
+      "Location" : "Ban Sword CC",
+      "Vacancies" : "22",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fcomputercourse.jpg?alt=media&token=8d8e4eab-60c2-44d7-bed3-80554a5160be"
+    },
+    "Chess" : {
+      "ContactNumber" : "62884477",
+      "Coursename" : "Chinese Chess",
+      "Date" : "2017-09-03",
+      "Description" : "Basic Chinese Chess",
+      "Fee" : "50.00",
+      "Location" : "Ban Gun CC",
+      "Vacancies" : "32",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fchess.jpg?alt=media&token=f224c0f2-e265-4694-94c2-614bf17ea899"
+    },
+    "Dance" : {
+      "ContactNumber" : "67893643",
+      "Coursename" : "Basic Dancing School",
+      "Date" : "9/3/2017",
+      "Description" : "Basic Dancing Course to upgrade their Dancing skills",
+      "Fee" : "$80.00",
+      "Location" : "Ban Shield CC",
+      "Vacancies" : "13",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fdance.jpg?alt=media&token=0b0b5490-e3c4-45f1-9b6e-b3d830a05bcf"
+    },
+    "Taichi" : {
+      "ContactNumber" : "62414455",
+      "Coursename" : "Taichi",
+      "Date" : "9/3/2017",
+      "Description" : "Basic Taichi Class",
+      "Fee" : "$30.00",
+      "Location" : "Ban Cannon CC",
+      "Vacancies" : "32",
+      "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/CourseListImages%2Fhealthylifestyle.jpg?alt=media&token=cabf1f2e-d053-4207-8d6f-c1560fde3fbe"
+    }
+  },
+  "EnquiryMessage" : {
+    "test" : {
+      "Email" : "test@gmail.com",
+      "Message" : "Please help me !!!!!",
+      "Name" : "test"
+    },
+    "test2" : {
+      "Email" : "test2@gmail.com",
+      "Message" : "1234",
+      "Name" : "test2"
+    }
+  },
+  "LuckyDrawPrize" : {
+    "week16" : [ {
+      "Description" : "The Philips Viva Airfryer is a hot air cooker that offers a healthier alternative to deep fat frying. It's effectively a small fan oven on your worktop.",
+      "Name" : "Philips HD9220/20 Airfryer",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2Fairfryer.jpg?alt=media&token=97a49b4f-3fdc-463c-9c40-881136167aa4",
+      "Worth" : 500,
+      "code" : "J8HZAW"
+    }, {
+      "Description" : "Ceracraft Pans combine style, design and colour with durability and practical cooking convenience. The ceramic coating provides a safe, PTFE-free, non- stick cooking surface that's scratch resistant.",
+      "Name" : "JML Ceracraft Ceramic Pan 24cm",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2Fceremic%20pan.jpg?alt=media&token=2fc710ab-76ea-4220-bd54-889ac8ff0d20",
+      "Worth" : 200,
+      "code" : "2OMTFW"
+    }, {
+      "Description" : "600 E-mag points for redeeming attractive prizes at over redemption page",
+      "Name" : "600 E-Mag Points",
+      "Url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FLuckyDraw%2FWeek_16%2F600Points.jpg?alt=media&token=48a6144c-c79b-440c-ab0f-bdf81214a243",
+      "Worth" : 60
+    } ]
+  },
+  "MagazineReleases" : {
+    "week08" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk8.png?alt=media&token=23363a85-a370-43f6-b9a9-d3166908afaf",
+      "subTitle" : "anual event begins",
+      "title" : "Senior Sports 2016",
+      "week" : "Week 8"
+    },
+    "week09" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk9.png?alt=media&token=69389e40-8848-4914-9b11-8da51d8af067",
+      "subTitle" : "join us in community services",
+      "title" : "Lend a helping hand",
+      "week" : "Week 9"
+    },
+    "week10" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk10.png?alt=media&token=361b5222-7c62-4ff9-ba7f-5c037da333d6",
+      "subTitle" : "how to eat healthy",
+      "title" : "Healthy Feed",
+      "week" : "Week 10"
+    },
+    "week11" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk11.png?alt=media&token=f5014283-2e54-4a59-a743-7fdb2ab0dd16",
+      "subTitle" : "Help Feed Needies",
+      "title" : "Buy Fortune Cookies",
+      "week" : "Week 11"
+    },
+    "week12" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk12.png?alt=media&token=93b786be-0f3f-4935-bdf0-1caa9fb45225",
+      "subTitle" : "Stay Active in work force",
+      "title" : "Elderly Employment",
+      "week" : "Week 12"
+    },
+    "week13" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk13.png?alt=media&token=3313fe78-7325-4243-8908-52c625dba235",
+      "subTitle" : "special offers for you",
+      "title" : "Pionner Generation",
+      "week" : "Week 13"
+    },
+    "week14" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk14.png?alt=media&token=58d5f4f3-2892-42ba-81e6-84760e58a4e1",
+      "subTitle" : "New neighbourhood garden",
+      "title" : "Water Sport is the New Trend",
+      "week" : "Week 14"
+    },
+    "week15" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fwk15.png?alt=media&token=a75875f5-e65e-4aff-be9f-b339e3552509",
+      "subTitle" : "New neighbourhood garden",
+      "title" : "Healther Choices",
+      "week" : "Week 15"
+    },
+    "week16" : {
+      "page1" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F1.png?alt=media&token=ec41cf30-6593-4e29-a296-0d45b8d05140",
+      "page10" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F10.png?alt=media&token=9fcea95e-b312-4e90-9a4c-3f55cf180039",
+      "page2" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F2.png?alt=media&token=a20fdc19-8c09-4b5c-a5be-1b15fed97a6e",
+      "page3" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F3.png?alt=media&token=0d005f81-7124-4215-ac54-31d88a7eb05a",
+      "page4" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F4.png?alt=media&token=db97f79a-b7b4-4acd-b512-f93b4adf7ba2",
+      "page5" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F5.png?alt=media&token=888d5fff-4844-417b-b2f4-d2e1b2f8e7a7",
+      "page6" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F6.png?alt=media&token=5907255d-4141-4855-82f9-7a79922ac441",
+      "page7" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F7.png?alt=media&token=fabdf702-ccd0-478d-94de-d0841def3457",
+      "page8" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F8.png?alt=media&token=722636d9-a95c-417d-af5d-3c3c1293ca9f",
+      "page9" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/MagazineReleasesImages%2Fweek16%2F9.png?alt=media&token=ec23cccf-2e46-4a80-a4bc-1ef4afdf5fdd",
+      "subTitle" : "Top 10 tips to stay healthy",
+      "title" : "Stay Active",
+      "week" : "Week 16"
+    }
+  },
+  "RedemptionList" : {
+    "EZ-Link" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Description" : "A $5 EZ-Link card value top-up",
+        "Name" : "$5 EZ-Link Voucher",
+        "Points" : 500,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F5dollarsezlink.jpg?alt=media&token=469196af-3062-4767-86a7-6f14e15eec11"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $10 EZ-Link Voucher",
+        "Description" : "A $10 EZ-Link card value top-up",
+        "Name" : "$10 EZ-Link Voucher",
+        "Points" : 1000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F10%20dollars%20ezlink.jpg?alt=media&token=477a885a-d94d-4c89-9ffd-a380ae8b2787"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 EZ-Link Voucher?",
+        "Description" : "A $20 EZ-Link card value top-up",
+        "Name" : "$20 EZ-Link Voucher",
+        "Points" : 2000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F20%20dollars%20ezlink.jpg?alt=media&token=9ecaf29f-7dbb-4592-a975-416ae2eab074"
+      }
+    },
+    "NTUC" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 NTUC Voucher",
+        "Description" : "A $5 NTUC Voucher to be used at NTUC",
+        "Name" : "$5  NTUC Voucher",
+        "Points" : 500,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F5%20DOLLARS%20ntuc.jpg?alt=media&token=4965c3c4-223d-48e9-877b-d116bb782828"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 NTUC Voucher",
+        "Description" : "A $10 NTUC Voucher to be used at NTUC",
+        "Name" : "$10 NTUC Voucher",
+        "Points" : 1000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F10%20dollar%20ntuc.jpg?alt=media&token=6c6e5d0f-9fb9-47fa-b3a2-049960042e24"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 NTUC Voucher?",
+        "Description" : "A $5 NTUC Voucher to be used at NTUC",
+        "Name" : "$20 NTUC Voucher",
+        "Points" : 2000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2FCoupons%2F20%20DOLLARS%20NTUC.jpg?alt=media&token=fcd9d2d0-db15-4e37-af97-fa5eed730df8"
+      }
+    }
+  },
+  "WeekNumber" : {
+    "LatestWeek" : "week16"
+  },
+  "user" : {
+    "s0000000g" : {
+      "AccountInfo" : {
+        "name" : "test",
+        "password" : 1234
+      },
+      "MagazineSubscription" : {
+        "-KbTHLc-Rz8cz0m13mie" : {
+          "AccountInformation" : {
+            "Address" : "blk 131 kk road avenue 2 #02-231",
+            "Email" : "ken@gmail.com",
+            "InvoiceId" : "I652330",
+            "MobileNumber" : "83555203",
+            "Name" : "ken",
+            "PaymentMethod" : "Cash",
+            "PostalCode" : "310131"
+          },
+          "PaymentInformation" : {
+            "PaymentComplete" : "false"
+          },
+          "ProductInformation" : {
+            "DeliveryMethod" : "Door Step",
+            "SubscriptionDate" : "12:57 Friday, 27/1/2017",
+            "SubscriptionMonthlyPayment" : 10,
+            "SubscriptionPeriod" : "half year"
+          }
+        },
+        "-KbdVOb_jdVbi3robpG2" : {
+          "AccountInformation" : {
+            "Address" : "blk 131 kk road avenue 2 #02-231",
+            "Email" : "ken@gmail.com",
+            "InvoiceId" : "I761653",
+            "MobileNumber" : "83555203",
+            "Name" : "ken",
+            "PaymentMethod" : "Cash",
+            "PostalCode" : "310131"
+          },
+          "PaymentInformation" : {
+            "PaymentComplete" : "false"
+          },
+          "ProductInformation" : {
+            "DeliveryMethod" : "Door Step",
+            "SubscriptionDate" : "17:15 undefined, 29/1/2017",
+            "SubscriptionMonthlyPayment" : 5,
+            "SubscriptionPeriod" : "three year"
+          }
+        }
+      },
+      "Redemption" : {
+        "RedemptionPoints" : {
+          "Points" : 280000
+        },
+        "RedemptionRecord" : {
+          "-KbDWD51FAq7KqVY_KMT" : {
+            "ItemRedeemed" : "$20 NTUC Voucher",
+            "cost" : 2000,
+            "date" : "11:28 Tuesday, 24/1/2017"
+          },
+          "-KbDWF68rtoj0f3a1u9T" : {
+            "ItemRedeemed" : "$5  NTUC Voucher",
+            "cost" : 500,
+            "date" : "11:28 Tuesday, 24/1/2017"
+          },
+          "-KbDWZNDZDNY52hJW8Uc" : {
+            "ItemRedeemed" : "$5  NTUC Voucher",
+            "cost" : 500,
+            "date" : "11:30 Tuesday, 24/1/2017"
+          },
+          "-KbDYxiCq8HU5wH7utB5" : {
+            "ItemRedeemed" : "$10 NTUC Voucher",
+            "cost" : 1000,
+            "date" : "11:40 Tuesday, 24/1/2017"
+          },
+          "-KbDhQTcN6vKsVImaU4K" : {
+            "ItemRedeemed" : "$20 NTUC Voucher",
+            "cost" : 2000,
+            "date" : "12:22 Tuesday, 24/1/2017"
+          },
+          "-KbDhfBvbWkaVL3FONqL" : {
+            "ItemRedeemed" : "$20 NTUC Voucher",
+            "cost" : 2000,
+            "date" : "12:23 Tuesday, 24/1/2017"
+          },
+          "-KbE6DG8OXjPfYWCGo0U" : {
+            "ItemRedeemed" : "$10 EZ-Link Voucher",
+            "cost" : 1000,
+            "date" : "14:14 Tuesday, 24/1/2017"
+          },
+          "-KbGY4njxuVgezMvCzlq" : {
+            "ItemRedeemed" : "$20 EZ-Link Voucher",
+            "cost" : 2000,
+            "date" : "1:35 Wednesday, 25/1/2017"
+          },
+          "-KbGqmxQjqSj95xqvgxx" : {
+            "ItemRedeemed" : "$5  NTUC Voucher",
+            "cost" : 500,
+            "date" : "3:1 Wednesday, 25/1/2017"
+          },
+          "-KbJtybX8mc3Wi8LCaVH" : {
+            "ItemRedeemed" : "$5 EZ-Link Voucher",
+            "cost" : 500,
+            "date" : "17:14 Wednesday, 25/1/2017"
+          },
+          "-KbK-cNMfIdXIFnQfTlA" : {
+            "ItemRedeemed" : "$5 EZ-Link Voucher",
+            "cost" : 500,
+            "date" : "17:43 Wednesday, 25/1/2017"
+          },
+          "-KbKZAoXt3vy_f5JxAoQ" : {
+            "ItemRedeemed" : "$20 EZ-Link Voucher",
+            "cost" : 2000,
+            "date" : "20:19 Wednesday, 25/1/2017"
+          },
+          "-KbNQnhYebRcYySeMOBJ" : {
+            "ItemRedeemed" : "$20 NTUC Voucher",
+            "cost" : 2000,
+            "date" : "9:41 Thursday, 26/1/2017"
+          },
+          "-KbQjrG9sGKM6dM0X5CM" : {
+            "ItemRedeemed" : "$5 EZ-Link Voucher",
+            "cost" : 500,
+            "date" : "1:7 Friday, 27/1/2017"
+          },
+          "-Kbefw9eLp-EdFa17CU5" : {
+            "ItemRedeemed" : "$10 EZ-Link Voucher",
+            "cost" : 1000,
+            "date" : "22:45 Sunday, 29/1/2017"
+          },
+          "-KbefyvJenZVpx58Nx0E" : {
+            "ItemRedeemed" : "$20 EZ-Link Voucher",
+            "cost" : 2000,
+            "date" : "22:45 Sunday, 29/1/2017"
+          },
+          "-KbegKdzWUdjQw08Umy4" : {
+            "ItemRedeemed" : "$20 NTUC Voucher",
+            "cost" : 2000,
+            "date" : "22:46 Sunday, 29/1/2017"
+          },
+          "-KbiJEYGgxlpfhnJMhwl" : {
+            "ItemRedeemed" : "$5 EZ-Link Voucher",
+            "cost" : 500,
+            "date" : "15:39 Monday, 30/1/2017"
+          }
+        }
+      }
+    },
+    "s1111111g" : {
+      "AccountInfo" : {
+        "address" : "1234567",
+        "dob" : "1952-06-27",
+        "email" : "test@gmail.com",
+        "name" : "test2",
+        "number" : "91234567",
+        "password" : "1234"
+      }
+    },
+    "s111212g" : {
+      "AccountInfo" : {
+        "address" : "as",
+        "dob" : "2017-01-14",
+        "email" : "efr@fse",
+        "gender" : "female",
+        "name" : "fes",
+        "number" : "23214",
+        "password" : "abc"
+      }
+    },
+    "s1234567a" : {
+      "AccountInfo" : {
+        "address" : "safagaw",
+        "dob" : "2017-01-21",
+        "email" : "fsaz@vfgdas",
+        "gender" : "female",
+        "name" : "123456",
+        "number" : "91234567",
+        "password" : "123"
+      }
+    },
+    "s2222222z" : {
+      "AccountInfo" : {
+        "address" : "qwe",
+        "dob" : "2017-01-05",
+        "email" : "qwe@qwe",
+        "gender" : "female",
+        "name" : "qwe",
+        "number" : "123",
+        "password" : "123"
+      }
+    },
+    "s3333333A" : {
+      "AccountInfo" : {
+        "address" : "dawfwag",
+        "dob" : "2006-06-15",
+        "email" : "wfrqrf@fgaqf",
+        "gender" : "male",
+        "name" : "qwe",
+        "number" : "91234567",
+        "password" : "456789"
+      }
+    }
+  }
+}

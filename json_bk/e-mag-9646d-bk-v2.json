@@ -1,0 +1,178 @@
+{
+  "CourseList" : {
+    "BasicComputerClass" : {
+      "ContactNumber" : "65564312",
+      "Coursename" : "Basic Computer Course",
+      "Date" : "7/3/2017",
+      "Description" : "Basic Computer Course to upgrade their computer skills",
+      "Fee" : "$60.00 - $80.00",
+      "Location" : "Ban Sword CC",
+      "Vacancies" : "22"
+    },
+    "Dance" : {
+      "ContactNumber" : "67893643",
+      "Coursename" : "Dance",
+      "Date" : "9/3/2017",
+      "Description" : "Basic Dancing Course to upgrade their Dancing skills",
+      "Fee" : "$30.00 - $50.00",
+      "Location" : "Ban Shield CC",
+      "Vacancies" : "13"
+    }
+  },
+  "Lucky Draw" : {
+    "Pictures" : {
+      "Ryze" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2Flucky%20draw.jpg?alt=media&token=bdee4350-6c1d-48be-a0bb-d92ef3838e22"
+    }
+  },
+  "Lucky Draw Prize" : {
+    "Prize1" : {
+      "Description" : "A BL 380 Blender",
+      "Picture" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2Flucky%20draw%20prize.jpg?alt=media&token=53ee3e5d-a3ce-447a-836d-3feed0e7046d"
+    },
+    "Prize2" : {
+      "Description" : "IKEA 60 Piece Cutlery Set",
+      "Picture" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2Fcutlery%20set.jpg?alt=media&token=271ab7d1-6aae-4fe7-9fea-0edb65a3ce4f"
+    },
+    "Prize3" : {
+      "Description" : "JML Ceracraft Ceramic Pan 24cm",
+      "Picture" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2Fceremic%20pan.jpg?alt=media&token=ba2f9f68-e077-4cef-b4c8-42154c11782a"
+    },
+    "Prize4" : {
+      "Description" : "A Philips HD9220/20 Airfryer",
+      "Picture" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2Fairfryer.jpg?alt=media&token=566344b9-810e-4156-a178-5184762d3ef6"
+    },
+    "Prize5" : {
+      "Description" : "600 Points",
+      "Picture" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Lucky%20Draw%2F600Points.jpg?alt=media&token=02a824a5-8767-4869-95f9-8c5a311e0892"
+    }
+  },
+  "MagazineReleases" : {
+    "test" : 1
+  },
+  "Message" : {
+    "test" : 1
+  },
+  "RedemptionList" : {
+    "EZ-Link" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$5 EZ-Link",
+        "Points" : 500,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F5dollarsezlink.jpg?alt=media&token=2978019e-ac8f-48d4-8b64-4853432063c9"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $10 EZ-Link Voucher",
+        "Name" : "$10 EZ-Link",
+        "Points" : 1000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F10%20dollars%20ezlink.jpg?alt=media&token=1da32961-b384-4c42-99e7-fffce458e2f1"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 EZ-Link Voucher?",
+        "Name" : "$20 EZ-Link",
+        "Points" : 2000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F20%20dollars%20ezlink.jpg?alt=media&token=b58b749c-8a70-475b-9a05-07dd78b514de"
+      }
+    },
+    "NTUC" : {
+      "A5Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$5 NTUC",
+        "Points" : 500,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F5%20DOLLARS%20ntuc.jpg?alt=media&token=571db3d1-ee97-4295-a7fa-b18979b93312"
+      },
+      "B10Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $5 EZ-Link Voucher",
+        "Name" : "$10 NTUC",
+        "Points" : 1000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F10%20DOLLARS%20NTUC.jpg?alt=media&token=b6def2a0-21fa-47a4-a811-b239ede8be09"
+      },
+      "C20Ez-Link" : {
+        "Confirm" : "Confirm Redemption of $20 EZ-Link Voucher?",
+        "Name" : "$20 NTUC",
+        "Points" : 2000,
+        "url" : "https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/Coupons%2F20%20DOLLARS%20NTUC.jpg?alt=media&token=f796287d-9680-4ca4-a6ad-cc3e183d8fd0"
+      }
+    }
+  },
+  "user" : {
+    "s0000000g" : {
+      "AccountInfo" : {
+        "Profile_Picture" : "test",
+        "UserName" : "Test"
+      },
+      "CourseRegistration" : {
+        "-K_cu0_3g-E-P0fF1Ykx" : {
+          "CourseName" : "Basic Computer Course",
+          "CourseSchedule" : "1/2/2017",
+          "CourseVenue" : "Bishan CC"
+        },
+        "test2" : {
+          "courseName" : "Basic Dancing Class",
+          "courseSchedule" : "1/2/2017",
+          "courseVenue" : "Yishun CC"
+        }
+      },
+      "MagazineSubscription" : {
+        "-KaD6UBfSdFpmVIxIyNH" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Cash",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "PaymentComplete" : "false"
+          }
+        },
+        "-KaLdgQblfM40y70WcoU" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Credit Card",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "CreditCardCVV" : "",
+            "CreditCardExpires" : "2017-01",
+            "CreditCardHolder" : "1",
+            "CreditCardNumber" : "1",
+            "PaymentComplete" : "true"
+          }
+        },
+        "-KaLdhsx9Xl9hD_015fj" : {
+          "AccountInformation" : {
+            "Address" : "1",
+            "Email" : "1@m.c",
+            "MobileNumber" : "1",
+            "Name" : "1",
+            "PaymentMethod" : "Credit Card",
+            "PostalCode" : "1"
+          },
+          "PaymentInformation" : {
+            "CreditCardCVV" : "1",
+            "CreditCardExpires" : "2017-01",
+            "CreditCardHolder" : "1",
+            "CreditCardNumber" : "1",
+            "PaymentComplete" : "true"
+          }
+        }
+      },
+      "Redemption" : {
+        "Points" : 100,
+        "TransactionRecord" : {
+          "test" : {
+            "PointsUsed" : 5000,
+            "RedemptionData" : "05/12/2017",
+            "RedemptionId" : "000000",
+            "RedemptionItem" : "Rice Cooker",
+            "RedemptionTime" : "15:30"
+          }
+        }
+      }
+    }
+  }
+}

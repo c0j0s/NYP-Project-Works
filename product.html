@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/tab.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/product.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>INTRODUCING E-MAG</title>
+</head>
+<body onload = "common(2)">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+				<img  src="image/banner/others/product.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>INTRODUCING E-MAG</h1>
+				<button onClick="subsNow()" class="card-sectionbar-contentbar-button" id="subscribebtn">Subscribe Now<i class="material-icons md-dark">navigate_next</i></button>
+			</div>
+	</div>
+	<!-- start here -->
+	<div class="card" id="magazine-overview">
+		<div class="card card-innerContent">
+			<h1>E-Mag</h1>
+			<h3>E stands for Elderlies</h3>
+			<br />
+			<p>
+				The E-mag solution produces weekly release of the E-mag Magazine with contents targeted at the Elderlies such as community news,courses for elderlies and weekly luckydraw.
+			</p>
+			<br />
+			<p>
+				Enjoy the rich content with small amount of monthly subscription fee
+			</p>
+			<br />
+			<p class="footerNote">
+				The E-Mag website serve as a supporting branch of our E-Mag Solution.
+				Providing useful contents, and support functionalities to enhance the E-Mag experience
+			</p>
+		</div>
+	</div>
+
+	<div class="card" id="magazine-content">
+		<div id="magazine-content-tab">
+			<ul class="tab">
+				<li class="tablinks active" onclick="openTab(event, 'magazine-content-pic1')">
+					<a>Latest Community News</a>
+				</li>
+				<li class="tablinks" onclick="openTab(event, 'magazine-content-pic2')">
+					<a>Courses cater for elderlies</a>
+				</li>
+				<li class="tablinks" onclick="openTab(event, 'magazine-content-pic3')">
+					<a>Weekly Lucky Draw</a>
+				</li>
+			</ul>
+		</div>
+		<div class="tabcontent show" id="magazine-content-pic1">
+			<img src="image/product/1.jpg"/>
+			<div class="card card-innerContent" id="magazine-content-intro">
+				<h1>Get updates about your community</h1>
+				<br />
+				<p>
+					All happenings in your neighrbourhood such as events, new and stories are compile into one magazine for your reading.
+				</p>
+
+			</div>
+		</div>
+		<div class="tabcontent hide" id="magazine-content-pic2">
+			<img src="image/product/2.jpg"/>
+			<div class="card card-innerContent" id="magazine-content-intro">
+				<h1>Weekly updated list of courses for Elderlies</h1>
+				<br />
+				<p>
+					All courses organised by Community centre or other training centers that are specially design for elderlies will be collected into one magazine.
+					<br />
+					<br />
+					Of course, enjoy special discounts using coupon codes found in the weekly magazine releases
+				</p>
+				<br />
+				<br />
+				<button class="card-button-flat" onclick="location.href = 'courselist.html'">Learn More</button>
+			</div>
+		</div>
+		<div class="tabcontent hide" id="magazine-content-pic3">
+			<img src="image/product/3.jpg"/>
+			<div class="card card-innerContent" id="magazine-content-intro">
+				<h1>Attractive Lucky Draw Prizes to be won</h1>
+				<br />
+				<p>
+					Weekly Attractive Lucky Draw Prizes available for Redemption using the lucky Draw code found in the weekly releases of magazine.
+					<br />
+					<br />
+					Will you be the Lucky one?
+				</p>
+				<br />
+				<br />
+				<button class="card-button-flat" onclick="location.href = 'redemptionGuide.html'">Learn More</button>
+			</div>
+		</div>
+
+	</div>
+
+	<footer></footer>
+<script>
+function subsNow(){
+	islogin("magazineSubscription.html");
+}
+
+var slideIndex = 0;
+slideshow();
+
+function slideshow() {
+		var tablink = document.getElementsByClassName('tablinks');
+		var tabcontent = document.getElementsByClassName('tabcontent');
+    var i;
+
+    for (i = 0; i < tabcontent.length; i++) {
+			tablink[i].className = tablink[i].className.replace("active", "");
+      tabcontent[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > tabcontent.length) {slideIndex = 1}
+		tablink[slideIndex-1].style.transition = "background-color 0.8s ease-out"
+		tablink[slideIndex-1].className += " active";
+    tabcontent[slideIndex-1].style.display = "block";
+    setTimeout(slideshow, 10000); // Change image every 2 seconds
+}
+
+</script>
+</body>
+</html>
