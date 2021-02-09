@@ -1,0 +1,28 @@
+{
+  "name": "MFW Crawler",
+  "version": "1.0",
+  "description": "MFW Crawler",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "icons": {
+    "16": "images/get_started16.png"
+  },
+  "content_scripts": 
+	[
+    {
+			"matches": ["http://www.mfw.cn/poi/*"], 
+      "js": ["details.js"],
+			"run_at": "document_end"
+    },
+    {
+			"matches": ["http://www.mfw.cn/jd/10754/gonglve.html"], 
+      "js": ["gsc.js"],
+			"run_at": "document_end"
+		}
+  ],
+  "manifest_version": 2
+}

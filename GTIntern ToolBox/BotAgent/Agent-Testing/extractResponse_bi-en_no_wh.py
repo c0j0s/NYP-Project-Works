@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+import json
+import sys
+import os
+from pprint import pprint
+
+
+for file in os.listdir("bi_response_no_wh/"):
+    if file.endswith(".json"):
+        bs = "/"
+        bseq = ("bi_response_no_wh", file)
+        bpath = bs.join(bseq)
+        with open(bpath) as f:
+            base = json.load(f)
+            for response in base["en"]:
+                line = file.replace('_rep.json','') + "/t" + str(response["result"]["resolvedQuery"]) + "/t" + str(response["result"]["metadata"]["intentName"])  + "/t" + str(response["result"]["fulfillment"]["speech"]) + "/t" + str(response["result"]["parameters"]) + "/t" + str(response["result"]["action"])
+                print(line)
+        
+        #with open('en_tf/'+filename.replace("_usersays_en.json","_tf.json"), 'w',encoding='utf8') as f:
+             #json.dump(sentenceArr, f, indent=2, ensure_ascii=False)
+        #print("==================")
+    #else:
+        #print("END")
