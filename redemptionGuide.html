@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/redemption.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/accordion.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Redemption</title>
+</head>
+<body onload="common(5)">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+				<iframe height="315" src="https://www.youtube.com/embed/d-7-r-gncos" frameborder="0" allowfullscreen></iframe>
+				<div class="card-sectionbar-contentbar">
+				<h1>REDEMPTION</h1>
+				<button onclick="islogin('redemptionPage.html')" class="card-sectionbar-contentbar-button" id = "btn">Redeem Now<i class="material-icons md-dark">navigate_next</i></button>
+			</div>
+	</div>
+
+	<div class="card" id="pointguide">
+		<div class="card-tab">
+			<h1>Steps To Redeem Prize Using Points</h1>
+		</div>
+		<div class = 'card-innerContend'>
+			<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/11.png" class = "pic"/>
+				<div class="card-innerContent">
+					<h2>Step 1</h2>
+					<p>Check how many points that you have to redeem prizes</p></div>
+				</div>
+
+				<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/12.png" class = "pic"/>
+					<div class="card-innerContent">
+						<h2>Step 2</h2>
+						<p>Click on the prize that you want to redeem</P>
+						</div>
+					</div>
+					<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/13.png" class = "pic"/>
+						<div class="card-innerContent">
+							<h2>Step 3</h2>
+							<p>A Pop up screen will show up to confirm your decision</P>
+							</div>
+						</div>
+					</div></div>
+
+
+					<div class="card" id="luckydrawguide">
+						<div class="card-tab">
+							<h1>Steps To Redeem Prize Using Codes</h1>
+						</div><div class = 'card-innerContend'>
+							<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/21.png" class = "pic"/>
+								<div class="card-innerContent">
+									<h2>Step 1</h2>
+									<p>Find the coupon code in your magazine, if any.</p>
+								</div>
+							</div>
+							<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/22.png" class = "pic"/>
+								<div class="card-innerContent">
+									<h2>Step 2</h2>
+									<p>Type in the code in the magazine. Please note case sensitivity and press claim code</P>
+									</div>
+								</div>
+								<div class = 'card-listItem redemption-listitem'><img src = "image/websrc/23.png" class = "pic"/><div class="card-innerContent">
+									<h2>Step 3</h2>
+									<p>Click on redeem code and enjoy your prize</P>
+									</div></div>
+								</div>
+							</div>
+
+<div class="card">
+	<div class="card-tab">
+		<h1>F.A.Q</h1>
+	</div>
+
+	<button class="accordion">
+		<h5>Q: I have claimed my points but it still has not been deducted , does that mean that i can continue to spend the point that has already been spent?
+		</h5>
+	</button>
+	<div class="panel">
+	<p>
+		A: No, although it has not been shown as deducted, your points have already been deducted by the system but it still has not been reflected on your points remaining.
+	</p>
+	</div>
+
+	<button class="accordion">
+		<h5>Q: I have redeemed a bus ride but it still has not arrived. What Gives?
+		</h5>
+	</button>
+	<div class="panel">
+	<p>
+		A: It usually takes 2 days for processing and 7 weeks for delivery.
+	</p>
+	</div>
+
+	<button class="accordion">
+		<h5>Q: How do I get more points?
+		</h5>
+	</button>
+	<div class="panel">
+	<p>
+		A: By subscribing to our magazine or winning points from our lucky draw
+	</p>
+	</div>
+
+</div>
+
+
+
+		<footer></footer>
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+		acc[i].onclick = function() {
+			this.classList.toggle("active");
+			var panel = this.nextElementSibling;
+			if (panel.style.maxHeight){
+				panel.style.maxHeight = null;
+			} else {
+				panel.style.maxHeight = panel.scrollHeight + 'px';
+			}
+		}
+	}
+	</script>
+
+
+</body>
+</html>

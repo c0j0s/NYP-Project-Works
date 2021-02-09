@@ -1,0 +1,218 @@
+nav{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 56px;
+	background-color: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 8px 20px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	z-index: 5;
+}
+.nav-content{
+	background-color: grey;
+	position: relative;
+	width: 80%;
+	margin: auto;
+}
+nav div ul{
+	float: left;
+	width: auto%;
+	text-align: center;
+}
+nav div ul li{
+	list-style-type: none;
+	display: inline-block;
+	height: 56px;
+	vertical-align: middle;
+	font-size: 130%;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+nav div ul li a{
+	text-decoration: none;
+
+}
+nav div ul li i,nav div ul li p{
+	float: left;
+	padding: 10px;
+	font-size: 1.4em;
+	padding-right: 0px;
+	padding-left: 5px;
+}
+nav div ul li:hover {
+	border-bottom: 5px solid #56a77e;;
+}
+#navImg{
+	display: block;
+	float: left;
+}
+#navImg a img{
+	width: auto;
+	height: 56px;
+}
+.loginbutton{
+	float: right;
+	width: auto;
+}
+#afterloginicon{
+	position: relative;
+}
+#afterloginicon img{
+	float: left;
+	border-radius: 50%;
+	height: 62px;
+	padding: 10px;
+	width:62px;
+}
+#afterloginicon p{
+	padding-left: 0px;
+	float: left;
+	width: 80px;
+}
+#afterloginpane{
+	height: 0px;
+	position: absolute;
+	overflow: hidden;
+	top: 40px;
+	width: 150px;
+	transition: height 0.5s;
+}
+#afterloginpane ul{
+	width: 100%;
+}
+#afterloginpane ul li{
+	width: 100%;
+	padding: 10px;
+}
+#afterloginpane ul li:hover{
+	border: none;
+	background-color: #bfead4;
+}
+#afterloginicon:hover #afterloginpane,#afterloginpane:hover{
+	height: 112px;
+
+}
+.nav-active {
+	background-color: rgb(196, 236, 216);
+}
+#searchicon{
+
+}
+#searchicon i{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	padding: 10px;
+	z-index: 50;
+	color:rgb(86, 167, 126);
+	overflow: hidden;
+}
+
+#searchInput {
+	z-index: 40;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	width: 0px;
+	margin: 3px;
+	transition: width 1s;
+	border: none;
+	outline-color: black;
+	font-size: 1.8em;
+}
+#searchInput:not(:focus){
+	width: 0px;
+}
+footer {
+	margin-top: 5px;
+	padding: 8px;
+	background-color: rgb(128, 214, 170);
+	clear: both;
+}
+
+footer div {
+	width: 100%;
+	margin: auto;
+	padding : 8px;
+}
+
+footer div img {
+	height: 56px;
+}
+
+footer div a {
+	margin-right: 10px;
+	font-size: 1.4em;
+	text-decoration: none;
+}
+footer div a:hover{
+	border-bottom: 5px solid white;
+}
+#expandIcon{
+	float: right;
+	font-size: 36px;
+	padding: 10px;
+}
+
+.reset{
+	background: none;
+	border: none;
+	box-shadow: none;
+	color: red;
+	margin: 0px;
+}
+access{
+	z-index: 20;
+	position: fixed;
+	width: 56px;
+	background-color: lightgrey;
+	bottom: 0px;
+	right: 0px;
+	margin: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+access i{
+	padding: 10px;
+	cursor:pointer;
+}
+#accesstool{
+	height: 168px;
+	transition: height 2s;
+	background-color: white;
+}
+#access-hide{
+	transition: transform 1.5s;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+		z-index: 15;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+		padding: 10px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 15;
+    top: -5px;
+    right: 110%;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

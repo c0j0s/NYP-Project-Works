@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="css/admin_user_about.css"/>
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<script src = "javascript/admin.js"></script>
+	<script src = "javascript/login.js"></script>
+	<script src = "javascript/message.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Login</title>
+</head>
+<body onload = "common(0);">
+	<nav></nav>
+	<div id="loginbg"></div>
+	<div id="contentblock">
+
+		<div class="loginContent">
+			<ul class="tab">
+				<li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'divLogin'),tabexpand('divLogin')">Login</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'divSignup'),tabexpand('divSignup')">Sign Up</a></li>
+			</ul><br>
+
+			<div id="divLogin" class="tabcontent show card">
+					<label>NRIC Number:</label><br>
+					<input type="text" id="ic" autofocus/><br><br>
+
+					<label>Password:</label><br>
+					<input type="password" id="password" /><br>
+					<a style="color: #3ec17d;" onclick="popup();">Forget password ?</a><br><br><br>
+					<span id="errorMsg"></span>
+					<button style="cursor:pointer" id="login" class="card-button-float" onclick="login();">Login</button><br><br>
+			</div>
+
+			<div id="divSignup" class="tabcontent ">
+				<form id="fSignup" action="#" method="post" onsubmit="addUserImage(); return false;">
+
+						<fieldset id="sLogin" class="card">
+						    <legend>1) Login Details</legend>
+						    <br>
+								<br>
+								<br>
+
+						    <label>NRIC Number:</label><br>
+							<input type="text" onchange="check();" id="nric" name="nric"  pattern="^[SFTG/sftg]\d{7}[A-Z/a-z]$" title="E.g. S9805123X starts and end with alphabet"  placeholder="E.g. S9805123X" value="" required/><br><span class="errorNRIC"/></span><br>
+
+							<label>Password:</label><br>
+							<input type="password" id="password1" name="password1" pattern="(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title='Minimum 6 character with 1 lower case letter [a-z], 1 upper case letter [A-Z], 1 numeric character [0-9]' placeholder="E.g. P@ssw0rd" value="" required/><br><span class="errorPw"></span><br>
+
+							<label>Re-type Password:</label><br>
+							<input type="password" onchange="check();" id="password2" name="password2" pattern="(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  title='Minimum 6 character with 1 lower case letter [a-z], 1 upper case letter [A-Z], 1 numeric character [0-9]' placeholder="E.g. P@ssw0rd" value="" required/><br><span class="errorPw"></span><br>
+
+							<label>Security Question:</label><br>
+							<select id="sQuestion" style="width:400px;">
+								<option value="" selected disabled>Please select one question</option>
+								<option value="What was the name of your elementary / primary school?">What was the name of your elementary / primary school?</option>
+								<option value="In what city or town does your nearest sibling live?">In what city or town does your nearest sibling live?</option>
+								<option value="What is the last name of the teacher who gave you your first failing grade?">What is the last name of the teacher who gave you your first failing grade?</option>
+							</select><br>
+
+							<label>Answer:</label><br>
+							<input type="text" title="Enter your answer to the question"  id="answer" name="answer" value="" required/><br>
+							<br><br>
+						</fieldset>
+
+						<fieldset id="sDetails" class="card">
+						  <legend>2) Personal Details</legend>
+							<br>
+							<br>
+							<br>
+
+							<label>Name :</label><br>
+							<input type="text" id="name" name="name" title="Enter your nric name" placeholder="E.g. Tan Li Li" value="" required/><br><br>
+
+							<label>Date of Birth :</label><br>
+							<input type="date" id="dob" name="dob" value="" required/><br><br>
+
+							<label>Gender :</label><br>
+							<input type="radio" name="gender" value="male" required/>Male &nbsp
+							<input type="radio" name="gender" value="female" />Female<br><br>
+
+							<label>Email :</label><br>
+							<input type="email" id="email" name="email" title="E.g. example@gmail.com" placeholder="E.g. example@gmail.com" value="" required/><br><br>
+
+							<label>Contact Number :</label><br>
+							<input type="text" id="number" name="number" pattern="^[8-9]\d{6}[0-9]$" title="E.g. 91234567"  placeholder="E.g. 91234567" max="8" value="" required/><br><br>
+
+							<label>Address :</label><br>
+							<textarea rows="4" cols="50" id="address" name="address" title="Enter you nric address" placeholder="E.g. Block 111 Ang Mo Kio Avenue 3 #05-111 Singapore 530111" value="" required></textarea><br><br>
+
+							<label style="margin:10px">Profile Image :</label><progress id='loginprogress' value ='0' max = '100' style="width:10%;vertical-align:top;margin:10px"></progress><br>
+							<input id="pImage" type="file" name="pic" accept="image/*" required/>
+
+							<br><br>
+							<input style="cursor:pointer" class="button card-button-float" type="submit" value="Sign Up" onclick="addUserImage();"/>
+							<input style="cursor:pointer" class="button card-button-float" type="reset" value="Reset"/>
+						</fieldset>
+
+					</form>
+			</div>
+		</div>
+
+	</div>
+
+	<footer></footer>
+	<script>
+	function tabexpand(id){
+		if(id === "divSignup"){
+			$('ul.tab').css('width',"97.5%")
+		}else{
+			$('ul.tab').css('width',"30%")
+		}
+
+	}
+	</script>
+</body>
+</html>

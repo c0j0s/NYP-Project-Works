@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/homepage.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link rel="stylesheet" type="text/css" href="css/admin_user_about.css"/>
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<script src = "javascript/login.js"></script>
+	<script src = "javascript/admin.js"></script>
+	<script src = "javascript/hide_show.js"></script>
+	<script src = "javascript/message.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>About Us</title>
+</head>
+<body onload = "common(6);">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+				<img  src="image/banner/others/about.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>Contact Us</h1>
+			</div>
+	</div>
+
+	<div class="card">
+		<div class="card-tab">
+			<h1>Locate Us</h1>
+		</div>
+		<div>
+			<div style="width:50%; float: left;" class="card-innerContent">
+				<div id="map" style="width:100%;height:400px;background:yellow"></div>
+				<script>
+					function myMap() {
+					var mapOptions = {
+						center: new google.maps.LatLng(1.379409, 103.849871),
+						zoom: 18,
+						mapTypeId: google.maps.MapTypeId.HYBRID
+					}
+					var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+					}
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+			</div>
+			<div style="width:50%; float: left;" class="card-innerContent">
+				<h3>How To Get There</h3>
+				</br>
+				<h5>Address:</h5>
+				<p>180 Ang Mo Kio Avenue 8 Singapore (569830)</p></br>
+
+				<h5>Contact Number:</h5>
+				<p>64515115</p></br>
+
+				<h5>By Bus:</h5>
+				<p>	Yio Chu Kang Bus Terminal:&nbsp 13, 70, 72, 76, 162</br>
+					Avenue 5:&nbsp 45, 50, 159 and 265</br>
+					Avenue 6:&nbsp 45,86, 128, 851, 853 and NR1</p></br>
+				<h5>By MRT:</h5>
+				<p>Yio Chu Kang Station</p></br>
+			</div>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-tab">
+			<h1>Send Us a Message</h1>
+		</div><div class="card-innerContent" id="sendMsg">
+			<form>
+				<div class="left card-innerContent">
+					<label >Name: <br /><input type="text" id="mName" name="name" placeholder="" required/></label><br/>
+					<label >Email: <br /><input type="email" id="mEmail" name="email" placeholder="" required/></label><br/>
+				</div>
+				<div class="left card-innerContent">
+					<label>Enter your message here: <br />
+						<textarea id="mMessage" name="message" style="height: 138px;width:1050px; max-width:1050px" placeholder="Please enter message here." required></textarea></label>
+				</div>
+				<div style="clear:both">
+					<button style='padding-bottom: 0px;' type="reset" class="left card-button-float reset"><i style='margin-bottom:0px;' class="material-icons md-36 md-light">delete</i></button>
+					<input type="Submit" value="Submit" onclick="writeUserData()" class="card-button-float right"/>
+				</div>
+
+			</form>
+			</div>
+	</div>
+
+	<footer></footer>
+
+
+<script>
+  	if(localStorage.getItem("e-mag-9646d-ic") != null && localStorage.getItem("e-mag-9646d-ic") != "")
+		{
+      var pName = localStorage.getItem("name");
+	    $("#mName").text(pName);
+	  var pEmail = localStorage.getItem("email");
+	  $("#mEmail").text(pEmail);
+		}
+</script>
+</body>
+</html>

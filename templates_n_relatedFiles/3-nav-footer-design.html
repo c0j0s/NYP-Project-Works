@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/homepage.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>E-Mag - HOME</title>
+</head>
+<body>
+<!-- Copy into common() in common.js -->
+<!-- ============================================================================== -->
+  <nav>
+		<!-- nav version 2.1  -->
+		<div class="nav-content">
+			<div id="navImg">
+				<a href="index.html"><img src="image/websrc/LOGO.png" alt="LOGO" /></a>
+			</div>
+			<ul>
+				<li  class="navli"><a href="index.html" ><i class="material-icons md-36">home</i><p>Home</p></a></li>
+				<li class="navli"><a href="product.html"><i class="material-icons md-36">book</i><p>Product</p></a></li>
+				<li class="navli"><a href="magazine.html"><i class="material-icons md-36">library_books</i><p>E-Magazine</p></a></li>
+				<li class="navli"><a href="courselist.html"><i class="material-icons md-36">school</i><p>Courses</p></a></li>
+				<li class="navli"><a href="redemptionGuide.html"><i class="material-icons md-36">casino</i><p>Redemption</p></a></li>
+				<li class="navli"><a href="index.html"><i class="material-icons md-36">domain</i><p>About</p></a></li>
+				<li class="navli"><a ><form method="get" action="/search" id="searchForm">
+					<input id="searchInput" name="navSearch" type="text" size="40" placeholder="Search..." />
+				</form></a></li>
+			</ul>
+			<ul class="loginbutton">
+				<li><a id="loginImg"><i class="material-icons md-36">account_circle</i></a></li>
+			</ul>
+		</div>
+	</nav>
+<!-- ============================================================================== -->
+  <footer>
+		<div class="footerL">
+			<h1>Get In Touch With Us</h1>
+				<div>
+					<div class="contact"><i class="material-icons md-36">phone</i><h2>Contact Us: 65051512</h2></div><br />
+					<div class="contact"><i class="material-icons md-36">directions</i><h2>Find us on social media:</h2><br />
+					<br />
+					<div class="icongrp">
+						<div class = "icon">
+							<img src = "https://www.facebook.com/images/fb_icon_325x325.png"/>
+						</div>
+						<div class = "icon">
+							<img src = "https://pbs.twimg.com/profile_images/767879603977191425/29zfZY6I.jpg"/>
+						</div>
+						<div class = "icon">
+							<img src = "https://lh3.googleusercontent.com/aYbdIM1abwyVSUZLDKoE0CDZGRhlkpsaPOg9tNnBktUQYsXflwknnOn2Ge1Yr7rImGk=w300"/>
+						</div>
+					</div>
+					</div><br />
+					<div class="contact"><i class="material-icons md-36">email</i><h2>Email us at: E-mag@mail.com</h2></div><br />
+				</div>
+		</div>
+		<div class="footerR card">
+			<div class="card-tab">
+				<h1>Send Us a Message</h1>
+				<div class="right" id = "expand">
+					<h1 >Expand</h1>
+					<i class="material-icons" id = "expandIcon">expand_more</i>
+				</div>
+			</div>
+			<div class="card-innerContent" id="sendMsg">
+				<form>
+					<label class="left">Name: <br />
+					<input type="text" id="mName" name="name" placeholder="" required/>
+					</label>
+					<label class="left">Email: <br />
+					<input type="email" id="mEmail" name="email" placeholder="" required/>
+					</label>
+					</br>
+					<label>Enter your message here: <br />
+					<textarea id="mMessage" name="message" placeholder="Please enter message here." required></textarea>
+					</label>
+					<br />
+					<input type="reset" value="Clear" class="card-button-float right"/>
+					<input type="Submit" value="Submit" onclick="writeUserData()" class="card-button-float right"/>
+				</form>
+			</div>
+		</div>
+		<div class="Copyright">
+			<p>Copyright © 2016 NYP, Singapore. All rights reserved.</p>
+		</div>
+	</footer>
+<script>
+
+</script>
+</body>
+</html>

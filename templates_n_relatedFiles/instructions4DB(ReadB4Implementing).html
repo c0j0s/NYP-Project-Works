@@ -1,0 +1,79 @@
+<script>
+	//Code examples for interacting with firebase
+	//using method in common.js to interact with database
+	//copy and modify accordingly	
+	//refer to example.html files for working example
+
+//write to database====================================================================================================
+	function sendform(){
+			
+			//get value using geetElement method and assign to a variable (our default should be IC from local cache)
+			//set a temporary ic 4 debugging
+			var CName = document.getElementById('CName').value;
+			var CSchedule = document.getElementById('CSchedule').value;
+			var CVenue = document.getElementById('CVenue').value;
+			
+			//store all values into an Array
+			//database ref name : variable
+			var postData = {
+				CourseName: CName,
+				CourseSchedule:CSchedule,
+				CourseVenue:CVenue
+			}
+			
+			//calling common.js method to access database
+			//require a path 
+			//refer to database.xlxs for database table name and path value.
+			//			"table name	""					"subtable name"
+			var path = "Account" + "/" + getIc() + "/" + "CourseRegistration"
+			
+			//pass in path and data array
+			writetoDB(path,postData);
+			
+		}
+
+//read from database===================================================================================================
+
+	//for button onclick to call the method, pass in a path decleared in script
+	onclick = "retrieveFromDB(path);"
+	
+	//refer to database.xlxs for database table name and path value.
+	//			"table name	""					"subtable name"
+	var path = "Account" + "/" + getIc() + "/" + "CourseRegistration";
+	
+	//acces using childData.
+	function retrieved(childData){
+		document.getElementById('rTime').value = childData.CourseName;
+		document.getElementById('rEmail').value = childData.CourseVenue;
+	}
+	
+//for retriving list(old)==============================================================================================
+	var itemCount = 0;
+	function retrieved(childData){
+		if(itemCount < 10){
+			$("<script id = 'listItem'></script>").appendTo( "#list" );
+			$("<img src='Images/computercourse.jpg' alt='computercourse'/>").appendTo( "#listItem" );
+			$("<h2>" + childData.courseName + "</h2>").appendTo( "#listItem" );
+			$("<p>" + childData.courseSchedule + "</p>").appendTo( "#listItem" );
+			$("<p>" + childData.courseVenue + "</p>").appendTo( "#listItem" );
+			itemCount++;
+		}
+	}
+//upload file to storage===============================================================================================
+	function upload(){
+		var progressbar = null;//use dom to point to a progress tag if needed
+		var container = document.getElementById('fileholder');
+
+		var file = container.files[0];
+		var path = getIc(); //path determined by function, add "/" for sub path
+		uploadtoStorage(file,progressbar,path)
+	}
+//download From Storage================================================================================================
+	function download(){
+		var display = document.getElementById('display');
+		//setIc("s0000000g");
+		var path = getIc() +"/bg (16).jpg" //path determined by function, add "/" for sub path
+		downloadfromStorage(display,path);
+	}
+</script>
+

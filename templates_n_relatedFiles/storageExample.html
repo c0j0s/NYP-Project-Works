@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "../javascript/common.js"></script>
+	<title>template</title>
+</head>
+<body onload = "initFirebase()">
+	<nav></nav>
+
+	<!-- start here -->
+	<form>
+		<progress value = "0" max = "100" id = "progressbar"></progress>
+		<input type = "file" id = "fileholder"></input>
+		<input type = "button" id = "uploadButton" value = "upload" onClick = "upload();"></input>
+		<img id = "display"/>
+		<input type = "button" id = "downloadbutton" value = "download" onClick = "download();"></input>
+	</form>
+
+
+	<footer></footer>
+	<script>
+
+
+		function upload(){
+			var progressbar = document.getElementById('progressbar');
+			var container = document.getElementById('fileholder');
+
+			var file = container.files[0];
+			var path = getIc(); //path determined by function, add "/" for sub path
+			uploadtoStorage(file,progressbar,path)
+		}
+
+		function download(){
+			var display = document.getElementById('display');
+			//setIc("s0000000g");
+			var path = getIc() +"/bg (16).jpg" //path determined by function, add "/" for sub path
+			downloadfromStorage(display,path);
+		}
+
+
+
+		//for loading external html, works only web hosted,disabled for now
+		//$('nav').load("components/nav.html");
+		//$('footer').load("components/footer.html");
+	</script>
+</body>
+</html>

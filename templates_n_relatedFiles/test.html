@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/iframe.css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "../javascript/common.js"></script>	
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>template</title>
+</head>
+<body onload = "initFirebase()">
+	<nav></nav>
+	
+	<!-- start here -->
+	<form action="" method="post">
+	<h3>NYP Cafe Reservation</h3>
+	<input type = "Text" id = "CName" name = "name"></input>
+	<input type = "Text" id = "CSchedule" name = "schedule"></input>
+	<input type = "Text" id = "CVenue" name = "venue"></input>	
+	<button type ="button" oncLick = "print();"></button>
+	</form>
+	
+	
+	<footer></footer>
+	<script>
+		//for loading external html, works only web hosted,disabled for now
+		//$('nav').load("components/nav.html");
+		//$('footer').load("components/footer.html");
+		function print(){
+			document.getElementById("CName").value = RandomId("Redemption");
+		}
+		
+		
+	</script>	
+</body>
+</html>

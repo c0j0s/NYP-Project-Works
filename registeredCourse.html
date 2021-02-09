@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/courses.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<title>My Courses</title>
+</head>
+<body onLoad="common(0),retrieveFromDB('Account', 'CourseRegistration'),addcourse();">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+				<img  src="image/banner/others/courses.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>MY COURSES</h1>
+				<!-- other components put here, float right -->
+			</div>
+	</div>
+
+	<div id = "course-list"></div>
+	<footer></footer>
+
+<script type = "text/javascript">
+function popup() {
+   //para(id,title,width)
+   createPopup("myModel","Contact Us",500);
+   $("<h2 id = 'alerttext'></h2>").appendTo(".modal-content");
+   $("<p>Contact No: 65564312</p>").appendTo(".modal-content");
+   $("<p>Address: Blk 441 Ang Mo Kio Rd</p>").appendTo(".modal-content");
+   }
+
+function quit(index) {
+   //para(id,title,width)
+   createPopup("quitAlert","Request Successful",500);
+   $("<h2 id = 'alerttext'></h2>").appendTo(".modal-content");
+   $("<p>Thank You for Registering</p>").appendTo(".modal-content");
+   setTimeout(function(){
+	removecourse(index)
+   },3000);
+   }
+
+var counter = 0;
+function addcourse() {
+    $('<div class = "card rcourses"><div><img src="'+localStorage.getItem('imgurl')+'" alt="dance"/></div><div class = "card-innerContent"><h2>'+localStorage.getItem('coursename')+'</h2><table><th><tr><td>Day</td><td>Timings</td></tr></th><tr><td>	Monday</td><td>	2pm to 4pm</td></tr><tr><td>	Wednesday</td><td>	1pm to 3pm</td></tr><tr><td>	Friday</td><td>	2pm to 4pm</td></tr></table><p></p><p></p><br></div><div><button class="card-button-float" ONCLICK="popup()">I Need Help</button><button class="card-button-float" onclick="quit('+counter+')">QuitCourse</button></div></div>').appendTo("#course-list");
+	counter++;
+}
+
+function removecourse(index) {
+   var tobedelete = document.getElementsByClassName('rcourses')[index];
+   tobedelete.remove();
+   $('#quitAlert').remove();
+}
+</script>
+</body>
+</html>

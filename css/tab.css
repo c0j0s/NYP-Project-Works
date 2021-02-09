@@ -1,0 +1,38 @@
+ul.tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 0px;
+}
+ul.tab li {
+   float: left;
+   list-style-type: none;
+ }
+ul.tab li a {
+  text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    color: black;
+    height: 58.5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+ul.tab li a:hover {
+  background-color: #80d6a9;
+
+}
+ul.tab li a:focus, .active {
+  background-color: #bfead4;
+}
+
+.tabcontent {
+    display: none;
+    overflow: auto;
+
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}

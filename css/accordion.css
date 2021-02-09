@@ -1,0 +1,47 @@
+button.accordion {
+  font-size: 0.85em;
+    background-color: #fff;;
+    color: #444;
+    cursor: pointer;
+    padding: 0.9em;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+button.accordion h5{
+  overflow: auto;
+  float: left;
+}
+button.accordion.active, button.accordion:hover {
+    background-color: rgba(128, 214, 169, 0.61);
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    float: right;
+    font-size: 2em;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0px;
+    background-color: white;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+div.panel p{
+  padding: 10px;
+}
+
+iframe{
+  height:31.25em;
+  width: 100%;
+  height: 400px;
+}

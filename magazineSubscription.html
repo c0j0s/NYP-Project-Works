@@ -1,0 +1,396 @@
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/components.css" />
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<script src = "javascript/common.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Magazine Subscription</title>
+</head>
+<body onload="common(0),initInput()">
+<nav>
+
+</nav>
+	<form  method="post" onsubmit="return false;">
+		<div class = "card payment-product">
+			<div class="card-tab">
+				<h1>Magazine Subscription</h1>
+			</div>
+			<div class = "payment-product-image">
+				<img src="image/magazine/wk16/wk16_cover.png"/>
+			</div>
+			<div class="card-innerContent payment-product-details" >
+				<h1>Subscription of E-Mag</h1>
+				<div>
+					<h1 id = "priceTag">$<span id="cost">10</span>/per month</h1>
+					<p class="footerNote">
+						Monthly payable amount.
+					</p>
+				</div>
+				<div>
+					<h2>Subscription Period</h2>
+					<ul class="row">
+								<li class="subsperiod active cell" onclick="selectTab(event,10)">
+									<p>
+										Half Year
+									</p>
+									<p>
+										$10/mth
+									</p>
+								</li>
+								<li class="subsperiod cell" onclick="selectTab(event,8)">
+									<p>
+										One Year
+									</p>
+									<p>
+										$8/mth
+									</p>
+								</li>
+								<li class="subsperiod cell" onclick="selectTab(event,5)">
+									<p>
+										Three Years
+									</p>
+									<p>
+										$5/mth
+									</p>
+								</li>
+							</ul>
+					<p class="footerNote">
+					The subscription period starts from the subscription date.
+					</p>
+				</div>
+				<div>
+					<h2>Delivery Method</h2>
+					<ul class="row">
+								<li class="delimethod active cell" onclick="selectTab(event,'Door Step')">
+									<p>
+										Door Step
+									</p>
+								</li>
+								<li class="delimethod cell" onclick="selectTab(event,'Mail Box')" >
+									<p>
+										Mail Box
+									</p>
+								</li>
+							</ul>
+					<p class="footerNote">
+						Magazine will be delivered on every saturday morning through the selected delivery method.
+					</p>
+				</div>
+				<br />
+				<p class="footerNote">
+					E-Mag is a product by E-Mag.inc
+				</p>
+			</div>
+		</div>
+		<div id = "payment-infos" class="card payment-paymentinfo">
+			<ul class="tab">
+				<li><a href="javascript:void(0)" class="tablinks active" onclick="openTab(event, 'payment-infos-contact')">Contact Informations</a></li>
+				<li><a href="javascript:void(0)" class="tablinks" onclick="nextBtnValidation()">Payment Informations</a></li>
+			</ul>
+
+			<div id = "payment-infos-contact" class="tabcontent show card-innerContent">
+
+				<label>Name: <br/><input type = "text" id="fname" name = "name"  autofocus></input><p class="hintNote">Enter Your Full Name.</p></label><br/>
+				<label>Email: <br/><input type = "email" id="femail" name = "email" placeholder="" ></input><p class="hintNote">Enter Your E-mail Address.</p></label><br/>
+				<label>Mobile Number: <br/><input type = "tel" id="fmobile" name = "mobile"  maxlength="8"></input><p class="hintNote">Enter Your Mobile Phone Number.</p></label><br/>
+				<label>Address: <br/><input type = "text" id="faddress" name = "address"  ></input><p class="hintNote">Enter Your Delivery Address.</p></label><br/>
+			<br/>
+
+				<div class = "formfooter">
+					<button onclick="nextBtnValidation()" id="nextbtn" class="actbutton card-button-float">Next</button>
+				</div>
+			</div>
+
+			<div id = "payment-infos-payment" class="tabcontent hide card-innerContent">
+				<label>Payment Method: <select id="paymentMethod" onchange="openPayment()" name="paymentMethod">
+					<option value="cc">Credit Card</option>
+					<option value="nets">NETS</option>
+					<option value="c">Cash</option>
+				</select></label><br />
+				<div id = "payment-infos-payment-cc" class="paymentDiv show">
+					<label>Credit Card Number: <br/><input type="text" name="number" maxlength="16" id = "ccNumber"  autofocus disabled/><p class="hintNote">Enter Your CreditCard Number.</p></label><br />
+					<label>Credit Card Holder: <br/><input type="text" name="holder" id = "ccHolder"  disabled/><p class="hintNote">Enter Name on CreditCard.</p></label><br />
+					<label>Expires: <br/><input type="month" name="expires" id = "ccExpires"  disabled/><p class="hintNote">Enter CreditCard Expire Date.</p></label><br />
+					<label>CVV: <br/><input type="text" name="cvv" id = "ccCvv"  disabled placeholder="***" maxlength="3" size="4"/><p class="hintNote">Enter CreditCard CVV Found at the back of the card.</p></label><br />
+
+				</div>
+				<div id = "payment-infos-payment-nets" class="paymentDiv hide">
+					<br/>
+					<label>Select Bank: <select id = "bankSelection">
+						<option value="DBS">DBS</option>
+						<option value="OCBC">OCBS</option>
+						<option value="POSB">POSB</option>
+					</select></label><br />
+					<br/>
+					<button class="card-button-float">Direct to Ibanking</button>
+				</div>
+				<div id = "payment-infos-payment-cash" class="paymentDiv hide">
+					<div id="payment-cashmethod">
+						<h3>You have chosen cash for payment method.</h3>
+						<br />
+						<p>
+							Please procced to the nearest community club to complete you payment within 7 days from your subscription time. (<script>document.write(getDateAndTime());</script>)
+						</p>
+						<br />
+						<h3>Things to bring:</h3>
+						<br />
+						<ol>
+							<li>
+								<p>
+									1.NRIC
+								</p>
+								<div class="cash-pic">
+								<img src="image/websrc/nric.png"/>
+								</div>
+							</li>
+							<li>
+								<p>
+									2.Invoice PDF
+								</p>
+								<div class="cash-pic">
+								<img src="image/websrc/invoice.png"/>
+								</div>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<div class = "formfooter">
+					<input type="checkbox" id="tnc"/><span onclick="tncpopup()">Terms and Conditions</span>
+					<button onclick="sendform()" id="confirmbtn" class="actbutton card-button-float">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</form>
+<footer>
+
+</footer>
+<script type="text/javascript">
+	function initInput(){
+		getInputRef();
+		 vname.value = localStorage.getItem('name');
+		 vemail.value = localStorage.getItem('email');
+		 vmobile.value = localStorage.getItem('number');
+		 vaddress.value = localStorage.getItem('address');
+	}
+
+	function selectTab(evt, value){
+		var i, printCost,substab,delitab;
+
+		substab = document.getElementsByClassName('subsperiod');
+		delitab = document.getElementsByClassName('delimethod');
+		printCost = document.getElementById('cost');
+
+
+		if(value > 0){
+			subscriptionCost = value;
+			for (i = 0; i < substab.length; i++) {
+				substab[i].className = substab[i].className.replace(" active", "");
+			}
+			if(value == 10){
+				subscriptionPeriod = "half year"
+			}else if(value == 8){
+				subscriptionPeriod = "one year"
+			}else if(value == 5){
+				subscriptionPeriod = "three year"
+			}
+			printCost.innerHTML = value;
+		}else{
+			deliveryMethod = value;
+
+			for (i = 0; i < delitab.length; i++) {
+				delitab[i].className = delitab[i].className.replace(" active", "");
+			}
+		}
+		evt.currentTarget.className += " active";
+	}
+
+	var option = document.getElementById("paymentMethod");
+	var selected = option.options[option.selectedIndex].value;
+
+	function openPayment() {
+		var option = document.getElementById("paymentMethod");
+		var selected = option.options[option.selectedIndex].value;
+		var PaymentDiv = document.getElementsByClassName("paymentDiv");
+		var i;
+
+		for (i = 0; i < PaymentDiv.length; i++) {
+			PaymentDiv[i].style.display = "none";
+		}
+		getInputRef();
+		if(selected === "cc"){
+			i = 0;
+			vccNumber.disabled = false;
+			vccHolder.disabled = false;
+			vccExpires.disabled = false;
+			vccCvv.disabled = false;
+			finalPaymentMethod = "Credit Card"
+		}else if (selected === "nets") {
+			i = 1;
+			vccNumber.disabled = true;
+			vccHolder.disabled = true;
+			vccExpires.disabled = true;
+			vccCvv.disabled = true;
+			finalPaymentMethod = "NETS"
+		}else if (selected === "c") {
+			i = 2;
+			vccNumber.disabled = true;
+			vccHolder.disabled = true;
+			vccExpires.disabled = true;
+			vccCvv.disabled = true;
+			finalPaymentMethod = "Cash"
+		}
+		PaymentDiv[i].style.display = "block";
+	}
+
+		//reference-product
+	var subscriptionPeriod = "half year"
+	var subscriptionCost = 10;
+	var deliveryMethod = "Door Step";
+	//reference-contact
+	var vname;
+	var vemail;
+	var vmobile;
+	var vaddress;
+	var finalPaymentMethod = "Credit Card";
+	//reference-payment
+	var vccNumber;
+	var vccHolder;
+	var vccExpires;
+	var vccCvv;
+	var bankOption;
+	var bankSelected;
+	var tnc;
+
+	function getInputRef(){
+		//reference-product
+
+		//reference-contact
+		 vname = document.getElementById("fname");
+		 vemail = document.getElementById("femail");
+		 vmobile = document.getElementById("fmobile");
+		 vaddress = document.getElementById("faddress");
+		//reference-payment
+		 vccNumber = document.getElementById("ccNumber");
+		 vccHolder = document.getElementById("ccHolder");
+		 vccExpires = document.getElementById("ccExpires");
+		 vccCvv = document.getElementById("ccCvv");
+		 bankOption = document.getElementById("bankSelection");
+		 bankSelected = bankOption.options[bankOption.selectedIndex].value;
+		 tnc = document.getElementById("tnc").checked;
+	}
+
+	function nextBtnValidation(){
+		getInputRef();
+		vccNumber.disabled = false;
+		vccHolder.disabled = false;
+		vccExpires.disabled = false;
+		vccCvv.disabled = false;
+		try {
+        if(vname.value == "") {
+					vname.style.border = "1px solid red";
+					throw "Please fill in your Name";}
+				else if(vmobile.value == "") {
+					vmobile.style.border = "1px solid red";
+					throw "Please fill in your Mobile Number";}
+				else if(vaddress.value == "") {
+					vaddress.style.border = "1px solid red";
+					throw "Please fill in your Address";}
+				else if(vmobile.value.length < 8) {
+					vmobile.style.border = "1px solid red";
+					throw "Please fill in 8 digit Mobile Number";}
+        else if(isNaN(vmobile.value)) {
+					vmobile.style.border = "1px solid red";
+					throw "Mobile Number cannnot contain non numerical characters";}
+				openTab(event, 'payment-infos-payment');
+    }
+    catch(err) {
+			createPopup("tncAlert","Take Note",500);
+			$('<h1>' + err + '  </h1>').appendTo(".modal-content");
+    }
+	}
+
+	function sendform() {
+		getInputRef();
+		var date = getDateAndTime();
+		var invoiceid = RandomId('Invoice');
+
+		var postData;
+		var contactInfo;
+		var paymentInfo;
+
+		var productInfo = {
+			SubscriptionDate:date,
+			SubscriptionPeriod:subscriptionPeriod,
+			SubscriptionMonthlyPayment:subscriptionCost,
+			DeliveryMethod:deliveryMethod
+		}
+
+		var contactInfo = {
+			Name:vname.value,
+			Email:vemail.value,
+			MobileNumber:vmobile.value,
+			Address:vaddress.value,
+			PaymentMethod:finalPaymentMethod,
+			InvoiceId:invoiceid
+		};
+
+		if(finalPaymentMethod === "Credit Card"){
+			paymentInfo = {
+				CreditCardNumber:vccNumber.value,
+				CreditCardHolder:vccHolder.value,
+				CreditCardExpires:vccExpires.value,
+				CreditCardCVV:vccCvv.value,
+				PaymentComplete:"true"
+			};
+		}else if (finalPaymentMethod === "NETS") {
+			paymentInfo = {
+				BankSelected:bankSelected,
+				PaymentComplete:"true"
+			};
+		}else if (finalPaymentMethod === "Cash") {
+			paymentInfo = {
+				PaymentComplete:"false"
+			};
+		}
+
+		var postData = {
+			AccountInformation:contactInfo,
+			PaymentInformation:paymentInfo,
+			ProductInformation:productInfo
+		};
+
+		var path = "user" + "/" + getIc() + "/" + "MagazineSubscription"
+
+
+
+		if(tnc == true){
+			var dbRef = firebase.database().ref(path);
+			dbRef.push(postData);
+			createPopup("successAlert","Success",500);
+			$("<h1>Thank you for choosing E-Mag.</h1><p>Directing to Invoice in 5 seconds</p>").appendTo(".modal-content");
+			setTimeout(function(){
+				localStorage.setItem('MagazineSubscriptionDetails', JSON.stringify(postData));
+				location.href = "magasubsComplete.html"
+			},3000);
+		}else{
+			createPopup("tncAlert","Take Note",500);
+			$("<h1>Please Check Tnc</h1>").appendTo(".modal-content");
+		}
+
+	}
+
+	function tncpopup(){
+		createPopup("tncpopup","Terms and Conditions",500);
+
+		$("<ul><li>Term 1<br /><p>test</p></li></ul>").appendTo(".modal-content");
+	}
+</script>
+</body>

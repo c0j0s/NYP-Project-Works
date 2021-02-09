@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head onLoad="initFirebase()">
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src = "../javascript/common.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<title>template</title>
+</head>
+
+<body onLoad="initFirebase()">
+
+	<form action="" method="get">
+	<h3>NYP Cafe Reservation</h3>
+	<input type = "Text" id = "CName" name = "name"></input>
+	<input type = "Text" id = "CSchedule" name = "schedule"></input>
+	<input type = "Text" id = "CVenue" name = "venue"></input>	
+	<p><input type="button" value="Submit" onclick = "sendform()"/></p>
+	</form>
+	
+			
+	
+	<!--footer-->
+	
+	<script>
+		function sendform(){
+		
+			var CName = document.getElementById('CName').value;
+			var CSchedule = document.getElementById('CSchedule').value;
+			var CVenue = document.getElementById('CVenue').value;
+	
+			var postData = {
+				CourseName: CName,
+				CourseSchedule:CSchedule,
+				CourseVenue:CVenue
+			}
+			
+			var path = "Account" + "/" + getIc() + "/" + "CourseRegistration"
+			
+			writetoDB(path,postData);
+			
+		}
+		
+		
+	</script>
+	
+</body>
+</html>

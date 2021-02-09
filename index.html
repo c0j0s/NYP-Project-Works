@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/homepage.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>E-Mag - HOME</title>
+</head>
+<body onload = "common(1),retrievecontent()">
+	<nav></nav>
+
+	<div id="fadebg"></div>
+
+	<div class="card" id = "product">
+		<div class="card card-innerContent">
+			<h1>Introducing E-mag</h1>
+			<br />
+			<p>
+				E-mag is a weekly release community oriented magazine specially design for elderlies.
+				<br />
+				<br />
+				The latest of the latest, all in one release.
+				<br />
+				<br />
+			</p>
+			<br />
+			<br />
+			<button onclick="location.href='product.html' "class="card-button-flat" >Learn More</button>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-tab">
+			<i class="material-icons">import_contacts</i>
+			<h1>Releases of Magazine</h1>
+			<div class="right">
+				<button onclick="location.href='magazine.html'">Read More</button>
+				<i class="material-icons">navigate_next</i>
+			</div>
+
+		</div>
+		<ul id = "magazing-releases">
+
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-tab">
+			<i class="material-icons">import_contacts</i>
+			<h1>Latest Courses for Elderlies</h1>
+			<div class="right">
+				<button onclick="location.href='courselist.html'" >Register Now</button>
+				<i class="material-icons">navigate_next</i>
+			</div>
+
+		</div>
+		<ul id = "course-list">
+
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-tab">
+			<i class="material-icons">import_contacts</i>
+			<h1>Lucky Draw Prizes of the Week</h1>
+			<div class="right">
+				<button onclick="location.href='redemptionGuide.html'">Redeem Now</button>
+				<i class="material-icons">navigate_next</i>
+			</div>
+		</div>
+		<div >
+			<ul id="redemption-prizes">
+
+			</ul>
+		</div>
+	</div>
+
+	<footer></footer>
+
+	<script>
+	var imgArray = ['image/banner/homepage/1','image/banner/homepage/2','image/banner/homepage/3'];
+	var index = 1;
+
+
+	carousel();
+
+	function carousel() {
+
+
+			var bg = "linear-gradient(to bottom, rgba(255,255,255,0) 10%,rgb(243, 247, 247) 100%), url("+ imgArray[index-1]+'bg.jpg'+") no-repeat"
+ 			var mbg =  'url('+imgArray[index-1]+'.jpg'+')'
+
+			if(index < 3){
+				index++;
+			}else{
+				index = 1;
+			}
+
+			$("#fadebg").css("background", bg);
+			$("#product").css("background-image",mbg);
+			$("#fadebg").css("background-size", "cover");
+
+			setTimeout(function(){
+				carousel();
+				console.log("test")
+			}, 5000);
+
+	}
+
+		function retrievecontent(){
+			var week = localStorage.getItem("currentWeek");
+			var prizeIndex = ["First Prize","Second Prize","Third Prize"]
+			var counter = 0;
+
+			var redeemDbRef = firebase.database().ref("LuckyDrawPrize/" + week);
+			var courseDbRef = firebase.database().ref("CourseList");
+			var magazineDbRef = firebase.database().ref("MagazineReleases").limitToLast(9);;
+
+			redeemDbRef.once('value',
+			snapshot => {
+				snapshot.forEach(
+					function(childSnapshot){
+						var childData = childSnapshot.val();
+						$('<li><div class="card-listItem"><img src="'+childData.Url+'"/><div class="card-innerContent">	<h1>'+prizeIndex[counter]+'</h1><p>'+childData.Name+'</p><p>Worth of $'+childData.Worth+'</p><br /><p>'+childData.Description+'</p></div></div></li>').appendTo("#redemption-prizes");
+
+						counter++;
+
+				});
+			});
+
+			var limit = 0;
+			courseDbRef.once('value',
+			snapshot => {
+				snapshot.forEach(
+					function(childSnapshot){
+						var childData = childSnapshot.val();
+						if(limit < 3){
+							$('<li><div class="card-listItem"><div><img src="'+childData.url+'" /></div><div class="card-innerContent"><h1>'+childData.Coursename+'</h1><p>Class size: <span>'+childData.Vacancies+'</span></p><p>Location: <span>'+childData.Location+'</span></p><br /><p>'+childData.Description+'</p></div></div></li>').appendTo("#course-list");
+							limit++;
+						}
+
+				});
+			});
+			var x = 8;
+			magazineDbRef.once('value',
+			snapshot => {
+				snapshot.forEach(
+					function(childSnapshot){
+						var childData = childSnapshot.val();
+						$("#magazing-releases").prepend('<li onmouseover="show('+x+')" onmouseout="hide('+x+')"><div class="card-listItem" ><img  src="'+childData.page1+'"/><div class="mtext" ><h2 >'+childData.week+'</h2><h2>'+childData.title+'</h2><h2>'+childData.subTitle+'</h2></div></div></li>')
+						x--;
+				});
+			});
+		}
+
+		function show(x){
+			var tohide = document.getElementsByClassName("mtext");
+			tohide[x].style.width = "300px";
+			tohide[x].style.display = "block";
+		}
+		function hide(x){
+			var tohide = document.getElementsByClassName("mtext");
+			tohide[x].style.width = "0px";
+			tohide[x].style.display = "none";
+
+		}
+	</script>
+</body>
+</html>

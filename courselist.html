@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/courses.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Courses for Elderlies</title>
+</head>
+<body onLoad="common(4),retrieveData()">
+	<nav></nav>
+
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+				<img  src="image/banner/others/courses.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>COURSES FOR ELDERLIES</h1>
+				<!-- other components put here, float right -->
+			</div>
+	</div>
+
+	<div id = "course-list"></div>
+
+<footer></footer>
+
+<script type = "text/javascript">
+var passData=[]
+function retrieveData(){
+	var dataFromDB = firebase.database().ref('CourseList');
+	var counter = 0;
+
+
+	dataFromDB.once('value',
+	snapshot =>{
+		snapshot.forEach(function(childSnapshot){
+			var childData = childSnapshot.val();
+			passData[counter] = childData;
+			$("<div class = 'card' id = 'courseList"+counter+"' </div>").appendTo("#course-list");
+			$("<div><img src="+childData.url+"/></div>").appendTo( "#courseList"+counter+"");
+			$("<div class='card-innerContent'><h2>"+childData.Coursename +"</h2><p>Description: "+ childData.Description + "</p><p>Date: "+childData.Date+"</p><p>Fee: "+childData.Fee+"</p><p>Class size: "+childData.Vacancies+"</p><p>Contact Number : "+ childData.ContactNumber +"</p><p>Location: " +childData.Location+"</p></div><button class='card-button-flat' onclick='registerPage("+counter+")'>Register Now</button>").appendTo("#courseList"+counter+"");
+			counter++;
+
+		});
+	});
+}
+
+function registerPage(index){
+	localStorage.setItem("imgurl", passData[index].url);
+	localStorage.setItem("coursename", passData[index].Coursename);
+	localStorage.setItem("fee", passData[index].Fee);
+	localStorage.setItem("location", passData[index].Location);
+	localStorage.setItem("date", passData[index].Date);
+	localStorage.setItem("description", passData[index].Description);
+	localStorage.setItem("vacancies", passData[index].Vacancies);
+	islogin("courseRegister.html");
+
+}
+</script>
+</body>
+</html>

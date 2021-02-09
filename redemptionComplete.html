@@ -1,0 +1,66 @@
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/components.css" />
+	<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link rel="stylesheet" type="text/css" href="css/success.css"/>
+	<script src = "javascript/common.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+
+
+</head>
+<body onload="common(0)">
+	<nav>
+
+	</nav>
+  <div class="card" id="invoice">
+    <div class="card-tab">
+      <h1>Transaction Successful</h1>
+    </div>
+    <div class="left card-innerContent">
+      <div>
+        <img src="image/websrc/tick.png" id = "tick"/>
+      </div>
+
+
+    </div>
+    <div class="left card-innerContent">
+
+
+      <div style="clear:both">
+
+        <p class="left">
+          Item Redeemed:
+        </p>
+        <p class="right">
+         <script>document.write(localStorage.getItem("Name Redemption"));</script>
+        </p>
+        <br />
+        <p class="left">
+          Points Used:
+        </p>
+        <p class="right">
+          <script>document.write(localStorage.getItem("Cost Redemption")+" Points");</script>
+        </p></div><br />
+		<div style="clear:both">
+		<button  onclick = "location.href='index.html'" class='sbutton' ><p>Back To Homepage<p></button>
+        <button    onclick = "location.href='redemptionPage.html'" class='sbutton' ><p>Continue Point Redemption<p></button>
+		<button   onclick = "location.href='redemptionTable.html'" class='sbutton' ><p>Check Transaction History<p></button>
+       </div>
+      </div>
+
+
+
+    </div>
+  </div>
+	<footer>
+
+	</footer>
+<script>
+
+</script>
+</body>

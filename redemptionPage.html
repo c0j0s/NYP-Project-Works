@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" type = "text/css" href = "css/layout.css" />
+	<link id="mainCss" rel = "stylesheet" type = "text/css" href = "css/main.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/redemption.css" />
+	<link rel = "stylesheet" type = "text/css" href = "css/main_mobile.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+	<script src = "javascript/common.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<title>Redemption</title>
+
+</head>
+<body onload = 'common(0),retrievedata(),retrievedList("EZ-Link","EZLINK","ezlink-child"),retrievedList("NTUC","NTUC","NTUC");'>
+
+	<nav></nav>
+
+	<!-- Page header -->
+	<div class="card-sectionbar">
+			<div class="card-sectionbar-topbar">
+				<img  src="image/banner/others/redemption.jpg"/>
+			</div>
+			<div class="card-sectionbar-contentbar">
+				<h1>REDEEM PRIZES</h1>
+				<h1 class = "right" id="pointdisplay"> Points Available : <text id="Points"></text></h1>
+				<button onclick="location.href='RedemptionTable.html'" id = "checkhistory"><i class="material-icons md-48 md-light">history</i></button>
+			</div>
+	</div>
+
+	<div class="card">
+		<div class="card-tab">
+			<h1>EZ-Link Card Voucher</h1>
+		</div>
+		<div id = "EZLINK" class="card-innerContent">
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-tab">
+			<h1>NTUC Voucher</h1>
+		</div>
+		<div id = "NTUC" class="card-innerContent">
+		</div>
+	</div>
+
+<div class="card" id="luckydraw">
+	<div class="card-tab">
+		<h1>Lucky Draw</h1>
+	</div>
+	<div id="redemption-prizes">
+
+	</div>
+	<div class="card-innerContent">
+		<img style="width:100%; height:400px;" src="https://firebasestorage.googleapis.com/v0/b/e-mag-9646d.appspot.com/o/RedemptionPrizesImages%2Fsteps%2Flucky%20draw%20(1).jpg?alt=media&amp;token=402688d6-1c4c-408f-afcd-ff3aae26d831">
+		<h2>Enter Code Found In Magazine :</h2>
+		<br />
+		<input type = "text" id = "luckyinput" ></input>
+		<button onclick="checkcode()"  id ="claim" class="card-button-float">Claim Code</button></p>
+		<br />
+		<div>
+			<h5>Past Winners</h5>
+			<table>
+				<tr>
+					<td>
+						Week 15
+					</td>
+					<td>
+						S****584L
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Week 14
+					</td>
+					<td>
+						S****185G
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Week 13
+					</td>
+					<td>
+						S****562C
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<footer></footer>
+
+<script type = "text/javascript">
+var keypressedcount = 0
+function checkcode(){
+		var code = document.getElementById("luckyinput").value;
+	if(keypressedcount == 0 && code != ""){
+		var dbRef = firebase.database().ref("LuckyDrawPrize/week16/");
+		var didnotwin = 0;
+		dbRef.once('value',
+		     snapshot => {
+		         snapshot.forEach(function(childSnapshot){
+		             var childData = childSnapshot.val();
+								 if (childData.code ===code){
+									createPopup("Win","You Have Won",500)
+							 		$("<div class = 'prize' id = 'win' ></div>").appendTo( ".modal-content" );
+							 		$("<img class = 'prize' src =" + childData.Url + " />").appendTo( ".modal-content" );
+							 		$("<h2>" + childData.Name + "</h2><p class='footerNote'>"+childData.Description+"</p><br /><p>Your lucky draw item will be delivered to your address in two weeks time</p><br/><p>call: 65001111 for more inquires</p></br/>").appendTo( ".modal-content" );
+									var D = getDateAndTime();
+									var postData = {
+										ItemRedeemed:childData.Name,
+										cost:"lucky Draw item (Free)",
+										date:D
+									};
+									writetoDB("user/"+getIc()+"/Redemption/RedemptionRecord",postData);
+								}else{
+									didnotwin++;
+									if(didnotwin == 3){
+										createPopup("Lose","Try Again Next Time",500)
+										$("<img src ='image/websrc/lose.png' class = 'prize'/>").appendTo(".modal-content");
+									}
+								}
+			});
+		 });
+		keypressedcount++;
+	}else{
+		setTimeout(function(){
+			keypressedcount = 0;
+		},1000)
+	}
+
+
+}
+
+
+function retrievedata(){
+	 var prizeIndex = ["First Prize","Second Prize","Third Prize"];
+	 var week = localStorage.getItem("currentWeek");
+	 var i = 0;
+	 var redeemDbRef = firebase.database().ref("LuckyDrawPrize/"+week);
+
+	 redeemDbRef.once('value',
+	 snapshot => {
+		 snapshot.forEach(
+			 function(childSnapshot){
+				 var childData = childSnapshot.val();
+				 $('<li><div class="card-listItem"><img src="'+childData.Url+'"/><div class="card-innerContent">	<h1>'+prizeIndex[i]+'</h1><p>'+childData.Name+'</p><p>Worth of $'+childData.Worth+'</p><br /><p>'+childData.Description+'</p></div></div></li>').appendTo("#redemption-prizes");
+				 i++;
+
+		 });
+	 });
+
+  var path = 'user/'+ getIc() +"/"+ "Redemption/RedemptionPoints"
+  retrieveFromDB(path);
+
+ }
+
+ var Points;
+ var itemName = [];
+ var itemindex;
+ function retrieved(childData){
+  if(Number.isInteger(childData)){
+   document.getElementById('Points').innerHTML = childData;
+   Points = childData;
+
+  }
+ }
+ function calculate(Point,Cost){
+ if (Points >= Cost) {
+     Points = Points - Cost;
+     document.getElementById('Points').innerHTML = Points;
+ sendform(Cost, itemindex)
+ update(Points);
+
+     return true;}
+ else{return false;}
+  
+  
+ }
+ var counter = 0;
+ function retrievedList(root,divid,childid){
+     var dbRef = firebase.database().ref('RedemptionList/' + root); 
+  
+     dbRef.once('value',
+     snapshot => {
+         snapshot.forEach(function(childSnapshot){
+             var childData = childSnapshot.val();
+             itemName[counter] =childData.Name;
+             $("<div class = 'card-listItem redemption-listitem' id = '"+childid + counter + "' ></div>").appendTo( "#"+divid );
+             $("<img class = 'prizeImg' src =" + childData.url + " />").appendTo( "#"+childid+counter );
+             $("<div class = 'card-innerContent'><h3>" + childData.Name + "</h3><p>"+childData.Description+"</p></div>").appendTo("#"+childid+counter);
+             $("<button onclick = 'popup("+ childData.Points+","+counter +");' class='card-button-flat'>"+childData.Points+" Points</button>").appendTo( "#"+childid+counter );
+             counter++;
+         });
+     });
+
+
+ }
+
+  
+ function popup(Cost, index){
+     //para(id,title,width)
+     createPopup("myModal","Confirmation",500);
+    itemindex = itemName[index];
+     $("<h1>Confirm Redemption For "+ itemName[index] +" .</h1>").appendTo( ".modal-content" );
+     $("<h1 id = 'alerttext' ></h1>").appendTo(".modal-content");
+     $("<button class = 'myBtn card-button-float' >Yes</button>").appendTo( ".modal-content" );
+     $("<button class = 'myBtn card-button-float' >No</button>").appendTo( ".modal-content" );
+  
+     var ybtn = document.getElementsByClassName("myBtn")[0];
+     var nbtn = document.getElementsByClassName("myBtn")[1];
+     var modal = document.getElementById('myModal');
+  
+     ybtn.onclick = function(){
+         if (calculate(Points,Cost) == true){
+          modal.style.display = "none";
+          $("#myModal").remove();
+    carryover();
+
+
+
+ }
+         else{
+     document.getElementById('alerttext').innerHTML="Not Enough Points";
+     setTimeout(function(){
+          modal.style.display = "none";
+              $("#myModal").remove(); }, 5000);
+        
+     }}
+  
+     nbtn.onclick = function(){
+         modal.style.display = "none";
+         $("#myModal").remove();
+     }
+
+  
+ }
+  function update(Pointo) {
+   firebase.database().ref('user/'+getIc()+'/Redemption/RedemptionPoints').set({
+    Points : Pointo
+   });
+  }
+
+	var datetime = getDateAndTime();
+	var postData;
+
+  function sendform(Cost, itemName){
+    postData = {
+    	cost: Cost,
+    	ItemRedeemed : itemName,
+	 		date : datetime
+
+    }
+
+    var path = "user/"+getIc()+"/Redemption/RedemptionRecord"
+    writetoDB(path,postData);
+
+   }
+   function carryover(){
+			createPopup("confirm","Transaction Successful",500);
+			$("<h1>Thank You For Your Patronage</h1><p>You have redeemed "+postData.ItemRedeemed+", for "+postData.cost+" points</p>").appendTo( ".modal-content" );
+			$("<button class = 'myBtn card-button-float' onclick= window.location.href='RedemptionTable.html';>Transaction History</button>").appendTo( ".modal-content" );
+
+			setTimeout(function(){
+				$("#confirm").remove();
+			},4000)
+	 }
+ </script>
+
+</body>
+</html>
