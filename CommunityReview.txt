@@ -1,0 +1,6 @@
+1;student@nyp.sg;student;27/5/2015 05:30:30PM;japanese stall at koufu;koufu;check out the Spicy Ramen at koufu! The good texture of the Ramen noodles complements the clear and spicy soup. It's perfect for rainy weather or a mega long lecture in a cold lecture theatre.;3
+2;student@nyp.sg;student;25/6/2015 11:14:40AM;north canteen prata stall;north canteen;Try the tasty and crispy prata at the North Canteen Indian Stall. The chicken curry is also delicious. There's a wide variety of pratas, thosais, and murtabaks to choose from. Take your pick!;4
+3;student@nyp.sg;student;28/7/2015 10:15:55AM;south canteen food;south canteen;it is delicious;2
+4;student@nyp.sg;student;17/3/2016 03:10:10PM;south canteen japanese stall;south canteen;cheap and nice;2.5
+5;admin@nyp.sg;admin;04/08/2016 08:44:30PM;mixed vegetable rice;north canteen;It is cheap and give a big portion of food to their customers. For example if i chose 4 dishes it is only around $3.80 but outside it is around $4.50 to $5.00. The food is also very delicious.;1.0
+6;admin@nyp.sg;admin;04/08/2016 09:49:39PM;noodles shop ;koufu;It is cheap and tasty. If you are looking for a nice and tasty noodle shop that is the place for u.;3.5

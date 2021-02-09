@@ -1,0 +1,6 @@
+c.js@hotmail.com;cjs;12345;SIT;admin
+test;test;12345;SIT;Student
+test;test;test;SIT;Student
+js;js;1;SIT;Student
+1;1;1;seg;admin
+2;2;2;sbm;Student

@@ -1,0 +1,6 @@
+admin@nyp.sg;admin;12345;SIT;admin;qns;ans
+staff@nyp.sg;staff;12345;SIT;Staff;what is my favourite colour ?;blue
+student@nyp.sg;student;12345;SIT;Student;what is my favourite colour ?;blue
+2;2;2;SIT;Student;qns;ans
+1;1;1;seg;admin;qns;ans
+3;3;3;SIT;Students;qns;ans

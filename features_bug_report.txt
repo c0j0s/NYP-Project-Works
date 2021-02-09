@@ -1,0 +1,38 @@
+"//"--Completed
+MainMenu {
+	
+}
+Community {
+	//add auto date
+	//Delete post
+	selection of canteen
+	update post
+}
+Delivery {
+	//delete record
+	read record
+	//update order before finailsing
+}
+Bookings {
+	edit/delete booking
+	search by different value, detect email
+	add email in txt
+}
+Others {
+	//change to playlist
+}
+Musicselection{
+	delete playlist
+	//write to file
+	ability to exit during music selection
+}
+Portfolio {
+	according to date(pending)
+}
+loginpg {
+	//forget Password
+	//change password
+}
+Uielements{
+
+}
