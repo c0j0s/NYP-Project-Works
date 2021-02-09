@@ -1,5 +1,5 @@
 # About
-A repo for NYP project works.
+An archive repo for NYP Business Enterprise IT course project work.
 
 - ICP - PE project
 - FFL - EWP Project
