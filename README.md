@@ -1,13 +1,13 @@
 # About
-An archive repo for NYP Business Enterprise IT course project work.
+An archive repo for NYP Business Enterprise IT course projects.
 
 - ICP - PE project
 - FFL - EWP Project
 - E-MAG - IWDP project
-- GTIntern Tool Box - collection of scripts used during internship.
 
 Updated on:  
 02/02/21
+06/08/22
 
 Author:  
 COJOS
